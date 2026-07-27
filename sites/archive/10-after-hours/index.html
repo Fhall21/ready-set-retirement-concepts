@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ready Set Retirement — psychosocial retirement education for employers</title>
+<meta name="description" content="Your most experienced people are already thinking about retirement. Ready Set Retirement runs psychosocial retirement education for Australian employers: training, workshops, coaching, consulting and speaking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   AFTER HOURS
+   Every colour on this page is derived from one scrubbed value.
+   The custom properties below are the defaults for a no-script load;
+   the master timeline overwrites them on :root as the page moves
+   through a 24-hour temperature ramp.
+   ------------------------------------------------------------------ */
+:root{
+  --surface: 250, 249, 247;
+  --panel: 253, 252, 251;
+  --ink: 18, 17, 13;
+  --ink-2: 88, 84, 76;
+  --accent: 168, 121, 46;
+  --accent-text: 126, 88, 30;
+  --m1: 255, 244, 228;
+  --m2: 242, 239, 231;
+  --m3: 255, 252, 246;
+  --m4: 237, 231, 220;
+  --mesh-a: .56;
+  --shadow-a: .18;
+  --shadow-rgb: 46, 38, 26;
+  --cta-bg: 18, 17, 13;
+  --cta-ink: 251, 247, 239;
+
+  --line: rgba(var(--ink), .16);
+  --line-soft: rgba(var(--ink), .09);
+  --lift: 0 40px 80px -20px rgba(var(--shadow-rgb), var(--shadow-a));
+  --lift-sm: 0 22px 44px -18px rgba(var(--shadow-rgb), calc(var(--shadow-a) * .9));
+
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --max: 74rem;
+  --chapter: clamp(6rem, 12vh, 12rem);
+
+  --d1: clamp(1.85rem, 5.4vw, 4.4rem);
+  --d2: clamp(1.65rem, 3.5vw, 2.9rem);
+  --d3: clamp(1.15rem, 1.6vw, 1.4rem);
+  --body: clamp(1.0625rem, 0.55vw + 0.92rem, 1.25rem);
+  --small: clamp(0.8125rem, 0.3vw + 0.74rem, 0.875rem);
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+
+html{ -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference){ html{ scroll-behavior: smooth; } }
+
+body{
+  margin: 0;
+  background: rgb(var(--surface));
+  color: rgb(var(--ink));
+  font-family: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: var(--body);
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- fixed light field ------------------------------------------- */
+.field{ position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.blob{ position: absolute; border-radius: 50%; will-change: transform; }
+.b1{ width: 96vmax; height: 96vmax; top: -34vmax; left: -26vmax;
+     background: radial-gradient(circle at 50% 50%, rgba(var(--m1), var(--mesh-a)) 0%, rgba(var(--m1), 0) 70%); }
+.b2{ width: 82vmax; height: 82vmax; top: 4vh; right: -24vmax;
+     background: radial-gradient(circle at 50% 50%, rgba(var(--m2), var(--mesh-a)) 0%, rgba(var(--m2), 0) 68%); }
+.b3{ width: 74vmax; height: 74vmax; bottom: -28vmax; left: 2vw;
+     background: radial-gradient(circle at 50% 50%, rgba(var(--m3), var(--mesh-a)) 0%, rgba(var(--m3), 0) 70%); }
+.b4{ width: 112vmax; height: 112vmax; bottom: -46vmax; right: -22vmax;
+     background: radial-gradient(circle at 50% 50%, rgba(var(--m4), var(--mesh-a)) 0%, rgba(var(--m4), 0) 66%); }
+
+@media (prefers-reduced-motion: no-preference){
+  .b1{ animation: drift-a 74s ease-in-out infinite alternate; }
+  .b2{ animation: drift-b 88s ease-in-out infinite alternate; }
+  .b3{ animation: drift-c 96s ease-in-out infinite alternate; }
+  .b4{ animation: drift-d 112s ease-in-out infinite alternate; }
+}
+@keyframes drift-a{ from{ transform: translate3d(0,0,0) scale(1); } to{ transform: translate3d(6vw, 5vh, 0) scale(1.1); } }
+@keyframes drift-b{ from{ transform: translate3d(0,0,0) scale(1.06); } to{ transform: translate3d(-7vw, 7vh, 0) scale(0.96); } }
+@keyframes drift-c{ from{ transform: translate3d(0,0,0) scale(0.98); } to{ transform: translate3d(8vw, -6vh, 0) scale(1.12); } }
+@keyframes drift-d{ from{ transform: translate3d(0,0,0) scale(1.04); } to{ transform: translate3d(-5vw, -4vh, 0) scale(0.94); } }
+
+.grain{
+  position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 260px 260px;
+}
+
+/* --- clock -------------------------------------------------------- */
+.clock{
+  position: fixed; z-index: 6;
+  top: clamp(1rem, 2.4vh, 2rem); right: var(--gutter);
+  display: flex; align-items: baseline; gap: .6rem;
+  color: rgb(var(--ink-2));
+  font-size: .75rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+.clock .t{ font-size: .875rem; letter-spacing: .1em; color: rgb(var(--ink)); font-weight: 600; }
+.clock .lbl{ opacity: .85; }
+@media (max-width: 560px){ .clock .lbl{ display: none; } }
+
+/* --- layout ------------------------------------------------------- */
+.wrap{ position: relative; z-index: 2; }
+.shell{ width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+section{ padding-block: var(--chapter); }
+
+h1, h2, h3{ margin: 0; font-weight: 600; letter-spacing: -0.02em; line-height: 1.06; }
+h1{ font-size: var(--d1); max-width: 20ch; }   /* 20ch holds the h1 to three lines at every width */
+h2{ font-size: var(--d2); max-width: 21ch; line-height: 1.08; }
+h3{ font-size: var(--d3); letter-spacing: -0.015em; line-height: 1.2; }
+p{ margin: 0; max-width: 62ch; }
+.lead{ font-size: clamp(1.125rem, 0.8vw + 0.95rem, 1.375rem); line-height: 1.52; max-width: 54ch; color: rgb(var(--ink)); }
+.body{ color: rgb(var(--ink-2)); }
+.small{ font-size: var(--small); line-height: 1.6; color: rgb(var(--ink-2)); }
+.stack-gap > * + *{ margin-top: 1.25rem; }
+
+a{ color: inherit; }
+:focus-visible{ outline: 2px solid rgb(var(--ink)); outline-offset: 4px; border-radius: 2px; }
+
+/* --- buttons ------------------------------------------------------ */
+.actions{ display: flex; flex-wrap: wrap; gap: .875rem 1.25rem; align-items: center; }
+.btn{
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3.25rem; padding: 0 1.75rem;
+  border: 1px solid transparent; border-radius: 999px;
+  font: inherit; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em;
+  text-decoration: none; cursor: pointer;
+  background: rgb(var(--cta-bg)); color: rgb(var(--cta-ink));
+  box-shadow: var(--lift-sm);
+  will-change: transform;
+}
+.btn-lg{ min-height: 3.75rem; padding: 0 2.25rem; font-size: 1.0625rem; box-shadow: var(--lift); }
+.link{
+  display: inline-flex; align-items: center; min-height: 2.75rem;
+  color: rgb(var(--ink)); text-decoration: none;
+  border-bottom: 1px solid rgba(var(--accent), .7);
+  font-weight: 500;
+}
+
+/* --- header ------------------------------------------------------- */
+.masthead{ padding-block: clamp(1rem, 2.4vh, 2rem) 0; }
+.mark{ display: inline-flex; align-items: baseline; gap: .55rem; font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.mark .dot{ width: .4rem; height: .4rem; border-radius: 50%; background: rgb(var(--accent)); transform: translateY(-.1rem); }
+
+/* --- hero --------------------------------------------------------- */
+.hero{ min-height: 82vh; display: flex; flex-direction: column; justify-content: center; padding-block: clamp(5rem, 14vh, 10rem) var(--chapter); }
+.hero h1{ margin-bottom: clamp(1.75rem, 3.5vh, 2.75rem); }
+.hero .lead{ margin-bottom: clamp(2.25rem, 5vh, 3.5rem); }
+.rule{ height: 1px; background: var(--line-soft); border: 0; margin: 0; }
+.hero .rule{ margin-top: clamp(3rem, 8vh, 6rem); }
+
+/* --- argument rows ------------------------------------------------ */
+.rows{ margin-top: clamp(3rem, 7vh, 5rem); border-top: 1px solid var(--line-soft); }
+.row{ display: grid; grid-template-columns: 1fr; gap: .625rem; padding-block: clamp(1.75rem, 4vh, 2.75rem); border-bottom: 1px solid var(--line-soft); }
+.row .k{ font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgb(var(--ink-2)); }
+.row p{ max-width: 58ch; }
+@media (min-width: 760px){
+  .row{ grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 2.5rem; }
+  .row .k{ padding-top: .45rem; }
+}
+.pull{
+  margin-top: clamp(3rem, 7vh, 5rem);
+  font-size: clamp(1.35rem, 2.3vw, 2rem); line-height: 1.24; letter-spacing: -0.02em;
+  font-weight: 500; max-width: 30ch;
+}
+
+/* --- program stack ---------------------------------------------- */
+.stack{ margin-top: clamp(2.5rem, 6vh, 4rem); display: flex; flex-direction: column; gap: 1.25rem; }
+.panel{
+  background: rgb(var(--panel));
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  box-shadow: var(--lift);
+  padding: clamp(1.5rem, 2.4vw, 2rem);
+  display: flex; flex-direction: column; gap: .875rem;
+}
+.panel .n{ font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgb(var(--accent-text)); }
+.panel p{ font-size: 1rem; line-height: 1.55; color: rgb(var(--ink-2)); max-width: 46ch; }
+.panel .fmt{ margin-top: auto; padding-top: .875rem; border-top: 1px solid var(--line-soft); font-size: .8125rem; letter-spacing: .02em; color: rgb(var(--ink-2)); }
+
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference){
+  html.js #program{
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding-block: clamp(2rem, 4vh, 3.5rem);   /* the pin supplies the chapter spacing */
+  }
+  html.js .stack{ position: relative; height: clamp(23rem, 50vh, 30rem); display: block; margin-top: clamp(2rem, 5vh, 3.5rem); }
+  html.js .stack .panel{
+    position: absolute; left: 50%; top: 50%;
+    width: min(21.25rem, 30%); height: clamp(21rem, 44vh, 27rem);
+  }
+  html.js .stack .panel:nth-child(1){ z-index: 3; }
+  html.js .stack .panel:nth-child(2){ z-index: 2; }
+  html.js .stack .panel:nth-child(3){ z-index: 1; }
+}
+
+/* --- losses ------------------------------------------------------- */
+.losses{ margin-top: clamp(3rem, 7vh, 5rem); display: grid; gap: 0; }
+.loss{ padding-block: clamp(1.5rem, 3.4vh, 2.25rem); border-top: 1px solid var(--line-soft); display: grid; gap: .5rem; }
+.loss:last-child{ border-bottom: 1px solid var(--line-soft); }
+.loss h3{ font-size: clamp(1.35rem, 2.4vw, 1.9rem); font-weight: 500; letter-spacing: -0.02em; }
+.loss p{ max-width: 54ch; }
+@media (min-width: 760px){
+  .loss{ grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+}
+
+.about{ margin-top: clamp(3.5rem, 8vh, 6rem); }
+.about .lead{ max-width: 50ch; }
+.creds{ margin-top: 1.5rem; max-width: 56ch; }
+
+/* --- testimonial + close ------------------------------------------ */
+blockquote{ margin: 0; }
+.quote{ font-size: clamp(1.35rem, 2.6vw, 2.15rem); line-height: 1.24; letter-spacing: -0.022em; font-weight: 400; }
+.quote-body{ max-width: 30ch; }
+figcaption{ margin-top: clamp(1.75rem, 4vh, 2.5rem); font-size: var(--small); line-height: 1.5; }
+figcaption .who{ display: block; font-weight: 600; letter-spacing: .01em; color: rgb(var(--ink)); font-size: .9375rem; }
+figcaption .role{ display: block; color: rgb(var(--ink-2)); }
+
+.close{ margin-top: clamp(5rem, 12vh, 9rem); }
+.close h2{ max-width: 16ch; }
+.close .lead{ margin-top: 1.5rem; }
+.close .actions{ margin-top: clamp(2rem, 5vh, 3rem); }
+
+/* --- footer ------------------------------------------------------- */
+footer{ padding-block: clamp(4rem, 9vh, 7rem) clamp(2.5rem, 6vh, 4rem); border-top: 1px solid var(--line-soft); }
+.foot-grid{ display: grid; gap: clamp(2rem, 5vh, 3rem); }
+@media (min-width: 760px){ .foot-grid{ grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 3rem; } }
+.foot-grid h2{ font-size: 1rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgb(var(--ink-2)); max-width: none; }
+.foot-list{ list-style: none; margin: .875rem 0 0; padding: 0; display: grid; gap: .5rem; }
+.foot-list a{ text-decoration: none; border-bottom: 1px solid transparent; display: inline-block; min-height: 2rem; }
+.foot-list a:hover{ border-bottom-color: rgba(var(--accent), .8); }
+.colophon{ margin-top: clamp(3rem, 7vh, 5rem); padding-top: 1.75rem; border-top: 1px solid var(--line-soft); display: grid; gap: .5rem; }
+
+.vh{ position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+</style>
+</head>
+<body>
+
+<div class="field" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+</div>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="clock">
+  <span class="lbl">Local time</span>
+  <span class="t" id="clock-time">05:40</span>
+</div>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="shell">
+      <a class="mark" href="#top"><span class="dot" aria-hidden="true"></span>Ready Set Retirement</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- 05:40 -->
+    <section class="hero" aria-labelledby="h-hero">
+      <div class="shell">
+        <h1 id="h-hero">Your most experienced people are already thinking about it.</h1>
+        <p class="lead">Not about resigning this quarter. About the year afterwards. Most of them have a financial plan and nothing else, and the organisation only finds out at the handover, when there is nothing useful left to do about it.</p>
+        <div class="actions">
+          <a class="btn btn-lg" href="/contact" data-magnet>Book a complimentary consult</a>
+          <a class="link" href="#case" data-magnet>Read the business case</a>
+        </div>
+        <hr class="rule">
+      </div>
+    </section>
+
+    <!-- 09:00 -->
+    <section id="case" aria-labelledby="h-case">
+      <div class="shell">
+        <h2 id="h-case">The cost is already on your books. It is filed under something else.</h2>
+        <div class="stack-gap" style="margin-top: clamp(1.75rem, 4vh, 2.5rem)">
+          <p class="lead">Australians are retiring at the fastest rate in the nation's history. For an employer that is not a demographic curiosity. It is a queue, and the people at the front of it hold the parts of the business that were never written down.</p>
+        </div>
+
+        <div class="rows">
+          <div class="row">
+            <div class="k">Pipeline</div>
+            <p class="body">Retirement is the only departure you can see coming five years out, and it is the one most organisations plan for last. Succession gets raised at the exit interview. By then the successor has had no apprenticeship and the leaver has no reason to give one.</p>
+          </div>
+          <div class="row">
+            <div class="k">Mastery</div>
+            <p class="body">What walks out is the undocumented kind of knowledge. Which supplier will actually answer at six on a Friday. Why that clause is in the contract. Which failure the process was written to prevent. None of it survives a handover template, because none of it was ever in one.</p>
+          </div>
+          <div class="row">
+            <div class="k">Cost</div>
+            <p class="body">Recruitment and ramp-up are the invoice you can see. The quieter charges are the productivity dip in the team left behind, the risk that quietly returns once the person who remembered it has gone, and what the rest of your workforce concludes when thirty years ends with a cake and a car park.</p>
+          </div>
+        </div>
+
+        <p class="pull">A person who is unprepared for retirement does not leave cleanly. They disengage months before the date, and the handover goes with them.</p>
+      </div>
+    </section>
+
+    <!-- 13:00 -->
+    <section id="program" aria-labelledby="h-prog">
+      <div class="shell">
+        <h2 id="h-prog">What we actually run.</h2>
+        <p class="lead" style="margin-top: clamp(1.25rem, 3vh, 2rem)">readysetretirement psychosocial planning&reg; is delivered as a program, not a keynote with a workbook. Three parts, scaled to the size of the cohort and the length of the runway.</p>
+
+        <div class="stack">
+          <article class="panel">
+            <div class="n">For a cohort</div>
+            <h3>Training and workshops</h3>
+            <p>Cohort sessions for people three to ten years out, while there is still time to change something. Half day, full day, or a series run across a quarter so the thinking has somewhere to settle between sessions.</p>
+            <div class="fmt">Half day &middot; Full day &middot; Quarterly series</div>
+          </article>
+          <article class="panel">
+            <div class="n">For a person</div>
+            <h3>Coaching</h3>
+            <p>One to one for senior people whose exit is specific and near. Group coaching for cohorts who would rather work it out alongside others in the same position. Confidential, and kept well away from the performance conversation.</p>
+            <div class="fmt">Individual &middot; Small group</div>
+          </article>
+          <article class="panel">
+            <div class="n">For the organisation</div>
+            <h3>Consulting and speaking</h3>
+            <p>Workforce planning input for the people designing a transition policy, and board or conference speaking for when the argument has to be made to whoever signs off the budget.</p>
+            <div class="fmt">Advisory &middot; Keynote &middot; Board briefing</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 18:20 -->
+    <section id="human" aria-labelledby="h-human">
+      <div class="shell">
+        <h2 id="h-human">The part your people cannot outsource.</h2>
+        <p class="lead" style="margin-top: clamp(1.25rem, 3vh, 2rem)">We spend forty years financially planning for retirement and about ten minutes planning who we will be when it arrives. Money funds a lifestyle. It has never once answered the question of what Monday is for.</p>
+
+        <div class="losses">
+          <div class="loss">
+            <h3>Direction</h3>
+            <p class="body">The calendar that organised four decades goes blank in a single afternoon, and nothing arrives to replace it.</p>
+          </div>
+          <div class="loss">
+            <h3>Identity</h3>
+            <p class="body">Being introduced without a job title is a much smaller thing to say than it is to live through.</p>
+          </div>
+          <div class="loss">
+            <h3>Purpose</h3>
+            <p class="body">Being useful is a habit of forty years. Removing the work does not remove the need.</p>
+          </div>
+          <div class="loss">
+            <h3>Connection</h3>
+            <p class="body">Most workplace friendships were structural rather than chosen. Very few of them survive the loss of the structure.</p>
+          </div>
+        </div>
+
+        <div class="about stack-gap">
+          <p class="lead">Dr Sandra Walden-Pearson built human-centred retirement planning&trade; after watching capable people come apart six months after the farewell. It is the yin to financial planning's yang: not advice about the money, education about the person the money is for.</p>
+          <p class="creds small">PhD (Business), MBA (HR), BA Dip Ed. Certified Professional Retirement Coach, Certified Resilience Coach, Cinergy Conflict Coach and accredited Mental Health First Aider, including workplace. Based in Far North Queensland and working with organisations across Australia.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 21:00 -->
+    <section id="consult" aria-labelledby="h-close">
+      <div class="shell">
+        <figure>
+          <blockquote class="quote">
+            <p class="quote-body">Financial planning for retirement is well known. I hadn't heard about psychosocial education focused on human-centred retirement planning &mdash; in 30 years of politics. In talking with Dr San I realised the critical need to plan for the human side of retirement. With hand on heart, I can honestly say that engaging Dr San has been life changing.</p>
+          </blockquote>
+          <figcaption>
+            <span class="who">Hon. Warren Entsch</span>
+            <span class="role">Former Federal Member for Leichhardt</span>
+          </figcaption>
+        </figure>
+
+        <div class="close">
+          <h2 id="h-close">Thirty minutes, no fee, no obligation.</h2>
+          <p class="lead">Bring the cohort size and the timeline. You will leave with a view of where the exposure sits and the shape of a program that would answer it, whether or not you engage us.</p>
+          <div class="actions">
+            <a class="btn btn-lg" href="/contact" data-magnet>Book the complimentary consult</a>
+            <a class="link" href="/contact" data-magnet>Brief your board</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div class="foot-grid">
+        <div>
+          <h2>Ready Set Retirement</h2>
+          <p class="small" style="margin-top:.875rem; max-width:34ch">Psychosocial retirement education. The yin to financial planning's yang. Far North Queensland, Australia.</p>
+        </div>
+        <div>
+          <h2>On this page</h2>
+          <ul class="foot-list small">
+            <li><a href="#case">The business case</a></li>
+            <li><a href="#program">The program</a></li>
+            <li><a href="#human">The human argument</a></li>
+            <li><a href="#consult">Consult</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Start</h2>
+          <ul class="foot-list small">
+            <li><a href="/contact" data-magnet>Complimentary 30-minute consult</a></li>
+            <li><a href="/contact" data-magnet>Brief your board</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="colophon small">
+        <p>human-centred retirement planning&trade; and readysetretirement psychosocial planning&reg; are marks of Ready Set Retirement.</p>
+        <p>Education, not financial advice. We do not recommend products and we do not manage money.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var root = document.documentElement;
+  root.classList.add("js");
+
+  var REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ==============================================================
+     1. THE RAMP
+     Seven keyframes across one continuous day. Every colour on the
+     page is interpolated out of this table and nothing else.
+     ============================================================== */
+  var RAMP = [
+    { t: 0.000, min: 340,  s: "#14161E", mesh: ["#3E3F7A","#24304F","#5A4A78","#101320"], a: "#93A2E4" }, // 05:40
+    { t: 0.130, min: 410,  s: "#262838", mesh: ["#4A4B84","#33405E","#6B587B","#181B29"], a: "#A0ADE8" }, // 06:50
+    { t: 0.190, min: 540,  s: "#F2EDE1", mesh: ["#F0D9A8","#E9D5B9","#FBF4E4","#DCC9AE"], a: "#B98A34" }, // 09:00
+    { t: 0.460, min: 780,  s: "#FAF9F7", mesh: ["#FFF4E4","#F2EFE7","#FFFCF6","#EDE7DC"], a: "#A8792E" }, // 13:00
+    { t: 0.720, min: 1100, s: "#F1DCC2", mesh: ["#F7CB8C","#E9A46A","#FBE1C0","#D88F5E"], a: "#B8551F" }, // 18:20
+    { t: 0.840, min: 1260, s: "#0B0B0D", mesh: ["#1B1C2C","#2B2131","#101017","#07070B"], a: "#E8B87E" }, // 21:00
+    { t: 1.000, min: 1260, s: "#08080A", mesh: ["#14141F","#1E1826","#0C0C12","#050508"], a: "#E8B87E" }  // 21:00
+  ];
+
+  var INK_DARK  = "#12110D";  // warm near-black
+  var INK_LIGHT = "#F4F1E9";  // warm near-white
+  var TARGET    = 4.6;        // contrast floor held at every point on the ramp
+
+  /* A backdrop at or above LO_NEED can carry black text at TARGET.
+     A backdrop at or below HI_NEED can carry white text at TARGET.
+     Between them nothing works, so the ramp is never allowed to sit there. */
+  var LO_NEED = TARGET * 0.05 - 0.05 + 0.0002;
+  var HI_NEED = 1.05 / TARGET - 0.05 - 0.0002;
+
+  /* --- colour maths -------------------------------------------- */
+  function hex(h){ return [parseInt(h.slice(1,3),16), parseInt(h.slice(3,5),16), parseInt(h.slice(5,7),16)]; }
+  function toLin(c){ c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+  function toSrgb(l){ l = l <= 0.0031308 ? l * 12.92 : 1.055 * Math.pow(l, 1/2.4) - 0.055; return Math.min(255, Math.max(0, l * 255)); }
+  function lum(rgb){ return 0.2126 * toLin(rgb[0]) + 0.7152 * toLin(rgb[1]) + 0.0722 * toLin(rgb[2]); }
+  function lerp(a, b, u){ return a + (b - a) * u; }
+  function mix(a, b, u){ return [lerp(a[0],b[0],u), lerp(a[1],b[1],u), lerp(a[2],b[2],u)]; }
+  function css(rgb){ return Math.round(rgb[0]) + ", " + Math.round(rgb[1]) + ", " + Math.round(rgb[2]); }
+
+  /* Scale a colour's luminance to an exact target while keeping its hue. */
+  function setLum(rgb, want){
+    var l = [toLin(rgb[0]), toLin(rgb[1]), toLin(rgb[2])];
+    var cur = 0.2126*l[0] + 0.7152*l[1] + 0.0722*l[2];
+    var out;
+    if (want <= cur){
+      var f = cur > 0 ? want / cur : 0;
+      out = [l[0]*f, l[1]*f, l[2]*f];
+    } else {
+      var g = cur < 1 ? (want - cur) / (1 - cur) : 0;
+      out = [l[0] + g*(1-l[0]), l[1] + g*(1-l[1]), l[2] + g*(1-l[2])];
+    }
+    return [toSrgb(out[0]), toSrgb(out[1]), toSrgb(out[2])];
+  }
+
+  var K = RAMP.map(function(k){
+    return { t: k.t, min: k.min, s: hex(k.s), mesh: k.mesh.map(hex), a: hex(k.a) };
+  });
+
+  function sample(t){
+    var i = 0;
+    while (i < K.length - 2 && t > K[i+1].t) i++;
+    var A = K[i], B = K[i+1];
+    var u = Math.min(1, Math.max(0, (t - A.t) / (B.t - A.t)));
+    return {
+      s: mix(A.s, B.s, u),
+      mesh: A.mesh.map(function(c, j){ return mix(c, B.mesh[j], u); }),
+      a: mix(A.a, B.a, u),
+      min: lerp(A.min, B.min, u)
+    };
+  }
+
+  /* Keep the surface out of the sliver where neither polarity can hold 4.6:1. */
+  function clampSurface(s){
+    var l = lum(s);
+    if (l > HI_NEED && l < LO_NEED) return setLum(s, (l - HI_NEED) < (LO_NEED - l) ? HI_NEED : LO_NEED);
+    return s;
+  }
+
+  /* Luminance range of everything the mesh can paint over the surface. */
+  function spread(s, mesh, alpha){
+    var lo = lum(s), hi = lo, stack = s;
+    for (var i = 0; i < mesh.length; i++){
+      var one = lum(mix(s, mesh[i], alpha));
+      if (one < lo) lo = one;
+      if (one > hi) hi = one;
+      stack = mix(stack, mesh[i], alpha);
+    }
+    var all = lum(stack);
+    return { lo: Math.min(lo, all), hi: Math.max(hi, all) };
+  }
+
+  /* ==============================================================
+     2. ONE WRITE PER FRAME
+     ============================================================== */
+  var st = root.style;
+  var lastPolarity = null;
+
+  function render(t){
+    var c = sample(t);
+    var s = clampSurface(c.s);
+    var sl = lum(s);
+    var dark = sl >= LO_NEED;           // light page, dark ink
+
+    /* Fade the mesh only as far as contrast allows. Around dawn and
+       dusk that pulls it almost to nothing, which is exactly what the
+       sky does at those two moments. */
+    var want = 0.10 + 0.46 * Math.min(1, Math.abs(sl - 0.179) / 0.22);
+    var ok = function(al){
+      var b = spread(s, c.mesh, al);
+      return dark ? b.lo >= LO_NEED : b.hi <= HI_NEED;
+    };
+    var alpha = want;
+    if (!ok(alpha)){
+      var lo2 = 0, hi2 = want;
+      for (var i = 0; i < 18; i++){ var mid = (lo2 + hi2) / 2; if (ok(mid)) lo2 = mid; else hi2 = mid; }
+      alpha = lo2;
+    }
+    var b = spread(s, c.mesh, alpha);
+
+    /* Ink: the base tone tinted toward the hour's light, then pulled
+       to whatever luminance the worst patch of backdrop demands. */
+    var base = mix(hex(dark ? INK_DARK : INK_LIGHT), c.a, 0.10);
+    var cap  = dark ? (b.lo + 0.05) / TARGET - 0.05 : TARGET * (b.hi + 0.05) - 0.05;
+    var bl   = lum(base);
+    var ink  = (dark ? bl <= cap : bl >= cap) ? base : setLum(base, Math.min(1, Math.max(0, cap)));
+    var inkL = lum(ink);
+
+    var i2   = mix(ink, s, 0.34);
+    var i2l  = lum(i2);
+    var ink2 = (dark ? i2l <= cap : i2l >= cap) ? i2 : setLum(i2, Math.min(1, Math.max(0, cap)));
+
+    /* Panels always step away from the ink, never toward it, so a
+       raised surface can only ever improve the reading contrast. */
+    var panel = mix(s, dark ? [255,255,255] : [0,0,0], 0.045);
+
+    /* The accent, lifted off a night surface, then held to the same
+       contrast floor wherever it is allowed to carry text. */
+    var acc = dark ? c.a : setLum(c.a, Math.max(lum(c.a), 0.32));
+    var accL = lum(acc);
+    var accText = (dark ? accL <= cap : accL >= cap) ? acc : setLum(acc, Math.min(1, Math.max(0, cap)));
+
+    /* The CTA is whichever polarity is furthest from the page it sits
+       on, which makes it the brightest object at the darkest hour. */
+    var ctaBg  = dark ? mix(hex(INK_DARK), c.a, 0.14) : mix(hex(INK_LIGHT), c.a, 0.30);
+    var ctaL   = lum(ctaBg);
+    var ctaInk = ctaL > 0.30 ? hex(INK_DARK) : hex(INK_LIGHT);
+    var ctaCap = ctaL > 0.30 ? (ctaL + 0.05) / TARGET - 0.05 : TARGET * (ctaL + 0.05) - 0.05;
+    var cil    = lum(ctaInk);
+    if (ctaL > 0.30 ? cil > ctaCap : cil < ctaCap) ctaInk = setLum(ctaInk, Math.min(1, Math.max(0, ctaCap)));
+
+    st.setProperty("--surface", css(s));
+    st.setProperty("--panel", css(panel));
+    st.setProperty("--ink", css(ink));
+    st.setProperty("--ink-2", css(ink2));
+    st.setProperty("--accent", css(acc));
+    st.setProperty("--accent-text", css(accText));
+    st.setProperty("--m1", css(c.mesh[0]));
+    st.setProperty("--m2", css(c.mesh[1]));
+    st.setProperty("--m3", css(c.mesh[2]));
+    st.setProperty("--m4", css(c.mesh[3]));
+    st.setProperty("--mesh-a", alpha.toFixed(3));
+    /* Shadow colour is held at two values rather than scrubbed: box-shadow
+       is a repaint, and there is nothing to gain from moving it every frame. */
+    if (dark !== lastPolarity){
+      lastPolarity = dark;
+      st.setProperty("--shadow-rgb", dark ? "42, 34, 22" : "0, 0, 0");
+      st.setProperty("--shadow-a", dark ? "0.20" : "0.34");
+    }
+    st.setProperty("--cta-bg", css(ctaBg));
+    st.setProperty("--cta-ink", css(ctaInk));
+
+    var m = Math.round(c.min);
+    var pad = function(n){ return (n < 10 ? "0" : "") + n; };
+    clockEl.textContent = pad(Math.floor(m / 60) % 24) + ":" + pad(m % 60);
+
+    root.style.colorScheme = inkL > sl ? "dark" : "light";
+  }
+
+  var clockEl = document.getElementById("clock-time");
+
+  /* ==============================================================
+     3. DRIVE IT
+     ============================================================== */
+  if (REDUCED){
+    render(0.46);                    // fixed at 13:00, static mesh, no scrubs
+  } else {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* --- three panels, overlapped, separating on scroll ---------- */
+    var mm = gsap.matchMedia();
+    mm.add("(min-width: 900px)", function(){
+      var panels = gsap.utils.toArray("#program .panel");
+      if (panels.length !== 3) return;
+
+      var offs = [{ x: -20, y: 30, r: -2.6, sc: 0.945 },
+                  { x:   0, y: 15, r: -0.8, sc: 0.972 },
+                  { x:  20, y:  0, r:  1.8, sc: 1.000 }];
+
+      gsap.set(panels, {
+        xPercent: -50, yPercent: -50,
+        x: function(i){ return offs[i].x; },
+        y: function(i){ return offs[i].y; },
+        rotation: function(i){ return offs[i].r; },
+        scale: function(i){ return offs[i].sc; }
+      });
+
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#program",
+          start: "top top",
+          end: "+=110%",
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      });
+      tl.to(panels, {
+        x: function(i){ return (i - 1) * (panels[0].offsetWidth + 28); },
+        y: 0, rotation: 0, scale: 1,
+        ease: "power2.out",
+        stagger: 0.06
+      });
+
+      return function(){ gsap.set(panels, { clearProps: "all" }); };
+    });
+
+    /* --- the master value: one scrubbed tween, one system -------- */
+    var clock = { t: 0 };
+    gsap.to(clock, {
+      t: 1,
+      ease: "none",
+      onUpdate: function(){ render(clock.t); },
+      scrollTrigger: {
+        trigger: document.body,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+        invalidateOnRefresh: true
+      }
+    });
+
+    render(0);
+    ScrollTrigger.refresh();
+
+    /* --- magnetic cursor ---------------------------------------- */
+    if (window.matchMedia("(pointer: fine)").matches){
+      gsap.utils.toArray("[data-magnet]").forEach(function(el){
+        var xTo = gsap.quickTo(el, "x", { duration: 0.5, ease: "power3" });
+        var yTo = gsap.quickTo(el, "y", { duration: 0.5, ease: "power3" });
+        var CAP = 8;
+        el.addEventListener("pointermove", function(e){
+          var r = el.getBoundingClientRect();
+          var dx = e.clientX - (r.left + r.width / 2);
+          var dy = e.clientY - (r.top + r.height / 2);
+          var d = Math.hypot(dx, dy) || 1;
+          var k = Math.min(CAP, d * 0.3) / d;   // always TOWARD the pointer, never past it
+          xTo(dx * k); yTo(dy * k);
+        });
+        el.addEventListener("pointerleave", function(){ xTo(0); yTo(0); });
+        el.addEventListener("blur", function(){ xTo(0); yTo(0); });
+      });
+    }
+  }
+})();
+</script>
+</body>
+</html>
