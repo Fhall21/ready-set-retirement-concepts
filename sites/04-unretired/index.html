@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unretired — Ready Set Retirement — Dr Sandra Walden-Pearson</title>
+<meta name="description" content="Psychosocial retirement education. Forty years of planning for the money, about ten minutes planning for the person. Human-centred retirement planning with Dr Sandra Walden-Pearson.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   UNRETIRED — one family, two colours, nothing else.
+   Every colour on this page is expressed as --ink or --paper.
+   Flipping those two properties inverts the entire site.
+   ------------------------------------------------------------------ */
+
+@property --ink   { syntax: '<color>';  inherits: true;  initial-value: #111110; }
+@property --paper { syntax: '<color>';  inherits: true;  initial-value: #F5F3EF; }
+@property --wd    { syntax: '<number>'; inherits: false; initial-value: 75; }
+@property --wg    { syntax: '<number>'; inherits: false; initial-value: 200; }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --ink:   #111110;
+  --paper: #F5F3EF;
+  --signal: var(--ink);
+
+  --pad:    clamp(1.15rem, 4vw, 4.5rem);
+  --rhythm: clamp(6rem, 12vh, 12rem);
+
+  --poster:  clamp(2.5rem, 19vw, 22rem);    /* the h1 — one word, edge to edge, one line */
+  --display: clamp(3.5rem, 13vw, 15rem);    /* chapter display */
+  --mega:    clamp(3rem, 20vw, 23rem);      /* the testimonial — largest type on the page */
+  --mid:     clamp(1.5rem, 4.2vw, 3.5rem);
+  --body:    clamp(1.0625rem, 0.98rem + 0.34vw, 1.25rem);
+  --small:   clamp(0.75rem, 0.7rem + 0.15vw, 0.875rem);
+
+  /* The inversion is a cut, not a crossfade: one 120ms step, everything at once. */
+  transition: --ink 120ms steps(1, jump-end), --paper 120ms steps(1, jump-end);
+}
+
+/* The dark chapters are not black. They are the brand's purple, flat and
+   full-bleed, because on a site with no images colour is the only material
+   there is. #6F3794 against #F5F3EF measures 7.1:1. */
+html.invert {
+  --ink:   #F5F3EF;
+  --paper: #6F3794;
+  --signal:#ECC24D;   /* brand gold. It only exists inside the purple. */
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+  font-variation-settings: 'opsz' 14, 'wdth' 100, 'wght' 400;
+  font-size: var(--body);
+  line-height: 1.58;
+  overflow-x: clip;               /* clip, not hidden: keeps pinning intact */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- shared type ------------------------------------------------- */
+
+h1, h2, h3 { margin: 0; font-weight: 400; }
+p { margin: 0; }
+
+.display {
+  font-size: var(--display);
+  line-height: 0.82;
+  letter-spacing: -0.035em;
+  font-variation-settings: 'opsz' 96, 'wdth' 100, 'wght' 800;
+  text-transform: uppercase;
+}
+
+.measure { max-width: 34em; }         /* ~66 characters */
+.measure--wide { max-width: 46em; }
+
+.lead {
+  font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+  line-height: 1.42;
+  font-variation-settings: 'opsz' 32, 'wdth' 100, 'wght' 400;
+  max-width: 26em;
+}
+
+.micro {
+  font-size: var(--small);
+  line-height: 1.5;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variation-settings: 'opsz' 12, 'wdth' 90, 'wght' 600;
+}
+
+/* ---- character spans --------------------------------------------- */
+
+.ch { display: inline-block; will-change: transform, opacity; }
+.wd { display: inline-block; white-space: nowrap; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+/* ---- layout ------------------------------------------------------- */
+
+.wrap { padding-inline: var(--pad); }
+
+section { position: relative; overflow: hidden; }   /* contains every deliberate bleed */
+
+.chapter { padding-block: var(--rhythm); }
+
+.rule {
+  height: 1px; border: 0; margin: 0;
+  background: var(--ink); opacity: 0.28;
+}
+
+/* A heading allowed to run off the right edge. The section clips it;
+   the body never scrolls sideways. */
+.bleed {
+  white-space: nowrap;
+  margin-left: -0.055em;
+}
+
+/* ---- header / skip ------------------------------------------------ */
+
+.skip {
+  position: absolute; left: var(--pad); top: 0.5rem;
+  transform: translateY(-200%);
+  background: var(--paper); color: var(--ink);
+  border: 1px solid var(--ink); padding: 0.5rem 0.9rem; z-index: 50;
+}
+.skip:focus { transform: translateY(0); }
+
+.masthead {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1.5rem; flex-wrap: wrap;
+  padding-block: 1.25rem 1rem;
+  border-bottom: 1px solid var(--ink);
+}
+.masthead nav ul { display: flex; gap: clamp(0.9rem, 2.4vw, 2rem); list-style: none; margin: 0; padding: 0; }
+
+a { color: inherit; }
+
+.masthead a, .footlink {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.masthead a:hover, .masthead a:focus-visible,
+.footlink:hover, .footlink:focus-visible { border-bottom-color: var(--ink); }
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+/* ---- 1. hero ------------------------------------------------------ */
+
+.hero { padding-block: clamp(3.5rem, 9vh, 7rem) var(--rhythm); }
+
+.mask { display: block; overflow: hidden; padding-bottom: 0.06em; }
+
+#hero-word {
+  font-size: var(--poster);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  font-variation-settings: 'opsz' 96, 'wdth' 100, 'wght' 800;
+  white-space: nowrap;
+}
+
+.hero-grid {
+  margin-top: clamp(2rem, 6vh, 4.5rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+
+/* ---- 2. the word swap --------------------------------------------- */
+
+#costs { display: flex; align-items: center; min-height: 100svh; }
+#costs .inner { width: 100%; padding-block: var(--rhythm); }
+
+.swap-lede {
+  font-size: var(--mid);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'opsz' 40, 'wdth' 88, 'wght' 500;
+  display: block;
+  margin-bottom: 0.35em;
+}
+
+.slot { display: block; }
+.stack { display: block; }
+.stack .w {
+  display: block;
+  font-size: var(--display);
+  /* 1.12 leading, matched to the slot window height, so each word sits
+     centred in the aperture with room for ascenders and descenders and
+     the neighbouring words stay fully outside it. */
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  font-variation-settings: 'opsz' 96, 'wdth' 100, 'wght' 800;
+  text-transform: lowercase;
+}
+
+.progress { margin-top: clamp(2rem, 6vh, 4rem); height: 2px; background: color-mix(in srgb, var(--ink) 22%, transparent); }
+.progress span { display: block; height: 100%; background: var(--ink); transform: scaleX(0); transform-origin: 0 50%; }
+
+.swap-foot { margin-top: 1.25rem; }
+
+/* ---- 3. the dark chapter ------------------------------------------ */
+
+.scrub .ch { opacity: 1; }
+
+#dark .display { margin-bottom: clamp(2rem, 6vh, 4rem); }
+
+.longform {
+  font-size: clamp(1.375rem, 1.05rem + 1.35vw, 2.5rem);
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+  font-variation-settings: 'opsz' 40, 'wdth' 96, 'wght' 400;
+  max-width: 22em;
+}
+
+/* ---- 4. what education does --------------------------------------- */
+
+.numbered { list-style: none; margin: clamp(2.5rem, 7vh, 5rem) 0 0; padding: 0; }
+.numbered li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem clamp(1.5rem, 4vw, 4rem);
+  padding-block: clamp(1.75rem, 4vh, 3rem);
+  border-top: 1px solid var(--ink);
+}
+.numbered li:last-child { border-bottom: 1px solid var(--ink); }
+
+.numeral {
+  font-size: clamp(3rem, 11vw, 11rem);
+  line-height: 0.78;
+  letter-spacing: -0.05em;
+  font-variation-settings: 'opsz' 96, 'wdth' 82, 'wght' 800;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.item-body { max-width: 34em; align-self: end; }
+.item-body strong {
+  display: block;
+  font-variation-settings: 'opsz' 24, 'wdth' 100, 'wght' 700;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.15em;
+}
+
+/* ---- 5. the testimonial ------------------------------------------- */
+
+#voice figure { margin: 0; }
+
+.quote-line {
+  display: block;
+  font-size: var(--mid);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  font-variation-settings: 'opsz' 40, 'wdth' 92, 'wght' 500;
+  max-width: 18em;
+  margin-bottom: 0.45em;
+}
+
+.quote-mega {
+  display: block;
+  font-size: var(--mega);
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+  font-variation-settings: 'opsz' 96, 'wdth' 100, 'wght' 800;
+  margin-top: 0.2em;
+}
+
+figcaption { margin-top: clamp(2rem, 5vh, 3.5rem); }
+
+/* ---- 6. the close -------------------------------------------------- */
+
+#close .payoff {
+  --wd: 100; --wg: 800;            /* no-JS and no-motion resting state */
+  /* Sized so that at wdth 75 / wght 200 the line sits well inside the
+     measure, and at wdth 100 / wght 800 it grows past the right edge —
+     the section clips it. The word outgrowing the page is the payoff. */
+  font-size: clamp(3rem, 12.6vw, 14rem);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-variation-settings: 'opsz' 96, 'wdth' var(--wd), 'wght' var(--wg);
+}
+
+.cta {
+  display: inline-block;
+  margin-top: clamp(2.5rem, 7vh, 5rem);
+  font-size: clamp(2rem, 7vw, 6.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  font-variation-settings: 'opsz' 96, 'wdth' 96, 'wght' 700;
+  text-decoration: underline;
+  text-decoration-thickness: 0.045em;
+  text-underline-offset: 0.09em;
+  color: var(--ink);
+  text-decoration-color: var(--signal);
+}
+.cta:hover, .cta:focus-visible { text-decoration-thickness: 0.11em; }
+
+.cta-sub { margin-top: 1.5rem; }
+
+/* ---- footer -------------------------------------------------------- */
+
+footer { padding-block: var(--rhythm) clamp(3rem, 8vh, 6rem); border-top: 1px solid var(--ink); }
+.colophon { display: grid; grid-template-columns: 1fr; gap: clamp(2rem, 5vw, 4rem); }
+/* Trademarks are reproduced exactly as registered, so they never take the
+   uppercase transform the rest of the micro type carries. */
+.tm { text-transform: none; letter-spacing: 0.04em; }
+
+.credentials {
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  line-height: 1.62;
+  letter-spacing: 0.02em;
+  font-variation-settings: 'opsz' 12, 'wdth' 92, 'wght' 400;
+  text-align: justify;
+  hyphens: auto;
+  max-width: 42em;
+}
+.footlink { text-decoration: underline; text-underline-offset: 0.18em; }
+
+/* ---- breakpoints --------------------------------------------------- */
+
+@media (min-width: 720px) {
+  .hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+  .numbered li { grid-template-columns: minmax(0, 0.34fr) minmax(0, 1fr); align-items: end; }
+  .colophon { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+}
+
+/* Above 900px the swap slot becomes a one-line window and the stack scrolls
+   through it. Below 900px it degrades to a plain vertical list. */
+@media (min-width: 900px) {
+  .slot { height: 1.12em; overflow: hidden; font-size: var(--display); }
+  .stack { position: relative; will-change: transform; }
+  .stack .w { height: 1.12em; font-size: 1em; }
+}
+
+/* Below 720px the bleed headings wrap normally — a clipped word on a
+   phone reads as a bug, not as a decision. */
+@media (max-width: 719px) {
+  .bleed { white-space: normal; margin-left: 0; }
+}
+
+/* ---- pre-animation states (only when motion is welcome) -------------
+   Opacity and visibility only. Never a CSS transform, because GSAP would
+   read it into its own transform cache and double the offset. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js #hero-word { visibility: hidden; }
+  .js .fade-in   { opacity: 0; }
+  .js .scrub .ch { opacity: 0.12; }
+  .js #close .payoff { --wd: 75; --wg: 200; }
+}
+
+/* ---- reduced motion: a static typeset poster ------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  :root { transition: none; }
+  .ch { transform: none !important; opacity: 1 !important; }
+  .fade-in { opacity: 1 !important; transform: none !important; }
+  .slot { height: auto !important; overflow: visible !important; }
+  .stack { transform: none !important; }
+  .stack .w { height: auto !important; }
+  .progress { display: none; }
+  #hero-word { visibility: visible !important; }
+  #close .payoff { --wd: 100 !important; --wg: 800 !important; }
+  #costs { min-height: 0; }
+  .stack .w { margin-bottom: 0.08em; }
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');</script>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="wrap masthead">
+  <p class="micro" style="margin:0">Ready Set Retirement</p>
+  <nav aria-label="Sections">
+    <ul class="micro">
+      <li><a href="#costs">The cost</a></li>
+      <li><a href="#dark">The dark side</a></li>
+      <li><a href="#work">The work</a></li>
+      <li><a href="#close">Consult</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- 1 ------------------------------------------------------------ -->
+  <section class="hero wrap" aria-labelledby="hero-word">
+    <h1 id="hero-word" class="mask" data-split data-label="Unretired">UNRETIRED</h1>
+
+    <div class="hero-grid">
+      <p class="lead fade-in">Forty years of planning for the money. About ten minutes planning for the person who has to live on it.</p>
+      <div class="fade-in">
+        <p class="measure">Ready Set Retirement is psychosocial retirement education, not financial advice. It is the yin to financial planning&rsquo;s yang, and it is the half almost nobody is taught. Dr Sandra Walden-Pearson works with people three to ten years out from finishing, and with the ones already in it who found it sour.</p>
+        <p class="micro tm" style="margin-top:1.5rem">human-centred retirement planning&trade;</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- 2 ------------------------------------------------------------ -->
+  <section id="costs" aria-labelledby="costs-h">
+    <div class="inner wrap">
+      <h2 id="costs-h">
+        <span class="swap-lede">Retirement costs you your</span>
+        <span class="slot" aria-hidden="true">
+          <span class="stack">
+            <span class="w">direction</span>
+            <span class="w">identity</span>
+            <span class="w">purpose</span>
+            <span class="w">status</span>
+            <span class="w">people</span>
+          </span>
+        </span>
+        <span class="sr-only">direction, identity, purpose, status, people.</span>
+      </h2>
+      <div class="progress" aria-hidden="true"><span></span></div>
+      <p class="swap-foot measure">Superannuation covers none of the five. It was never designed to. A balance funds a lifestyle; it cannot buy a quality of life, and it has nothing to say about Monday.</p>
+    </div>
+  </section>
+
+  <!-- 3 ------------------------------------------------------------ -->
+  <section id="dark" class="chapter wrap" aria-labelledby="dark-h">
+    <h2 id="dark-h" class="display bleed">The dark side</h2>
+    <p class="longform scrub" data-split>The farewell cake gets eaten on a Friday. On Monday there is no reason to be anywhere by eight. The people you saw five days a week were structural rather than chosen, and most of them do not ring. Someone asks what you do and the sentence you have used for thirty years no longer applies. This is the recognised dark side of retirement, and it arrives on schedule for people who did everything else right. It is not weakness. It is an unplanned transition, and unplanned transitions go badly whatever the balance says.</p>
+  </section>
+
+  <!-- 4 ------------------------------------------------------------ -->
+  <section id="work" class="chapter wrap" aria-labelledby="work-h">
+    <h2 id="work-h" class="display">What education<br>actually does</h2>
+
+    <p class="lead fade-in" style="margin-top:clamp(2rem,5vh,3.5rem)">Five things, in order. None of them are encouragement.</p>
+
+    <ol class="numbered">
+      <li>
+        <span class="numeral" aria-hidden="true">01</span>
+        <div class="item-body">
+          <strong><span class="sr-only">One. </span>Rehearsal</strong>
+          <p>You practise the next identity while you still have the old one to stand on. Three to ten years out is the working window. After the farewell it becomes repair work, and repair costs more.</p>
+        </div>
+      </li>
+      <li>
+        <span class="numeral" aria-hidden="true">02</span>
+        <div class="item-body">
+          <strong><span class="sr-only">Two. </span>Language</strong>
+          <p>Naming the four losses in advance makes them survivable. Most people reach their last week without ever being given the words, so when it lands they assume it is a private failure.</p>
+        </div>
+      </li>
+      <li>
+        <span class="numeral" aria-hidden="true">03</span>
+        <div class="item-body">
+          <strong><span class="sr-only">Three. </span>Structure</strong>
+          <p>Purpose, not hobbies. A week with real shape in it, designed before the last day of work rather than improvised in the third month, when the days have already started to run together.</p>
+        </div>
+      </li>
+      <li>
+        <span class="numeral" aria-hidden="true">04</span>
+        <div class="item-body">
+          <strong><span class="sr-only">Four. </span>People</strong>
+          <p>Rebuilding a social base that does not depend on a payroll system. Colleagues are proximity. Friendship is chosen. Very few people have counted how much of theirs was the former.</p>
+        </div>
+      </li>
+      <li>
+        <span class="numeral" aria-hidden="true">05</span>
+        <div class="item-body">
+          <strong><span class="sr-only">Five. </span>Evidence</strong>
+          <p>readysetretirement psychosocial planning&reg; is a method with stages, delivered as training, workshops, seminars, one-to-one and group coaching, consulting and speaking. You can tell whether you are through a stage. That is the difference between education and reassurance.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 5 ------------------------------------------------------------ -->
+  <section id="voice" class="chapter wrap" aria-labelledby="voice-h">
+    <h2 id="voice-h" class="sr-only">Testimonial</h2>
+    <figure>
+      <blockquote>
+        <span class="quote-line">Financial planning for retirement is well known.</span>
+        <span class="quote-line">I hadn&rsquo;t heard about psychosocial education focused on human-centred retirement planning &mdash; in 30 years of politics.</span>
+        <span class="quote-line">In talking with Dr San I realised the critical need to plan for the human side of retirement.</span>
+        <span class="quote-line">With hand on heart, I can honestly say that engaging Dr San</span>
+        <span class="quote-mega">has been life changing.</span>
+      </blockquote>
+      <figcaption class="micro">Hon. Warren Entsch &mdash; Former Federal Member for Leichhardt</figcaption>
+    </figure>
+  </section>
+
+  <!-- 6 ------------------------------------------------------------ -->
+  <section id="close" class="chapter wrap" aria-labelledby="close-h">
+    <h2 id="close-h" class="payoff bleed">Plan the person</h2>
+    <p class="lead fade-in" style="margin-top:clamp(1.5rem,4vh,3rem)">Ready is something you build. It is not a date you reach.</p>
+
+    <p><a class="cta" href="/contact">Book the consult</a></p>
+    <p class="cta-sub micro">Complimentary &middot; Thirty minutes &middot; Far North Queensland and online</p>
+    <p style="margin-top:1.75rem"><a class="footlink" href="/contact">Briefing a board or a workforce planning team instead</a></p>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div class="colophon">
+    <p class="credentials">Dr Sandra Walden-Pearson holds a PhD in Business and an MBA in Human Resources, with a BA and a Diploma of Education. She is a Certified Professional Retirement Coach, a Certified Associate Meta Coach, a Certified Resilience Coach, a HART Coach and an Accredited Cinergy Conflict Coach. She is a Resilience First Aid Responder and an Accredited Mental Health First Aider, including workplace. She works from Far North Queensland with individuals approaching the end of a working life, and with the organisations watching three decades of mastery walk out the door at once.</p>
+    <div>
+      <p class="micro">Ready Set Retirement</p>
+      <p class="micro tm" style="margin-top:0.5rem">human-centred retirement planning&trade;<br>readysetretirement psychosocial planning&reg;</p>
+      <p style="margin-top:1.5rem"><a class="footlink" href="/contact">Contact</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     wrapChars(el)
+     Splits an element's text into <span class="ch"> elements, grouped by
+     word so wrapping still happens at word boundaries. The full string is
+     written to aria-label on the parent and every character span is
+     aria-hidden. A visually hidden copy of the sentence rides along too,
+     because aria-label is only reliably exposed on elements that take a
+     name from their content (headings do; paragraphs do not). Between the
+     two, assistive tech always gets a sentence and never character soup.
+     (GSAP SplitText is a premium plugin. This is the hand-rolled version.)
+     ------------------------------------------------------------------ */
+  function wrapChars(el) {
+    var text  = el.textContent.replace(/\s+/g, ' ').trim();
+    var label = el.getAttribute('data-label') || text;
+    var frag  = document.createDocumentFragment();
+
+    var readable = document.createElement('span');
+    readable.className = 'sr-only';
+    readable.textContent = label;
+    frag.appendChild(readable);
+
+    text.split(' ').forEach(function (word, wi, arr) {
+      var w = document.createElement('span');
+      w.className = 'wd';
+      w.setAttribute('aria-hidden', 'true');
+      Array.from(word).forEach(function (c) {
+        var s = document.createElement('span');
+        s.className = 'ch';
+        s.textContent = c;
+        w.appendChild(s);
+      });
+      frag.appendChild(w);
+      /* A real text node, not a span: an inline-block space would be dragged
+         onto the next line at a wrap point and indent it. */
+      if (wi < arr.length - 1) { frag.appendChild(document.createTextNode(' ')); }
+    });
+
+    el.textContent = '';
+    el.appendChild(frag);
+    el.setAttribute('aria-label', label);
+    return Array.prototype.slice.call(el.querySelectorAll('.ch'));
+  }
+
+  var splitTargets = document.querySelectorAll('[data-split]');
+  var charMap = new Map();
+  splitTargets.forEach(function (el) { charMap.set(el, wrapChars(el)); });
+
+  /* If the CDN is unreachable the page must still be a readable poster. */
+  if (!window.gsap || !window.ScrollTrigger) {
+    document.documentElement.classList.remove('js');
+    return;
+  }
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { return; }        /* static typeset poster, exactly as specified */
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* --- 1. hero: characters enter from below their mask --------------- */
+  var heroWord = document.getElementById('hero-word');
+  gsap.set(charMap.get(heroWord), { yPercent: 112 });
+  gsap.set(heroWord, { visibility: 'visible' });
+  gsap.to(charMap.get(heroWord), {
+    yPercent: 0, duration: 1.15, ease: 'expo.out', stagger: 0.035, delay: 0.12
+  });
+
+  gsap.utils.toArray('.fade-in').forEach(function (el) {
+    gsap.fromTo(el, { opacity: 0, y: 20 }, {
+      opacity: 1, y: 0, duration: 0.9, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+    });
+  });
+
+  /* --- 2. word swap: pinned, scrubbed yPercent on a five-word stack --- */
+  var mm = gsap.matchMedia();
+
+  mm.add('(min-width: 900px)', function () {
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#costs',
+        start: 'top top',
+        end: '+=250%',
+        pin: true,
+        pinSpacing: true,
+        scrub: true,
+        anticipatePin: 1
+      }
+    });
+
+    /* four moves with a hold on each word, so the sentence reads as five
+       finished statements rather than one continuous slide */
+    for (var i = 1; i <= 4; i++) {
+      tl.to('.stack', { yPercent: -20 * i, duration: 0.62, ease: 'power2.inOut' })
+        .to({}, { duration: 0.38 });
+    }
+    tl.to({}, { duration: 0.3 });
+
+    gsap.fromTo('.progress span', { scaleX: 0 }, {
+      scaleX: 1, ease: 'none',
+      scrollTrigger: { trigger: '#costs', start: 'top top', end: '+=250%', scrub: true }
+    });
+  });
+
+  /* --- 3. opacity scrub on paragraph characters, 0.12 -> 1.0 ---------- */
+  gsap.utils.toArray('.scrub').forEach(function (p) {
+    gsap.to(charMap.get(p) || p.querySelectorAll('.ch'), {
+      opacity: 1, ease: 'none',
+      stagger: { each: 0.012, from: 'start' },
+      scrollTrigger: { trigger: p, start: 'top 82%', end: 'bottom 62%', scrub: 1 }
+    });
+  });
+
+  /* --- 4. polarity inversion: three triggers, one class, hard cut ----- */
+  var root = document.documentElement;
+  function setDark(on) { root.classList.toggle('invert', on); }
+
+  [['#dark', true], ['#work', false], ['#close', true]].forEach(function (pair) {
+    ScrollTrigger.create({
+      trigger: pair[0],
+      start: 'top 55%',
+      onEnter:     function () { setDark(pair[1]); },
+      onLeaveBack: function () { setDark(!pair[1]); }
+    });
+  });
+
+  /* --- 5. weight-axis scrub on the final headline --------------------- */
+  var payoff = document.querySelector('#close .payoff');
+  if (payoff) {
+    var axis = { wd: 75, wg: 200 };
+    gsap.to(axis, {
+      wd: 100, wg: 800, ease: 'none',
+      onUpdate: function () {
+        payoff.style.setProperty('--wd', axis.wd.toFixed(2));
+        payoff.style.setProperty('--wg', axis.wg.toFixed(0));
+      },
+      scrollTrigger: { trigger: '#close', start: 'top 85%', end: 'bottom 75%', scrub: 1 }
+    });
+  }
+
+  /* Bricolage is a variable font; its metrics arrive late and move every
+     trigger. Recalculate once it has actually loaded. */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+  }
+  window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ready Set Retirement — Financial readiness is one vital sign</title>
+<meta name="description" content="Psychosocial retirement education with Dr Sandra Walden-Pearson. Money funds lifestyle. It cannot buy quality of life. A complimentary 30-minute consult.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ------------------------------------------------------------------
+   READY SET RETIREMENT — 08 VITALS
+   Instrument panel. 4px baseline grid, 32px hairline rules.
+   ------------------------------------------------------------------ */
+
+:root{
+  --ground:#F7F4EC;
+  --type:#152420;
+  --mint:#177A5C;
+  --amber:#A8560B;
+  --muted:#4B5A55;
+  --brand:#6F3794;        /* brand purple. Chrome only — it never enters the instrument's signal set. */
+
+  --rule:rgba(21,36,32,.13);
+  --rule-strong:rgba(21,36,32,.22);
+  --tick:rgba(21,36,32,.42);
+  --panel:rgba(21,36,32,.028);
+
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --gut:clamp(1rem,4vw,2.5rem);
+  --chapter:clamp(6rem,12vh,12rem);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{ -webkit-text-size-adjust:100% }
+
+body{
+  margin:0;
+  overflow-x:clip;
+  background:var(--ground);
+  color:var(--type);
+  font-family:var(--sans);
+  font-size:clamp(1.0625rem,1.0125rem + .22vw,1.1875rem);
+  line-height:1.6;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* The visible baseline grid: hairline rules every 32px, behind everything. */
+.graticule{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:repeating-linear-gradient(
+    to bottom,
+    rgba(21,36,32,.05) 0,
+    rgba(21,36,32,.05) 1px,
+    transparent 1px,
+    transparent 32px
+  );
+}
+
+.shell{position:relative;z-index:1}
+
+.wrap{
+  width:100%;
+  max-width:1240px;
+  margin-inline:auto;
+  padding-inline:var(--gut);
+}
+
+/* ---------- type ---------- */
+
+h1,h2,h3{
+  font-weight:500;
+  letter-spacing:-.018em;
+  line-height:1.12;
+  margin:0;
+  text-wrap:balance;
+}
+
+h1{ font-size:clamp(1.5rem,.9rem + 2.9vw,3.5rem); line-height:1.08 }
+h2{ font-size:clamp(1.5rem,1.05rem + 2vw,2.75rem) }
+h3{ font-size:clamp(1.125rem,1.02rem + .5vw,1.375rem); letter-spacing:-.01em }
+
+p{margin:0 0 16px}
+p:last-child{margin-bottom:0}
+
+.measure{max-width:66ch}
+.measure-tight{max-width:56ch}
+
+.lede{
+  font-size:clamp(1.125rem,1.05rem + .4vw,1.3125rem);
+  line-height:1.55;
+  color:var(--type);
+}
+
+.dim{color:var(--muted)}
+
+.mono{
+  font-family:var(--mono);
+  font-size:10px;
+  line-height:1.4;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:400;
+}
+
+.note{
+  font-family:var(--mono);
+  font-size:12px;
+  line-height:1.65;
+  letter-spacing:.02em;
+  color:var(--muted);
+  max-width:64ch;
+}
+
+a{color:var(--mint)}
+a:focus-visible,button:focus-visible{
+  outline:2px solid var(--mint);
+  outline-offset:3px;
+}
+
+.skip{
+  position:absolute;left:-9999px;top:0;
+  background:var(--mint);color:var(--ground);
+  padding:12px 16px;font-family:var(--mono);font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;text-decoration:none;z-index:50;
+}
+.skip:focus{left:0}
+
+/* ---------- panels ---------- */
+
+.panel{
+  position:relative;
+  border:1px solid var(--rule);
+  background:var(--panel);
+  padding:44px 24px 28px;
+  /* four corner ticks, drawn as eight hairline gradient layers */
+  background-image:
+    linear-gradient(var(--tick),var(--tick)),linear-gradient(var(--tick),var(--tick)),
+    linear-gradient(var(--tick),var(--tick)),linear-gradient(var(--tick),var(--tick)),
+    linear-gradient(var(--tick),var(--tick)),linear-gradient(var(--tick),var(--tick)),
+    linear-gradient(var(--tick),var(--tick)),linear-gradient(var(--tick),var(--tick));
+  background-repeat:no-repeat;
+  background-size:
+    9px 1px,1px 9px,
+    9px 1px,1px 9px,
+    9px 1px,1px 9px,
+    9px 1px,1px 9px;
+  background-position:
+    0 0,0 0,
+    100% 0,100% 0,
+    0 100%,0 100%,
+    100% 100%,100% 100%;
+}
+@media (min-width:720px){ .panel{padding:48px 32px 32px} }
+
+.panel > .lab{
+  position:absolute;
+  top:14px;left:16px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--muted);
+}
+.panel > .lab-r{
+  position:absolute;
+  top:14px;right:16px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--muted);
+  text-align:right;
+}
+
+/* ---------- header ---------- */
+
+.masthead{
+  border-bottom:1px solid var(--rule);
+  padding-block:14px;
+}
+.masthead .wrap{
+  display:flex;flex-wrap:wrap;gap:8px 24px;
+  align-items:center;justify-content:space-between;
+}
+.masthead .mark{display:block;width:clamp(92px,9vw,112px);height:auto}
+.masthead .mono a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule-strong)}
+.masthead .mono a:hover{color:var(--mint);border-color:var(--mint)}
+
+/* ---------- sections ---------- */
+
+section{padding-block:var(--chapter)}
+#intake{padding-top:clamp(3rem,8vh,6rem)}
+
+.sec-head{
+  display:flex;align-items:baseline;gap:16px;
+  border-bottom:1px solid var(--rule);
+  padding-bottom:12px;margin-bottom:40px;
+}
+.sec-head .mono{white-space:nowrap}
+.sec-head .rulefill{flex:1;height:1px;background:var(--rule)}
+
+/* ---------- intake ---------- */
+
+.chart-rows{
+  border-top:1px solid var(--rule);
+  margin:0 0 40px;
+}
+.chart-rows div{
+  display:grid;
+  grid-template-columns:104px 1fr;
+  gap:4px 16px;
+  border-bottom:1px solid var(--rule);
+  padding:12px 0;
+}
+.chart-rows dt{
+  font-family:var(--mono);font-size:10px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--muted);padding-top:5px;
+}
+.chart-rows dd{margin:0;font-size:.95em;line-height:1.55}
+@media (max-width:560px){
+  .chart-rows div{grid-template-columns:1fr}
+  .chart-rows dt{padding-top:0}
+}
+
+.intake-grid{
+  display:grid;
+  gap:40px;
+  grid-template-columns:1fr;
+  align-items:start;
+}
+@media (min-width:940px){
+  .intake-grid{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:64px}
+}
+
+.cta-row{
+  display:flex;flex-wrap:wrap;gap:12px;
+  margin-top:32px;
+}
+
+.btn{
+  display:inline-block;
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;text-decoration:none;
+  padding:16px 24px;border:1px solid transparent;
+  transition:background-color .18s ease,color .18s ease,border-color .18s ease;
+}
+.btn-solid{background:var(--mint);color:var(--ground);border-color:var(--mint);font-weight:500}
+.btn-solid:hover{background:#0F6249;border-color:#0F6249;color:var(--ground)}
+.btn-ghost{background:transparent;color:var(--type);border-color:var(--rule-strong)}
+.btn-ghost:hover{border-color:var(--mint);color:var(--mint)}
+
+/* ---------- readout ---------- */
+
+.readout{
+  display:grid;gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+  grid-template-columns:1fr;
+}
+@media (min-width:560px){ .readout{grid-template-columns:1fr 1fr} }
+
+.readout .cell{
+  background:var(--ground);
+  padding:24px 20px 20px;
+}
+.readout .num{
+  font-family:var(--mono);
+  font-size:clamp(3rem,2rem + 5vw,5rem);
+  line-height:1;
+  font-weight:500;
+  letter-spacing:-.02em;
+  color:var(--type);
+  font-variant-numeric:tabular-nums;
+  display:flex;align-items:baseline;gap:8px;
+}
+.readout .unit{font-size:12px;letter-spacing:.18em;color:var(--muted);font-weight:400}
+.readout .cap{margin-top:12px}
+.readout .cell.flag .num{color:var(--amber)}
+
+/* ---------- trace ---------- */
+
+.trace-stage{position:relative}
+@media (min-height:620px){
+  .trace-stage{min-height:100vh;display:flex;align-items:center}
+  .trace-stage > .wrap{width:100%}
+}
+.trace-panel{
+  border:1px solid var(--rule);
+  background:var(--panel);
+  padding:0;
+  position:relative;
+}
+.trace-panel .bar{
+  display:flex;flex-wrap:wrap;gap:8px 20px;
+  align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--rule);
+  padding:12px 16px;
+}
+.trace-panel .bar .st{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--muted);
+}
+.led{
+  width:7px;height:7px;flex:none;
+  background:var(--mint);
+  box-shadow:0 0 0 3px rgba(23,122,92,.16);
+}
+.trace-panel.is-flat .led{background:var(--amber);box-shadow:0 0 0 3px rgba(168,86,11,.18)}
+.trace-panel.is-flat #phaseWord{color:var(--amber)}
+.trace-panel.is-recover .led{background:var(--mint);box-shadow:0 0 0 3px rgba(23,122,92,.2)}
+#phaseWord{color:var(--type);font-weight:500}
+
+.trace-svg{display:block;width:100%;height:auto}
+.trace-line{
+  fill:none;
+  stroke:var(--mint);
+  stroke-width:2.2;
+  stroke-linejoin:round;
+  stroke-linecap:round;
+}
+.trace-panel.is-flat .trace-line{stroke:var(--amber)}
+.trace-panel.is-recover .trace-line{stroke:var(--mint)}
+
+.trace-caption{
+  border-top:1px solid var(--rule);
+  padding:16px;
+  min-height:144px;
+}
+.trace-caption p{
+  font-size:.95em;line-height:1.6;max-width:74ch;margin:0;
+}
+.trace-caption .k{
+  font-family:var(--mono);font-size:10px;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--muted);display:block;margin-bottom:8px;
+}
+.trace-axis{
+  display:flex;justify-content:space-between;gap:16px;
+  padding:10px 16px 14px;
+}
+
+/* ---------- gauges ---------- */
+
+.bank{
+  display:grid;gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+  grid-template-columns:1fr;
+}
+@media (min-width:640px){ .bank{grid-template-columns:1fr 1fr} }
+@media (min-width:1040px){ .bank{grid-template-columns:repeat(4,1fr)} }
+
+.bank .unit-cell{
+  background:var(--ground);
+  padding:24px 20px 24px;
+  display:flex;flex-direction:column;gap:16px;
+}
+.gauge-wrap{
+  position:relative;
+  width:148px;height:148px;
+}
+.gauge-wrap svg{display:block;width:100%;height:100%}
+.g-track{fill:none;stroke:rgba(21,36,32,.12);stroke-width:6}
+.g-arc{
+  fill:none;stroke-width:6;stroke-linecap:butt;
+  transform:rotate(-90deg);transform-origin:70px 70px;
+}
+.g-arc.deficit{stroke:var(--amber)}
+.g-arc.restore{stroke:var(--mint)}
+.g-state{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;text-align:center;pointer-events:none;
+}
+.g-state b{
+  font-family:var(--mono);font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;font-weight:500;color:var(--amber);
+}
+.unit-cell.up .g-state b{color:var(--mint)}
+.g-state span{
+  font-family:var(--mono);font-size:9px;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--muted);
+}
+.unit-cell h3{margin-bottom:4px}
+.unit-cell .idx{
+  font-family:var(--mono);font-size:10px;letter-spacing:.19em;
+  color:var(--muted);text-transform:uppercase;
+}
+.unit-cell p{font-size:.9em;line-height:1.58;color:var(--type)}
+
+.alert-strip{
+  display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;
+  border:1px solid rgba(168,86,11,.34);
+  border-left:3px solid var(--amber);
+  padding:12px 16px;margin-bottom:24px;
+}
+.alert-strip .mono{color:var(--amber);letter-spacing:.19em}
+.alert-strip span:last-child{font-size:.9em;color:var(--type);line-height:1.5}
+
+.ok-strip{
+  display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;
+  border:1px solid rgba(23,122,92,.32);
+  border-left:3px solid var(--mint);
+  padding:12px 16px;margin-bottom:24px;
+}
+.ok-strip .mono{color:var(--mint);letter-spacing:.19em}
+.ok-strip span:last-child{font-size:.9em;color:var(--type);line-height:1.5}
+
+/* ---------- differential table ---------- */
+
+.tablewrap{overflow-x:auto}
+
+table{
+  width:100%;
+  max-width:1000px;
+  border-collapse:collapse;
+  font-size:.95em;
+  table-layout:fixed;
+}
+thead th:nth-child(1){width:46%}
+thead th:nth-child(2),thead th:nth-child(3){width:27%}
+caption{
+  text-align:left;
+  font-family:var(--mono);font-size:10px;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--muted);
+  padding-bottom:12px;
+}
+th,td{
+  text-align:left;
+  padding:12px 16px 12px 0;
+  border-bottom:1px solid var(--rule);
+  vertical-align:top;
+}
+thead th{
+  font-family:var(--mono);font-size:10px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--muted);font-weight:400;
+  border-bottom:1px solid var(--rule-strong);
+  padding-bottom:10px;
+}
+tbody th{
+  font-weight:400;color:var(--type);
+  padding-right:24px;
+}
+td{
+  font-family:var(--mono);font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;
+}
+td.yes{color:var(--mint)}
+td.no{color:var(--amber)}
+td.part{color:var(--type)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:1px solid var(--rule-strong)}
+
+@media (max-width:660px){
+  .tablewrap{overflow-x:visible}
+  table,caption,thead,tbody,tr,th,td{display:block;width:100%}
+  thead{
+    position:absolute;width:1px;height:1px;overflow:hidden;
+    clip-path:inset(50%);white-space:nowrap;
+  }
+  tbody tr{
+    border:1px solid var(--rule);
+    padding:12px 16px;margin-bottom:8px;
+  }
+  tbody th{
+    padding:0 0 8px;border-bottom:1px solid var(--rule);
+    margin-bottom:8px;font-size:1.02em;
+  }
+  tbody td{
+    padding:4px 0;border-bottom:0;white-space:normal;
+    display:flex;justify-content:space-between;gap:16px;
+  }
+  tbody td::before{
+    content:attr(data-col);
+    font-family:var(--mono);font-size:10px;letter-spacing:.17em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom-color:var(--rule)}
+  tbody tr:last-child td{border-bottom:0}
+}
+
+/* ---------- intervention ---------- */
+
+.two-col{
+  display:grid;gap:40px;grid-template-columns:1fr;align-items:start;
+}
+@media (min-width:940px){
+  .two-col{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px}
+}
+
+.svc{
+  list-style:none;margin:24px 0 0;padding:0;
+  border-top:1px solid var(--rule);
+}
+.svc li{
+  display:flex;gap:16px;align-items:baseline;
+  border-bottom:1px solid var(--rule);
+  padding:12px 0;
+  font-size:.95em;
+}
+.svc .n{
+  font-family:var(--mono);font-size:10px;letter-spacing:.17em;
+  color:var(--muted);flex:none;width:32px;
+}
+
+.tm{
+  font-family:var(--mono);font-size:12px;line-height:1.8;
+  letter-spacing:.04em;color:var(--type);
+  margin-top:24px;padding-top:16px;border-top:1px solid var(--rule);
+}
+.tm span{color:var(--brand)}
+
+/* ---------- practitioner ---------- */
+
+.prac-head{
+  display:flex;gap:24px;align-items:flex-start;
+  margin-bottom:24px;
+}
+.prac-plate{
+  flex:none;width:132px;margin:0;
+  border:1px solid var(--rule);
+  background:var(--panel);
+  padding:7px 7px 0;
+}
+.prac-plate img{
+  display:block;width:100%;height:auto;
+  aspect-ratio:4/5;object-fit:cover;object-position:50% 10%;
+  filter:grayscale(.24) contrast(1.02);
+}
+.prac-plate figcaption{
+  font-family:var(--mono);font-size:9px;line-height:1.6;
+  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);padding:8px 0 9px;
+}
+.prac-head h2{margin:0}
+.prac-head .sub{
+  font-family:var(--mono);font-size:10px;line-height:1.7;
+  letter-spacing:.17em;text-transform:uppercase;
+  color:var(--muted);margin:10px 0 0;
+}
+@media (max-width:520px){
+  .prac-head{gap:18px}
+  .prac-plate{width:104px}
+}
+
+.cred{
+  list-style:none;margin:0;padding:0;
+  text-align:right;
+  font-family:var(--mono);
+  font-size:12px;
+  line-height:1.5;
+  letter-spacing:.04em;
+  color:var(--type);
+}
+.cred li{
+  padding:8px 0;
+  border-bottom:1px solid var(--rule);
+}
+.cred li:first-child{border-top:1px solid var(--rule)}
+.cred li:last-child{border-bottom:1px solid var(--rule-strong)}
+
+/* ---------- case note ---------- */
+
+.casenote blockquote{
+  margin:0;
+  font-size:clamp(1.125rem,1rem + .8vw,1.5rem);
+  line-height:1.45;
+  letter-spacing:-.012em;
+  max-width:34ch;
+}
+@media (min-width:720px){ .casenote blockquote{max-width:48ch} }
+.casenote cite{
+  display:block;margin-top:24px;
+  font-style:normal;
+  font-family:var(--mono);font-size:11px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--muted);line-height:1.7;
+}
+.casenote cite b{color:var(--type);font-weight:500}
+
+/* ---------- consult ---------- */
+
+.consult{
+  display:grid;gap:32px;grid-template-columns:1fr;align-items:end;
+}
+@media (min-width:860px){ .consult{grid-template-columns:minmax(0,1fr) auto;gap:48px} }
+
+/* ---------- footer ---------- */
+
+footer{
+  border-top:1px solid var(--rule);
+  padding-block:40px 56px;
+}
+footer .grid{
+  display:grid;gap:24px;grid-template-columns:1fr;
+}
+@media (min-width:720px){ footer .grid{grid-template-columns:repeat(3,1fr)} }
+footer .mono{line-height:2}
+footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--rule-strong)}
+footer a:hover{color:var(--mint);border-color:var(--mint)}
+
+/* ---------- motion defaults ---------- */
+
+.rise{opacity:1;transform:none}
+.js-on .rise{opacity:0;transform:translate3d(0,20px,0)}
+@media (prefers-reduced-motion:reduce){
+  .js-on .rise{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="graticule" aria-hidden="true"></div>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+
+<header class="masthead">
+  <div class="wrap">
+    <img class="mark" src="assets/logo-solid-purple.svg" width="767" height="334"
+         alt="Ready Set Retirement — psychosocial planning for retirement">
+    <p class="mono" style="margin:0">Psychosocial vitals &nbsp;/&nbsp; Far North Queensland &nbsp;/&nbsp; <a href="/contact">Consult</a></p>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- =============================== INTAKE =============================== -->
+<section id="intake">
+  <div class="wrap">
+    <div class="intake-grid">
+      <div>
+        <h1>Financial readiness is one vital sign. It is not the only one.</h1>
+        <p class="lede measure" style="margin-top:32px">
+          We spend forty years financially planning for retirement and about ten minutes
+          planning who we will be when it arrives. The balance gets modelled, reviewed and
+          stress-tested every year. The person gets worked out on the drive home from the
+          farewell.
+        </p>
+        <p class="measure dim">
+          Ready Set Retirement is psychosocial retirement education. It is the yin to
+          financial planning&rsquo;s yang. Money funds a lifestyle. It cannot buy a quality
+          of life, and it has never once told anyone what to do on a Monday.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="/contact">Book a 30-minute consult</a>
+          <a class="btn btn-ghost" href="#differential">Read the differential</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <span class="lab">Intake</span>
+        <span class="lab-r">RSR / FNQ</span>
+        <dl class="chart-rows">
+          <div>
+            <dt>Subject</dt>
+            <dd>Adults three to ten years out from retiring. Also adults already in it and finding it sour.</dd>
+          </div>
+          <div>
+            <dt>Presenting</dt>
+            <dd>A date, a balance, and no plan for the person who turns up the following Monday.</dd>
+          </div>
+          <div>
+            <dt>Assessment</dt>
+            <dd>Education, coaching and preparation. Not financial advice, and not treatment.</dd>
+          </div>
+          <div>
+            <dt>Practitioner</dt>
+            <dd>Dr Sandra Walden-Pearson &mdash; PhD (Business), MBA (HR), Certified Professional Retirement Coach.</dd>
+          </div>
+        </dl>
+        <p class="note">
+          Nothing on this page scores you, diagnoses you or treats you. It is an argument,
+          dressed as an instrument, because the argument is usually made in language that
+          the people who most need it will not read.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== READOUT =============================== -->
+<section id="readout" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="mono">Readout</span>
+      <span class="rulefill" aria-hidden="true"></span>
+      <span class="mono">Proportion, not precision</span>
+    </div>
+
+    <div class="readout" id="readoutBlock">
+      <div class="cell">
+        <p class="num"><span id="ctrYears">00</span><span class="unit">Years</span></p>
+        <p class="cap mono">Spent planning the money</p>
+      </div>
+      <div class="cell flag">
+        <p class="num"><span id="ctrMins">00</span><span class="unit">Minutes</span></p>
+        <p class="cap mono">Spent planning the person</p>
+      </div>
+    </div>
+
+    <p class="note" style="margin-top:24px">
+      Those two figures are Dr San&rsquo;s, and they are rhetorical. The proportion is not.
+      Australians are retiring at the fastest rate in the nation&rsquo;s history, and almost
+      all of the preparation on offer is financial.
+    </p>
+  </div>
+</section>
+
+<!-- =============================== TRACE =============================== -->
+<section id="trace">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="mono">Fig. 01 &mdash; Trace</span>
+      <span class="rulefill" aria-hidden="true"></span>
+      <span class="mono">Illustrative</span>
+    </div>
+
+    <h2 class="measure-tight">Forty years of rhythm, then a date.</h2>
+    <p class="measure dim" style="margin-top:24px;margin-bottom:48px">
+      Work is not only income. It is structure, status, a diary, a reason to leave the house
+      and roughly half of everybody you speak to in a week. All of that ends on the same
+      afternoon as the salary, and only one of them was on the plan.
+    </p>
+  </div>
+
+  <div class="trace-stage" id="traceStage">
+    <div class="wrap">
+      <div class="trace-panel" id="tracePanel">
+        <div class="bar">
+          <span class="st"><i class="led" aria-hidden="true"></i>Trace &mdash; psychosocial rhythm</span>
+          <span class="st">Status:&nbsp;<em id="phaseWord" style="font-style:normal">Steady</em></span>
+        </div>
+
+        <svg class="trace-svg" id="traceSvg" viewBox="0 60 1200 280" role="img"
+             aria-label="An illustrative chart trace: a regular steady rhythm through working life, then a long flat stretch beginning at the retirement date, then a different but healthy rhythm once preparation is applied.">
+          <defs>
+            <pattern id="chartpaper" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(21,36,32,.07)" stroke-width="1"/>
+            </pattern>
+          </defs>
+
+          <g id="strip" transform="translate(0,0)">
+            <rect x="0" y="0" width="4200" height="400" fill="url(#chartpaper)"></rect>
+            <line x1="0" y1="200" x2="4200" y2="200" stroke="rgba(21,36,32,.12)" stroke-width="1"></line>
+
+            <!-- Hand-authored trace. Phase A: x 0-1498, ten regular beats.
+                 Phase B: x 1500-3000, attenuation then a long flat stretch.
+                 Phase C: x 3000-4198, eight beats of a different, healthy morphology. -->
+            <polyline id="traceLine" class="trace-line" points="
+0,200 28,200 36,186 46,200 64,200 72,214 80,104 88,240 96,200 114,180 130,200 148,200
+150,200 178,200 186,186 196,200 214,200 222,214 230,101 238,240 246,200 264,178 280,200 298,200
+300,200 328,200 336,186 346,200 364,200 372,214 380,106 388,240 396,200 414,181 430,200 448,200
+450,200 478,200 486,186 496,200 514,200 522,214 530,103 538,240 546,200 564,179 580,200 598,200
+600,200 628,200 636,186 646,200 664,200 672,214 680,100 688,240 696,200 714,180 730,200 748,200
+750,200 778,200 786,186 796,200 814,200 822,214 830,105 838,240 846,200 864,182 880,200 898,200
+900,200 928,200 936,186 946,200 964,200 972,214 980,102 988,240 996,200 1014,178 1030,200 1048,200
+1050,200 1078,200 1086,186 1096,200 1114,200 1122,214 1130,107 1138,240 1146,200 1164,181 1180,200 1198,200
+1200,200 1228,200 1236,186 1246,200 1264,200 1272,214 1280,103 1288,240 1296,200 1314,179 1330,200 1348,200
+1350,200 1378,200 1386,186 1396,200 1414,200 1422,214 1430,105 1438,240 1446,200 1464,180 1480,200 1498,200
+1500,200 1528,200 1536,187 1546,200 1564,200 1572,213 1580,126 1588,231 1596,200 1614,183 1630,200
+1650,200 1680,200 1688,196 1698,162 1708,222 1718,200 1740,200 1780,200
+1800,200 1806,194 1812,200 1850,200
+1900,200 1980,200 2060,200 2140,200 2220,200 2300,200 2380,200 2460,200
+2540,200 2620,200 2700,200 2780,200 2860,200 2900,200
+2920,199 2940,201 2960,200 2975,196 2988,200 3000,200
+3000,200 3022,200 3034,178 3048,200 3066,200 3076,206 3086,128 3096,224 3106,200 3124,172 3138,196 3148,200
+3150,200 3172,200 3184,178 3198,200 3216,200 3226,206 3236,126 3246,224 3256,200 3274,174 3288,196 3298,200
+3300,200 3322,200 3334,178 3348,200 3366,200 3376,206 3386,130 3396,224 3406,200 3424,171 3438,196 3448,200
+3450,200 3472,200 3484,178 3498,200 3516,200 3526,206 3536,127 3546,224 3556,200 3574,173 3588,196 3598,200
+3600,200 3622,200 3634,178 3648,200 3666,200 3676,206 3686,129 3696,224 3706,200 3724,172 3738,196 3748,200
+3750,200 3772,200 3784,178 3798,200 3816,200 3826,206 3836,126 3846,224 3856,200 3874,174 3888,196 3898,200
+3900,200 3922,200 3934,178 3948,200 3966,200 3976,206 3986,128 3996,224 4006,200 4024,172 4038,196 4048,200
+4050,200 4072,200 4084,178 4098,200 4116,200 4126,206 4136,127 4146,224 4156,200 4174,173 4188,196 4198,200
+"></polyline>
+          </g>
+
+          <g id="head" transform="translate(0,0)">
+            <line x1="0" y1="68" x2="0" y2="332" stroke="rgba(21,36,32,.3)" stroke-width="1"></line>
+            <circle id="headDot" cx="0" cy="200" r="4" fill="#152420"></circle>
+          </g>
+        </svg>
+
+        <div class="trace-axis">
+          <span class="mono">Working life</span>
+          <span class="mono">The date</span>
+          <span class="mono">After, prepared</span>
+        </div>
+
+        <div class="trace-caption">
+          <span class="k" id="phaseKey">Phase A &mdash; Steady</span>
+          <p id="phaseCopy">
+            The rhythm is regular and nobody has to think about it. Direction, identity,
+            purpose and connection all arrive with the job, free of charge, every weekday,
+            for about forty years.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <p class="note" style="margin-top:32px">
+      The trace is a drawing, not data. It is here because the shape of the thing is what
+      people recognise, and the flat part is the part nobody was warned about.
+    </p>
+  </div>
+</section>
+
+<!-- =============================== DEFICITS =============================== -->
+<section id="deficits">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="mono">Deficits</span>
+      <span class="rulefill" aria-hidden="true"></span>
+      <span class="mono">D1 &ndash; D4</span>
+    </div>
+
+    <h2 class="measure-tight">Four things stop arriving on the same day.</h2>
+    <p class="measure dim" style="margin-top:24px;margin-bottom:40px">
+      Retirement has a recognised dark side, and it is not mysterious. It is four supplies
+      that were bundled with the job, withdrawn at once, without notice, in a week when
+      everyone is congratulating you.
+    </p>
+
+    <div class="alert-strip">
+      <span class="mono">Deficit &mdash; unprepared</span>
+      <span>Watch what happens to each of these when the structure that supplied them is removed.</span>
+    </div>
+
+    <div class="bank" id="bankDown">
+      <div class="unit-cell">
+        <span class="idx">D1</span>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <circle class="g-track" cx="70" cy="70" r="54"></circle>
+            <circle class="g-arc deficit" cx="70" cy="70" r="54" data-to="0.24"></circle>
+          </svg>
+          <span class="g-state"><b data-state>Intact</b><span>Direction</span></span>
+        </div>
+        <div>
+          <h3>Direction</h3>
+          <p>Forty years of somewhere to be, finished on a Friday. Monday is the first day of the rest of it and it arrives with no shape at all.</p>
+        </div>
+      </div>
+
+      <div class="unit-cell">
+        <span class="idx">D2</span>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <circle class="g-track" cx="70" cy="70" r="54"></circle>
+            <circle class="g-arc deficit" cx="70" cy="70" r="54" data-to="0.19"></circle>
+          </svg>
+          <span class="g-state"><b data-state>Intact</b><span>Identity</span></span>
+        </div>
+        <div>
+          <h3>Identity</h3>
+          <p>You have been introduced by your job title for three decades. The first introduction without it is a very strange sentence to finish.</p>
+        </div>
+      </div>
+
+      <div class="unit-cell">
+        <span class="idx">D3</span>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <circle class="g-track" cx="70" cy="70" r="54"></circle>
+            <circle class="g-arc deficit" cx="70" cy="70" r="54" data-to="0.28"></circle>
+          </svg>
+          <span class="g-state"><b data-state>Intact</b><span>Purpose</span></span>
+        </div>
+        <div>
+          <h3>Purpose</h3>
+          <p>Work answers the question of what you are for, and it answers it daily. When the work stops, the question does not stop with it.</p>
+        </div>
+      </div>
+
+      <div class="unit-cell">
+        <span class="idx">D4</span>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <circle class="g-track" cx="70" cy="70" r="54"></circle>
+            <circle class="g-arc deficit" cx="70" cy="70" r="54" data-to="0.16"></circle>
+          </svg>
+          <span class="g-state"><b data-state>Intact</b><span>Connection</span></span>
+        </div>
+        <div>
+          <h3>Connection</h3>
+          <p>Most work friendships are structural rather than chosen. Remove the structure and you find out, fairly quickly, which were which.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="note" style="margin-top:24px">
+      The gauges are a drawing of an argument. They are not a clinical measure, they produce
+      no score, and no one at Ready Set Retirement diagnoses or treats anybody.
+    </p>
+  </div>
+</section>
+
+<!-- =============================== DIFFERENTIAL =============================== -->
+<section id="differential">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="mono">Differential</span>
+      <span class="rulefill" aria-hidden="true"></span>
+      <span class="mono">Two plans, one date</span>
+    </div>
+
+    <h2 class="measure-tight">A financial plan is excellent at exactly the things it covers.</h2>
+    <p class="measure dim" style="margin-top:24px;margin-bottom:48px">
+      This is not a criticism of financial planning. It is a description of its scope. Read
+      the right-hand column and note that not one line in it is a money problem, which is
+      precisely why the money plan was never going to reach it.
+    </p>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Scope of cover &mdash; financial plan against psychosocial plan</caption>
+        <thead>
+          <tr>
+            <th scope="col">Domain</th>
+            <th scope="col">Financial plan</th>
+            <th scope="col">Psychosocial plan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Income and drawdown</th>
+            <td class="yes" data-col="Financial">Covered</td>
+            <td class="no" data-col="Psychosocial">Not covered</td>
+          </tr>
+          <tr>
+            <th scope="row">Tax and structure</th>
+            <td class="yes" data-col="Financial">Covered</td>
+            <td class="no" data-col="Psychosocial">Not covered</td>
+          </tr>
+          <tr>
+            <th scope="row">Superannuation and pension</th>
+            <td class="yes" data-col="Financial">Covered</td>
+            <td class="no" data-col="Psychosocial">Not covered</td>
+          </tr>
+          <tr>
+            <th scope="row">Health cover and costs</th>
+            <td class="yes" data-col="Financial">Covered</td>
+            <td class="no" data-col="Psychosocial">Not covered</td>
+          </tr>
+          <tr>
+            <th scope="row">Housing and downsizing</th>
+            <td class="yes" data-col="Financial">Covered</td>
+            <td class="part" data-col="Psychosocial">Partly</td>
+          </tr>
+          <tr>
+            <th scope="row">The shape of a weekday</th>
+            <td class="no" data-col="Financial">Not covered</td>
+            <td class="yes" data-col="Psychosocial">Covered</td>
+          </tr>
+          <tr>
+            <th scope="row">Identity after the title</th>
+            <td class="no" data-col="Financial">Not covered</td>
+            <td class="yes" data-col="Psychosocial">Covered</td>
+          </tr>
+          <tr>
+            <th scope="row">Purpose and contribution</th>
+            <td class="no" data-col="Financial">Not covered</td>
+            <td class="yes" data-col="Psychosocial">Covered</td>
+          </tr>
+          <tr>
+            <th scope="row">Social connection</th>
+            <td class="no" data-col="Financial">Not covered</td>
+            <td class="yes" data-col="Psychosocial">Covered</td>
+          </tr>
+          <tr>
+            <th scope="row">Renegotiating the relationship at home</th>
+            <td class="no" data-col="Financial">Not covered</td>
+            <td class="yes" data-col="Psychosocial">Covered</td>
+          </tr>
+          <tr>
+            <th scope="row">A sense of direction</th>
+            <td class="no" data-col="Financial">Not covered</td>
+            <td class="yes" data-col="Psychosocial">Covered</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note" style="margin-top:24px">
+      The two are meant to run together. One funds the lifestyle. The other decides whether
+      there is a life in it.
+    </p>
+  </div>
+</section>
+
+<!-- =============================== INTERVENTION =============================== -->
+<section id="intervention">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="mono">Intervention</span>
+      <span class="rulefill" aria-hidden="true"></span>
+      <span class="mono">Education, applied early</span>
+    </div>
+
+    <h2 class="measure-tight">Preparation does not remove the drop. It shortens it.</h2>
+    <p class="measure dim" style="margin-top:24px;margin-bottom:40px">
+      The four supplies can be rebuilt, deliberately, from other sources. That work is much
+      easier to do three years before the date than six months after it, which is the entire
+      reason this exists as education rather than as repair.
+    </p>
+
+    <div class="ok-strip">
+      <span class="mono">Prepared &mdash; rebuilt</span>
+      <span>The same four, sourced on purpose rather than supplied by an employer.</span>
+    </div>
+
+    <div class="bank" id="bankUp">
+      <div class="unit-cell up">
+        <span class="idx">D1</span>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <circle class="g-track" cx="70" cy="70" r="54"></circle>
+            <circle class="g-arc restore" cx="70" cy="70" r="54" data-from="0.24" data-to="0.86"></circle>
+          </svg>
+          <span class="g-state"><b data-state>Depleted</b><span>Direction</span></span>
+        </div>
+        <div>
+          <h3>Direction</h3>
+          <p>A week is designed before it has to be survived. Commitments that are real, dated and owed to somebody else.</p>
+        </div>
+      </div>
+
+      <div class="unit-cell up">
+        <span class="idx">D2</span>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <circle class="g-track" cx="70" cy="70" r="54"></circle>
+            <circle class="g-arc restore" cx="70" cy="70" r="54" data-from="0.19" data-to="0.82"></circle>
+          </svg>
+          <span class="g-state"><b data-state>Depleted</b><span>Identity</span></span>
+        </div>
+        <div>
+          <h3>Identity</h3>
+          <p>A second answer to the question of who you are, worked out and rehearsed before anybody at a barbecue asks it.</p>
+        </div>
+      </div>
+
+      <div class="unit-cell up">
+        <span class="idx">D3</span>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <circle class="g-track" cx="70" cy="70" r="54"></circle>
+            <circle class="g-arc restore" cx="70" cy="70" r="54" data-from="0.28" data-to="0.9"></circle>
+          </svg>
+          <span class="g-state"><b data-state>Depleted</b><span>Purpose</span></span>
+        </div>
+        <div>
+          <h3>Purpose</h3>
+          <p>Mastery does not retire. It gets pointed somewhere else, and it is worth more there than most people expect.</p>
+        </div>
+      </div>
+
+      <div class="unit-cell up">
+        <span class="idx">D4</span>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <circle class="g-track" cx="70" cy="70" r="54"></circle>
+            <circle class="g-arc restore" cx="70" cy="70" r="54" data-from="0.16" data-to="0.79"></circle>
+          </svg>
+          <span class="g-state"><b data-state>Depleted</b><span>Connection</span></span>
+        </div>
+        <div>
+          <h3>Connection</h3>
+          <p>Friendships that were structural get replaced with friendships that were chosen. It takes longer than anyone budgets for. Start early.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:64px">
+      <div>
+        <h3>How the work is delivered</h3>
+        <ol class="svc">
+          <li><span class="n">01</span><span>Training</span></li>
+          <li><span class="n">02</span><span>Workshops</span></li>
+          <li><span class="n">03</span><span>Seminars</span></li>
+          <li><span class="n">04</span><span>One-to-one coaching</span></li>
+          <li><span class="n">05</span><span>Group coaching</span></li>
+          <li><span class="n">06</span><span>Consulting</span></li>
+          <li><span class="n">07</span><span>Speaking</span></li>
+        </ol>
+      </div>
+      <div>
+        <p class="measure">
+          For individuals, the work is usually one-to-one or in a small group, and it starts
+          with the parts of the plan that have nothing to do with money. For organisations
+          facing the Silver Tsunami, the same material runs as workshops and seminars, and it
+          has the useful side effect of making people leave well rather than suddenly.
+        </p>
+        <p class="measure dim">
+          None of it is financial advice, therapy or treatment. It is education and coaching,
+          delivered by somebody who has watched capable people come apart six months after
+          the farewell cake and decided that was avoidable.
+        </p>
+        <p class="tm">
+          <span>human-centred retirement planning&trade;</span><br>
+          <span>readysetretirement psychosocial planning&reg;</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== PRACTITIONER =============================== -->
+<section id="practitioner">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="mono">Practitioner</span>
+      <span class="rulefill" aria-hidden="true"></span>
+      <span class="mono">Record</span>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="prac-head">
+          <figure class="prac-plate">
+            <img src="assets/drsan.jpg" width="980" height="1470" loading="lazy" decoding="async"
+                 alt="Dr Sandra Walden-Pearson, photographed against a plain grey background.">
+            <figcaption>Fig. 02</figcaption>
+          </figure>
+          <div>
+            <h2>Dr Sandra Walden-Pearson</h2>
+            <p class="sub">Psychosocial retirement educator<br>Far North Queensland</p>
+          </div>
+        </div>
+        <p class="measure">
+          Known as Dr San. She works out of Far North Queensland with individuals who are
+          three to ten years from a retirement date, and with the HR and workforce planners
+          who are about to lose thirty years of institutional knowledge in a single quarter.
+        </p>
+        <p class="measure dim">
+          She is not a financial adviser and has no interest in becoming one. She teaches the
+          other half of the plan, which is the half that decides whether the first half was
+          worth doing.
+        </p>
+      </div>
+      <div class="panel">
+        <span class="lab">Credentials</span>
+        <ul class="cred">
+          <li>PhD (Business)</li>
+          <li>MBA (HR)</li>
+          <li>BA Dip Ed</li>
+          <li>Certified Professional Retirement Coach</li>
+          <li>Certified Associate Meta Coach</li>
+          <li>Certified Resilience Coach</li>
+          <li>HART Coach</li>
+          <li>Resilience First Aid Responder</li>
+          <li>Accredited Mental Health First Aider</li>
+          <li>Accredited Mental Health First Aider (Workplace)</li>
+          <li>Accredited Cinergy Conflict Coach</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== CASE NOTE =============================== -->
+<section id="referral">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="mono">Case note</span>
+      <span class="rulefill" aria-hidden="true"></span>
+      <span class="mono">Verbatim</span>
+    </div>
+
+    <div class="panel casenote">
+      <span class="lab">Note 01</span>
+      <blockquote>
+        &ldquo;Financial planning for retirement is well known. I hadn&rsquo;t heard about
+        psychosocial education focused on human-centred retirement planning &mdash; in 30 years
+        of politics. In talking with Dr San I realised the critical need to plan for the human
+        side of retirement. With hand on heart, I can honestly say that engaging Dr San has
+        been life changing.&rdquo;
+      </blockquote>
+      <cite><b>Hon. Warren Entsch</b><br>Former Federal Member for Leichhardt</cite>
+    </div>
+  </div>
+</section>
+
+<!-- =============================== CONSULT =============================== -->
+<section id="consult" style="padding-top:0">
+  <div class="wrap">
+    <div class="panel">
+      <span class="lab">Consult &mdash; 30 min &mdash; no fee</span>
+      <span class="lab-r">Next step</span>
+      <div class="consult">
+        <div>
+          <h2 class="measure-tight">Thirty minutes, at no cost, well before the date.</h2>
+          <p class="measure dim" style="margin-top:24px">
+            It is a conversation, not a clinical assessment. You describe the date and what
+            you have planned for it. Dr San tells you plainly which parts are covered and
+            which parts are not, and what the second plan would need to contain.
+          </p>
+        </div>
+        <div class="cta-row" style="margin-top:0">
+          <a class="btn btn-solid" href="/contact">Book the consult</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <p class="mono">Ready Set Retirement<br>Dr Sandra Walden-Pearson<br>Far North Queensland, Australia</p>
+      </div>
+      <div>
+        <p class="mono">
+          <a href="#intake">Intake</a><br>
+          <a href="#trace">Trace</a><br>
+          <a href="#differential">Differential</a><br>
+          <a href="#practitioner">Practitioner</a><br>
+          <a href="/contact">Consult</a>
+        </p>
+      </div>
+      <div>
+        <p class="note">
+          Psychosocial retirement education and coaching. Not financial advice. Not medical or
+          psychological treatment. human-centred retirement planning&trade; and
+          readysetretirement psychosocial planning&reg; are trademarks of Ready Set Retirement.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /shell -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasGSAP = typeof window.gsap !== "undefined" && typeof window.ScrollTrigger !== "undefined";
+
+  if (hasGSAP) {
+    gsap.registerPlugin(ScrollTrigger);
+    /* Mobile browser chrome collapsing on scroll must not count as a resize,
+       or the pinned panel jumps mid-scrub. */
+    ScrollTrigger.config({ ignoreMobileResize: true });
+  }
+  if (hasGSAP && !reduced) { document.documentElement.classList.add("js-on"); }
+
+  /* ================================================================
+     THE TRACE
+     ================================================================ */
+
+  var TOTAL_X   = 4200;   /* authored width of the strip, in user units */
+  var PHASE_B_X = 1500;   /* the retirement date */
+  var PHASE_C_X = 3000;   /* preparation applied */
+
+  var svg    = document.getElementById("traceSvg");
+  var strip  = document.getElementById("strip");
+  var head   = document.getElementById("head");
+  var dot    = document.getElementById("headDot");
+  var poly   = document.getElementById("traceLine");
+  var panel  = document.getElementById("tracePanel");
+  var pWord  = document.getElementById("phaseWord");
+  var pKey   = document.getElementById("phaseKey");
+  var pCopy  = document.getElementById("phaseCopy");
+
+  var COPY = {
+    a: {
+      word: "Steady",
+      key: "Phase A — Steady",
+      text: "The rhythm is regular and nobody has to think about it. Direction, identity, purpose and connection all arrive with the job, free of charge, every weekday, for about forty years."
+    },
+    b: {
+      word: "Flat",
+      key: "Phase B — Flat",
+      text: "The date arrives and the structure leaves with the salary. This is the stretch people describe as being switched off: the diary empties, the phone stops, and the congratulations run out well before the feeling does."
+    },
+    c: {
+      word: "Recovering",
+      key: "Phase C — Recovering",
+      text: "A different rhythm, built on purpose rather than issued by an employer. It is not the old one and it is not meant to be. Preparation is what shortens the flat stretch, and it works best applied before the date rather than after it."
+    }
+  };
+
+  var traceState = { total: 0, lenA: 0, lenB: 0, win: 1500, phase: "" };
+
+  function buildLengths() {
+    if (!poly || !poly.points || !poly.points.numberOfItems) { return false; }
+    var n = poly.points.numberOfItems;
+    var acc = 0, i, p, prev = poly.points.getItem(0);
+    traceState.lenA = 0;
+    traceState.lenB = 0;
+    for (i = 1; i < n; i++) {
+      p = poly.points.getItem(i);
+      acc += Math.sqrt((p.x - prev.x) * (p.x - prev.x) + (p.y - prev.y) * (p.y - prev.y));
+      if (prev.x < PHASE_B_X && p.x >= PHASE_B_X) { traceState.lenA = acc; }
+      if (prev.x < PHASE_C_X && p.x >= PHASE_C_X) { traceState.lenB = acc; }
+      prev = p;
+    }
+    if (!traceState.lenA) { traceState.lenA = acc * 0.45; }
+    if (!traceState.lenB) { traceState.lenB = acc * 0.7; }
+
+    /* Trust the browser's own arc length for the dash maths, and scale the
+       hand-measured phase boundaries onto it. They agree to a rounding error
+       on straight segments, but only one of them drives stroke-dashoffset. */
+    var native = 0;
+    try { native = poly.getTotalLength(); } catch (e) { native = 0; }
+    if (native > 0 && acc > 0) {
+      var k = native / acc;
+      traceState.lenA *= k;
+      traceState.lenB *= k;
+      acc = native;
+    }
+    traceState.total = acc;
+    return acc > 0;
+  }
+
+  function setWindow() {
+    traceState.win = window.innerWidth < 720 ? 700 : (window.innerWidth < 1040 ? 900 : 1200);
+    /* The signal lives between y=96 and y=244, so the window is cropped to
+       y 60-340 rather than the authored 0-400. Wasted air makes an ECG look
+       like a thread. */
+    if (svg) { svg.setAttribute("viewBox", "0 60 " + traceState.win + " 280"); }
+  }
+
+  function setPhase(name) {
+    if (traceState.phase === name) { return; }
+    traceState.phase = name;
+    panel.classList.toggle("is-flat", name === "b");
+    panel.classList.toggle("is-recover", name === "c");
+    pWord.textContent = COPY[name].word;
+    pKey.textContent  = COPY[name].key;
+    pCopy.textContent = COPY[name].text;
+  }
+
+  function renderTrace(len) {
+    var total = traceState.total;
+    if (!total) { return; }
+    len = Math.max(0, Math.min(total, len));
+
+    poly.style.strokeDasharray  = total + " " + total;
+    poly.style.strokeDashoffset = (total - len);
+
+    var pt;
+    try { pt = poly.getPointAtLength(len); }
+    catch (e) { pt = { x: 0, y: 200 }; }
+
+    var win  = traceState.win;
+    var anchor = win * 0.66;
+    var maxShift = -(TOTAL_X - win);
+    var tx = Math.min(0, Math.max(maxShift, anchor - pt.x));
+
+    strip.setAttribute("transform", "translate(" + tx.toFixed(2) + ",0)");
+    head.setAttribute("transform", "translate(" + (pt.x + tx).toFixed(2) + ",0)");
+    dot.setAttribute("cy", pt.y.toFixed(2));
+
+    if (pt.x < PHASE_B_X)      { setPhase("a"); }
+    else if (pt.x < PHASE_C_X) { setPhase("b"); }
+    else                       { setPhase("c"); }
+  }
+
+  function traceFinalState() {
+    setWindow();
+    if (!buildLengths()) { return; }
+    poly.style.strokeDasharray = "none";
+    poly.style.strokeDashoffset = 0;
+    var maxShift = -(TOTAL_X - traceState.win);
+    strip.setAttribute("transform", "translate(" + maxShift + ",0)");
+    head.setAttribute("transform", "translate(" + (TOTAL_X + maxShift) + ",0)");
+    setPhase("c");
+  }
+
+  /* ================================================================
+     GAUGES
+     ================================================================ */
+
+  var R = 54;
+  var C = 2 * Math.PI * R;
+
+  function stateWord(v, up) {
+    if (up) {
+      if (v >= 0.72) { return "Held"; }
+      if (v >= 0.45) { return "Returning"; }
+      return "Depleted";
+    }
+    if (v >= 0.66) { return "Intact"; }
+    if (v >= 0.4)  { return "Strained"; }
+    return "Depleted";
+  }
+
+  function initGauges(root, up) {
+    var cells = root.querySelectorAll(".unit-cell");
+    var items = [];
+    Array.prototype.forEach.call(cells, function (cell) {
+      var arc = cell.querySelector(".g-arc");
+      var lab = cell.querySelector("[data-state]");
+      var to   = parseFloat(arc.getAttribute("data-to"));
+      var from = arc.hasAttribute("data-from") ? parseFloat(arc.getAttribute("data-from")) : 1;
+      arc.style.strokeDasharray = C + " " + C;
+      items.push({ arc: arc, lab: lab, from: from, to: to });
+    });
+    return items;
+  }
+
+  function paint(item, v, up) {
+    item.arc.style.strokeDashoffset = C * (1 - v);
+    var w = stateWord(v, up);
+    if (item.lab.textContent !== w) { item.lab.textContent = w; }
+  }
+
+  var bankDown = document.getElementById("bankDown");
+  var bankUp   = document.getElementById("bankUp");
+  var itemsDown = bankDown ? initGauges(bankDown, false) : [];
+  var itemsUp   = bankUp   ? initGauges(bankUp, true)    : [];
+
+  function gaugesFinal() {
+    itemsDown.forEach(function (it) { paint(it, it.to, false); });
+    itemsUp.forEach(function (it) { paint(it, it.to, true); });
+  }
+
+  /* ================================================================
+     READOUT COUNTERS
+     ================================================================ */
+
+  var ctrYears = document.getElementById("ctrYears");
+  var ctrMins  = document.getElementById("ctrMins");
+
+  function pad2(n) { n = Math.round(n); return (n < 10 ? "0" : "") + n; }
+
+  function countersFinal() {
+    if (ctrYears) { ctrYears.textContent = "40"; }
+    if (ctrMins)  { ctrMins.textContent  = "10"; }
+  }
+
+  /* ================================================================
+     WIRING
+     ================================================================ */
+
+  if (!hasGSAP || reduced) {
+    /* Reduced motion, or GSAP unavailable: every trace drawn,
+       every gauge at its final value, every counter resolved. */
+    traceFinalState();
+    gaugesFinal();
+    countersFinal();
+    document.documentElement.classList.remove("js-on");
+    return;
+  }
+
+  /* --- counters --- */
+  if (ctrYears && ctrMins) {
+    var nums = { y: 0, m: 0 };
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#readoutBlock",
+        start: "top 88%",
+        end: "top 32%",
+        scrub: 1
+      }
+    })
+    .to(nums, {
+      y: 40, m: 10, ease: "none", duration: 1,
+      onUpdate: function () {
+        ctrYears.textContent = pad2(nums.y);
+        ctrMins.textContent  = pad2(nums.m);
+      }
+    });
+  }
+
+  /* --- the trace --- */
+  setWindow();
+  if (buildLengths()) {
+    var proxy = { len: 0 };
+    var render = function () { renderTrace(proxy.len); };
+    renderTrace(0);
+
+    /* Pin whenever the viewport is tall enough to hold the panel with room
+       to spare. That includes phones held upright; it excludes landscape
+       phones and short windows, which fall back to a plain scrub in flow. */
+    var wide = window.matchMedia("(min-height: 620px)");
+
+    var buildTrace = function (pin) {
+      var cfg = {
+        trigger: "#traceStage",
+        scrub: 1,
+        invalidateOnRefresh: true
+      };
+      if (pin) {
+        cfg.pin = "#traceStage";
+        cfg.pinSpacing = true;
+        cfg.anticipatePin = 1;
+        cfg.start = "top top";
+        cfg.end = function () {
+          return "+=" + Math.round(window.innerHeight * (window.innerWidth < 900 ? 2.4 : 3.2));
+        };
+      } else {
+        cfg.start = "top 78%";
+        cfg.end = "bottom 30%";
+      }
+      /* Phase durations are allocated deliberately, not by arc length:
+         the flat stretch gets a third of the scroll even though it is
+         geometrically short. That is the discomfort, and it is the point. */
+      return gsap.timeline({ scrollTrigger: cfg })
+        .to(proxy, { len: traceState.lenA, duration: 4, ease: "none", onUpdate: render })
+        .to(proxy, { len: traceState.lenB, duration: 3, ease: "none", onUpdate: render })
+        .to(proxy, { len: traceState.total, duration: 3, ease: "none", onUpdate: render });
+    };
+
+    var traceTL = buildTrace(wide.matches);
+
+    var swap = function () {
+      if (traceTL && traceTL.scrollTrigger) { traceTL.scrollTrigger.kill(true); }
+      if (traceTL) { traceTL.kill(); }
+      proxy.len = 0;
+      traceTL = buildTrace(wide.matches);
+      ScrollTrigger.refresh();
+    };
+    if (wide.addEventListener) { wide.addEventListener("change", swap); }
+    else if (wide.addListener) { wide.addListener(swap); }
+
+    window.addEventListener("resize", function () {
+      setWindow();
+      renderTrace(proxy.len);
+    });
+  } else {
+    traceFinalState();
+  }
+
+  /* --- gauges: down, then up --- */
+  if (itemsDown.length) {
+    var vd = { v: 1 };
+    var tlDown = gsap.timeline({
+      scrollTrigger: { trigger: "#bankDown", start: "top 85%", end: "top 35%", scrub: 1 }
+    });
+    itemsDown.forEach(function (it) { paint(it, 1, false); });
+    tlDown.to(vd, {
+      v: 0, ease: "none", duration: 1,
+      onUpdate: function () {
+        itemsDown.forEach(function (it) {
+          paint(it, it.from + (it.to - it.from) * (1 - vd.v), false);
+        });
+      }
+    });
+  }
+
+  if (itemsUp.length) {
+    var vu = { v: 0 };
+    itemsUp.forEach(function (it) { paint(it, it.from, true); });
+    gsap.timeline({
+      scrollTrigger: { trigger: "#bankUp", start: "top 85%", end: "top 35%", scrub: 1 }
+    }).to(vu, {
+      v: 1, ease: "none", duration: 1,
+      onUpdate: function () {
+        itemsUp.forEach(function (it) {
+          paint(it, it.from + (it.to - it.from) * vu.v, true);
+        });
+      }
+    });
+  }
+
+  /* --- quiet entrances --- */
+  gsap.utils.toArray([
+    "#intake .intake-grid > *",
+    "#readout .sec-head",
+    "#readout .readout",
+    "#trace h2",
+    "#trace .sec-head",
+    "#deficits .sec-head",
+    "#deficits h2",
+    "#deficits .alert-strip",
+    "#differential .sec-head",
+    "#differential h2",
+    "#differential .tablewrap",
+    "#intervention .sec-head",
+    "#intervention h2",
+    "#intervention .ok-strip",
+    "#intervention .two-col > *",
+    "#practitioner .sec-head",
+    "#practitioner .two-col > *",
+    "#referral .sec-head",
+    "#referral .panel",
+    "#consult .panel"
+  ].join(",")).forEach(function (el) {
+    el.classList.add("rise");
+    gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      ease: "power2.out",
+      scrollTrigger: { trigger: el, start: "top 90%", once: true }
+    });
+  });
+
+  ScrollTrigger.refresh();
+})();
+</script>
+</body>
+</html>

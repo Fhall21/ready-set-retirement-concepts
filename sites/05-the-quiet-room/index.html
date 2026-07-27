@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Quiet Room — Ready Set Retirement</title>
+<meta name="description" content="Psychosocial retirement education with Dr Sandra Walden-Pearson. For the person already six months in and finding it harder than expected.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..700;1,6..72,200..600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F4EE;
+    --ink:#2B2A26;
+    --ink-soft:#55524A;
+    --clay:#6F3794;          /* brand purple — the thread, and only the thread */
+    --clay-ink:#6F3794;      /* brand purple, 7.25:1 on paper */
+    --sage:#7C8B72;          /* decorative only */
+    --sage-ink:#5D6B54;      /* text-safe sage, 5.1:1 on paper */
+    --rule:rgba(43,42,38,.16);
+    --measure:66ch;
+    --gutter:clamp(1.25rem, 4vw, 3.25rem);
+    --thread-w:clamp(3rem, 9vw, 9rem);
+    --rhythm:clamp(6rem, 12vh, 12rem);
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  html{ -webkit-text-size-adjust:100%; }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Newsreader",Georgia,"Times New Roman",serif;
+    font-optical-sizing:auto;
+    font-variation-settings:"opsz" 14;
+    font-size:19px;
+    font-weight:380;
+    line-height:1.62;
+    overflow-x:clip;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  /* very subtle paper fibre — decorative, never interactive */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+    opacity:.055;
+    mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.74' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23f)'/%3E%3C/svg%3E");
+    background-size:200px 200px;
+  }
+
+  /* ---------- the thread ---------- */
+  #thread{
+    position:absolute;
+    top:0; left:0;
+    width:var(--thread-w);
+    z-index:1;
+    pointer-events:none;
+    overflow:visible;
+  }
+  #thread path{
+    fill:none;
+    stroke:var(--clay);
+    stroke-width:1.3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    opacity:.72;
+  }
+
+  /* ---------- page frame ---------- */
+  .page{
+    position:relative;
+    z-index:2;
+    max-width:1560px;
+    padding-left:var(--thread-w);
+    padding-right:var(--gutter);
+  }
+
+  .row{
+    display:grid;
+    grid-template-columns:minmax(0,58fr) minmax(0,30fr);
+    column-gap:clamp(1.75rem,4vw,4.5rem);
+    align-items:start;
+  }
+  .row > .col{ grid-column:1; min-width:0; }
+  .row > .note{ grid-column:2; min-width:0; }
+
+  .movement{ margin-block:var(--rhythm); }
+  .movement:first-of-type{ margin-top:0; }
+
+  /* ---------- type ---------- */
+  h1,h2{
+    font-variation-settings:"opsz" 40;
+    font-weight:400;
+    letter-spacing:-0.012em;
+    line-height:1.14;
+    margin:0;
+    text-wrap:balance;
+    max-width:22ch;
+  }
+  h1{ font-size:clamp(2.05rem,5.1vw,3.7rem); }
+  h2{ font-size:clamp(1.6rem,3.4vw,2.55rem); max-width:26ch; }
+
+  p{ margin:0 0 1.35em; max-width:var(--measure); }
+  .col > p:last-child{ margin-bottom:0; }
+
+  .lead{
+    font-variation-settings:"opsz" 26;
+    font-size:clamp(1.13rem,1.9vw,1.35rem);
+    line-height:1.5;
+    color:var(--ink);
+  }
+
+  .note{
+    font-size:13px;
+    line-height:1.58;
+    font-style:italic;
+    font-variation-settings:"opsz" 12;
+    color:var(--ink-soft);
+    max-width:26em;
+  }
+  .note p{ margin:0 0 .9em; max-width:none; }
+  .note p:last-child{ margin-bottom:0; }
+  .note .who{
+    font-style:normal;
+    color:var(--ink);
+    display:block;
+    margin-top:.65em;
+  }
+
+  /* ---------- opening ---------- */
+  .opening{ padding-top:40vh; }
+  .masthead{
+    position:absolute;
+    top:clamp(1.5rem,4vh,3rem);
+    left:var(--thread-w);
+    right:var(--gutter);
+    z-index:3;
+    font-size:13px;
+    font-style:italic;
+    font-variation-settings:"opsz" 12;
+    color:var(--ink-soft);
+    letter-spacing:.01em;
+  }
+
+  .masthead .mark{
+    display:block;
+    width:clamp(118px,12vw,154px);
+    height:auto;
+    margin-bottom:.7rem;
+  }
+  .masthead span{ display:block; }
+
+  /* ---------- the author plate, tipped into the margin ---------- */
+  .portrait{
+    margin:0 0 1.4rem;
+    max-width:15.5rem;
+  }
+  .portrait img{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:2px;
+    /* graded down toward the paper — it is a margin note, not a poster */
+    filter:saturate(.78) sepia(.09) contrast(1.01);
+  }
+  .portrait figcaption{
+    margin-top:.75rem;
+    font-style:normal;
+    font-size:12px;
+    line-height:1.5;
+    letter-spacing:.015em;
+    color:var(--ink-soft);
+  }
+  .portrait figcaption b{
+    display:block;
+    font-weight:500;
+    color:var(--ink);
+  }
+
+  /* ---------- the plate ---------- */
+  .plate{
+    --clip:50;
+    margin:0;
+    clip-path:inset(0 calc(var(--clip) * 1%) 0 calc(var(--clip) * 1%));
+  }
+  .plate img{
+    display:block;
+    width:100%;
+    height:auto;
+    border-radius:2px;
+  }
+  .plate figcaption{ display:none; }
+
+  /* ---------- the turn ---------- */
+  .turn h2{
+    max-width:20ch;
+    font-size:clamp(1.75rem,3.9vw,2.9rem);
+  }
+  .turn h2 em{
+    font-style:italic;
+    color:var(--clay-ink);
+  }
+
+  /* ---------- quiet quote ---------- */
+  .quote{
+    margin:0;
+    border-left:1px solid var(--rule);
+    padding-left:1.15rem;
+  }
+  .quote p{ margin:0 0 .9em; max-width:none; }
+  .quote cite{
+    font-style:normal;
+    display:block;
+    color:var(--ink);
+  }
+
+  .tm{ white-space:nowrap; }
+
+  /* ---------- links ---------- */
+  a{
+    color:inherit;
+    text-decoration:underline;
+    text-decoration-thickness:1px;
+    text-underline-offset:.19em;
+    text-decoration-color:var(--clay-ink);
+  }
+  a:hover{ text-decoration-color:var(--ink); }
+  a:focus-visible{
+    outline:2px solid var(--clay-ink);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .ask{
+    display:inline-block;
+    font-variation-settings:"opsz" 30;
+    font-size:clamp(1.2rem,2.3vw,1.6rem);
+    line-height:1.3;
+    color:var(--clay-ink);
+    text-decoration-thickness:1px;
+    text-underline-offset:.22em;
+    margin-top:.5rem;
+  }
+
+  .services a{ text-decoration-color:var(--sage-ink); }
+
+  /* ---------- close + footer ---------- */
+  .close .col > p{
+    font-variation-settings:"opsz" 30;
+    font-size:clamp(1.3rem,2.7vw,1.9rem);
+    line-height:1.32;
+    max-width:24ch;
+  }
+
+  footer{
+    margin-top:var(--rhythm);
+    padding-block:2.25rem 3.5rem;
+    border-top:1px solid var(--rule);
+    font-size:13px;
+    font-style:italic;
+    font-variation-settings:"opsz" 12;
+    color:var(--ink-soft);
+  }
+  footer p{ max-width:44ch; }
+
+  hr.mark{
+    border:0;
+    border-top:1px solid var(--rule);
+    width:3.5rem;
+    margin:2.25rem 0;
+  }
+
+  /* ---------- motion default state ---------- */
+  .fade{ opacity:1; }
+  html.js .fade{ opacity:.001; }
+  html.js.still .fade{ opacity:1; }
+
+  /* ---------- narrow ---------- */
+  @media (max-width:900px){
+    :root{
+      --thread-w:2.75rem;
+      --gutter:1.25rem;
+      --rhythm:clamp(4.5rem,11vh,7rem);
+    }
+    body{ font-size:18px; }
+    .row{ display:block; }
+    .row > .note{
+      margin-top:1.6rem;
+      border-left:1px solid var(--rule);
+      padding-left:1rem;
+      max-width:38ch;
+    }
+    .quote{ border-left:0; padding-left:0; }
+    .opening{ padding-top:30vh; }
+    .masthead{ position:static; margin:0 0 2.5rem; }
+  }
+
+  @media (max-width:420px){
+    h1{ font-size:clamp(1.75rem,8.4vw,2.2rem); }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html.js .fade{ opacity:1; }
+    .plate{ --clip:0; }
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<svg id="thread" aria-hidden="true" focusable="false" preserveAspectRatio="xMinYMin meet"><path id="threadPath" d=""/></svg>
+
+<div class="page">
+
+  <p class="masthead">
+    <img class="mark" src="assets/logo-solid-purple.svg" width="767" height="334"
+         alt="Ready Set Retirement — psychosocial planning for retirement">
+    <span>Psychosocial retirement education with Dr Sandra Walden-Pearson.</span>
+  </p>
+
+  <main>
+
+    <!-- 1 — OPENING -->
+    <section class="movement opening" aria-labelledby="t1">
+      <div class="row">
+        <div class="col">
+          <h1 id="t1" class="fade">The farewell cake was in March.</h1>
+          <hr class="mark">
+          <p class="fade">It is September now. The card everyone signed is still on the shelf in the hallway, and most days you walk past it without reading it.</p>
+        </div>
+        <div class="note fade">
+          <p>A page for the person who has already retired, and who has been quietly finding it harder than they expected to say so.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 — RECOGNITION -->
+    <section class="movement" aria-labelledby="t2">
+      <div class="row">
+        <div class="col">
+          <h2 id="t2" class="fade">What nobody puts in the speech</h2>
+          <p class="lead fade">Here it is in plain words. If none of this is you, close the page with our blessing. If some of it is, keep going. It is far more common than the silence around it would suggest.</p>
+        </div>
+        <div class="note fade">
+          <p>Loss of direction, identity, purpose and connection. Recognised in the research on retirement. Rarely mentioned at the farewell.</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:clamp(2.5rem,5vh,4.5rem)">
+        <div class="col">
+          <p class="fade">The first Monday felt like a holiday. So did the second. By the fourth you are awake at ten past six regardless, because forty years of it does not switch off on request, and by half past seven you are dressed and fed and standing in the kitchen with the whole day in front of you and no reason to begin it at any particular hour. The days stop having edges. Nothing arrives to tell you that one of them has finished.</p>
+        </div>
+        <div class="note fade">
+          <p>Structure is the first thing to go and the last thing people think to replace.</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:clamp(2rem,4vh,3.5rem)">
+        <div class="col">
+          <p class="fade">You thought of them as friends, and most of them were, in the way that people you sit near for eleven years are friends. But the sitting near was doing the work. The friendship was held up by the building, the corridor, the ten minutes before a meeting started. Take the scaffolding away and what is left is the effort of arranging things, and that effort falls to whoever wants it more. You find out fairly quickly that it was rarely you. Two of them stayed. That is not a betrayal. It is arithmetic, and nobody warned you about it.</p>
+        </div>
+        <div class="note fade">
+          <p>Structural friendship, not chosen friendship. The distinction only becomes visible after the structure has gone.</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:clamp(2rem,4vh,3.5rem)">
+        <div class="col">
+          <p class="fade">At somebody's sixtieth a man you have not met asks what you do. You hear yourself begin with <em>I was</em>, name a job you no longer hold, and then, because the sentence has nowhere left to go, add <em>so, retired now</em>. He nods. He has run out of questions and so have you. Driving home you work out that you have just described yourself to a stranger entirely in the past tense, that you had no second sentence ready, and that you have not had one since March.</p>
+          <p class="fade">None of that is necessarily depression. Some of it is, and that is worth saying to a doctor. Most of it is something with less of a name, which is exactly why it goes unattended for a year.</p>
+        </div>
+        <div class="note fade">
+          <p>Forty years of being introduced by a job title, and then one evening the title is in the past tense and the sentence has no second half.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 — THE PHOTOGRAPH -->
+    <section class="movement" aria-label="A quiet table">
+      <div class="row">
+        <div class="col">
+          <figure class="plate">
+            <img src="assets/table.jpg" width="1376" height="768" loading="lazy" decoding="async"
+                 alt="A linen-covered table beside a window: a cup of tea, an open handwritten notebook with a pen laid across it, reading glasses, a sprig of eucalyptus in a stoneware vase, and an older person's hands resting on the cloth.">
+            <figcaption>A table set for one morning's work.</figcaption>
+          </figure>
+        </div>
+        <div class="note fade">
+          <p>A table, a notebook, a Tuesday morning that has been given a shape. Almost none of the good version of this happens by accident. Somebody decided it would.</p>
+          <p>Illustrative photograph.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 — THE TURN -->
+    <section class="movement turn" aria-labelledby="t4">
+      <div class="row">
+        <div class="col">
+          <h2 id="t4" class="fade">None of this means the decision was wrong. It means it was <em>unaccompanied</em>.</h2>
+          <hr class="mark">
+          <p class="fade">We spend forty years planning for retirement financially and roughly ten minutes planning who we will be when it arrives. The money question gets a professional, a strategy, an annual review and a spreadsheet that runs to age ninety. The other question gets a good luck and a card.</p>
+          <p class="fade">That imbalance is not a character flaw. It is what happens when one half of a problem has an entire industry attached to it and the other half has almost nobody.</p>
+          <p class="fade">Money funds a lifestyle. It cannot buy a quality of life, and it has never once told anyone what to do with a Wednesday.</p>
+        </div>
+        <div class="note fade">
+          <p>Financial planning answers what you will live on. This answers what you will live for. The yin to financial planning's yang, and not a substitute for either.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 — WHAT DR SAN DOES -->
+    <section class="movement" aria-labelledby="t5">
+      <div class="row">
+        <div class="col">
+          <h2 id="t5" class="fade">The work itself is unglamorous, and it holds.</h2>
+          <hr class="mark">
+          <p class="fade">Dr Sandra Walden-Pearson works on the human side of the change. She calls it <span class="tm">human-centred retirement planning&trade;</span>, and the method she teaches is <span class="tm">readysetretirement psychosocial planning&reg;</span>: deliberate preparation for identity, purpose, structure and belonging. Done in advance where that is still possible, and done retrospectively where it is not, which is most of the time and perfectly workable.</p>
+          <p class="fade">In practice it looks like conversations with homework. You map what your work was actually giving you, which is almost never what you would have guessed, and then you go about sourcing those same things from somewhere that is not a payroll. Some of it is straightforward. Some of it takes a year. It is closer to rehabilitation than to inspiration, and it is deliberately slow, because the things it rebuilds are slow things.</p>
+          <p class="fade services">It runs as <a href="/contact">one-to-one coaching</a>, <a href="/contact">group coaching</a>, <a href="/contact">workshops</a>, <a href="/contact">seminars</a>, <a href="/contact">training</a>, <a href="/contact">consulting</a> and <a href="/contact">speaking</a>, depending on whether you are doing this on your own or an organisation is doing it for two hundred people at once.</p>
+          <p class="fade">She holds a PhD in business and an MBA in human resources, and is a certified professional retirement coach, a certified resilience coach and an accredited mental health first aider. That is the short version and it is enough of it.</p>
+        </div>
+        <div class="note fade">
+          <figure class="portrait">
+            <img src="assets/drsan-office.jpg" width="1100" height="1650" loading="lazy" decoding="async"
+                 alt="Dr Sandra Walden-Pearson standing in the doorway of her home study, arms folded, a wall of books behind her.">
+            <figcaption><b>Dr Sandra Walden-Pearson</b>At home in Far North Queensland, where most of this work is done.</figcaption>
+          </figure>
+          <p>Works with individuals across Australia, and with organisations planning for a workforce that is retiring faster than it ever has.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 — TESTIMONIAL, IN THE MARGIN -->
+    <section class="movement" aria-label="Testimonial">
+      <div class="row">
+        <div class="col">
+          <p class="fade">It is not only a private matter, and it has been said out loud, occasionally by people who are difficult to dismiss.</p>
+        </div>
+        <blockquote class="note quote fade">
+          <p>&ldquo;Financial planning for retirement is well known. I hadn&rsquo;t heard about psychosocial education focused on human-centred retirement planning &mdash; in 30 years of politics. In talking with Dr San I realised the critical need to plan for the human side of retirement. With hand on heart, I can honestly say that engaging Dr San has been life changing.&rdquo;</p>
+          <cite class="who">Hon. Warren Entsch, former Federal Member for Leichhardt</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 7 — CLOSE -->
+    <section class="movement close" aria-labelledby="t7">
+      <div class="row">
+        <div class="col">
+          <p id="t7" class="fade">There is a version of this that is good. It takes preparation and it takes time, and there is enough of both.</p>
+          <p class="fade"><a class="ask" href="/contact">Book a complimentary 30-minute consult</a></p>
+        </div>
+        <div class="note fade">
+          <p>Thirty minutes, no fee, and no obligation to carry on afterwards. If all it does is give you the second sentence, that is a reasonable morning's work.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="row">
+      <div class="col">
+        <p>Ready Set Retirement &middot; Dr Sandra Walden-Pearson &middot; Far North Queensland, Australia.</p>
+        <p>Psychosocial retirement education. Not financial advice, and not a replacement for it. <a href="/contact">Get in touch</a>.</p>
+      </div>
+      <div class="note">
+        <p>If any of this has raised something heavier than a flat Monday, please speak with your GP, or contact Lifeline on 13 11 14.</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  root.classList.add("js");
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced) root.classList.add("still");
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ------------------------------------------------------------------
+     THE THREAD
+     One path, hand-authored. Knot geometry and the swing of every
+     connecting bezier are literal numbers below; only the vertical
+     anchor of each knot is measured, because the document height is
+     not knowable in advance.
+  ------------------------------------------------------------------ */
+
+  var svg  = document.getElementById("thread");
+  var path = document.getElementById("threadPath");
+  var movements = Array.prototype.slice.call(document.querySelectorAll(".movement"));
+  var length = 0;
+
+  // A tight crossing loop. Hand-authored control points, in units,
+  // scaled by s and dropped at (x, y).
+  function knot(x, y, s) {
+    function P(dx, dy) {
+      return (x + dx * s).toFixed(2) + " " + (y + dy * s).toFixed(2);
+    }
+    return "C " + P(26, -20) + ", " + P(31, 2)   + ", " + P(8, 7)   + " " +
+           "C " + P(-13, 11) + ", " + P(-19, -6) + ", " + P(2, -10) + " " +
+           "C " + P(15, -13) + ", " + P(22, 3)   + ", " + P(0, 26)  + " ";
+  }
+
+  // A long, lazy weave between two knots. dir alternates so the thread
+  // leans right, then left, then right again down the page.
+  function weave(x, y0, y1, dir, swing) {
+    var dy = y1 - y0;
+    return "C " + (x + swing * dir).toFixed(2) + " " + (y0 + dy * 0.30).toFixed(2) + ", " +
+                  (x - swing * dir).toFixed(2) + " " + (y1 - dy * 0.30).toFixed(2) + ", " +
+                  x.toFixed(2) + " " + y1.toFixed(2) + " ";
+  }
+
+  function docHeight() {
+    var b = document.body, d = document.documentElement;
+    return Math.max(b.scrollHeight, b.offsetHeight, d.scrollHeight, d.offsetHeight);
+  }
+
+  function buildThread() {
+    var w = svg.getBoundingClientRect().width || 48;
+    var h = docHeight();
+    if (!h) return;
+
+    var x = Math.max(16, Math.min(64, w * 0.56));   // spine position
+    var s = Math.max(0.42, Math.min(1, x / 64));    // knot scale
+    var swing = Math.min(46, x * 0.72);             // weave amplitude
+    var reach = 26 * s;                             // knot half-height
+
+    svg.setAttribute("height", h);
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    svg.style.height = h + "px";
+
+    // Knot anchors: a little below the top of each movement.
+    var anchors = movements.map(function (el) {
+      var r = el.getBoundingClientRect();
+      return Math.round(r.top + window.scrollY + Math.min(96, r.height * 0.18));
+    }).filter(function (y, i, a) {
+      return i === 0 || y - a[i - 1] > reach * 2.6;
+    });
+
+    var d = "M " + x + " 0 ";
+    var cursor = 0;
+    var dir = 1;
+
+    for (var i = 0; i < anchors.length; i++) {
+      var entry = anchors[i] - reach;
+      if (entry <= cursor + 8) continue;
+      d += weave(x, cursor, entry, dir, swing);
+      d += knot(x, anchors[i], s);
+      cursor = anchors[i] + reach;
+      dir *= -1;
+    }
+
+    d += weave(x, cursor, h - 8, dir, swing * 0.7);
+
+    path.setAttribute("d", d);
+    length = path.getTotalLength();
+    path.style.strokeDasharray = length + " " + length;
+    path.style.strokeDashoffset = reduced ? 0 : length * (1 - draw.p);
+  }
+
+  /* ------------------------------------------------------------------
+     SCRUBS
+  ------------------------------------------------------------------ */
+
+  var draw = { p: reduced ? 1 : 0 };
+
+  function paint() {
+    if (!length) return;
+    path.style.strokeDashoffset = length * (1 - draw.p);
+  }
+
+  if (!reduced) {
+
+    // The thread draws itself across the whole document.
+    gsap.to(draw, {
+      p: 1,
+      ease: "none",
+      onUpdate: paint,
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1
+      }
+    });
+
+    // Content settles as the thread reaches it.
+    gsap.utils.toArray(".fade").forEach(function (el) {
+      gsap.fromTo(el,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 94%",
+            end: "top 64%",
+            scrub: 1.5
+          }
+        }
+      );
+    });
+
+    // The photograph opens from the centre. No scale, no parallax.
+    var plate = document.querySelector(".plate");
+    if (plate) {
+      gsap.fromTo(plate,
+        { "--clip": 50 },
+        {
+          "--clip": 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: plate,
+            start: "top 88%",
+            end: "top 42%",
+            scrub: 1
+          }
+        }
+      );
+    }
+  }
+
+  /* ------------------------------------------------------------------
+     SIZING
+  ------------------------------------------------------------------ */
+
+  var pending;
+  function relayout() {
+    buildThread();
+    paint();
+    ScrollTrigger.refresh();
+  }
+  function schedule() {
+    clearTimeout(pending);
+    pending = setTimeout(relayout, 180);
+  }
+
+  buildThread();
+  paint();
+
+  window.addEventListener("resize", schedule);
+  window.addEventListener("orientationchange", schedule);
+  window.addEventListener("load", relayout);
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(relayout);
+  }
+
+  if ("ResizeObserver" in window) {
+    var last = docHeight();
+    new ResizeObserver(function () {
+      var now = docHeight();
+      if (Math.abs(now - last) > 4) { last = now; schedule(); }
+    }).observe(document.body);
+  }
+
+  ScrollTrigger.addEventListener("refreshInit", function () {
+    svg.style.height = "0px";
+  });
+  ScrollTrigger.addEventListener("refresh", function () {
+    var h = docHeight();
+    svg.setAttribute("height", h);
+    svg.style.height = h + "px";
+  });
+
+})();
+</script>
+</body>
+</html>

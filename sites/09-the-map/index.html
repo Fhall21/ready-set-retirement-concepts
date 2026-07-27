@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ready Set Retirement — the ground after work, surveyed</title>
+<meta name="description" content="Psychosocial retirement education with Dr Sandra Walden-Pearson. Forty years planning the money, about ten minutes planning the person. This sheet covers the second part.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDE4D3;
+  --paper-2:#E6DBC7;
+  --ochre:#B08243;
+  --ochre-deep:#7E5522;
+  --overprint:#6F3794;   /* brand purple — the hazard plate, and nothing else */
+  --water:#8FA9A4;
+  --water-fill:#CBD8D3;
+  --ink:#2F2A22;
+  --ink-soft:#5A5145;
+  --rule:rgba(47,42,34,.22);
+  --rule-faint:rgba(47,42,34,.12);
+  --sans:'Sora',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:'Spectral',Georgia,'Times New Roman',serif;
+  --fs-body:clamp(1.0625rem,1.01rem + 0.28vw,1.1875rem);
+  --fs-small:clamp(0.8125rem,0.79rem + 0.12vw,0.875rem);
+  --label:0.72rem;
+  --measure:66ch;
+  --gap:clamp(6rem,12vh,12rem);
+  --pad:clamp(1.25rem,4vw,4rem);
+  --maxw:1200px;
+  --annoW:clamp(15rem,23vw,21rem);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:var(--fs-body);
+  line-height:1.6;
+  overflow-x:hidden;
+  font-weight:400;
+  text-rendering:optimizeLegibility;
+}
+
+/* paper tooth + fold lines */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.6;background-repeat:repeat}
+.folds{position:fixed;inset:0;pointer-events:none;z-index:1;
+  background:
+    linear-gradient(90deg,transparent calc(33.333% - 1px),rgba(47,42,34,.055) 33.333%,transparent calc(33.333% + 1px)),
+    linear-gradient(90deg,transparent calc(66.666% - 1px),rgba(47,42,34,.045) 66.666%,transparent calc(66.666% + 1px));
+}
+
+/* type primitives */
+.lbl{
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:var(--label);
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ochre-deep);
+  margin:0;
+}
+.lbl--ink{color:var(--ink)}
+p{margin:0 0 1.05em;max-width:var(--measure)}
+p:last-child{margin-bottom:0}
+
+a{color:var(--ink);text-decoration:none;text-underline-offset:.24em;text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--ochre)}
+a:hover{text-decoration-color:var(--ink)}
+:focus-visible{outline:2px solid var(--ochre-deep);outline-offset:3px}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:.7rem 1.1rem;z-index:200;font-family:var(--sans);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+.skip:focus{left:0}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+
+/* ───────────────── sheet cover ───────────────── */
+.sheet{position:relative;padding-block:clamp(2rem,5vh,4rem) var(--gap)}
+.sheet-inner{
+  position:relative;
+  max-width:var(--maxw);margin:0 auto;
+  padding:clamp(1.4rem,3.4vw,3rem);
+  border:1px solid var(--ochre);
+}
+.sheet-inner::before{
+  content:"";position:absolute;inset:6px;border:3px double var(--ochre);opacity:.55;pointer-events:none;
+}
+.corner{position:absolute;width:16px;height:16px;border:0 solid var(--ink)}
+.corner.tl{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px}
+.corner.tr{top:-1px;right:-1px;border-top-width:2px;border-right-width:2px}
+.corner.bl{bottom:-1px;left:-1px;border-bottom-width:2px;border-left-width:2px}
+.corner.br{bottom:-1px;right:-1px;border-bottom-width:2px;border-right-width:2px}
+
+.sheet-grid{display:grid;gap:clamp(2rem,4vw,3.5rem);grid-template-columns:1fr;position:relative;z-index:2;padding:clamp(.5rem,1.6vw,1.6rem)}
+@media(min-width:900px){.sheet-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}}
+
+.titleblock{border-bottom:1px solid var(--rule);padding-bottom:1.6rem;align-self:start}
+.titleblock .authority{display:block;width:clamp(112px,11vw,146px);height:auto;margin:0 0 1.4rem;opacity:.88}
+h1{
+  font-family:var(--sans);font-weight:300;
+  font-size:clamp(1.9rem,1.1rem + 3.2vw,3.35rem);
+  line-height:1.04;letter-spacing:.13em;text-transform:uppercase;
+  margin:.9rem 0 0;color:var(--ink);
+}
+.subtitle{font-family:var(--sans);font-size:var(--fs-small);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:1rem 0 0}
+
+.meta{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;gap:.45rem;font-family:var(--sans);font-size:var(--label);letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+.meta li{display:flex;gap:.6rem;align-items:baseline}
+.meta b{font-weight:600;color:var(--ink);min-width:8.5em;letter-spacing:.16em}
+.meta span{flex:1;border-bottom:1px dotted var(--rule);transform:translateY(-.28em)}
+.meta i{font-style:normal;color:var(--ink)}
+
+.lead{font-size:clamp(1.32rem,1.05rem + 1.1vw,1.95rem);line-height:1.32;font-weight:400;max-width:20em;margin:0 0 1.4rem;color:var(--ink)}
+.lead em{font-style:italic;color:var(--ochre-deep)}
+
+.cover-body p{color:var(--ink-soft);max-width:38ch}
+.cover-body p strong{color:var(--ink);font-weight:500}
+
+.sheet-foot{
+  position:relative;z-index:2;margin-top:clamp(2rem,4vw,3.2rem);
+  border-top:1px solid var(--rule);padding:clamp(1.4rem,3vw,2.2rem) clamp(.5rem,1.6vw,1.6rem) 0;
+  display:grid;gap:clamp(1.6rem,3vw,3rem);grid-template-columns:1fr;
+}
+@media(min-width:760px){.sheet-foot{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}}
+
+.legend h2{margin:0 0 1rem}
+.legend ul{list-style:none;margin:0;padding:0;display:grid;gap:.15rem}
+.legend li{display:grid;grid-template-columns:2.4rem 1fr auto;align-items:center;gap:.7rem;padding:.42rem 0;border-bottom:1px dotted var(--rule-faint)}
+.legend svg{display:block}
+.legend .ln{font-family:var(--sans);font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;color:var(--ink)}
+.legend a.ln{text-decoration-color:var(--rule)}
+.legend .ref{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;color:var(--ink-soft)}
+
+.instruments{display:flex;gap:clamp(1.4rem,3vw,2.4rem);align-items:flex-end;flex-wrap:wrap}
+.north{text-align:center}
+.north .lbl{margin-top:.5rem;letter-spacing:.2em}
+.scalebar{flex:1;min-width:170px}
+.scalebar .bar{display:flex;height:9px;border:1px solid var(--ink);margin-bottom:.4rem}
+.scalebar .bar i{flex:1}
+.scalebar .bar i:nth-child(odd){background:var(--ink)}
+.scalebar .ticks{display:flex;justify-content:space-between;font-family:var(--sans);font-size:.66rem;letter-spacing:.1em;color:var(--ink-soft)}
+
+/* ───────────────── generic sections ───────────────── */
+.chapter{padding-block:var(--gap)}
+h2{
+  font-family:var(--sans);font-weight:400;
+  font-size:clamp(1.35rem,1.1rem + .9vw,2rem);
+  letter-spacing:.15em;text-transform:uppercase;line-height:1.2;
+  margin:0 0 1.6rem;color:var(--ink);
+}
+h3{font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;margin:0 0 .6rem;color:var(--ochre-deep)}
+.rule{height:1px;background:var(--rule);border:0;margin:0 0 2.4rem}
+.intro-body{max-width:var(--measure)}
+.intro-body p+p{margin-top:0}
+
+/* ───────────────── the pinned map stage ───────────────── */
+.stage-sec{position:relative}
+.stage{
+  position:relative;height:100vh;min-height:520px;overflow:hidden;
+  background:var(--paper);
+  border-block:1px solid var(--ochre);
+}
+#map{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+.furn{position:absolute;z-index:3;pointer-events:none;font-family:var(--sans)}
+.furn--tl{top:clamp(.9rem,2.2vw,1.6rem);left:clamp(.9rem,2.2vw,1.6rem)}
+.furn--tr{top:clamp(.9rem,2.2vw,1.6rem);right:clamp(.9rem,2.2vw,1.6rem);text-align:right}
+.furn--bl{bottom:clamp(.9rem,2.2vw,1.6rem);left:clamp(.9rem,2.2vw,1.6rem)}
+.furn--br{bottom:clamp(.9rem,2.2vw,1.6rem);right:clamp(.9rem,2.2vw,1.6rem);text-align:right}
+
+.sheetmark{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);line-height:1.7}
+.sheetmark b{display:block;color:var(--ink);font-weight:600;letter-spacing:.22em}
+
+.readout{
+  background:rgba(237,228,211,.82);
+  border:1px solid var(--ochre);
+  padding:.7rem .85rem;
+  display:grid;gap:.28rem;
+  text-align:left;min-width:12.5rem;
+}
+.readout div{display:flex;justify-content:space-between;gap:1rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase}
+.readout dt,.readout .k{color:var(--ink-soft)}
+.readout .v{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.readout .v[data-state="unsurveyed"]{color:var(--ochre-deep)}
+
+.stagebar .bar{display:flex;height:8px;border:1px solid var(--ink);margin-bottom:.35rem;width:150px;margin-left:auto;background:rgba(237,228,211,.7)}
+.stagebar .bar i{flex:1}
+.stagebar .bar i:nth-child(odd){background:var(--ink)}
+.stagebar .cap{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+
+/* annotations */
+#annos{position:absolute;inset:0;z-index:4;pointer-events:none}
+.anno{
+  position:absolute;width:var(--annoW);opacity:0;
+  background:rgba(237,228,211,.9);
+  border-top:1.5px solid var(--ink);
+  padding:.7rem .85rem .8rem;
+  will-change:transform,opacity;
+}
+.anno--r{left:66%;transform:translateY(-50%)}
+.anno--l{left:34%;transform:translate(-100%,-50%)}
+.anno--l{text-align:right}
+.anno--void{
+  left:50%;top:78%;transform:translateX(-50%);
+  width:min(38rem,84vw);text-align:center;background:none;border:0;padding:0;
+}
+.anno-k{font-family:var(--sans);font-weight:600;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ochre-deep);margin:0 0 .45rem}
+.anno-b{font-size:clamp(.98rem,.88rem + .38vw,1.09rem);line-height:1.5;margin:0;color:var(--ink);max-width:none}
+.anno-gr{font-family:var(--sans);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:.55rem 0 0;font-variant-numeric:tabular-nums}
+.anno--void .anno-k{color:var(--ink-soft)}
+/* the four psychosocial hazards are overprinted in a second colour,
+   the way a survey sheet overprints anything that can hurt you */
+.anno[data-kind="hazard"]{border-top-color:var(--overprint)}
+.anno[data-kind="hazard"] .anno-k{color:var(--overprint)}
+.anno--void .anno-b{font-size:clamp(1.15rem,.9rem + 1vw,1.7rem);line-height:1.34;color:var(--ink)}
+
+/* ───────────────── static / reduced-motion map ───────────────── */
+body.static-map .stage{height:auto;min-height:0;overflow:visible;padding-bottom:clamp(2rem,6vw,4rem)}
+body.static-map #map{position:relative;inset:auto;aspect-ratio:3.4;height:auto;border-bottom:1px solid var(--rule)}
+body.static-map .stage{display:flex;flex-direction:column}
+body.static-map #map{order:-2}
+body.static-map .furn{position:static;text-align:left;order:-1;
+  width:100%;max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+body.static-map .furn--tl{padding-top:1.1rem}
+body.static-map .furn--tr,body.static-map .furn--bl{display:none}
+body.static-map .furn--br{text-align:left;padding-top:.9rem}
+body.static-map .stagebar .bar{margin-left:0;width:120px}
+body.static-map #annos{position:static;inset:auto;padding:clamp(1.6rem,4vw,2.6rem) var(--pad) 0;width:100%;max-width:var(--maxw);margin:0 auto;display:grid;gap:0}
+body.static-map .anno{
+  position:static;width:auto;max-width:var(--measure);opacity:1;transform:none;text-align:left;
+  background:none;border-top:1px solid var(--rule);border-left:0;
+  padding:1.3rem 0 1.4rem;
+}
+body.static-map .anno--void{width:auto;max-width:var(--measure);border-top:1px solid var(--rule);padding:1.3rem 0 1.4rem}
+body.static-map .anno-b{font-size:var(--fs-body);line-height:1.6}
+body.static-map .anno--void .anno-b{font-size:1.3rem;line-height:1.4}
+body.static-map #leaders{display:none}
+body.static-map #contours-minor{display:none}
+
+/* ───────────────── approaches ───────────────── */
+.approaches{display:grid;gap:clamp(2rem,4vw,3.4rem);grid-template-columns:1fr}
+@media(min-width:820px){.approaches{grid-template-columns:1fr 1fr}}
+.approach{border-top:1.5px solid var(--ink);padding-top:1.1rem}
+.approach h3{margin-bottom:.9rem}
+.approach p{color:var(--ink-soft);max-width:44ch}
+.approach p strong{color:var(--ink);font-weight:500}
+
+/* ───────────────── trig plaque ───────────────── */
+.trig{display:grid;gap:clamp(2rem,5vw,4rem);grid-template-columns:1fr;align-items:start}
+@media(min-width:900px){.trig{grid-template-columns:minmax(0,1fr) minmax(0,20rem)}}
+/* the compiler's portrait, tipped onto the sheet beside the plaque */
+.trig-col{display:grid;gap:clamp(1.7rem,3.2vw,2.6rem)}
+.platephoto{
+  margin:0 auto;width:100%;max-width:15rem;
+  background:#FAF6EC;
+  padding:.6rem .6rem 0;
+  border:1px solid var(--rule);
+  box-shadow:0 2px 5px rgba(47,42,34,.09);
+  transform:rotate(-1.2deg);
+}
+.platephoto img{
+  display:block;width:100%;height:auto;
+  aspect-ratio:4/5;object-fit:cover;object-position:50% 8%;
+  filter:sepia(.18) saturate(.84) contrast(1.02);
+}
+.platephoto figcaption{
+  font-family:var(--sans);font-size:.6rem;line-height:1.55;
+  letter-spacing:.19em;text-transform:uppercase;
+  color:var(--ink-soft);text-align:center;padding:.75rem .2rem .7rem;
+}
+
+.plaque{
+  border:2px solid var(--ink);padding:1.4rem 1.3rem 1.5rem;background:var(--paper-2);
+  position:relative;
+}
+.plaque::after{content:"";position:absolute;inset:5px;border:1px solid var(--rule);pointer-events:none}
+.plaque .cap{font-family:var(--sans);font-weight:600;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);text-align:center;display:block;margin:0 0 .2rem}
+.plaque .no{font-family:var(--sans);font-size:.64rem;letter-spacing:.2em;text-align:center;color:var(--ink-soft);display:block;margin:0 0 1.1rem}
+.plaque .nm{font-family:var(--sans);font-weight:400;font-size:1.02rem;letter-spacing:.13em;text-transform:uppercase;text-align:center;color:var(--ink);margin:0 0 .9rem;line-height:1.35}
+.plaque hr{border:0;height:1px;background:var(--rule);margin:.9rem 0}
+.plaque ul{list-style:none;margin:0;padding:0;display:grid;gap:.34rem}
+.plaque li{font-family:var(--sans);font-size:.7rem;font-weight:300;letter-spacing:.09em;text-transform:uppercase;color:var(--ink);text-align:center;line-height:1.45}
+.plaque .foot{font-family:var(--sans);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin:1.1rem 0 0}
+.trig-body p{max-width:var(--measure)}
+.trig-body p strong{font-weight:500}
+
+/* ───────────────── field note (testimonial) ───────────────── */
+.fieldnote{position:relative;max-width:46rem}
+.fieldnote-inner{border:1px solid var(--ink);padding:clamp(1.4rem,3.4vw,2.4rem)}
+.fieldnote blockquote{margin:0;font-size:clamp(1.1rem,.98rem + .6vw,1.42rem);line-height:1.48;color:var(--ink)}
+.fieldnote blockquote p{max-width:none}
+.fieldnote cite{display:block;margin-top:1.3rem;font-style:normal;font-family:var(--sans);font-size:.72rem;letter-spacing:.17em;text-transform:uppercase;color:var(--ink)}
+.fieldnote cite span{display:block;color:var(--ink-soft);font-weight:300;margin-top:.35rem;letter-spacing:.14em}
+.leadline{display:block;margin-bottom:.9rem}
+
+/* ───────────────── stamp / CTA ───────────────── */
+.consult{display:grid;gap:clamp(2rem,5vw,4rem);grid-template-columns:1fr;align-items:center}
+@media(min-width:900px){.consult{grid-template-columns:minmax(0,1fr) minmax(0,22rem)}}
+.stamp{
+  border:2px solid var(--ochre-deep);
+  outline:1px solid var(--ochre-deep);outline-offset:5px;
+  padding:1.5rem 1.4rem;text-align:center;transform:rotate(-2.2deg);
+  color:var(--ochre-deep);justify-self:center;width:100%;max-width:22rem;
+}
+.stamp .s1{font-family:var(--sans);font-weight:600;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;margin:0 0 .7rem;max-width:none}
+.stamp .s2{font-family:var(--sans);font-weight:600;font-size:clamp(1.05rem,.9rem + .7vw,1.45rem);letter-spacing:.1em;text-transform:uppercase;line-height:1.2;margin:0 0 .7rem;color:var(--ink);max-width:none}
+.stamp .s3{font-family:var(--sans);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;margin:0;max-width:none}
+.cta-row{display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;margin-top:2rem}
+.btn{
+  display:inline-block;background:var(--ink);color:var(--paper);
+  font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:1rem 1.7rem;text-decoration:none;border:1px solid var(--ink);
+  transition:background .2s ease,color .2s ease;
+}
+.btn:hover{background:var(--paper);color:var(--ink)}
+.btn:focus-visible{outline-offset:4px}
+.btn-2{font-family:var(--sans);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;text-decoration-color:var(--ochre)}
+
+/* ───────────────── footer ───────────────── */
+footer{border-top:1px solid var(--ochre);padding-block:clamp(2.6rem,6vh,4.5rem) clamp(2.6rem,6vh,4rem);margin-top:var(--gap)}
+.notes{display:grid;gap:clamp(1.6rem,4vw,3rem);grid-template-columns:1fr}
+@media(min-width:760px){.notes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.notes p{font-size:var(--fs-small);color:var(--ink-soft);line-height:1.6;max-width:36ch}
+.notes h3{margin-bottom:.7rem}
+.colophon{margin-top:clamp(2rem,5vw,3.4rem);padding-top:1.4rem;border-top:1px dotted var(--rule);font-family:var(--sans);font-size:.66rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:.6rem 1.6rem}
+
+.tm{font-size:.72em;vertical-align:.35em;letter-spacing:0}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="folds" aria-hidden="true"></div>
+<a class="skip" href="#sheet">Skip to the sheet</a>
+
+<!-- ══════════════════ SHEET COVER / TITLE BLOCK ══════════════════ -->
+<header class="sheet" id="sheet">
+  <div class="sheet-inner">
+    <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span>
+    <span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+
+    <div class="sheet-grid">
+      <div class="titleblock">
+        <img class="authority" src="assets/logo-map.svg" width="767" height="334" alt=""
+             aria-hidden="true">
+        <p class="lbl">Topographic series &middot; sheet 1 of 1</p>
+        <h1>Ready Set Retirement</h1>
+        <p class="subtitle">The working life and the ground immediately after it</p>
+        <ul class="meta">
+          <li><b>Subject</b><span></span><i>Psychosocial retirement planning</i></li>
+          <li><b>Compiled by</b><span></span><i>Dr Sandra Walden-Pearson</i></li>
+          <li><b>Datum</b><span></span><i>human-centred retirement planning<span class="tm">&trade;</span></i></li>
+          <li><b>Projection</b><span></span><i>Three to ten years out</i></li>
+          <li><b>Status</b><span></span><i>Partly surveyed</i></li>
+        </ul>
+      </div>
+
+      <div class="cover-body">
+        <p class="lead">We spend forty years planning the money and about ten minutes planning the person. This sheet covers <em>the second part</em>.</p>
+        <p>Retirement has a well-recognised dark side. Direction, identity, purpose and connection all rest on the working life, and when the working life stops they have nowhere to rest. A financial plan runs right up to the date and then hands you a blank page.</p>
+        <p><strong>The blank page is the problem.</strong> Not the money. Nobody surveyed the ground on your behalf, so the first year gets walked without a map, usually alone, usually by someone who has never failed at anything before.</p>
+      </div>
+    </div>
+
+    <div class="sheet-foot">
+      <nav class="legend" aria-labelledby="legend-h">
+        <h2 class="lbl lbl--ink" id="legend-h">Legend</h2>
+        <ul>
+          <li>
+            <svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M1 10c6-7 12 3 17-3s9 1 15-3" fill="none" stroke="#B08243" stroke-width="1"/><path d="M1 5c6-7 12 3 17-3" fill="none" stroke="#B08243" stroke-width="1.8" opacity=".8"/></svg>
+            <span class="ln">Contour, 20 m interval</span><span class="ref">Generated</span>
+          </li>
+          <li>
+            <svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M0 7h34" fill="none" stroke="#8FA9A4" stroke-width="4"/></svg>
+            <span class="ln">Watercourse and lake</span><span class="ref">Perennial</span>
+          </li>
+          <li>
+            <svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M17 0v14" stroke="#B08243" stroke-width="1.2"/><path d="M17 2h5M17 6h5M17 10h5" stroke="#B08243" stroke-width="1"/></svg>
+            <span class="ln">Limit of survey</span><span class="ref">No data beyond</span>
+          </li>
+          <li>
+            <svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M0 11h34" fill="none" stroke="#2F2A22" stroke-width="1.4" stroke-dasharray="5 4"/></svg>
+            <span class="ln">Traverse, route of</span><span class="ref">Scroll to walk</span>
+          </li>
+          <li>
+            <svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><circle cx="17" cy="7" r="4.4" fill="none" stroke="#2F2A22" stroke-width="1.3"/><circle cx="17" cy="7" r="1.2" fill="#2F2A22"/></svg>
+            <span class="ln"><a class="ln" href="#traverse">Station, annotated</a></span><span class="ref">Ref. 2</span>
+          </li>
+          <li>
+            <svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M17 2.2 21.6 11h-9.2z" fill="none" stroke="#7E5522" stroke-width="1.3"/></svg>
+            <span class="ln"><a class="ln" href="#traverse">Hazard, psychosocial</a></span><span class="ref">Ref. 2</span>
+          </li>
+          <li>
+            <svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M17 1.6 22.8 12H11.2z" fill="none" stroke="#2F2A22" stroke-width="1.3"/><circle cx="17" cy="9" r="1.3" fill="#2F2A22"/></svg>
+            <span class="ln"><a class="ln" href="#trig">Trigonometrical station</a></span><span class="ref">Ref. 4</span>
+          </li>
+          <li>
+            <svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><rect x="3" y="2.5" width="28" height="9" fill="none" stroke="#2F2A22" stroke-width="1.1"/><path d="M6 7h22" stroke="#2F2A22" stroke-width=".8" opacity=".5"/></svg>
+            <span class="ln"><a class="ln" href="#field-note">Field note, annotation</a></span><span class="ref">Ref. 5</span>
+          </li>
+          <li>
+            <svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><rect x="2" y="1.6" width="30" height="10.8" fill="none" stroke="#7E5522" stroke-width="1.6"/><rect x="5" y="4.2" width="24" height="5.6" fill="none" stroke="#7E5522" stroke-width=".7"/></svg>
+            <span class="ln"><a class="ln" href="#consult">Consult, stamped block</a></span><span class="ref">Ref. 6</span>
+          </li>
+          <li>
+            <svg width="34" height="14" viewBox="0 0 34 14" aria-hidden="true"><path d="M2 12h30" stroke="#2F2A22" stroke-width="1.1"/><path d="M2 2h13" stroke="#2F2A22" stroke-width="1.1"/></svg>
+            <span class="ln"><a class="ln" href="#approaches">Two approaches</a></span><span class="ref">Ref. 3</span>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="instruments">
+        <div class="north">
+          <svg width="46" height="72" viewBox="0 0 46 72" role="img" aria-label="North arrow, true north to the top of the sheet">
+            <path d="M23 4 33 58 23 48z" fill="#2F2A22"/>
+            <path d="M23 4 13 58 23 48z" fill="none" stroke="#2F2A22" stroke-width="1.2"/>
+            <circle cx="23" cy="48" r="3" fill="none" stroke="#2F2A22" stroke-width="1.2"/>
+          </svg>
+          <p class="lbl lbl--ink">N</p>
+        </div>
+        <div class="scalebar">
+          <p class="lbl" style="margin-bottom:.55rem">Scale</p>
+          <div class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="ticks" aria-hidden="true"><span>0</span><span>1</span><span>2</span><span>3 km</span></div>
+          <p class="lbl" style="margin-top:.9rem;letter-spacing:.14em;color:var(--ink-soft)">Vertical interval 20 m</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════ TRAVERSE INTRO ══════════════════ -->
+<section class="chapter wrap" id="traverse" aria-labelledby="traverse-h">
+  <p class="lbl">Legend ref. 2</p>
+  <h2 id="traverse-h">The traverse</h2>
+  <hr class="rule">
+  <div class="intro-body">
+    <p>A traverse is a walked line with the ground measured either side of it. This one starts in mid-career and ends somewhere none of us get shown in advance. Scroll, and the sheet moves under the marker rather than the marker moving over the sheet, which is closer to how it actually feels.</p>
+    <p>Grid reference, elevation and bearing update as you go. So does the survey status, and that is the part worth watching.</p>
+  </div>
+</section>
+
+<!-- ══════════════════ PINNED MAP STAGE ══════════════════ -->
+<section class="stage-sec" aria-label="Animated survey map of the traverse">
+  <div class="stage" id="stage">
+
+    <svg id="map" viewBox="0 0 1600 900" aria-hidden="true" focusable="false">
+      <g id="world">
+        <g id="graticule" fill="none" stroke="#B08243" stroke-width="0.7" opacity=".3"></g>
+        <g id="gridlabels" fill="#5A5145" opacity=".5" font-family="Sora, sans-serif"></g>
+        <g id="contours-minor" fill="none" stroke="#B08243" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" opacity=".72"></g>
+        <g id="contours-index" fill="none" stroke="#B08243" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".95"></g>
+        <g id="water"></g>
+        <g id="limit"></g>
+        <g id="labels"></g>
+        <g id="routeg" fill="none" stroke-linecap="round">
+          <path id="route" d="M400 1560 C950 1470 1320 1230 1780 1170 C2320 1098 2520 1370 3020 1315 C3480 1265 3720 1060 4220 1090 C4820 1126 5020 1520 5620 1540 C6220 1560 6520 1260 7020 1210 C7520 1160 7720 1420 8220 1440 C8720 1460 8920 1110 9420 1060 C9920 1010 10220 1270 10720 1215 C11040 1180 11260 1120 11520 1090"
+                stroke="#7E5522" stroke-width="2.4" stroke-dasharray="11 8" opacity=".62"/>
+          <path id="route-done" d="M400 1560 C950 1470 1320 1230 1780 1170 C2320 1098 2520 1370 3020 1315 C3480 1265 3720 1060 4220 1090 C4820 1126 5020 1520 5620 1540 C6220 1560 6520 1260 7020 1210 C7520 1160 7720 1420 8220 1440 C8720 1460 8920 1110 9420 1060 C9920 1010 10220 1270 10720 1215 C11040 1180 11260 1120 11520 1090"
+                stroke="#2F2A22" stroke-width="3" opacity=".9"/>
+        </g>
+        <g id="pins"></g>
+        <g id="marker">
+          <g id="markerInner">
+            <circle class="mk-halo" r="19" fill="none" stroke="#2F2A22" stroke-width="1" opacity=".35"/>
+            <path d="M20 0 4 8 7 0 4 -8z" fill="#2F2A22"/>
+            <circle r="7.5" fill="#EDE4D3" stroke="#2F2A22" stroke-width="2"/>
+            <path d="M-11 0h5M6 0h5M0 -11v5M0 6v5" stroke="#2F2A22" stroke-width="1.4"/>
+            <circle r="2.2" fill="#2F2A22"/>
+          </g>
+        </g>
+      </g>
+      <g id="leaders" fill="none" stroke="#2F2A22" stroke-width="1"></g>
+    </svg>
+
+    <div class="furn furn--tl">
+      <p class="sheetmark"><b>Sheet 1 / 1</b>Traverse in progress</p>
+    </div>
+
+    <div class="furn furn--tr">
+      <div class="readout" id="readout">
+        <div><span class="k">Grid ref</span><span class="v" id="ro-gr">0000 0000</span></div>
+        <div><span class="k">Elevation</span><span class="v" id="ro-el">000 m</span></div>
+        <div><span class="k">Bearing</span><span class="v" id="ro-br">000&deg;</span></div>
+        <div><span class="k">Survey</span><span class="v" id="ro-st">Mapped</span></div>
+      </div>
+    </div>
+
+    <div class="furn furn--bl">
+      <svg width="30" height="50" viewBox="0 0 46 72" aria-hidden="true" focusable="false">
+        <path d="M23 4 33 58 23 48z" fill="#2F2A22"/>
+        <path d="M23 4 13 58 23 48z" fill="none" stroke="#2F2A22" stroke-width="1.4"/>
+      </svg>
+      <p class="sheetmark" style="margin:.3rem 0 0">N</p>
+    </div>
+
+    <div class="furn furn--br stagebar">
+      <div class="bar" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <p class="cap" id="scale-cap">0 &mdash; 1.5 km</p>
+    </div>
+
+    <div id="annos">
+
+      <article class="anno anno--r" data-p="0.075" data-in="0.03" data-out="0.145" data-ay="0.30" data-kind="station">
+        <h3 class="anno-k">ST.01 &middot; You are here</h3>
+        <p class="anno-b">Thirty-odd years of fully mapped ground. Every ridge named, every crossing marked, every Monday accounted for. You know what you are called when somebody introduces you at a function.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+      <article class="anno anno--l" data-p="0.250" data-in="0.16" data-out="0.255" data-ay="0.66" data-kind="station">
+        <h3 class="anno-k">ST.02 &middot; Limit of survey</h3>
+        <p class="anno-b">The contours thin out somewhere between ten years and ten months before the date. The financial plan runs right up to this line and stops. It was never asked to go further.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+      <article class="anno anno--void" data-in="0.275" data-out="0.44" data-kind="void">
+        <h3 class="anno-k">Interior not examined</h3>
+        <p class="anno-b">This is what retirement looks like when nobody has been over the ground on your behalf. It is not empty because there is nothing there. It is empty because no one surveyed it.</p>
+      </article>
+
+      <article class="anno anno--r" data-p="0.360" data-in="0.455" data-out="0.525" data-ay="0.32" data-kind="hazard">
+        <h3 class="anno-k">Haz.01 &middot; Direction</h3>
+        <p class="anno-b">The calendar empties and nothing refills it. Nobody sends the next thing. What reads as freedom at the farewell reads as a very long Tuesday by about June.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+      <article class="anno anno--l" data-p="0.390" data-in="0.525" data-out="0.595" data-ay="0.68" data-kind="hazard">
+        <h3 class="anno-k">Haz.02 &middot; Identity</h3>
+        <p class="anno-b">You were the one who knew how the place actually worked. Now you are described in the past tense by people who are being kind about it.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+      <article class="anno anno--r" data-p="0.420" data-in="0.595" data-out="0.665" data-ay="0.68" data-kind="hazard">
+        <h3 class="anno-k">Haz.03 &middot; Purpose</h3>
+        <p class="anno-b">Work supplied a reason to get up whether or not you liked the work. Very few people have a second reason drafted, and none of us can draft one in the fortnight after the cake.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+      <article class="anno anno--l" data-p="0.450" data-in="0.665" data-out="0.735" data-ay="0.30" data-kind="hazard">
+        <h3 class="anno-k">Haz.04 &middot; Connection</h3>
+        <p class="anno-b">Most work friendships were structural rather than chosen. Take away the structure and count how many are still ringing in August. That count is the one people find hardest to say out loud.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+      <article class="anno anno--r" data-p="0.560" data-in="0.75" data-out="0.83" data-ay="0.30" data-kind="station">
+        <h3 class="anno-k">ST.03 &middot; Resurvey begins</h3>
+        <p class="anno-b">None of this means the decision was wrong. It means it was unaccompanied. Psychosocial planning is simply the survey nobody ran: the ground examined before you walk it, not after you are lost on it.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+      <article class="anno anno--l" data-p="0.645" data-in="0.835" data-out="0.878" data-ay="0.66" data-kind="station">
+        <h3 class="anno-k">ST.04 &middot; Training and workshops</h3>
+        <p class="anno-b">Run inside organisations losing their most experienced people. Half a day through to a full program. Practical, adult, and aimed at the leaving rather than the leaving party.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+      <article class="anno anno--r" data-p="0.710" data-in="0.878" data-out="0.916" data-ay="0.30" data-kind="station">
+        <h3 class="anno-k">ST.05 &middot; Seminars and speaking</h3>
+        <p class="anno-b">For conferences, member bodies and boards. The case for treating retirement as a workforce risk with a date on it, rather than a farewell with a card.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+      <article class="anno anno--l" data-p="0.795" data-in="0.916" data-out="0.954" data-ay="0.68" data-kind="station">
+        <h3 class="anno-k">ST.06 &middot; One to one coaching</h3>
+        <p class="anno-b">Private work, three to ten years out, or already in it and finding it sour. Direction, identity, purpose and connection taken one at a time, in the order you can bear them.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+      <article class="anno anno--r" data-p="0.900" data-in="0.954" data-out="1.02" data-ay="0.66" data-kind="station">
+        <h3 class="anno-k">ST.07 &middot; Group coaching and consulting</h3>
+        <p class="anno-b">Small cohorts leaving around the same time, and advisory work for the people designing the exit. The route ends at a fixed point: a trig station, plotted below.</p>
+        <p class="anno-gr" data-gr></p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ TWO APPROACHES ══════════════════ -->
+<section class="chapter wrap" id="approaches" aria-labelledby="approaches-h">
+  <p class="lbl">Legend ref. 3</p>
+  <h2 id="approaches-h">Two approaches to the same ground</h2>
+  <hr class="rule">
+  <div class="approaches">
+    <div class="approach">
+      <h3>Approach A &middot; Individuals</h3>
+      <p>For people three to ten years out, and for people already in it and quietly not coping. One to one and small group work on the four things a financial plan does not cover, plus the awkward practical ones: what you say at a barbecue, what your partner has assumed, what happens to the parts of you that only existed at work.</p>
+      <p><strong>Money funds a lifestyle. It cannot buy the quality of one.</strong></p>
+    </div>
+    <div class="approach">
+      <h3>Approach B &middot; Business</h3>
+      <p>Australians are retiring at the fastest rate in the nation's history, and the people going first are the ones who know how the place actually works. That is a recruitment cost, a productivity cost, a culture cost and a morale cost, arriving together.</p>
+      <p><strong>Training, workshops and advisory work that treat departure as workforce planning</strong> rather than an administrative event with a cake attached.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ TRIG STATION ══════════════════ -->
+<section class="chapter wrap" id="trig" aria-labelledby="trig-h">
+  <p class="lbl">Legend ref. 4</p>
+  <h2 id="trig-h">Trigonometrical station</h2>
+  <hr class="rule">
+  <div class="trig">
+    <div class="trig-body">
+      <p>A trig station is a known point. It is not the most interesting thing on a sheet and it is not the destination. It is simply the one position the surveyor is certain of, from which every other bearing on the map is taken.</p>
+      <p>Dr Sandra Walden-Pearson works from Far North Queensland and has spent a career on the part of retirement with no dollar figure attached. Her method is <strong>readysetretirement psychosocial planning<span class="tm">&reg;</span></strong> &mdash; the yin to financial planning's yang. Not a replacement for an adviser. The other half of the same conversation, and the half nobody books.</p>
+      <p>She is a peer rather than a guru, which matters, because the people who need this most are not in the habit of being coached.</p>
+    </div>
+    <div class="trig-col">
+    <figure class="platephoto">
+      <img src="assets/drsan.jpg" width="980" height="1470" loading="lazy" decoding="async"
+           alt="Dr Sandra Walden-Pearson, photographed against a plain grey background.">
+      <figcaption>Plate 1 &mdash; compiled by<br>Dr S. Walden-Pearson</figcaption>
+    </figure>
+    <div class="plaque">
+      <span class="cap">Trigonometrical Station</span>
+      <span class="no">RSR / 001 &middot; Fixed point</span>
+      <p class="nm">Dr Sandra<br>Walden-Pearson</p>
+      <hr>
+      <ul>
+        <li>PhD (Business) &middot; MBA (Human Resources)</li>
+        <li>BA Dip Ed</li>
+        <li>Certified Professional Retirement Coach</li>
+        <li>Certified Associate Meta Coach</li>
+        <li>Certified Resilience Coach &middot; HART Coach</li>
+        <li>Resilience First Aid Responder</li>
+        <li>Accredited Mental Health First Aider, including Workplace</li>
+        <li>Accredited Cinergy Conflict Coach</li>
+      </ul>
+      <hr>
+      <p class="foot">All bearings on this sheet taken from here</p>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FIELD NOTE / TESTIMONIAL ══════════════════ -->
+<section class="chapter wrap" id="field-note" aria-labelledby="fn-h">
+  <p class="lbl">Legend ref. 5</p>
+  <h2 id="fn-h">Field note</h2>
+  <hr class="rule">
+  <div class="fieldnote">
+    <svg class="leadline" width="220" height="40" viewBox="0 0 220 40" aria-hidden="true" focusable="false">
+      <circle cx="5" cy="35" r="3.4" fill="none" stroke="#2F2A22" stroke-width="1.3"/>
+      <circle cx="5" cy="35" r="1" fill="#2F2A22"/>
+      <path d="M5 35 L150 6 L220 6" fill="none" stroke="#2F2A22" stroke-width="1"/>
+    </svg>
+    <div class="fieldnote-inner">
+      <blockquote>
+        <p>&ldquo;Financial planning for retirement is well known. I hadn't heard about psychosocial education focused on human-centred retirement planning &mdash; in 30 years of politics. In talking with Dr San I realised the critical need to plan for the human side of retirement. With hand on heart, I can honestly say that engaging Dr San has been life changing.&rdquo;</p>
+      </blockquote>
+      <cite>Hon. Warren Entsch<span>Former Federal Member for Leichhardt</span></cite>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CONSULT / CTA ══════════════════ -->
+<section class="chapter wrap" id="consult" aria-labelledby="consult-h">
+  <p class="lbl">Legend ref. 6</p>
+  <h2 id="consult-h">Walk it with somebody who has the sheet</h2>
+  <hr class="rule">
+  <div class="consult">
+    <div>
+      <p>Thirty minutes, no fee, no obligation and no product at the end of it. We work out where you actually are on the sheet, what the next three to ten years look like, and whether any of this is worth your time. If it is not, you will be told so.</p>
+      <p>For organisations, the same call covers scope: who is leaving, what leaves with them, and what a program would need to do to be worth running.</p>
+      <div class="cta-row">
+        <a class="btn" href="/contact">Book the 30-minute consult</a>
+        <a class="btn-2" href="/contact">Or brief your board</a>
+      </div>
+    </div>
+    <div class="stamp">
+      <p class="s1">Ready Set Retirement</p>
+      <p class="s2">Complimentary<br>30-minute consult</p>
+      <p class="s3">No fee &middot; No obligation</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="notes">
+      <div>
+        <h3>Sheet notes</h3>
+        <p>The terrain on this page is generated from a fixed seed, so the sheet is identical every time it is drawn. The contours are real geometry traced through a height field, not a picture of contours.</p>
+      </div>
+      <div>
+        <h3>Scope</h3>
+        <p>Psychosocial retirement education: training, workshops, seminars, one to one coaching, group coaching, consulting and speaking. This is education, not financial advice, and it is not a substitute for it.</p>
+      </div>
+      <div>
+        <h3>Compiled by</h3>
+        <p>Dr Sandra Walden-Pearson, Ready Set Retirement, Far North Queensland. <a href="/contact">Get in touch</a> and the first half hour is on the house.</p>
+      </div>
+    </div>
+    <p class="colophon">
+      <span>Ready Set Retirement</span>
+      <span>human-centred retirement planning<span class="tm">&trade;</span></span>
+      <span>readysetretirement psychosocial planning<span class="tm">&reg;</span></span>
+      <span>Sheet 1 of 1</span>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ════════════ 0. seeded randomness ════════════ */
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  // deterministic value noise on a 256x256 lattice
+  var LAT = 256;
+  var lattice = new Float32Array(LAT * LAT);
+  (function () {
+    var r = mulberry32(20260727);
+    for (var i = 0; i < lattice.length; i++) lattice[i] = r();
+  })();
+  function lat(ix, iy) { return lattice[((iy & 255) << 8) | (ix & 255)]; }
+  function noise2(x, y) {
+    var x0 = Math.floor(x), y0 = Math.floor(y);
+    var fx = x - x0, fy = y - y0;
+    var u = fx * fx * (3 - 2 * fx), v = fy * fy * (3 - 2 * fy);
+    var a = lat(x0, y0), b = lat(x0 + 1, y0), c = lat(x0, y0 + 1), d = lat(x0 + 1, y0 + 1);
+    return (a * (1 - u) + b * u) * (1 - v) + (c * (1 - u) + d * u) * v;
+  }
+  function fbm(x, y) {
+    var s = 0, amp = 1, f = 1, norm = 0;
+    for (var o = 0; o < 4; o++) {
+      s += amp * noise2(x * f, y * f);
+      norm += amp; amp *= 0.5; f *= 2.0;
+    }
+    return s / norm;
+  }
+
+  /* ════════════ 1. refs ════════════ */
+  var svg = document.getElementById('map');
+  var world = document.getElementById('world');
+  var gGrat = document.getElementById('graticule');
+  var gGratL = document.getElementById('gridlabels');
+  var gMinor = document.getElementById('contours-minor');
+  var gIndex = document.getElementById('contours-index');
+  var gWater = document.getElementById('water');
+  var gLimit = document.getElementById('limit');
+  var gLabels = document.getElementById('labels');
+  var gRoute = document.getElementById('routeg');
+  var gPins = document.getElementById('pins');
+  var routeEl = document.getElementById('route');
+  var routeDone = document.getElementById('route-done');
+  var marker = document.getElementById('marker');
+  var markerInner = document.getElementById('markerInner');
+  var gLeaders = document.getElementById('leaders');
+  var stage = document.getElementById('stage');
+  var annoEls = Array.prototype.slice.call(document.querySelectorAll('.anno'));
+  var roGR = document.getElementById('ro-gr');
+  var roEL = document.getElementById('ro-el');
+  var roBR = document.getElementById('ro-br');
+  var roST = document.getElementById('ro-st');
+  var scaleCap = document.getElementById('scale-cap');
+
+  var SVGNS = 'http://www.w3.org/2000/svg';
+  function el(name, attrs) {
+    var n = document.createElementNS(SVGNS, name);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+  function r1(v) { return Math.round(v * 10) / 10; }
+
+  /* ════════════ 2. paper tooth ════════════ */
+  (function grain() {
+    try {
+      var c = document.createElement('canvas'); c.width = c.height = 132;
+      var g = c.getContext('2d');
+      var img = g.createImageData(132, 132);
+      var rnd = mulberry32(551209);
+      for (var i = 0; i < img.data.length; i += 4) {
+        img.data[i] = 92; img.data[i + 1] = 78; img.data[i + 2] = 56;
+        img.data[i + 3] = Math.floor(rnd() * 24);
+      }
+      g.putImageData(img, 0, 0);
+      document.querySelector('.grain').style.backgroundImage = 'url(' + c.toDataURL() + ')';
+    } catch (e) { /* texture is decorative */ }
+  })();
+
+  if (!window.gsap || !window.ScrollTrigger || !window.MotionPathPlugin) {
+    document.body.classList.add('static-map');
+    return;
+  }
+  gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+
+  /* ════════════ 3. the route ════════════ */
+  var raw = MotionPathPlugin.getRawPath(routeEl);
+  MotionPathPlugin.cacheRawPathMeasurements(raw);
+  function onPath(p) {
+    return MotionPathPlugin.getPositionOnPath(raw, Math.max(0, Math.min(1, p)), true);
+  }
+  var routeLen = routeEl.getTotalLength();
+
+  /* ════════════ 4. the limit of survey ════════════ */
+  // The blank band is derived from the route itself so the crossing always lands
+  // at the intended moment, whatever the bezier arithmetic works out to be.
+  var BAND_L = onPath(0.248).x - 40;
+  var BAND_R = onPath(0.515).x + 60;
+
+  function limitX(base, off, y) {
+    return base + 0.055 * (y - 1000) + (noise2(y * 0.0014 + off, off * 3.7) - 0.5) * 210;
+  }
+  function inBlank(x, y) {
+    return x > limitX(BAND_L, 3.3, y) && x < limitX(BAND_R, 11.7, y);
+  }
+
+  /* ════════════ 5. height field ════════════ */
+  var X0 = -1200, Y0 = -900, CELL = 80, NX = 181, NY = 49;
+  var field = new Float32Array(NX * NY);
+  var PEAKS = [
+    [900, 260, 720, 0.58], [2280, 1980, 640, 0.46], [4600, -260, 520, 0.34],
+    [8950, 560, 780, 0.62], [10650, 1960, 620, 0.44], [7900, 2300, 480, 0.3]
+  ];
+  var fmin = Infinity, fmax = -Infinity;
+  for (var j = 0; j < NY; j++) {
+    for (var i = 0; i < NX; i++) {
+      var x = X0 + i * CELL, y = Y0 + j * CELL;
+      var h = fbm(x * 0.00034, y * 0.00042);
+      h += 0.14 * fbm(x * 0.0011 + 40, y * 0.0013 + 40);
+      h -= 0.16 * ((y - Y0) / 3800);
+      for (var k = 0; k < PEAKS.length; k++) {
+        var pk = PEAKS[k];
+        var dx = x - pk[0], dy = y - pk[1];
+        h += pk[3] * Math.exp(-(dx * dx + dy * dy) / (2 * pk[2] * pk[2]));
+      }
+      field[j * NX + i] = h;
+      if (h < fmin) fmin = h;
+      if (h > fmax) fmax = h;
+    }
+  }
+  var span = fmax - fmin;
+  for (var q = 0; q < field.length; q++) field[q] = (field[q] - fmin) / span;
+
+  function sampleField(x, y) {
+    var fx = (x - X0) / CELL, fy = (y - Y0) / CELL;
+    var i0 = Math.max(0, Math.min(NX - 2, Math.floor(fx)));
+    var j0 = Math.max(0, Math.min(NY - 2, Math.floor(fy)));
+    var tx = Math.max(0, Math.min(1, fx - i0)), ty = Math.max(0, Math.min(1, fy - j0));
+    var a = field[j0 * NX + i0], b = field[j0 * NX + i0 + 1];
+    var c = field[(j0 + 1) * NX + i0], d = field[(j0 + 1) * NX + i0 + 1];
+    return (a * (1 - tx) + b * tx) * (1 - ty) + (c * (1 - tx) + d * tx) * ty;
+  }
+
+  /* ════════════ 6. marching squares → ~40 contour paths ════════════ */
+  // the blank band is a fixed mask; work it out once rather than 40 times
+  var blankMask = new Uint8Array((NX - 1) * (NY - 1));
+  for (var mj = 0; mj < NY - 1; mj++) {
+    for (var mi = 0; mi < NX - 1; mi++) {
+      blankMask[mj * (NX - 1) + mi] =
+        inBlank(X0 + mi * CELL + CELL * 0.5, Y0 + mj * CELL + CELL * 0.5) ? 1 : 0;
+    }
+  }
+
+  function contourSegments(L) {
+    var segs = [];
+    for (var j = 0; j < NY - 1; j++) {
+      for (var i = 0; i < NX - 1; i++) {
+        if (blankMask[j * (NX - 1) + i]) continue;
+        var x = X0 + i * CELL, y = Y0 + j * CELL;
+        var a = field[j * NX + i], b = field[j * NX + i + 1];
+        var c = field[(j + 1) * NX + i + 1], d = field[(j + 1) * NX + i];
+        var idx = (a > L ? 8 : 0) | (b > L ? 4 : 0) | (c > L ? 2 : 0) | (d > L ? 1 : 0);
+        if (idx === 0 || idx === 15) continue;
+        var T = [x + CELL * (L - a) / (b - a), y];
+        var R = [x + CELL, y + CELL * (L - b) / (c - b)];
+        var B = [x + CELL * (L - d) / (c - d), y + CELL];
+        var Lf = [x, y + CELL * (L - a) / (d - a)];
+        switch (idx) {
+          case 1: case 14: segs.push([Lf[0], Lf[1], B[0], B[1]]); break;
+          case 2: case 13: segs.push([B[0], B[1], R[0], R[1]]); break;
+          case 3: case 12: segs.push([Lf[0], Lf[1], R[0], R[1]]); break;
+          case 4: case 11: segs.push([T[0], T[1], R[0], R[1]]); break;
+          case 6: case 9: segs.push([T[0], T[1], B[0], B[1]]); break;
+          case 7: case 8: segs.push([Lf[0], Lf[1], T[0], T[1]]); break;
+          case 5:
+            segs.push([Lf[0], Lf[1], T[0], T[1]]);
+            segs.push([B[0], B[1], R[0], R[1]]);
+            break;
+          case 10:
+            segs.push([T[0], T[1], R[0], R[1]]);
+            segs.push([Lf[0], Lf[1], B[0], B[1]]);
+            break;
+        }
+      }
+    }
+    return segs;
+  }
+
+  function joinSegments(segs) {
+    var map = new Map(), i, k;
+    function key(x, y) { return x.toFixed(2) + '|' + y.toFixed(2); }
+    for (i = 0; i < segs.length; i++) {
+      var s = segs[i];
+      var ka = key(s[0], s[1]), kb = key(s[2], s[3]);
+      if (!map.has(ka)) map.set(ka, []);
+      map.get(ka).push(i);
+      if (!map.has(kb)) map.set(kb, []);
+      map.get(kb).push(i);
+    }
+    var used = new Uint8Array(segs.length);
+    var lines = [];
+    for (i = 0; i < segs.length; i++) {
+      if (used[i]) continue;
+      used[i] = 1;
+      var seg = segs[i];
+      var pts = [[seg[0], seg[1]], [seg[2], seg[3]]];
+      for (var dir = 0; dir < 2; dir++) {
+        var guard = 0;
+        while (guard++ < 6000) {
+          var end = dir === 0 ? pts[pts.length - 1] : pts[0];
+          var cands = map.get(key(end[0], end[1]));
+          if (!cands) break;
+          var nxt = -1;
+          for (k = 0; k < cands.length; k++) { if (!used[cands[k]]) { nxt = cands[k]; break; } }
+          if (nxt < 0) break;
+          used[nxt] = 1;
+          var t = segs[nxt];
+          var sameStart = Math.abs(t[0] - end[0]) < 1e-6 && Math.abs(t[1] - end[1]) < 1e-6;
+          var other = sameStart ? [t[2], t[3]] : [t[0], t[1]];
+          if (dir === 0) pts.push(other); else pts.unshift(other);
+        }
+      }
+      if (pts.length > 3) lines.push(pts);
+    }
+    return lines;
+  }
+
+  function smoothPath(pts) {
+    var d = 'M' + r1(pts[0][0]) + ' ' + r1(pts[0][1]);
+    for (var i = 1; i < pts.length - 1; i++) {
+      var mx = (pts[i][0] + pts[i + 1][0]) * 0.5;
+      var my = (pts[i][1] + pts[i + 1][1]) * 0.5;
+      d += 'Q' + r1(pts[i][0]) + ' ' + r1(pts[i][1]) + ' ' + r1(mx) + ' ' + r1(my);
+    }
+    var last = pts[pts.length - 1];
+    d += 'L' + r1(last[0]) + ' ' + r1(last[1]);
+    return d;
+  }
+
+  var LEVELS = 40;
+  (function buildContours() {
+    var fragMinor = document.createDocumentFragment();
+    var fragIndex = document.createDocumentFragment();
+    for (var n = 0; n < LEVELS; n++) {
+      var L = (n + 0.5) / LEVELS;
+      var lines = joinSegments(contourSegments(L));
+      if (!lines.length) continue;
+      var d = '';
+      for (var m = 0; m < lines.length; m++) d += smoothPath(lines[m]);
+      var p = el('path', { d: d });
+      if (n % 5 === 0) fragIndex.appendChild(p); else fragMinor.appendChild(p);
+    }
+    gMinor.appendChild(fragMinor);
+    gIndex.appendChild(fragIndex);
+  })();
+
+  /* ════════════ 7. graticule, water, limit line, labels ════════════ */
+  (function buildGraticule() {
+    var d = '', gx, gy;
+    for (gx = -1200; gx <= 13200; gx += 400) d += 'M' + gx + ' -900L' + gx + ' 2900';
+    for (gy = -800; gy <= 2800; gy += 400) d += 'M-1200 ' + gy + 'L13200 ' + gy;
+    gGrat.appendChild(el('path', { d: d }));
+    for (gx = -800; gx <= 13000; gx += 1600) {
+      for (gy = -400; gy <= 2400; gy += 1200) {
+        var t = el('text', {
+          x: gx + 14, y: gy - 12, 'font-size': 20, 'letter-spacing': 3, fill: '#5A5145'
+        });
+        t.textContent = String(Math.round((gx + 1200) / 10)).padStart(4, '0') + ' ' +
+                        String(Math.round((2900 - gy) / 10)).padStart(4, '0');
+        gGratL.appendChild(t);
+      }
+    }
+  })();
+
+  (function buildWater() {
+    gWater.appendChild(el('path', {
+      d: 'M1750 -900 C1900 -300 1650 100 1800 620 C1950 1150 1700 1700 1850 2900',
+      fill: 'none', stroke: '#8FA9A4', 'stroke-width': 18, opacity: '.8'
+    }));
+    gWater.appendChild(el('path', {
+      d: 'M9450 -10 C9900 -150 10500 -50 10620 290 C10740 630 10250 800 9820 710 C9400 620 9200 150 9450 -10 Z',
+      fill: '#CBD8D3', stroke: '#8FA9A4', 'stroke-width': 4
+    }));
+    var lbl = el('text', { x: 9760, y: 380, 'font-size': 34, 'letter-spacing': 7, fill: '#5F7A75', 'font-family': 'Sora, sans-serif', 'font-style': 'italic' });
+    lbl.textContent = 'STILLWATER';
+    gWater.appendChild(lbl);
+    var ford = el('text', { x: 1900, y: 1240, 'font-size': 24, 'letter-spacing': 5, fill: '#5F7A75', 'font-family': 'Sora, sans-serif' });
+    ford.textContent = 'FORD';
+    gWater.appendChild(ford);
+  })();
+
+  var limitStrokes = [];
+  (function buildLimit() {
+    function boundary(base, off, dirSign) {
+      var d = '', hatch = '', y;
+      for (y = -900; y <= 2900; y += 60) {
+        var x = limitX(base, off, y);
+        d += (y === -900 ? 'M' : 'L') + r1(x) + ' ' + y;
+        if (y % 180 === 0) {
+          hatch += 'M' + r1(x) + ' ' + y + 'L' + r1(x + dirSign * 34) + ' ' + y;
+        }
+      }
+      var a = el('path', { d: d, fill: 'none', stroke: '#B08243', 'stroke-width': 2, opacity: '.9' });
+      var b = el('path', { d: hatch, fill: 'none', stroke: '#B08243', 'stroke-width': 1.4, opacity: '.75' });
+      gLimit.appendChild(a); gLimit.appendChild(b);
+      limitStrokes.push([a, 2], [b, 1.4]);
+    }
+    boundary(BAND_L, 3.3, 1);
+    boundary(BAND_R, 11.7, -1);
+
+    // sized to sit inside the viewport at every zoom the traverse uses,
+    // so the word never clips mid-letter
+    var midX = (BAND_L + BAND_R) * 0.5;
+    var t1 = el('text', {
+      x: midX, y: 900, 'font-size': 140, 'letter-spacing': 26, 'text-anchor': 'middle',
+      fill: '#2F2A22', opacity: '.52', 'font-family': 'Sora, sans-serif', 'font-weight': '300'
+    });
+    t1.textContent = 'UNSURVEYED';
+    gLimit.appendChild(t1);
+
+    var t2 = el('text', {
+      x: midX, y: 1000, 'font-size': 36, 'letter-spacing': 13, 'text-anchor': 'middle',
+      fill: '#7E5522', opacity: '.8', 'font-family': 'Sora, sans-serif'
+    });
+    t2.textContent = 'NO DATA · NO RELIEF SHOWN';
+    gLimit.appendChild(t2);
+  })();
+
+  (function buildLabels() {
+    var regions = [
+      [1150, 2180, 'WORKING RANGE', 40],
+      [2760, 420, 'THIRTY-YEAR RIDGE', 34],
+      [8700, 2260, 'RESURVEY DISTRICT', 40],
+      [10450, 2560, 'THE SECOND SHELF', 32],
+      [-560, 900, 'EARLY CAREER FLATS', 30]
+    ];
+    regions.forEach(function (r) {
+      var t = el('text', {
+        x: r[0], y: r[1], 'font-size': r[3], 'letter-spacing': r[3] * 0.28,
+        fill: '#5A5145', opacity: '.85', 'font-family': 'Sora, sans-serif', 'font-weight': '400'
+      });
+      t.textContent = r[2];
+      gLabels.appendChild(t);
+    });
+
+    var spots = [[700, 700], [2500, 1750], [8900, 900], [10500, 1700], [6100, 2500], [12300, 1400]];
+    spots.forEach(function (s) {
+      if (inBlank(s[0], s[1])) return;
+      gLabels.appendChild(el('path', {
+        d: 'M' + (s[0] - 9) + ' ' + s[1] + 'h18M' + s[0] + ' ' + (s[1] - 9) + 'v18',
+        stroke: '#5A5145', 'stroke-width': 2, fill: 'none'
+      }));
+      var t = el('text', { x: s[0] + 16, y: s[1] + 8, 'font-size': 26, fill: '#5A5145', 'font-family': 'Sora, sans-serif' });
+      t.textContent = Math.round(sampleField(s[0], s[1]) * 780 + 20);
+      gLabels.appendChild(t);
+    });
+
+    // trig station at the end of the route
+    var end = onPath(1);
+    var g = el('g', { transform: 'translate(' + r1(end.x) + ' ' + r1(end.y) + ')' });
+    g.appendChild(el('path', { d: 'M0 -26 22 14H-22z', fill: 'none', stroke: '#2F2A22', 'stroke-width': 3.5 }));
+    g.appendChild(el('circle', { r: 4.5, cy: 2, fill: '#2F2A22' }));
+    var tt = el('text', { x: 30, y: 12, 'font-size': 30, 'letter-spacing': 5, fill: '#2F2A22', 'font-family': 'Sora, sans-serif' });
+    tt.textContent = 'TRIG STA. RSR/001';
+    g.appendChild(tt);
+    gLabels.appendChild(g);
+  })();
+
+  /* ════════════ 8. waypoints, pins, annotations ════════════ */
+  var WP = annoEls.map(function (a) {
+    var kind = a.getAttribute('data-kind');
+    var pv = a.getAttribute('data-p');
+    var w = {
+      elm: a,
+      kind: kind,
+      p: pv === null ? null : parseFloat(pv),
+      inS: parseFloat(a.getAttribute('data-in')),
+      outS: parseFloat(a.getAttribute('data-out')),
+      ay: parseFloat(a.getAttribute('data-ay') || '0.5'),
+      side: a.classList.contains('anno--l') ? 'l' : 'r',
+      pin: null, leader: null, wx: 0, wy: 0, o: -1
+    };
+    if (w.p !== null) {
+      var pos = onPath(w.p);
+      w.wx = pos.x; w.wy = pos.y;
+      a.style.top = (w.ay * 100) + '%';
+
+      var g = el('g', { opacity: 0 });
+      g.appendChild(el('line', { x1: 0, y1: 0, x2: 0, y2: -28, stroke: '#2F2A22', 'stroke-width': 1.6 }));
+      if (kind === 'hazard') {
+        g.appendChild(el('path', { d: 'M0 -44 8 -30H-8z', fill: '#EDE4D3', stroke: '#6F3794', 'stroke-width': 2 }));
+      } else {
+        g.appendChild(el('circle', { cx: 0, cy: -34, r: 6, fill: '#EDE4D3', stroke: '#2F2A22', 'stroke-width': 2 }));
+        g.appendChild(el('circle', { cx: 0, cy: -34, r: 1.8, fill: '#2F2A22' }));
+      }
+      g.appendChild(el('circle', { cx: 0, cy: 0, r: 2.4, fill: '#2F2A22' }));
+      gPins.appendChild(g);
+      w.pin = g;
+
+      var ld = el('g', { opacity: 0 });
+      var lp = el('path', { d: '', fill: 'none', stroke: '#2F2A22', 'stroke-width': 1 });
+      var lc = el('circle', { r: 3, fill: 'none', stroke: '#2F2A22', 'stroke-width': 1 });
+      ld.appendChild(lp); ld.appendChild(lc);
+      gLeaders.appendChild(ld);
+      w.leader = ld; w.leaderPath = lp; w.leaderDot = lc;
+
+      var gr = a.querySelector('[data-gr]');
+      if (gr) {
+        gr.textContent = 'GR ' + String(Math.round((w.wx + 1200) / 10)).padStart(4, '0') + ' ' +
+          String(Math.round((2900 - w.wy) / 10)).padStart(4, '0') +
+          ' · ' + (inBlank(w.wx, w.wy) ? 'no data' : Math.round(sampleField(w.wx, w.wy) * 780 + 20) + ' m');
+      }
+    } else {
+      a.style.top = '';
+    }
+    return w;
+  });
+
+  /* ════════════ 9. the scroll → map mapping ════════════ */
+  // scroll progress, path progress, zoom, screen anchor x, screen anchor y
+  var STOPS = [
+    [0.000, 0.000, 1.00, 0.50, 0.46],
+    [0.088, 0.075, 1.06, 0.50, 0.46],
+    [0.160, 0.155, 1.10, 0.50, 0.46],
+    [0.210, 0.205, 1.16, 0.50, 0.46],
+    [0.255, 0.250, 1.22, 0.50, 0.46],
+    [0.285, 0.262, 1.00, 0.40, 0.48],
+    [0.335, 0.300, 0.64, 0.22, 0.50],
+    [0.400, 0.330, 0.62, 0.20, 0.50],
+    [0.445, 0.345, 0.85, 0.34, 0.48],
+    [0.490, 0.360, 1.00, 0.50, 0.46],
+    [0.560, 0.390, 1.00, 0.50, 0.46],
+    [0.630, 0.420, 1.00, 0.50, 0.46],
+    [0.700, 0.450, 1.00, 0.50, 0.46],
+    [0.755, 0.505, 1.05, 0.50, 0.46],
+    [0.790, 0.560, 1.02, 0.50, 0.46],
+    [0.855, 0.645, 1.00, 0.50, 0.46],
+    [0.895, 0.710, 1.00, 0.50, 0.46],
+    [0.932, 0.795, 1.00, 0.50, 0.46],
+    [0.972, 0.900, 1.00, 0.50, 0.46],
+    [1.000, 1.000, 0.92, 0.50, 0.46]
+  ];
+  function readStops(s) {
+    var i = 0;
+    while (i < STOPS.length - 2 && s > STOPS[i + 1][0]) i++;
+    var a = STOPS[i], b = STOPS[i + 1];
+    var t = (s - a[0]) / (b[0] - a[0]);
+    t = Math.max(0, Math.min(1, t));
+    t = t + 0.35 * (t * t * (3 - 2 * t) - t); // a light ease, not a stop at every stake
+    return {
+      p: a[1] + (b[1] - a[1]) * t,
+      z: a[2] + (b[2] - a[2]) * t,
+      cx: a[3] + (b[3] - a[3]) * t,
+      cy: a[4] + (b[4] - a[4]) * t
+    };
+  }
+
+  var markerTl = gsap.to(marker, {
+    duration: 1, ease: 'none', paused: true,
+    motionPath: { path: routeEl, align: routeEl, alignOrigin: [0.5, 0.5], autoRotate: true }
+  });
+
+  var VW = 1600, VH = 900;
+  function measure() {
+    VW = Math.max(1, stage.clientWidth);
+    VH = Math.max(1, svg.clientHeight || stage.clientHeight);
+    svg.setAttribute('viewBox', '0 0 ' + VW + ' ' + VH);
+  }
+
+  var lastZ = -1;
+  function setLineWeights(z) {
+    if (Math.abs(z - lastZ) < 0.004) return;
+    lastZ = z;
+    gMinor.setAttribute('stroke-width', (0.9 / z).toFixed(2));
+    gIndex.setAttribute('stroke-width', (1.7 / z).toFixed(2));
+    gGrat.setAttribute('stroke-width', (0.7 / z).toFixed(2));
+    for (var li = 0; li < limitStrokes.length; li++) {
+      limitStrokes[li][0].setAttribute('stroke-width', (limitStrokes[li][1] / z).toFixed(2));
+    }
+    routeEl.setAttribute('stroke-width', (2.4 / z).toFixed(2));
+    routeEl.setAttribute('stroke-dasharray', (11 / z).toFixed(1) + ' ' + (8 / z).toFixed(1));
+    routeDone.setAttribute('stroke-width', (3 / z).toFixed(2));
+    markerInner.setAttribute('transform', 'scale(' + (1 / z).toFixed(4) + ')');
+  }
+
+  function fmt4(n) { return String(Math.max(0, Math.round(n))).padStart(4, '0'); }
+
+  var lastReadout = '';
+  function render(s, opts) {
+    var st = readStops(s);
+    var pos = onPath(st.p);
+    var z = st.z;
+    var tx = VW * st.cx - pos.x * z;
+    var ty = VH * st.cy - pos.y * z;
+    world.setAttribute('transform', 'translate(' + tx.toFixed(2) + ' ' + ty.toFixed(2) + ') scale(' + z.toFixed(4) + ')');
+    setLineWeights(z);
+    markerTl.progress(st.p);
+    routeDone.setAttribute('stroke-dasharray', (routeLen * st.p).toFixed(1) + ' ' + routeLen.toFixed(1));
+
+    // readouts
+    var blank = inBlank(pos.x, pos.y);
+    var bearing = ((pos.angle + 90) % 360 + 360) % 360;
+    var key = fmt4((pos.x + 1200) / 10) + fmt4((2900 - pos.y) / 10) + Math.round(bearing) + (blank ? 'B' : 'M');
+    if (key !== lastReadout) {
+      lastReadout = key;
+      roGR.textContent = fmt4((pos.x + 1200) / 10) + ' ' + fmt4((2900 - pos.y) / 10);
+      roEL.textContent = blank ? '—' : Math.round(sampleField(pos.x, pos.y) * 780 + 20) + ' m';
+      roBR.textContent = String(Math.round(bearing)).padStart(3, '0') + '°';
+      roST.textContent = blank ? 'Unsurveyed' : 'Mapped';
+      roST.setAttribute('data-state', blank ? 'unsurveyed' : 'mapped');
+      scaleCap.textContent = '0 — ' + ((150 / z) * 5 / 1000).toFixed(1) + ' km';
+    }
+
+    // annotations, pins, leaders
+    for (var n = 0; n < WP.length; n++) {
+      var w = WP[n];
+      // fades live INSIDE each window, so two annotations are never legible at once
+      var o = 0;
+      if (s > w.inS && s < w.outS) {
+        var fade = Math.min(0.022, (w.outS - w.inS) * 0.3);
+        o = Math.min((s - w.inS) / fade, (w.outS - s) / fade, 1);
+      }
+      o = Math.max(0, Math.min(1, o));
+      var settled = (o === 0 && w.o === 0);
+      w.o = o;
+
+      if (!settled) {
+        w.elm.style.opacity = o.toFixed(3);
+        if (w.side === 'l') w.elm.style.transform = 'translate(-100%,-50%) translateY(' + ((1 - o) * 14).toFixed(1) + 'px)';
+        else if (w.kind !== 'void') w.elm.style.transform = 'translateY(-50%) translateY(' + ((1 - o) * 14).toFixed(1) + 'px)';
+        else w.elm.style.transform = 'translateX(-50%) translateY(' + ((1 - o) * 18).toFixed(1) + 'px)';
+      }
+
+      if (!w.pin) continue;
+      // pins dropped earlier stay on the ground, so they keep tracking the terrain
+      if (settled && s < w.inS) continue;
+      var px = w.wx * z + tx, py = w.wy * z + ty;
+      var drop = (1 - o) * 34;
+      w.pin.setAttribute('opacity', (o * 0.55 + (s > w.inS ? 0.45 : 0)).toFixed(3));
+      w.pin.setAttribute('transform', 'translate(' + w.wx.toFixed(1) + ' ' + (w.wy - drop / z).toFixed(1) + ') scale(' + (1 / z).toFixed(4) + ')');
+      w.leader.setAttribute('opacity', (o * o).toFixed(3));
+      if (o > 0.01) {
+        var ax = (w.side === 'l' ? 0.34 : 0.66) * VW;
+        var ayp = w.ay * VH;
+        var dir = w.side === 'l' ? -1 : 1;
+        w.leaderPath.setAttribute('d',
+          'M' + px.toFixed(1) + ' ' + py.toFixed(1) +
+          'L' + (ax - dir * 44).toFixed(1) + ' ' + ayp.toFixed(1) +
+          'L' + ax.toFixed(1) + ' ' + ayp.toFixed(1));
+        w.leaderDot.setAttribute('cx', px.toFixed(1));
+        w.leaderDot.setAttribute('cy', py.toFixed(1));
+      }
+    }
+  }
+
+  /* ════════════ 10. static composition (reduced motion / small screens) ════════════ */
+  function renderStatic() {
+    measure();
+    var z = VW / 12400;
+    var tx = VW * 0.5 - 5960 * z;
+    var ty = VH * 0.5 - 1000 * z;
+    world.setAttribute('transform', 'translate(' + tx.toFixed(2) + ' ' + ty.toFixed(2) + ') scale(' + z.toFixed(5) + ')');
+    lastZ = -1; setLineWeights(z);
+    gIndex.setAttribute('stroke-width', (1.4 / z).toFixed(2));
+    markerTl.progress(1);
+    for (var n = 0; n < WP.length; n++) {
+      var w = WP[n];
+      w.elm.style.opacity = '';
+      w.elm.style.transform = '';
+      if (w.pin) {
+        w.pin.setAttribute('opacity', '0.9');
+        w.pin.setAttribute('transform', 'translate(' + w.wx.toFixed(1) + ' ' + w.wy.toFixed(1) + ') scale(' + (0.55 / z).toFixed(3) + ')');
+      }
+    }
+    scaleCap.textContent = '0 — ' + ((150 / z) * 5 / 1000).toFixed(0) + ' km';
+  }
+
+  /* ════════════ 11. wiring ════════════ */
+  document.body.classList.add('static-map');
+  renderStatic();
+
+  var mm = gsap.matchMedia();
+  mm.add('(min-width: 900px) and (prefers-reduced-motion: no-preference)', function () {
+    document.body.classList.remove('static-map');
+    measure();
+    var state = { t: 0 };
+    var tween = gsap.to(state, {
+      t: 1, ease: 'none',
+      scrollTrigger: {
+        trigger: '.stage-sec',
+        start: 'top top',
+        end: function () { return '+=' + Math.round(window.innerHeight * 9); },
+        pin: stage,
+        pinSpacing: true,
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onRefresh: function () { measure(); render(state.t); }
+      },
+      onUpdate: function () { render(state.t); }
+    });
+    render(0);
+    ScrollTrigger.refresh();
+
+    return function () {
+      tween.scrollTrigger && tween.scrollTrigger.kill(true);
+      tween.kill();
+      document.body.classList.add('static-map');
+      requestAnimationFrame(renderStatic);
+    };
+  });
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (document.body.classList.contains('static-map')) renderStatic();
+      else measure();
+    }, 150);
+  });
+
+  // marker halo breathes only when motion is welcome
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.to('.mk-halo', { attr: { r: 27 }, opacity: 0, duration: 2.4, repeat: -1, ease: 'sine.out' });
+  }
+
+  window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+})();
+</script>
+</body>
+</html>

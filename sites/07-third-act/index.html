@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Third Act — Ready Set Retirement</title>
+<meta name="description" content="Ready Set Retirement. Psychosocial retirement education with Dr Sandra Walden-Pearson. A film in three acts about the part nobody rehearses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ------------------------------------------------------------------
+     THIRD ACT — 70mm roadshow presentation.
+     Pure code. No images. Type, black space and an aperture.
+     ------------------------------------------------------------------ */
+
+  :root{
+    --black:#000;
+    --cream:#EDE6D6;
+    --dim:#A79F8E;          /* 7.9:1 on black */
+    --red:#8C1D18;          /* the specified deep red — rules and hairlines only */
+    --red-num:#B02A24;      /* 3.2:1 — act numerals, display scale only */
+    --red-ink:#D8453A;      /* 4.8:1 — red at reading size */
+    --bar:60px;
+    --display:'Playfair Display', Georgia, 'Times New Roman', serif;
+    --text:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --gutter:clamp(1.25rem, 7vw, 6rem);
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  html{
+    background:var(--black);
+    overflow-x:clip;
+    scroll-behavior:auto;
+    -webkit-text-size-adjust:100%;
+  }
+
+  body{
+    margin:0;
+    background:var(--black);
+    color:var(--cream);
+    font-family:var(--text);
+    font-size:18px;
+    line-height:1.6;
+    overflow-x:clip;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  ::selection{background:var(--red-ink);color:#000}
+
+  /* ---------- skip link ---------- */
+  .skip{
+    position:fixed;left:50%;top:0;transform:translate(-50%,-140%);
+    z-index:200;background:var(--cream);color:#000;
+    padding:.7rem 1.4rem;font-family:var(--text);font-size:17px;
+    letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+    transition:transform .18s ease;
+  }
+  .skip:focus{transform:translate(-50%,0)}
+
+  /* ---------- the aperture ---------- */
+  .bar{
+    position:fixed;left:0;right:0;height:50vh;
+    background:var(--black);
+    z-index:40;pointer-events:none;
+    will-change:transform;
+    backface-visibility:hidden;
+  }
+  .bar--top{top:0;transform:translate3d(0,-50vh,0)}
+  .bar--bot{bottom:0;transform:translate3d(0,50vh,0)}
+  /* the inside edge of the frame — a single hairline, barely there */
+  .bar--top::after,.bar--bot::after{
+    content:"";position:absolute;left:0;right:0;height:1px;
+    background:rgba(237,230,214,.10);
+  }
+  .bar--top::after{bottom:0}
+  .bar--bot::after{top:0}
+
+  /* ---------- 4-perf sprocket hairlines ---------- */
+  .perf{
+    position:fixed;top:0;bottom:0;width:11px;z-index:45;
+    pointer-events:none;opacity:.20;
+    background-image:repeating-linear-gradient(
+      to bottom,
+      transparent 0 14px,
+      rgba(237,230,214,.85) 14px 15px,
+      transparent 15px 20px,
+      rgba(237,230,214,.85) 20px 21px,
+      transparent 21px 35px
+    );
+  }
+  .perf--l{left:0}
+  .perf--r{right:0}
+  @media (max-width:900px){.perf{display:none}}
+
+  /* ---------- projector flicker ---------- */
+  #flicker{
+    position:fixed;inset:0;z-index:60;pointer-events:none;
+    background:#fff;opacity:0;will-change:opacity;
+  }
+
+  /* ---------- reel: the scroll spine ---------- */
+  .beat{position:relative}
+  .wipe{position:relative}
+
+  html.cinema .beat{height:70vh}
+  html.cinema .beat--title{height:150vh}
+  html.cinema .beat--act{height:85vh}
+  html.cinema .beat--word{height:58vh}
+  html.cinema .beat--quote{height:130vh}
+  html.cinema .wipe{height:60vh}
+
+  html.cinema .card{
+    position:fixed;inset:0;
+    display:grid;place-items:center;
+    padding:clamp(3.5rem,20vh,11rem) var(--gutter);
+    z-index:20;
+    opacity:0;visibility:hidden;
+    pointer-events:none;
+    will-change:opacity,transform;
+  }
+  html.cinema .card a{pointer-events:auto}
+
+  /* reduced-motion / no-gsap fallback: an ordinary long-scroll document */
+  html.reduced .beat,html.reduced .wipe{height:auto}
+  html.reduced .wipe{height:clamp(6rem,12vh,12rem)}
+  html.reduced .card{
+    position:static;opacity:1;visibility:visible;transform:none;
+    padding-block:clamp(6rem,12vh,12rem);
+    padding-inline:var(--gutter);
+    display:grid;place-items:center;
+  }
+
+  .card > .inner{
+    max-width:min(70ch,100%);
+    text-align:center;
+    margin:0 auto;
+  }
+
+  /* ---------- typography ---------- */
+  h1,h2,h3{font-family:var(--display);font-weight:500;margin:0;text-wrap:balance}
+
+  .filmtitle{
+    font-size:clamp(1.05rem,min(6.1vw,9vh),4.4rem);
+    letter-spacing:.2em;
+    margin-right:-.2em;
+    line-height:1.18;
+    font-weight:400;
+  }
+  .beat--title .inner{max-width:min(1180px,100%)}
+
+  .subtitle{
+    font-family:var(--text);
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(1.15rem,2.6vw,1.7rem);
+    color:var(--cream);
+    margin:clamp(1.75rem,4vh,3rem) auto 0;
+    max-width:34ch;
+    line-height:1.5;
+  }
+
+  .rule{
+    width:clamp(3rem,8vw,7rem);height:1px;margin:clamp(1.75rem,4vh,3rem) auto;
+    background:var(--red);
+  }
+
+  .kicker{
+    font-family:var(--text);
+    font-size:clamp(1.0625rem,1.6vw,1.15rem);
+    letter-spacing:.42em;
+    margin-right:-.42em;
+    text-transform:uppercase;
+    color:var(--dim);
+    line-height:1.9;
+  }
+
+  .billing{
+    font-family:var(--text);
+    font-size:17px;line-height:1.6;color:var(--dim);
+    margin:clamp(1.5rem,3.5vh,2.5rem) auto 0;max-width:44ch;
+  }
+
+  /* act title cards */
+  .numeral{
+    display:block;
+    font-family:var(--display);
+    font-size:clamp(4.5rem,min(17vw,20vh),11rem);
+    line-height:.9;
+    letter-spacing:.09em;
+    margin-right:-.09em;
+    color:var(--red-num);
+    font-weight:400;
+  }
+  .actname{
+    font-family:var(--display);
+    font-size:clamp(1.5rem,5.4vw,3.4rem);
+    letter-spacing:.24em;
+    margin-right:-.24em;
+    line-height:1.2;
+    margin-top:clamp(1.5rem,4vh,2.75rem);
+    font-weight:400;
+  }
+
+  /* intertitle prose */
+  .title-card{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.35rem,min(3.5vw,4.3vh),2.45rem);
+    line-height:1.34;
+    letter-spacing:-.005em;
+    max-width:25ch;
+    margin:0 auto;
+  }
+  .title-card em{font-style:italic}
+
+  .undercard{
+    font-family:var(--text);
+    font-size:19px;
+    line-height:1.6;
+    color:var(--dim);
+    max-width:52ch;
+    margin:clamp(1.5rem,3.5vh,2.25rem) auto 0;
+  }
+
+  /* the four losses */
+  .loss{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(2rem,min(9.5vw,15vh),6.5rem);
+    line-height:1;
+    letter-spacing:.05em;
+    margin-right:-.05em;
+  }
+  .beat--word .inner{max-width:min(1150px,100%)}
+
+  /* trademark cards */
+  .mark{
+    font-family:var(--display);
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.6rem,5.2vw,3.2rem);
+    line-height:1.22;
+    letter-spacing:-.01em;
+  }
+  .mark sup{font-size:.42em;font-style:normal;vertical-align:.85em;letter-spacing:0}
+
+  /* credentials */
+  .practitioner{
+    font-family:var(--display);
+    font-size:clamp(1.5rem,4.2vw,2.5rem);
+    line-height:1.25;
+    font-weight:400;
+  }
+  .creds{
+    font-family:var(--text);
+    font-size:17px;
+    line-height:1.62;
+    color:var(--dim);
+    max-width:62ch;
+    margin:clamp(1.5rem,3.5vh,2.25rem) auto 0;
+    text-align:center;
+  }
+  .creds b{font-weight:500;color:var(--cream)}
+
+  /* testimonial intertitle */
+  .quote{
+    margin:0;
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(1.2rem,min(2.7vw,3.2vh),1.95rem);
+    line-height:1.44;
+    max-width:40ch;
+    margin-inline:auto;
+  }
+  .beat--quote .inner{max-width:min(880px,100%)}
+  .attrib{
+    font-family:var(--text);
+    font-style:normal;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--dim);
+    margin-top:clamp(1.75rem,4vh,2.75rem);
+    letter-spacing:.06em;
+  }
+  .attrib strong{color:var(--cream);font-weight:500;display:block;letter-spacing:.12em;text-transform:uppercase;font-size:17px;margin-bottom:.35rem}
+
+  /* ---------- end credits ---------- */
+  #credits{position:relative}
+  html.cinema #credits{height:180vh}
+
+  .creditsview{
+    position:sticky;top:0;height:100vh;overflow:hidden;
+    display:block;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 86%,transparent 100%);
+    mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 86%,transparent 100%);
+  }
+  html.reduced .creditsview{
+    position:static;height:auto;overflow:visible;
+    -webkit-mask-image:none;mask-image:none;
+  }
+
+  .roll{
+    padding-inline:var(--gutter);
+    text-align:center;
+    will-change:transform;
+  }
+  html.reduced .roll{transform:none !important;padding-block:clamp(6rem,12vh,12rem)}
+
+  .roll-block{margin:0 0 clamp(2.75rem,7vh,5rem)}
+  .roll-block:last-child{margin-bottom:0}
+
+  .roll h2,.roll h3{
+    font-family:var(--text);
+    font-weight:500;
+    font-size:17px;
+    letter-spacing:.38em;
+    margin-right:-.38em;
+    text-transform:uppercase;
+    color:var(--dim);
+    margin-bottom:.85rem;
+  }
+  .roll ul{list-style:none;margin:0;padding:0}
+  .roll li,.roll p{
+    font-family:var(--display);
+    font-size:clamp(1.0625rem,2.3vw,1.45rem);
+    line-height:1.55;
+    margin:0;
+    max-width:44ch;
+    margin-inline:auto;
+  }
+  .roll p.note{
+    font-family:var(--text);
+    font-size:18px;
+    line-height:1.6;
+    color:var(--dim);
+    max-width:58ch;
+  }
+  .roll .co{
+    font-family:var(--display);
+    font-size:clamp(1.35rem,3.6vw,2.3rem);
+    letter-spacing:.16em;
+    margin-right:-.16em;
+    line-height:1.3;
+  }
+  /* the distributor card — the one place the mark itself appears */
+  .roll .co-mark{
+    display:block;
+    width:min(72%,232px);
+    height:auto;
+    margin:0 auto clamp(1.4rem,3vh,2.2rem);
+    opacity:.9;
+  }
+  .fin{
+    font-family:var(--display);
+    font-size:clamp(1.6rem,5vw,3rem);
+    letter-spacing:.5em;
+    margin-right:-.5em;
+    color:var(--red-num);
+  }
+
+  /* ---------- CTA ---------- */
+  .cta{
+    display:inline-block;
+    font-family:var(--text);
+    font-size:17px;
+    letter-spacing:.22em;
+    margin-right:-.22em;
+    text-transform:uppercase;
+    color:var(--cream);
+    text-decoration:none;
+    border:1px solid rgba(237,230,214,.5);
+    padding:1.15rem 2.4rem;
+    background:transparent;
+    transition:background-color .35s ease,color .35s ease,border-color .35s ease;
+  }
+  .cta:hover,.cta:focus-visible{
+    background:var(--cream);color:#000;border-color:var(--cream);
+  }
+
+  a{color:var(--cream)}
+  a:focus-visible,.cta:focus-visible,button:focus-visible{
+    outline:2px solid var(--red-ink);
+    outline-offset:4px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    position:relative;z-index:15;
+    padding:clamp(6rem,12vh,12rem) var(--gutter) clamp(4rem,9vh,7rem);
+    text-align:center;
+  }
+  footer .marks{
+    font-family:var(--display);
+    font-style:italic;
+    font-size:clamp(1.0625rem,2.4vw,1.4rem);
+    line-height:1.7;
+    max-width:40ch;margin:0 auto clamp(2rem,5vh,3.5rem);
+  }
+  footer .marks sup{font-size:.5em;font-style:normal;vertical-align:.8em}
+  footer .colophon{
+    font-family:var(--text);
+    font-size:17px;line-height:1.6;color:var(--dim);
+    max-width:60ch;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  }
+  footer .colophon a{color:var(--cream);text-decoration:underline;text-underline-offset:.22em}
+
+  .hairline{
+    width:100%;max-width:34rem;height:1px;background:rgba(237,230,214,.14);
+    margin:clamp(2.5rem,6vh,4rem) auto;
+  }
+
+  /* screen-reader only */
+  .sr{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .skip{transition:none}
+    .cta{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#contact">Skip to contact</a>
+
+<div class="perf perf--l" aria-hidden="true"></div>
+<div class="perf perf--r" aria-hidden="true"></div>
+<div class="bar bar--top" aria-hidden="true"></div>
+<div class="bar bar--bot" aria-hidden="true"></div>
+<div id="flicker" aria-hidden="true"></div>
+
+<header class="beat beat--title" data-beat>
+  <div class="card">
+    <div class="inner">
+      <h1 class="filmtitle">READY SET RETIREMENT</h1>
+      <p class="subtitle">A film about the part nobody rehearses.</p>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="kicker">Presented in three acts</p>
+      <p class="billing">Psychosocial retirement education with Dr Sandra Walden-Pearson. Far North Queensland.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================ ACT I ============================ -->
+  <section id="act1" aria-labelledby="act1-h">
+
+    <div class="beat beat--act" data-beat>
+      <div class="card">
+        <div class="inner">
+          <span class="numeral" aria-hidden="true">I</span>
+          <h2 class="actname" id="act1-h"><span class="sr">Act one. </span>THE PLAN</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat" data-beat>
+      <div class="card">
+        <div class="inner">
+          <p class="title-card">Forty years of contributions. Statements read. Projections revised. A date circled on a calendar you will not need.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat" data-beat>
+      <div class="card">
+        <div class="inner">
+          <p class="title-card">Australians are retiring at the fastest rate in the nation&rsquo;s history. Nearly all of them have a number. Very few have a plan for the person.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat" data-beat>
+      <div class="card">
+        <div class="inner">
+          <p class="title-card">Money answers one question, and answers it well. It funds a lifestyle. It cannot buy a quality of life.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="wipe" data-wipe id="wipe1" aria-hidden="true"></div>
+
+  <!-- ============================ ACT II =========================== -->
+  <section id="act2" aria-labelledby="act2-h">
+
+    <div class="beat beat--act" data-beat>
+      <div class="card">
+        <div class="inner">
+          <span class="numeral" aria-hidden="true">II</span>
+          <h2 class="actname" id="act2-h"><span class="sr">Act two. </span>THE DROP</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat beat--word" data-beat>
+      <div class="card"><div class="inner"><p class="loss">DIRECTION</p></div></div>
+    </div>
+
+    <div class="beat beat--word" data-beat>
+      <div class="card"><div class="inner"><p class="loss">IDENTITY</p></div></div>
+    </div>
+
+    <div class="beat beat--word" data-beat>
+      <div class="card"><div class="inner"><p class="loss">PURPOSE</p></div></div>
+    </div>
+
+    <div class="beat beat--word" data-beat>
+      <div class="card"><div class="inner"><p class="loss">CONNECTION</p></div></div>
+    </div>
+
+    <div class="beat" data-beat>
+      <div class="card">
+        <div class="inner">
+          <p class="title-card">All four go in the same season. The farewell cake is still in the fridge.</p>
+          <p class="undercard">This is the recognised dark side of retirement. It is common, it is well documented, and it is almost never planned for.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="wipe" data-wipe id="wipe2" aria-hidden="true"></div>
+
+  <!-- ============================ ACT III ========================== -->
+  <section id="act3" aria-labelledby="act3-h">
+
+    <div class="beat beat--act" data-beat>
+      <div class="card">
+        <div class="inner">
+          <span class="numeral" aria-hidden="true">III</span>
+          <h2 class="actname" id="act3-h"><span class="sr">Act three. </span>THE WORK</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat" data-beat>
+      <div class="card">
+        <div class="inner">
+          <p class="title-card">None of this is a character flaw. It is a planning gap, and planning gaps close with preparation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat" data-beat>
+      <div class="card">
+        <div class="inner">
+          <p class="title-card">Ready Set Retirement is the yin to financial planning&rsquo;s yang. Not advice about the money. Preparation for the person who stops earning it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat" data-beat>
+      <div class="card">
+        <div class="inner">
+          <h3 class="mark">human-centred retirement planning<sup>&trade;</sup></h3>
+          <p class="undercard">Who you will be on the first Monday. Who you will speak to by the second. What the year is actually for, once nobody is expecting you anywhere.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat" data-beat>
+      <div class="card">
+        <div class="inner">
+          <h3 class="mark">readysetretirement psychosocial planning<sup>&reg;</sup></h3>
+          <p class="undercard">Training, workshops, seminars, coaching and consulting. For the people leaving, and for the organisations watching thirty years of mastery walk out the door.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat" data-beat>
+      <div class="card">
+        <div class="inner">
+          <p class="practitioner">Dr Sandra Walden-Pearson</p>
+          <p class="creds"><b>PhD (Business), MBA (HR), BA Dip Ed.</b> Certified Professional Retirement Coach. Certified Associate Meta Coach. Certified Resilience Coach. HART Coach. Resilience First Aid Responder. Accredited Mental Health First Aider, including Workplace. Accredited Cinergy Conflict Coach. She has watched capable people come apart six months after the farewell cake, and decided to do something about it.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ========================= TESTIMONIAL ========================= -->
+  <section id="testimonial" class="beat beat--quote" data-beat aria-label="Testimonial">
+    <div class="card">
+      <div class="inner">
+        <figure style="margin:0">
+          <blockquote class="quote">&ldquo;Financial planning for retirement is well known. I hadn&rsquo;t heard about psychosocial education focused on human-centred retirement planning &mdash; in 30 years of politics. In talking with Dr San I realised the critical need to plan for the human side of retirement. With hand on heart, I can honestly say that engaging Dr San has been life changing.&rdquo;</blockquote>
+          <figcaption class="attrib">
+            <strong>Hon. Warren Entsch</strong>
+            Former Federal Member for Leichhardt
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= END CREDITS ========================= -->
+  <section id="credits" aria-label="End credits">
+    <div class="creditsview">
+      <div class="roll" id="roll">
+
+        <div class="roll-block">
+          <img class="co-mark" src="assets/logo-film.svg" width="767" height="334"
+               alt="Ready Set Retirement">
+          <p class="note">Psychosocial retirement education. The yin to financial planning&rsquo;s yang.</p>
+        </div>
+
+        <div class="roll-block">
+          <h2>Written and delivered by</h2>
+          <p>Dr Sandra Walden-Pearson</p>
+        </div>
+
+        <div class="roll-block">
+          <h3>Services</h3>
+          <ul>
+            <li>Training</li>
+            <li>Workshops</li>
+            <li>Seminars</li>
+            <li>One-to-one coaching</li>
+            <li>Group coaching</li>
+            <li>Consulting</li>
+            <li>Speaking</li>
+          </ul>
+        </div>
+
+        <div class="roll-block">
+          <h3>Formats</h3>
+          <ul>
+            <li>In person, Far North Queensland</li>
+            <li>Online, anywhere in Australia</li>
+            <li>Boardroom briefings</li>
+            <li>Workforce programs</li>
+          </ul>
+        </div>
+
+        <div class="roll-block">
+          <h3>For individuals</h3>
+          <p class="note">Three to ten years out. Or already in it, and finding it sour. You do not need a crisis to book a conversation.</p>
+        </div>
+
+        <div class="roll-block">
+          <h3>For organisations</h3>
+          <p class="note">The silver tsunami is a staffing event before it is anything else. Mastery leaves, recruitment costs rise, productivity dips, culture and morale follow. Retirement education is workforce planning.</p>
+        </div>
+
+        <div class="roll-block">
+          <h3>Contact</h3>
+          <p style="margin-bottom:1.75rem">Complimentary 30-minute consult</p>
+          <p><a class="cta" href="/contact">Book the consult</a></p>
+        </div>
+
+        <div class="roll-block">
+          <p class="fin">FIN</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <p class="marks">
+    human-centred retirement planning<sup>&trade;</sup><br>
+    readysetretirement psychosocial planning<sup>&reg;</sup>
+  </p>
+  <p><a class="cta" href="/contact">Book a complimentary 30-minute consult</a></p>
+  <div class="hairline" aria-hidden="true"></div>
+  <p class="colophon">
+    Ready Set Retirement &middot; Dr Sandra Walden-Pearson &middot; Far North Queensland, Australia.
+    Psychosocial retirement education. This is not financial advice.
+    <br><a href="/contact">Start a conversation</a>
+  </p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  var root = document.documentElement;
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasGsap = !!(window.gsap && window.ScrollTrigger);
+
+  var barTop = document.querySelector('.bar--top');
+  var barBot = document.querySelector('.bar--bot');
+
+  /* ---------------------------------------------------------------
+     Aperture geometry. Bar height is derived from a target aspect
+     ratio against the live viewport, and recomputed on resize.
+     Full-height bars are translated on the y axis, so nothing ever
+     animates `height` — transform and opacity only.
+     --------------------------------------------------------------- */
+  var vw = 0, vh = 0;
+
+  function barFor(ratio){
+    var geo = (vh - vw / ratio) / 2;
+    var maxBar = vh * 0.21;
+    /* The floor rises with the target ratio. Without it, a 16:9 display
+       renders 1.85 and 1.33 at almost the same bar height and Act III's
+       opening reads as nothing at all. */
+    var t = Math.min(1, Math.max(0, (ratio - 1.33) / (2.76 - 1.33)));
+    var minBar = Math.max(12, vh * (0.018 + 0.055 * t));
+    if (geo <= maxBar) return Math.max(minBar, geo);
+    /* Portrait viewports cannot express these ratios geometrically without
+       eating the frame, so the ratio is mapped to a proportional band
+       instead. The emotional arc survives; the copy stays readable. */
+    var r = Math.min(2.76, Math.max(1.33, ratio));
+    var f = 0.05 + ((r - 1.33) / (2.76 - 1.33)) * 0.16;
+    return Math.max(minBar, vh * f);
+  }
+
+  function setBars(bh){
+    barTop.style.transform = 'translate3d(0,' + (bh - vh / 2).toFixed(2) + 'px,0)';
+    barBot.style.transform = 'translate3d(0,' + (vh / 2 - bh).toFixed(2) + 'px,0)';
+  }
+
+  /* =================================================================
+     REDUCED MOTION / NO-GSAP PATH
+     Fixed 1.85:1 bars (capped so they never eat the viewport),
+     no aperture animation, no flicker, every card visible in sequence,
+     static credit roll.
+     ================================================================= */
+  if (prefersReduced || !hasGsap){
+    root.classList.add('reduced');
+    var staticBars = function(){
+      vw = window.innerWidth; vh = window.innerHeight;
+      var bh = Math.min(barFor(1.85), vh * 0.06);
+      setBars(bh);
+      document.body.style.paddingTop = bh + 'px';
+      document.body.style.paddingBottom = bh + 'px';
+    };
+    staticBars();
+    window.addEventListener('resize', staticBars, {passive:true});
+    return;
+  }
+
+  root.classList.add('cinema');
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* A reload part-way through the film would otherwise restore the scroll
+     position and start the reel mid-act with the aperture in the wrong
+     state. The projector starts at the beginning. */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+
+  /* ---------------------------------------------------------------
+     ONE master scroll value. Every effect on this page reads from it.
+     Per PLAN: do not create ten triggers.
+     --------------------------------------------------------------- */
+  var M = {p:0};
+  var maxScroll = 1;
+
+  var beats = [];
+  document.querySelectorAll('[data-beat]').forEach(function(el){
+    beats.push({el:el, card:el.querySelector('.card'), top:0, h:1, o:-1, vis:false});
+  });
+
+  var stops = [];
+  var creditsEl = document.getElementById('credits');
+  var rollEl = document.getElementById('roll');
+  var flicker = document.getElementById('flicker');
+  var creditsTop = 0, creditsH = 1, rollDist = 1, rollStart = 0;
+
+  /* The aperture opens from full black on load. `introK` is folded into
+     the closure value, so there is only ever one render path. */
+  var introK = 1;
+  var introTween = null;
+
+  function docTop(el){
+    return el.getBoundingClientRect().top + window.scrollY;
+  }
+
+  /* Aperture keyframes, expressed in the same coordinate space as the
+     cards: c = scroll position + half a viewport (the centre of frame). */
+  function buildStops(){
+    var a1 = document.getElementById('act1');
+    var w1 = document.getElementById('wipe1');
+    var a2 = document.getElementById('act2');
+    var w2 = document.getElementById('wipe2');
+    var a3 = document.getElementById('act3');
+
+    var w1t = docTop(w1), w1h = w1.offsetHeight;
+    var w2t = docTop(w2), w2h = w2.offsetHeight;
+    var a2t = docTop(a2), a2h = a2.offsetHeight;
+    var a3t = docTop(a3), a3h = a3.offsetHeight;
+    var a2ActH = a2.querySelector('.beat--act').offsetHeight;
+    var a3ActH = a3.querySelector('.beat--act').offsetHeight;
+
+    stops = [
+      /* Act I: confident, wide, 1.85 throughout. */
+      {c: 0,                        r: 1.85, k: 0},
+      {c: w1t,                      r: 1.85, k: 0},
+      /* Wipe to black, then two beats of nothing. */
+      {c: w1t + w1h * 0.55,         r: 1.85, k: 1},
+      {c: a2t + a2ActH * 0.15,      r: 1.85, k: 1},
+      /* Act II reopens on its title card at 1.85, then squeezes to a
+         claustrophobic 2.76 across the four losses. */
+      {c: a2t + a2ActH * 0.55,      r: 1.85, k: 0},
+      {c: a2t + a2h * 0.72,         r: 2.76, k: 0},
+      {c: w2t,                      r: 2.76, k: 0},
+      /* Second wipe. */
+      {c: w2t + w2h * 0.55,         r: 2.76, k: 1},
+      {c: a3t + a3ActH * 0.15,      r: 1.85, k: 1},
+      /* Act III reopens, then the frame is given room: 1.33. */
+      {c: a3t + a3ActH * 0.55,      r: 1.85, k: 0},
+      {c: a3t + a3h * 0.75,         r: 1.33, k: 0},
+      {c: 1e9,                      r: 1.33, k: 0}
+    ];
+  }
+
+  var ap = {r:1.85, k:0};
+
+  function sampleStops(c){
+    var i = 0;
+    while (i < stops.length - 1 && c > stops[i + 1].c) i++;
+    var a = stops[i], b = stops[Math.min(i + 1, stops.length - 1)];
+    var span = b.c - a.c;
+    var t = span > 0 ? Math.min(1, Math.max(0, (c - a.c) / span)) : 0;
+    var s = t * t * (3 - 2 * t);
+    ap.r = a.r + (b.r - a.r) * s;
+    ap.k = a.k + (b.k - a.k) * s;
+  }
+
+  /* Cross-fade envelope for a single intertitle. Adjacent beats hand
+     over exactly at their shared edge, so one card is legible at a time. */
+  function alphaFor(local){
+    var IN0 = -0.28, IN1 = 0.28, OUT0 = 0.72, OUT1 = 1.28, t;
+    if (local <= IN0 || local >= OUT1) return 0;
+    if (local < IN1){ t = (local - IN0) / (IN1 - IN0); return t * t * (3 - 2 * t); }
+    if (local <= OUT0) return 1;
+    t = (local - OUT0) / (OUT1 - OUT0);
+    return 1 - t * t * (3 - 2 * t);
+  }
+
+  function measure(){
+    vw = window.innerWidth;
+    vh = window.innerHeight;
+    maxScroll = Math.max(1, document.documentElement.scrollHeight - vh);
+    for (var i = 0; i < beats.length; i++){
+      var b = beats[i];
+      b.top = docTop(b.el);
+      b.h = Math.max(1, b.el.offsetHeight);
+    }
+    buildStops();
+    creditsTop = docTop(creditsEl);
+    creditsH = creditsEl.offsetHeight;
+    rollStart = vh * 0.92;
+    rollDist = Math.max(1, rollEl.offsetHeight - vh * 0.55 + rollStart);
+  }
+
+  /* The credit roll. It advances on its own clock once it is on screen,
+     and the reader's own scrolling adds to that clock. It never takes
+     the scroll away from them and it is not pinned. */
+  var rollAuto = 0;
+  var ROLL_SECONDS = 38;
+  var lastT = 0;
+
+  function render(){
+    var now = gsap.ticker.time;
+    var dt = lastT ? Math.min(0.05, now - lastT) : 0;
+    lastT = now;
+
+    var y = M.p * maxScroll;
+    var c = y + vh / 2;
+
+    /* --- aperture --- */
+    sampleStops(c);
+    var open = barFor(ap.r);
+    /* If the page was loaded in a background tab the ticker is frozen and
+       the opening title never plays. Anyone who has already scrolled into
+       the film gets the frame, not an unexplained black screen. */
+    if (introTween && y > vh * 0.75){ introTween.kill(); introTween = null; introK = 0; }
+    var closure = Math.max(ap.k, introK);
+    var bh = open + (vh / 2 - open) * closure;
+    setBars(bh);
+
+    /* --- intertitles --- */
+    for (var i = 0; i < beats.length; i++){
+      var b = beats[i];
+      var local = (c - b.top) / b.h;
+      var o = alphaFor(local);
+      if (Math.abs(o - b.o) > 0.0015){
+        b.o = o;
+        var show = o > 0.004;
+        if (show !== b.vis){
+          b.vis = show;
+          b.card.style.visibility = show ? 'visible' : 'hidden';
+        }
+        if (show){
+          b.card.style.opacity = o.toFixed(3);
+          b.card.style.transform = 'translate3d(0,' + ((0.5 - local) * 22).toFixed(2) + 'px,0)';
+        }
+      }
+    }
+
+    /* --- end credits --- */
+    if (y > creditsTop - vh * 0.35 && y < creditsTop + creditsH){
+      rollAuto += dt / ROLL_SECONDS;
+    }
+    var sp = (y - creditsTop) / Math.max(1, creditsH - vh);
+    sp = Math.min(1, Math.max(0, sp));
+    var q = Math.min(1, rollAuto + sp);
+    rollEl.style.transform = 'translate3d(0,' + (rollStart - q * rollDist).toFixed(1) + 'px,0)';
+
+    /* --- projector flicker: 4Hz sine, ceiling 0.0135 alpha --- */
+    flicker.style.opacity = (0.0075 + 0.006 * Math.sin(now * Math.PI * 8)).toFixed(4);
+  }
+
+  gsap.to(M, {
+    p: 1,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: document.documentElement,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 0.45,
+      invalidateOnRefresh: true
+    }
+  });
+
+  ScrollTrigger.addEventListener('refresh', measure);
+  window.addEventListener('resize', measure, {passive:true});
+
+  measure();
+  render();
+  gsap.ticker.add(render);
+
+  /* Bars open from full black, once, on load. Everything after that
+     belongs to the scroll. */
+  var intro = {v:1};
+  introTween = gsap.to(intro, {
+    v: 0, duration: 2.1, delay: 0.35, ease: 'power2.inOut',
+    onUpdate: function(){ introK = intro.v; },
+    onComplete: function(){ introK = 0; introTween = null; }
+  });
+
+  /* Safety net. The open-from-black rides the ticker, and rAF is throttled
+     in background tabs and some headless contexts — without this the
+     aperture stays shut and the page is pure black with no way out.
+     setTimeout survives that, so the frame always ends up open. */
+  setTimeout(function(){
+    if (introK > 0){
+      if (introTween){ introTween.kill(); introTween = null; }
+      introK = 0; render();
+    }
+  }, 3200);
+
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden){ measure(); render(); }
+  });
+
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){
+      measure();
+      ScrollTrigger.refresh();
+    });
+  }
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Horizon — Ready Set Retirement</title>
+<meta name="description" content="Psychosocial retirement education with Dr Sandra Walden-Pearson. Forty years of planning for a date, and about ten minutes planning for a life. Book a complimentary 30-minute consult.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --void:      #05060A;
+    --ink:       #F3EDE2;
+    --ink-soft:  #C6BFB2;
+    --ink-quiet: #A79F92;
+    --gold:      #FFE9C4;   /* the light itself — never a brand colour */
+    --signal:    #ECC24D;   /* brand gold — only where the page invites an action */
+    --rule:      rgba(255,255,255,.14);
+    --rule-dim:  rgba(255,255,255,.08);
+
+    /* section height unit — scaled down on small screens so the scroll stays sane */
+    --u: 1vh;
+
+    --gutter: clamp(1.5rem, 5vw, 3rem);
+    --measure: 50ch;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+    background: var(--void);
+  }
+
+  body {
+    font-family: "Instrument Serif", Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    color: var(--ink);
+    font-size: clamp(1.0625rem, 0.98rem + 0.42vw, 1.25rem); /* 17px → 20px */
+    line-height: 1.6;
+    letter-spacing: .004em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* legibility halo: guarantees contrast where copy passes over the light body */
+    text-shadow: 0 0 34px rgba(4,5,9,.94), 0 0 12px rgba(4,5,9,.85), 0 1px 2px rgba(4,5,9,.7);
+  }
+
+  /* ---------- canvas ---------- */
+  #sky {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    display: block;
+  }
+
+  .page { position: relative; z-index: 1; }
+
+  /* ---------- skip link ---------- */
+  .skip {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 20;
+    background: var(--gold);
+    color: #08080C;
+    text-shadow: none;
+    padding: .7rem 1.2rem;
+    text-decoration: none;
+  }
+  .skip:focus { left: var(--gutter); top: .75rem; }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: clamp(1.4rem, 3.5vh, 2.6rem) var(--gutter) 0;
+    text-align: center;
+  }
+  .wordmark {
+    font-size: clamp(.72rem, .62rem + .28vw, .84rem);
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+    margin: 0;
+    line-height: 1;
+  }
+
+  /* ---------- section scaffold ---------- */
+  .sec {
+    min-height: calc(var(--h, 100) * var(--u));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(4rem, 9vh, 8rem) var(--gutter);
+    width: 100%;
+  }
+
+  .wrap { width: 100%; max-width: 46rem; margin: 0 auto; }
+  .wrap-wide { max-width: 54rem; }
+
+  p { max-width: var(--measure); margin: 0 auto; }
+  p + p { margin-top: 1.5em; }
+
+  /* ---------- type ---------- */
+  h1 {
+    font-weight: 400;
+    font-size: clamp(2.55rem, 1.4rem + 6.4vw, 6.25rem);
+    line-height: 1.02;
+    letter-spacing: -.018em;
+    margin: 0 0 clamp(1.6rem, 4vh, 2.8rem);
+    text-wrap: balance;
+  }
+  h1 em { font-style: italic; }
+
+  h2 {
+    font-weight: 400;
+    font-size: clamp(1.9rem, 1.05rem + 3.5vw, 3.6rem);
+    line-height: 1.1;
+    letter-spacing: -.014em;
+    margin: 0 0 clamp(1.3rem, 3.2vh, 2.2rem);
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-weight: 400;
+    font-size: clamp(2.1rem, 1.2rem + 4vw, 4.2rem);
+    line-height: 1;
+    letter-spacing: -.02em;
+    margin: 0 0 clamp(1.1rem, 2.6vh, 1.8rem);
+    color: var(--ink);
+  }
+
+  .lede { color: var(--ink-soft); }
+
+  .statement {
+    font-size: clamp(1.65rem, 1rem + 2.9vw, 3.1rem);
+    line-height: 1.16;
+    letter-spacing: -.012em;
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+
+  .cue {
+    margin-top: clamp(2.5rem, 6vh, 4.5rem);
+    font-size: .78rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+  }
+  .cue::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: clamp(2.2rem, 5vh, 3.4rem);
+    margin: .9rem auto 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,.3), rgba(255,255,255,0));
+  }
+
+  /* ---------- the four losses ---------- */
+  .loss { --h: 110; }
+  .loss p { max-width: 46ch; color: var(--ink-soft); }
+
+  /* ---------- the held silence ---------- */
+  .hold {
+    min-height: calc(70 * var(--u));
+    width: 100%;
+  }
+
+  .rule {
+    width: min(100%, 46rem);
+    height: 1px;
+    background: var(--rule-dim);
+    border: 0;
+    margin: clamp(2.4rem, 6vh, 4rem) auto;
+  }
+
+  /* ---------- credentials ---------- */
+  .creds {
+    max-width: 44rem;
+    margin: clamp(2.2rem, 5vh, 3.4rem) auto 0;
+    font-size: .84rem;
+    line-height: 2.05;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+    text-align: center;
+  }
+
+  /* ---------- services ---------- */
+  .services {
+    list-style: none;
+    counter-reset: svc;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 44rem;
+    width: 100%;
+    text-align: left;
+    border-top: 1px solid var(--rule-dim);
+  }
+  .services li {
+    counter-increment: svc;
+    display: grid;
+    grid-template-columns: 3.4rem 1fr;
+    gap: 0 1.4rem;
+    align-items: baseline;
+    padding: clamp(1.1rem, 2.6vh, 1.7rem) 0;
+    border-bottom: 1px solid var(--rule-dim);
+  }
+  .services li::before {
+    content: "0" counter(svc);
+    color: var(--gold);
+    font-size: .95rem;
+    letter-spacing: .12em;
+    opacity: .85;
+  }
+  .services .svc-body { min-width: 0; }
+  .services b {
+    font-weight: 400;
+    display: block;
+    font-size: clamp(1.4rem, 1.05rem + 1.1vw, 1.9rem);
+    line-height: 1.2;
+    letter-spacing: -.01em;
+  }
+  .services span {
+    display: block;
+    color: var(--ink-soft);
+    font-size: .95em;
+    margin-top: .25rem;
+    max-width: 48ch;
+  }
+
+  /* ---------- testimonial ---------- */
+  blockquote {
+    margin: 0;
+    font-size: clamp(1.35rem, .95rem + 1.7vw, 2.15rem);
+    line-height: 1.32;
+    letter-spacing: -.008em;
+    max-width: 34ch;
+    margin-inline: auto;
+    text-wrap: pretty;
+  }
+  .attrib {
+    margin-top: clamp(1.8rem, 4vh, 2.8rem);
+    font-size: .8rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+    font-style: normal;
+    display: block;
+  }
+  .attrib strong { font-weight: 400; color: var(--ink-soft); }
+
+  /* ---------- cta ---------- */
+  .cta {
+    display: inline-block;
+    margin-top: clamp(2.2rem, 5vh, 3.4rem);
+    padding: 1.05em 2.4em;
+    border: 1px solid var(--signal);
+    color: var(--signal);
+    background: transparent;
+    text-decoration: none;
+    font-size: clamp(1.05rem, .92rem + .5vw, 1.28rem);
+    letter-spacing: .02em;
+    line-height: 1.2;
+    transition: background-color .45s ease, color .45s ease, box-shadow .45s ease;
+    text-shadow: none;
+  }
+  .cta:hover, .cta:focus-visible {
+    background: var(--signal);
+    color: #08080C;
+    box-shadow: 0 0 60px rgba(236,194,77,.24);
+  }
+
+  .alt-path {
+    margin-top: clamp(1.8rem, 4vh, 2.6rem);
+    font-size: .95em;
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+
+  a { color: var(--ink); text-decoration: underline; text-underline-offset: .22em; text-decoration-thickness: 1px; text-decoration-color: rgba(255,233,196,.55); }
+  a:hover { text-decoration-color: var(--signal); }
+
+  :focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
+
+  /* ---------- footer ---------- */
+  .foot {
+    min-height: calc(45 * var(--u));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+    padding: clamp(3rem, 8vh, 6rem) var(--gutter);
+    border-top: 1px solid var(--rule-dim);
+    text-align: center;
+  }
+  .foot p { font-size: .9rem; letter-spacing: .06em; color: var(--ink-quiet); max-width: 64ch; }
+  .foot nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .6rem clamp(1.2rem, 3vw, 2.4rem);
+  }
+  .foot nav a {
+    font-size: .78rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-quiet);
+    text-decoration-color: transparent;
+  }
+  .foot nav a:hover, .foot nav a:focus-visible { color: var(--ink); text-decoration-color: var(--gold); }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* reveal state is only applied once JS confirms motion is permitted */
+  .js-motion [data-reveal] { opacity: .1; will-change: opacity, transform; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 760px) {
+    :root { --u: .74vh; --measure: 58ch; }
+    .statement { max-width: 18ch; }
+    .services li { grid-template-columns: 2.6rem 1fr; gap: 0 1rem; }
+    .creds { letter-spacing: .13em; line-height: 1.95; }
+  }
+
+  @media (max-width: 400px) {
+    :root { --gutter: 1.35rem; }
+  }
+
+  /* ---------- reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    :root { --u: .48vh; }
+    .sec { min-height: 0; padding-block: clamp(4.5rem, 11vh, 8rem); }
+    .hold { min-height: clamp(4rem, 10vh, 8rem); }
+    .foot { min-height: 0; }
+    .cue { display: none; }
+    .js-motion [data-reveal] { opacity: 1; transform: none; }
+    .cta { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#first-light">Skip to content</a>
+
+<canvas id="sky" aria-hidden="true"></canvas>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="wordmark">Ready Set Retirement</p>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ 1. FIRST LIGHT ============ -->
+    <section class="sec" id="first-light" style="--h:130">
+      <div class="wrap">
+        <h1 data-reveal>They call it the <em>sunset</em> years.</h1>
+        <p class="lede" data-reveal>The sun does not stop. It crosses a line and comes up somewhere else. So does a working life, provided somebody has thought about it first.</p>
+        <p class="cue" data-reveal>Scroll</p>
+      </div>
+    </section>
+
+    <!-- ============ 2. DESCENT ============ -->
+    <section id="the-losses">
+      <div class="sec" style="--h:110">
+        <div class="wrap wrap-wide">
+          <h2 data-reveal>Forty years of planning for a date. About ten minutes planning for a life.</h2>
+          <p class="lede" data-reveal>The money question gets asked early and answered often. The other question, the one about who you will be on the Tuesday after the farewell cake, is left to sort itself out. It rarely does. Four things are attached to your work, and all four leave on the same afternoon.</p>
+        </div>
+      </div>
+
+      <div class="sec loss">
+        <div class="wrap">
+          <h3 data-reveal>Direction.</h3>
+          <p data-reveal>Monday had a shape, and the shape was not yours to negotiate. The first fortnight feels like leave. The sixth month does not.</p>
+        </div>
+      </div>
+
+      <div class="sec loss">
+        <div class="wrap">
+          <h3 data-reveal>Identity.</h3>
+          <p data-reveal>You were introduced by your title for thirty years. Nobody tells you how much of you was sitting inside it until it is gone from the sentence.</p>
+        </div>
+      </div>
+
+      <div class="sec loss">
+        <div class="wrap">
+          <h3 data-reveal>Purpose.</h3>
+          <p data-reveal>Work handed you problems worth solving and people who needed them solved. Nothing arrives to replace that. You have to build it, and building takes longer than anyone expects.</p>
+        </div>
+      </div>
+
+      <div class="sec loss">
+        <div class="wrap">
+          <h3 data-reveal>Connection.</h3>
+          <p data-reveal>Most of those friendships were structural rather than chosen. Take away the structure and you find out quickly which ones were the other kind.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. BELOW THE LINE ============ -->
+    <section class="sec" id="below-the-line" style="--h:90">
+      <div class="wrap">
+        <p class="statement" data-reveal>For a lot of people, this is the part nobody planned.</p>
+      </div>
+    </section>
+
+    <div class="hold" aria-hidden="true"></div>
+
+    <!-- ============ 4. THE SECOND HORIZON ============ -->
+    <section class="sec" id="the-second-horizon" style="--h:110">
+      <div class="wrap">
+        <h2 data-reveal>There is a second horizon.</h2>
+        <p class="lede" data-reveal>This is not a consolation. It is a different position of the light, and it sits higher than the one you left. Reaching it is work. The work has a method, and the method can be taught.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="the-method" style="--h:130">
+      <div class="wrap wrap-wide">
+        <h2 data-reveal>Education is what moves it.</h2>
+        <p data-reveal>Ready Set Retirement is psychosocial retirement education. It is not financial advice. It is the yin to financial planning's yang, and it decides whether the money you saved buys a life you recognise.</p>
+        <p data-reveal>The work starts three to ten years out, while you still have leverage: time, colleagues, energy, and a title that still opens doors. Preparation is cheap at that stage. Afterwards it becomes repair, and repair costs more.</p>
+        <p data-reveal>readysetretirement psychosocial planning&reg; is a structured program. You map what work is actually doing for you. You test what happens when it stops. Then you build the replacements and practise them while you still have somewhere to be on Monday. That is human-centred retirement planning&trade;, and it is teachable.</p>
+      </div>
+    </section>
+
+    <!-- ============ 5. PRACTITIONER ============ -->
+    <section class="sec" id="practitioner" style="--h:110">
+      <div class="wrap wrap-wide">
+        <h2 data-reveal>Dr Sandra Walden-Pearson.</h2>
+        <p data-reveal>Dr San works from Far North Queensland with individuals who can see the date coming, and with organisations watching thirty years of mastery walk out the door on a Friday. Her doctorate is in business. Her practice is in what happens to people once the business part is finished.</p>
+        <p data-reveal>She is a peer, not a guru. The first conversation is a conversation.</p>
+        <p class="creds" data-reveal>PhD (Business) &middot; MBA (HR) &middot; BA Dip Ed &middot; Certified Professional Retirement Coach &middot; Certified Associate Meta Coach &middot; Certified Resilience Coach &middot; HART Coach &middot; Resilience First Aid Responder &middot; Accredited Mental Health First Aider, including Workplace &middot; Accredited Cinergy Conflict Coach</p>
+      </div>
+    </section>
+
+    <!-- ============ 6. SERVICES ============ -->
+    <section class="sec" id="services" style="--h:120">
+      <div class="wrap">
+        <h2 data-reveal>What that looks like in practice.</h2>
+        <ol class="services">
+          <li data-reveal><div class="svc-body"><b>Training</b><span>For teams arriving at the same decade at the same time.</span></div></li>
+          <li data-reveal><div class="svc-body"><b>Workshops</b><span>Half a day or a series, run in-house or open to the public.</span></div></li>
+          <li data-reveal><div class="svc-body"><b>Seminars</b><span>The argument, made once, to a room that has not heard it before.</span></div></li>
+          <li data-reveal><div class="svc-body"><b>One-to-one coaching</b><span>The private version, for the person who cannot say this out loud at work yet.</span></div></li>
+          <li data-reveal><div class="svc-body"><b>Group coaching</b><span>A cohort working through it together, which is usually faster and always less lonely.</span></div></li>
+          <li data-reveal><div class="svc-body"><b>Consulting</b><span>For organisations putting retirement into workforce planning rather than payroll.</span></div></li>
+          <li data-reveal><div class="svc-body"><b>Speaking</b><span>Conferences, boards and member organisations.</span></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 7. TESTIMONIAL ============ -->
+    <section class="sec" id="testimonial" style="--h:110">
+      <h2 class="sr-only">What clients say</h2>
+      <div class="wrap">
+        <figure style="margin:0">
+          <blockquote data-reveal>
+            &ldquo;Financial planning for retirement is well known. I hadn't heard about psychosocial education focused on human-centred retirement planning &mdash; in 30 years of politics. In talking with Dr San I realised the critical need to plan for the human side of retirement. With hand on heart, I can honestly say that engaging Dr San has been life changing.&rdquo;
+          </blockquote>
+          <figcaption class="attrib" data-reveal><strong>Hon. Warren Entsch</strong> &nbsp;&middot;&nbsp; Former Federal Member for Leichhardt</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ 8. CTA ============ -->
+    <section class="sec" id="contact" style="--h:110">
+      <div class="wrap">
+        <h2 data-reveal>Start with thirty minutes.</h2>
+        <p class="lede" data-reveal>A complimentary 30-minute consult. Describe the date you have in mind. We work out what is actually being planned for, and what is not.</p>
+        <p data-reveal><a class="cta" href="/contact">Book the complimentary 30-minute consult</a></p>
+        <p class="alt-path" data-reveal>Planning for a workforce rather than one person? <a href="/contact">Ask about the organisational program.</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <p>Ready Set Retirement &middot; Dr Sandra Walden-Pearson &middot; Far North Queensland, Australia</p>
+    <nav aria-label="Sections of this page">
+      <ul>
+        <li><a href="#first-light">First light</a></li>
+        <li><a href="#the-losses">What leaves</a></li>
+        <li><a href="#the-second-horizon">The second horizon</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="/contact">Book a consult</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var cv  = document.getElementById("sky");
+  var ctx = cv.getContext("2d");
+  if (!ctx) return;
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ------------------------------------------------------------------
+     THE SINGLE STATE OBJECT.
+     One ScrollTrigger writes t. The ticker reads it. Nothing else.
+  ------------------------------------------------------------------ */
+  var state = { t: 0 };
+
+  var W = 0, H = 0, dpr = 1, horizonY = 0;
+
+  /* ---------- maths ---------- */
+  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function smooth01(v) { v = clamp01(v); return v * v * (3 - 2 * v); }
+  function mix(a, b, k) {
+    return [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
+  }
+  function rgba(c, a) {
+    return "rgba(" + (c[0] | 0) + "," + (c[1] | 0) + "," + (c[2] | 0) + "," + a + ")";
+  }
+
+  /* ------------------------------------------------------------------
+     THE ARC.
+     The light body travels a parabola y = u^2 - 1 in arc space.
+     u is swept from U0 to U1 by a smoothstep warped so the vertex —
+     the deepest point below the horizon — falls at t = 0.55.
+     The sweep is asymmetric, so the far arm of the parabola is longer
+     than the near one: the light returns higher than it started.
+     Horizon sits at y = 0 in arc space, so the disc is below the line
+     for roughly t = 0.42 to t = 0.67.
+  ------------------------------------------------------------------ */
+  var U0 = -2.299, U1 = 2.752, WARP = 1.263;
+  var ARC_Y = 0.070;   /* viewport heights per arc unit */
+
+  function arcU(t) {
+    var q = Math.pow(clamp01(t), WARP);
+    return U0 + (U1 - U0) * (q * q * (3 - 2 * q));
+  }
+
+  /* darkness: 0 at first light, 1 across the descent and the hold, 0 by full light */
+  function darkness(t) {
+    var up   = smooth01((t - 0.10) / 0.34);
+    var down = 1 - smooth01((t - 0.52) / 0.34);
+    return Math.min(up, down);
+  }
+  /* warmth: 0.5 at the opening, 0 in the dark, 1.0 at the close — warmer than it began */
+  function warmth(t) {
+    return (1 - darkness(t)) * (0.5 + 0.5 * smooth01((t - 0.60) / 0.40));
+  }
+
+  /* ---------- star field, stored in normalised space ---------- */
+  var stars = [];
+  function buildStars() {
+    stars = [];
+    var n = 420;
+    for (var i = 0; i < n; i++) {
+      var d = i < n * 0.55 ? 0 : (i < n * 0.86 ? 1 : 2);
+      stars.push({
+        x: Math.random(),
+        y: -0.30 + Math.random() * 0.96,
+        d: d,
+        r: [0.55, 0.9, 1.35][d] + Math.random() * [0.35, 0.45, 0.6][d],
+        a: [0.34, 0.6, 0.92][d] * (0.6 + Math.random() * 0.4),
+        sp: 0.5 + Math.random() * 1.6,
+        ph: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  /* ---------- sizing ---------- */
+  function sizeCanvas() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    horizonY = Math.round(H * 0.62);
+    cv.width  = Math.max(1, Math.round(W * dpr));
+    cv.height = Math.max(1, Math.round(H * dpr));
+    cv.style.width  = W + "px";
+    cv.style.height = H + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  /* ---------- the draw ---------- */
+  function render(time) {
+    var t    = clamp01(state.t);
+    var dark = darkness(t);
+    var warm = warmth(t);
+
+    var u  = arcU(t);
+    var hi = (u * u - 1) * ARC_Y * H;          /* height above the horizon, px */
+    var dx = W / 2 + u * Math.min(W * 0.075, H * 0.13);
+    var dy = horizonY - hi;
+    var r  = Math.max(22, H * 0.052);
+
+    /* proximity of the light to the line drives the horizon glow */
+    var glow = Math.exp(-Math.abs(hi) / (H * 0.34));
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.globalCompositeOperation = "source-over";
+    ctx.clearRect(0, 0, W, H);
+
+    /* --- sky --- */
+    /* The cold end of the ramp carries a violet cast — the brand's purple,
+       barely above black, so the darkest part of the page is still hers.
+       It burns off entirely as the second horizon warms. */
+    var top   = mix([7, 5, 13],   [11, 10, 13], warm);
+    var mid   = mix([12, 8, 22],  [20, 16, 17], warm);
+    var horiz = mix([25, 16, 45], [70, 48, 32], warm);
+
+    var sky = ctx.createLinearGradient(0, 0, 0, horizonY);
+    sky.addColorStop(0, rgba(top, 1));
+    sky.addColorStop(0.45, rgba(mid, 1));
+    sky.addColorStop(1, rgba(horiz, 1));
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, W, horizonY);
+
+    /* everything celestial is clipped to above the line — that is what makes it hard */
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, 0, W, horizonY);
+    ctx.clip();
+    ctx.globalCompositeOperation = "lighter";
+
+    /* --- stars, three parallax depths --- */
+    var sa = 0.15 + 0.85 * dark;
+    if (sa > 0.01) {
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var drift = t * H * (0.08 + s.d * 0.07);
+        var sy = s.y * H + drift;
+        if (sy < -8 || sy > horizonY + 8) continue;
+        var tw = reduced ? 1 : (0.78 + 0.22 * Math.sin(time * s.sp + s.ph));
+        ctx.globalAlpha = Math.min(1, s.a * sa * tw);
+        ctx.beginPath();
+        ctx.arc(s.x * W, sy, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = "#FFF6E6";
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    /* --- horizon glow: a flattened bloom sitting on the line --- */
+    var gR = Math.max(W * 0.8, H * 1.0);
+    ctx.save();
+    ctx.translate(dx, horizonY);
+    ctx.scale(1, 0.3);
+    var gg = ctx.createRadialGradient(0, 0, 0, 0, 0, gR);
+    var gA = 0.30 * glow + 0.10 * warm;
+    gg.addColorStop(0,    "rgba(255,228,186," + (gA).toFixed(3) + ")");
+    gg.addColorStop(0.35, "rgba(255,206,150," + (gA * 0.38).toFixed(3) + ")");
+    gg.addColorStop(0.7,  "rgba(210,150,110," + (gA * 0.12).toFixed(3) + ")");
+    gg.addColorStop(1,    "rgba(160,120,100,0)");
+    ctx.fillStyle = gg;
+    ctx.beginPath();
+    ctx.arc(0, 0, gR, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    /* --- the light body ---
+       In reduced motion the disc is frozen, so it can sit permanently behind a
+       paragraph. Dim it there so the copy never has to fight a static highlight. */
+    ctx.globalAlpha = reduced ? 0.5 : 1;
+    var dg = ctx.createRadialGradient(dx, dy, 0, dx, dy, r * 4.6);
+    dg.addColorStop(0,    "rgba(255,238,212,0.95)");
+    dg.addColorStop(0.13, "rgba(255,233,196,0.88)");
+    dg.addColorStop(0.22, "rgba(255,225,180,0.46)");
+    dg.addColorStop(0.40, "rgba(255,210,158,0.15)");
+    dg.addColorStop(0.68, "rgba(250,196,142,0.05)");
+    dg.addColorStop(1,    "rgba(240,186,134,0)");
+    ctx.fillStyle = dg;
+    ctx.beginPath();
+    ctx.arc(dx, dy, r * 4.6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+
+    ctx.restore();
+
+    /* --- the ground below the line --- */
+    ctx.globalCompositeOperation = "source-over";
+    var gr = ctx.createLinearGradient(0, horizonY, 0, H);
+    gr.addColorStop(0, rgba(mix([3, 4, 7], [12, 9, 9], warm), 1));
+    gr.addColorStop(1, rgba([2, 2, 4], 1));
+    ctx.fillStyle = gr;
+    ctx.fillRect(0, horizonY, W, H - horizonY);
+
+    /* --- the line itself --- */
+    ctx.fillStyle = "rgba(255,255,255," + (0.10 + 0.30 * glow).toFixed(3) + ")";
+    ctx.fillRect(0, horizonY, W, 1);
+
+    /* --- vignette --- */
+    var vg = ctx.createRadialGradient(W / 2, H * 0.5, Math.min(W, H) * 0.28, W / 2, H * 0.5, Math.max(W, H) * 0.78);
+    vg.addColorStop(0, "rgba(0,0,0,0)");
+    vg.addColorStop(1, "rgba(0,0,0,0.46)");
+    ctx.fillStyle = vg;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  /* ------------------------------------------------------------------
+     Copy reveals are derived from the same t — no second trigger.
+  ------------------------------------------------------------------ */
+  var reveals = [];
+  var maxScroll = 1;
+
+  function cacheReveals() {
+    var sy = window.scrollY || window.pageYOffset || 0;
+    reveals = [];
+    var nodes = document.querySelectorAll("[data-reveal]");
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      var box = el.getBoundingClientRect();
+      var centre = box.top + sy + box.height / 2;
+      reveals.push({
+        el: el,
+        c: centre,
+        /* anything already on screen at rest is simply present — nothing above
+           the fold should ever load in a half-faded state */
+        fixed: (box.top + sy) < H * 0.95,
+        last: -1
+      });
+    }
+  }
+
+  function updateReveals() {
+    var sy = state.t * maxScroll;
+    for (var i = 0; i < reveals.length; i++) {
+      var rv = reveals[i];
+      var p = rv.fixed ? 1 : smooth01((H - (rv.c - sy)) / (H * 0.26));
+      if (Math.abs(p - rv.last) > 0.004) {
+        rv.last = p;
+        rv.el.style.opacity = (0.1 + 0.9 * p).toFixed(3);
+        rv.el.style.transform = "translate3d(0," + ((1 - p) * 20).toFixed(2) + "px,0)";
+      }
+    }
+  }
+
+  /* ------------------------------------------------------------------
+     Boot
+  ------------------------------------------------------------------ */
+  sizeCanvas();
+  buildStars();
+
+  if (reduced || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    /* Static mid-arc composition. The page is an ordinary document. */
+    state.t = 0.30;
+    render(0);
+    window.addEventListener("resize", function () {
+      sizeCanvas();
+      render(0);
+    }, { passive: true });
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+  document.documentElement.classList.add("js-motion");
+
+  maxScroll = Math.max(1, ScrollTrigger.maxScroll(window));
+  state.t = clamp01((window.scrollY || 0) / maxScroll);
+  cacheReveals();
+  updateReveals();
+
+  /* THE single ScrollTrigger. Everything on the page reads its output. */
+  gsap.to(state, {
+    t: 1,
+    ease: "none",
+    scrollTrigger: {
+      trigger: document.documentElement,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1.2,
+      invalidateOnRefresh: true
+    }
+  });
+
+  ScrollTrigger.addEventListener("refresh", function () {
+    maxScroll = Math.max(1, ScrollTrigger.maxScroll(window));
+    cacheReveals();
+  });
+
+  gsap.ticker.add(function (time) {
+    render(time);
+    updateReveals();
+  });
+
+  var rt;
+  window.addEventListener("resize", function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () {
+      sizeCanvas();
+      maxScroll = Math.max(1, ScrollTrigger.maxScroll(window));
+      cacheReveals();
+      ScrollTrigger.refresh();
+    }, 140);
+  }, { passive: true });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      maxScroll = Math.max(1, ScrollTrigger.maxScroll(window));
+      cacheReveals();
+      ScrollTrigger.refresh();
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
