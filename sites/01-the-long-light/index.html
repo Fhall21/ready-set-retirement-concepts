@@ -4,7 +4,7 @@
 <meta name="description" content="Human-centred retirement planning with Dr San. You have planned for the money. Now plan for the person.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..600&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -15,7 +15,6 @@
   --dim:rgba(242,237,228,.52);
   --hair:rgba(242,237,228,.16);
   --serif:"Source Serif 4",Georgia,serif;
-  --cursive:"Fraunces",Georgia,serif;
   --sans:"Space Grotesk",system-ui,sans-serif;
   --gut:clamp(1.5rem,5vw,5rem);
   --chapter:clamp(6rem,12vh,12rem);
@@ -110,8 +109,8 @@ h1,h2,h3,p,figure,blockquote{margin:0}
   color:var(--amber);margin-bottom:2.2rem;
 }
 h2{
-  font-family:var(--cursive);font-weight:300;font-style:italic;
-  font-variation-settings:"opsz" 144;
+  font-family:var(--serif);font-weight:500;font-style:italic;
+  font-optical-sizing:auto;
   font-size:clamp(2.1rem,4.6vw,3.9rem);line-height:1.06;
   letter-spacing:-.018em;max-width:20ch;
 }
@@ -150,10 +149,10 @@ p+p{margin-top:1.35em}
 
 /* ---------- testimonial ---------- */
 .quote{
-  font-family:var(--cursive);font-weight:300;font-style:italic;
-  font-variation-settings:"opsz" 144;
-  font-size:clamp(1.5rem,3.1vw,2.35rem);line-height:1.32;
-  letter-spacing:-.02em;max-width:26ch;
+  font-family:var(--serif);font-weight:400;font-style:italic;
+  font-optical-sizing:auto;
+  font-size:clamp(1.4rem,2.6vw,2.1rem);line-height:1.5;
+  letter-spacing:-.006em;max-width:32ch;
 }
 .attrib{margin-top:2.4rem;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
 .attrib b{display:block;color:var(--bone);font-weight:500;margin-bottom:.4rem}
