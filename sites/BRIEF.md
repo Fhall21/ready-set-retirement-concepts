@@ -154,7 +154,7 @@ most, and only where the role is structural:
 | 04 Unretired | the inverted chapters, full bleed | the CTA rule — it exists only inside the purple |
 | 05 The Quiet Room | the thread, and every link | — |
 | 07 Third Act | — (deep red is the roadshow convention) | the distributor mark |
-| 08 Vitals | brand chrome only; mint and amber stay the instrument's signals | — |
+| 08 Vitals | the restored state, and every action | the deficit state, taken down to `#7E600F` to read on cream |
 | 09 The Map | the hazard overprint — a genuine second plate | — |
 - `drsan.jpg` — studio headshot of **Dr Sandra Walden-Pearson**, plain grey backdrop.
   Genuine photograph, captioned "Dr San — Psychosocial Retirement Educator" on the live site.
