@@ -3,12 +3,69 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+/* Palette before first paint, so the page never flashes the other option. */
+(function(){try{
+  var q=new URL(location.href).searchParams.get("pal")||(location.hash.match(/pal=([ab])/i)||[])[1];
+  var p=(q||localStorage.getItem("rsr-pal")||"a").toLowerCase();
+  if(p!=="b")p="a";
+  document.documentElement.setAttribute("data-pal",p);
+  localStorage.setItem("rsr-pal",p);
+}catch(e){}})();
+</script>
 <title>Unretired — Ready Set Retirement — Dr Sandra Walden-Pearson</title>
 <meta name="description" content="Psychosocial retirement education. Forty years of planning for the money, about ten minutes planning for the person. Human-centred retirement planning with Dr Sandra Walden-Pearson.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   A/B PALETTE — the second colour pass. Two schemes, switchable live from the
+   control in the bottom-right corner. Full rationale in sites/PALETTE.md.
+   A: violet and coral, warm and energetic.
+   B: orchid and azure, cooler and more corporate.
+   Neither contains a brown, a grey-blue or an aged cream, because those are
+   what the client marked down six sites out of seven for.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root{
+  --p-ground:#FFFFFF;
+  --p-ground-2:#FBF6FF;
+  --p-ground-3:#F3E7FD;
+  --p-ink:#211A2A;
+  --p-ink-soft:#574B66;
+  --p-brand:#7B2FB5;
+  --p-brand-deep:#5F1F92;
+  --p-brand-bright:#9A45DE;
+  --p-accent:#D91A54;
+  --p-accent-bright:#FF4F70;
+  --p-gold:#FFC233;
+  /* the few places a dark ground is the idea rather than the mood */
+  --p-dark:#1B1024;
+  --p-dark-2:#2B1839;
+  --p-on-dark:#FDF7FF;
+  --p-on-dark-soft:#CBB6DC;
+  --p-on-dark-accent:#FF7C96;
+}
+html[data-pal="b"]{
+  --p-ground:#FFFFFF;
+  --p-ground-2:#F6F8FE;
+  --p-ground-3:#E9EFFC;
+  --p-ink:#17203A;
+  --p-ink-soft:#495271;
+  --p-brand:#C01B7A;
+  --p-brand-deep:#9A1461;
+  --p-brand-bright:#E82F96;
+  --p-accent:#1F5FE0;
+  --p-accent-bright:#3B82F6;
+  --p-gold:#FFB020;
+  --p-dark:#0F1729;
+  --p-dark-2:#1B2440;
+  --p-on-dark:#F7F9FF;
+  --p-on-dark-soft:#B6C1DA;
+  --p-on-dark-accent:#7FA8FF;
+}
+
 /* ------------------------------------------------------------------
    UNRETIRED — one family, two colours, nothing else.
    Every colour on this page is expressed as --ink or --paper.
@@ -23,16 +80,16 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 :root {
-  --ink:   #111110;
-  --paper: #F5F3EF;
-  --signal: var(--ink);
+  --ink:   var(--p-ink);
+  --paper: var(--p-ground);
+  --signal: var(--p-accent);   /* was var(--ink) — the monochrome was the note */
 
   --pad:    clamp(1.15rem, 4vw, 4.5rem);
   --rhythm: clamp(6rem, 12vh, 12rem);
 
-  --poster:  clamp(2.5rem, 19vw, 22rem);    /* the h1 — one word, edge to edge, one line */
-  --display: clamp(3.5rem, 13vw, 15rem);    /* chapter display */
-  --mega:    clamp(3rem, 20vw, 23rem);      /* the testimonial — largest type on the page */
+  --poster:  clamp(2.3rem, 12.5vw, 13rem);  /* was 19vw/22rem — the client found it shouty */
+  --display: clamp(2.6rem, 9.5vw, 10rem);   /* chapter display, brought down with it */
+  --mega:    clamp(2.6rem, 13vw, 14rem);    /* was 20vw/23rem */
   --mid:     clamp(1.5rem, 4.2vw, 3.5rem);
   --body:    clamp(1.0625rem, 0.98rem + 0.34vw, 1.25rem);
   --small:   clamp(0.75rem, 0.7rem + 0.15vw, 0.875rem);
@@ -45,9 +102,9 @@
    full-bleed, because on a site with no images colour is the only material
    there is. #6F3794 against #F5F3EF measures 7.1:1. */
 html.invert {
-  --ink:   #F5F3EF;
-  --paper: #6F3794;
-  --signal:#ECC24D;   /* brand gold. It only exists inside the purple. */
+  --ink:   var(--p-on-dark);
+  --paper: var(--p-brand);     /* the brand violet, brightened off #6F3794 */
+  --signal:var(--p-gold);      /* the go-signal. It only exists inside the violet. */
 }
 
 html { -webkit-text-size-adjust: 100%; }
@@ -64,6 +121,16 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
+.deck{
+  margin:clamp(1rem,2.5vw,1.8rem) 0 0;
+  max-width:34ch;
+  font-size:clamp(1.15rem,1.02rem + .7vw,1.6rem);
+  line-height:1.34;
+  letter-spacing:-.018em;
+  font-variation-settings:'opsz' 24,'wdth' 100,'wght' 450;
+}
+.deck em{font-style:normal;color:var(--signal)}
 
 /* ---- shared type ------------------------------------------------- */
 
@@ -376,6 +443,29 @@ footer { padding-block: var(--rhythm) clamp(3rem, 8vh, 6rem); border-top: 1px so
   #costs { min-height: 0; }
   .stack .w { margin-bottom: 0.08em; }
 }
+
+/* ═══════════════ A/B COLOUR TEST CONTROL ═══════════════ */
+.abx{
+  position:fixed;z-index:900;
+  right:clamp(.7rem,2vw,1.4rem);bottom:clamp(.7rem,2vw,1.4rem);
+  display:flex;align-items:center;gap:.45rem;
+  padding:.4rem .45rem .4rem .8rem;border-radius:999px;
+  background:var(--p-ground);color:var(--p-ink);
+  border:1px solid color-mix(in srgb, var(--p-ink) 22%, transparent);
+  box-shadow:0 10px 30px -12px color-mix(in srgb, var(--p-ink) 45%, transparent);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  line-height:1;
+}
+.abx .abx-l{color:var(--p-ink-soft)}
+.abx button{
+  appearance:none;cursor:pointer;border:0;border-radius:999px;
+  width:26px;height:26px;font:inherit;font-size:11px;
+  background:transparent;color:var(--p-ink-soft);
+}
+.abx button:hover{background:var(--p-ground-3);color:var(--p-brand)}
+.abx button[aria-pressed="true"]{background:var(--p-brand);color:#fff}
+@media(max-width:420px){.abx .abx-l{display:none}.abx{padding-left:.45rem}}
 </style>
 </head>
 <body>
@@ -400,6 +490,8 @@ footer { padding-block: var(--rhythm) clamp(3rem, 8vh, 6rem); border-top: 1px so
   <!-- 1 ------------------------------------------------------------ -->
   <section class="hero wrap" aria-labelledby="hero-word">
     <h1 id="hero-word" class="mask" data-split data-label="Unretired">UNRETIRED</h1>
+    <p class="deck">The word nobody uses for the part after the date.
+      <em>Preparing for it is skills work, and it is teachable.</em></p>
 
     <div class="hero-grid">
       <p class="lead fade-in">Forty years of planning for the money. About ten minutes planning for the person who has to live on it.</p>
@@ -673,6 +765,34 @@ footer { padding-block: var(--rhythm) clamp(3rem, 8vh, 6rem); border-top: 1px so
     document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
   }
   window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+})();
+</script>
+
+<div class="abx" role="group" aria-label="Colour scheme test">
+  <span class="abx-l">Colour</span>
+  <button type="button" data-pal="a" aria-pressed="true" title="Palette A - violet and coral">A</button>
+  <button type="button" data-pal="b" aria-pressed="false" title="Palette B - orchid and azure">B</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll(".abx button");
+  function paint(p){
+    root.setAttribute("data-pal",p);
+    try{localStorage.setItem("rsr-pal",p);}catch(e){}
+    btns.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pal===p));});
+    /* the wordmark is artwork, not CSS, so it is swapped by hand */
+    document.querySelectorAll("img[data-logo]").forEach(function(im){
+      im.setAttribute("src","assets/logo-"+p+(im.dataset.logo==="dark"?"-dark":"")+".svg");
+    });
+    /* carry the choice to every other page in the set */
+    document.querySelectorAll("a[href]").forEach(function(a){
+      var h=a.getAttribute("href");
+      if(!h||/^(#|\/|mailto:|tel:|https?:)/.test(h))return;
+      a.setAttribute("href",h.split("?")[0].split("#")[0]+"?pal="+p+(h.indexOf("#")>-1?"#"+h.split("#")[1]:""));
+    });
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){paint(b.dataset.pal);});});
+  paint(root.getAttribute("data-pal")||"a");
 })();
 </script>
 </body>

@@ -328,8 +328,31 @@ credit roll static.
 
 ---
 
-## 08 — VITALS
-**Slug** `08-vitals` · **Assets** none — SVG and canvas.
+## 08 — VITALS  ·  SECOND ITERATION
+**Slug** `08-vitals` · **Assets** `assets/drsan.jpg`
+**Status** rebuilt after feedback. First pass kept at `archive/v1/08-vitals-v1.html`.
+
+The client singled this one out in the positive: *"the four dials are excellent - simplicity in
+the visuals. So many words captured in this representation, together with the covered/not
+covered table."* And in the negative, on colour only: *"sombre and boring."*
+
+So the second iteration keeps exactly what was named and removes the rest:
+
+- **One bank of four dials with a two-state switch**, `NO PLAN / WITH PREPARATION`, replacing two
+  separate banks of four with eight blocks of copy between them. The reader watches the change
+  happen to the same object instead of comparing two objects from memory. Eight concepts to four.
+- **The ECG trace is gone.** It was the most technically involved thing on the page and it made
+  the dials' point forty seconds earlier.
+- **The covered/not-covered table** stays, because the client read it as a health-fund benefits
+  table and found that easy. Eleven rows to seven, in plain English.
+- Four disclaimers to one, in the footer. Eleven credential lines to four plus a disclosure.
+- Bright white ground, violet for the restored state and every action, coral for the deficit.
+  The gauge arcs are the only saturated objects above the fold, which is the point of a dashboard.
+
+Word count down roughly two thirds. Below is the first pass's direction, kept for the record.
+
+### First pass (superseded)
+**Assets** none — SVG and canvas.
 **Skill lens** `/design-taste-frontend`.
 
 Retirement readiness rendered as a medical instrument. Precise, cool, slightly clinical —
@@ -370,8 +393,35 @@ all real or clearly qualitative — no invented precision.
 
 ---
 
-## 09 — THE MAP
-**Slug** `09-the-map` · **Assets** none — SVG.
+## 09 — THE MAP  ·  SECOND ITERATION
+**Slug** `09-the-map` · **Assets** `assets/drsan.jpg`
+**Status** rebuilt after feedback. First pass kept at `archive/v1/09-the-map-v1.html`.
+
+The clearest signal in the whole feedback document: *"honestly, this is brilliant but not a good
+fit for the likely audience: need to keep it relatively simple because it may be that people
+already come to it stressed, so this needs to be stress free - not a challenge to understand and
+follow."* And: *"takes too much thinking but is genius."*
+
+The concept is kept and the apparatus is removed.
+
+**Gone:** the grid-reference readout, the elevation readout, the bearing readout, the scale bar,
+the north arrow, the ten-item legend, the fold lines, the paper grain, and the words *traverse*,
+*trigonometrical station*, *interior not examined*, *resurvey*, *datum*, *projection* and *plate*.
+
+**Kept:** mapped ground, then blank ground, then mapped ground again. One image, three states,
+four stops instead of twelve. The route is a bright violet line on white, the blank region is
+genuinely blank and labelled `NOT MAPPED`, and the four hazards are coral pins with no labels on
+the map at all — they are named once, in words, in a plain four-up further down the page.
+
+Under 900px and under reduced motion the stage does not pin: it becomes a single wide strip
+showing all three kinds of ground at once, with the four stops read as an ordinary list beneath.
+That still frame is the clearest version of the idea, which is why it is what phones get.
+
+Every surveyor's term is now the plain-English thing it meant. Below is the first pass's
+direction, kept for the record.
+
+### First pass (superseded)
+**Assets** none — SVG.
 **Skill lens** `/impeccable`. Requires `MotionPathPlugin` (free).
 
 Retirement planning as a survey — you are here, the ground ahead is mapped, here is the route.

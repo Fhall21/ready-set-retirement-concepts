@@ -143,6 +143,18 @@ Supplied by the client and held in `previous_resources/assets/` (web-ready deriv
   (light grounds — the gold is unreadable on paper, so it does not appear there),
   `logo-map.svg` (map ink + ochre-deep).
 
+### SECOND PASS — read `PALETTE.md` before touching any colour
+The palettes below are the **first** pass and are superseded. Dr San marked six of the seven
+sites down on colour and colour only: *dark, dreary, sombre, monochrome, depressing, aged paper.*
+Every site now runs on the two-scheme A/B token set documented in `PALETTE.md`, switchable live
+from a control on every page. No site defines a hex value in its own layout rules any more; they
+all map their own colour names onto the `--p-*` tokens. If you add a site, add the same four
+things listed in `PALETTE.md` section 6.
+
+The tables below are retained because they record what the brand roles were, and the role
+assignments still hold &mdash; purple is still the psychosocial and gold is still the go-signal.
+Only the values changed.
+
 ### The colour rule
 **Purple is the psychosocial. Gold is the go-signal.** Each site gets one role for each at
 most, and only where the role is structural:

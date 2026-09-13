@@ -3,21 +3,78 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+/* Palette before first paint, so the page never flashes the other option. */
+(function(){try{
+  var q=new URL(location.href).searchParams.get("pal")||(location.hash.match(/pal=([ab])/i)||[])[1];
+  var p=(q||localStorage.getItem("rsr-pal")||"a").toLowerCase();
+  if(p!=="b")p="a";
+  document.documentElement.setAttribute("data-pal",p);
+  localStorage.setItem("rsr-pal",p);
+}catch(e){}})();
+</script>
 <title>The Quiet Room — Ready Set Retirement</title>
 <meta name="description" content="Psychosocial retirement education with Dr Sandra Walden-Pearson. For the person already six months in and finding it harder than expected.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..700;1,6..72,200..600&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   A/B PALETTE — the second colour pass. Two schemes, switchable live from the
+   control in the bottom-right corner. Full rationale in sites/PALETTE.md.
+   A: violet and coral, warm and energetic.
+   B: orchid and azure, cooler and more corporate.
+   Neither contains a brown, a grey-blue or an aged cream, because those are
+   what the client marked down six sites out of seven for.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root{
+  --p-ground:#FFFFFF;
+  --p-ground-2:#FBF6FF;
+  --p-ground-3:#F3E7FD;
+  --p-ink:#211A2A;
+  --p-ink-soft:#574B66;
+  --p-brand:#7B2FB5;
+  --p-brand-deep:#5F1F92;
+  --p-brand-bright:#9A45DE;
+  --p-accent:#D91A54;
+  --p-accent-bright:#FF4F70;
+  --p-gold:#FFC233;
+  /* the few places a dark ground is the idea rather than the mood */
+  --p-dark:#1B1024;
+  --p-dark-2:#2B1839;
+  --p-on-dark:#FDF7FF;
+  --p-on-dark-soft:#CBB6DC;
+  --p-on-dark-accent:#FF7C96;
+}
+html[data-pal="b"]{
+  --p-ground:#FFFFFF;
+  --p-ground-2:#F6F8FE;
+  --p-ground-3:#E9EFFC;
+  --p-ink:#17203A;
+  --p-ink-soft:#495271;
+  --p-brand:#C01B7A;
+  --p-brand-deep:#9A1461;
+  --p-brand-bright:#E82F96;
+  --p-accent:#1F5FE0;
+  --p-accent-bright:#3B82F6;
+  --p-gold:#FFB020;
+  --p-dark:#0F1729;
+  --p-dark-2:#1B2440;
+  --p-on-dark:#F7F9FF;
+  --p-on-dark-soft:#B6C1DA;
+  --p-on-dark-accent:#7FA8FF;
+}
+
   :root{
-    --paper:#F7F4EE;
-    --ink:#2B2A26;
-    --ink-soft:#55524A;
-    --clay:#6F3794;          /* brand purple — the thread, and only the thread */
-    --clay-ink:#6F3794;      /* brand purple, 7.25:1 on paper */
-    --sage:#7C8B72;          /* decorative only */
-    --sage-ink:#5D6B54;      /* text-safe sage, 5.1:1 on paper */
-    --rule:rgba(43,42,38,.16);
+    --paper:var(--p-ground);       /* was #F7F4EE — the aged cream is gone */
+    --ink:var(--p-ink);
+    --ink-soft:var(--p-ink-soft);
+    --clay:var(--p-brand);         /* the thread, and only the thread */
+    --clay-ink:var(--p-brand);
+    --sage:var(--p-accent);        /* was a dusty sage green */
+    --sage-ink:var(--p-accent);
+    --rule:color-mix(in srgb, var(--p-ink) 14%, transparent);
     --measure:66ch;
     --gutter:clamp(1.25rem, 4vw, 3.25rem);
     --thread-w:clamp(3rem, 9vw, 9rem);
@@ -43,6 +100,8 @@
     text-rendering:optimizeLegibility;
   }
 
+  /* The paper fibre overlay is switched off. It was the thing that made this
+     read as an aged document, which is exactly what was objected to. */
   /* very subtle paper fibre — decorative, never interactive */
   body::before{
     content:"";
@@ -52,6 +111,7 @@
     pointer-events:none;
     opacity:.055;
     mix-blend-mode:multiply;
+    display:none;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.74' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23f)'/%3E%3C/svg%3E");
     background-size:200px 200px;
   }
@@ -67,12 +127,14 @@
   }
   #thread path{
     fill:none;
-    stroke:var(--clay);
-    stroke-width:1.3;
+    stroke:url(#threadGrad);
+    stroke-width:2;
     stroke-linecap:round;
     stroke-linejoin:round;
-    opacity:.72;
+    opacity:.95;
   }
+  #threadGrad stop:first-child{stop-color:var(--p-brand)}
+  #threadGrad stop:last-child{stop-color:var(--p-accent)}
 
   /* ---------- page frame ---------- */
   .page{
@@ -169,7 +231,7 @@
     height:auto;
     border-radius:2px;
     /* graded down toward the paper — it is a margin note, not a poster */
-    filter:saturate(.78) sepia(.09) contrast(1.01);
+    filter:saturate(1.08) contrast(1.02) brightness(1.07);
   }
   .portrait figcaption{
     margin-top:.75rem;
@@ -312,16 +374,46 @@
     .plate{ --clip:0; }
     *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
   }
+
+/* ═══════════════ A/B COLOUR TEST CONTROL ═══════════════ */
+.abx{
+  position:fixed;z-index:900;
+  right:clamp(.7rem,2vw,1.4rem);bottom:clamp(.7rem,2vw,1.4rem);
+  display:flex;align-items:center;gap:.45rem;
+  padding:.4rem .45rem .4rem .8rem;border-radius:999px;
+  background:var(--p-ground);color:var(--p-ink);
+  border:1px solid color-mix(in srgb, var(--p-ink) 22%, transparent);
+  box-shadow:0 10px 30px -12px color-mix(in srgb, var(--p-ink) 45%, transparent);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  line-height:1;
+}
+.abx .abx-l{color:var(--p-ink-soft)}
+.abx button{
+  appearance:none;cursor:pointer;border:0;border-radius:999px;
+  width:26px;height:26px;font:inherit;font-size:11px;
+  background:transparent;color:var(--p-ink-soft);
+}
+.abx button:hover{background:var(--p-ground-3);color:var(--p-brand)}
+.abx button[aria-pressed="true"]{background:var(--p-brand);color:#fff}
+@media(max-width:420px){.abx .abx-l{display:none}.abx{padding-left:.45rem}}
 </style>
 </head>
 <body>
 
-<svg id="thread" aria-hidden="true" focusable="false" preserveAspectRatio="xMinYMin meet"><path id="threadPath" d=""/></svg>
+<svg id="thread" aria-hidden="true" focusable="false" preserveAspectRatio="xMinYMin meet">
+  <defs>
+    <linearGradient id="threadGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"/><stop offset="1"/>
+    </linearGradient>
+  </defs>
+  <path id="threadPath" d=""/>
+</svg>
 
 <div class="page">
 
   <p class="masthead">
-    <img class="mark" src="assets/logo-solid-purple.svg" width="767" height="334"
+    <img class="mark" data-logo="light" src="assets/logo-a.svg" width="767" height="334"
          alt="Ready Set Retirement — psychosocial planning for retirement">
     <span>Psychosocial retirement education with Dr Sandra Walden-Pearson.</span>
   </p>
@@ -420,7 +512,7 @@
     <section class="movement" aria-labelledby="t5">
       <div class="row">
         <div class="col">
-          <h2 id="t5" class="fade">The work itself is unglamorous, and it holds.</h2>
+          <h2 id="t5" class="fade">The work is unglamorous, practical, and it holds.</h2>
           <hr class="mark">
           <p class="fade">Dr Sandra Walden-Pearson works on the human side of the change. She calls it <span class="tm">human-centred retirement planning&trade;</span>, and the method she teaches is <span class="tm">readysetretirement psychosocial planning&reg;</span>: deliberate preparation for identity, purpose, structure and belonging. Done in advance where that is still possible, and done retrospectively where it is not, which is most of the time and perfectly workable.</p>
           <p class="fade">In practice it looks like conversations with homework. You map what your work was actually giving you, which is almost never what you would have guessed, and then you go about sourcing those same things from somewhere that is not a payroll. Some of it is straightforward. Some of it takes a year. It is closer to rehabilitation than to inspiration, and it is deliberately slow, because the things it rebuilds are slow things.</p>
@@ -681,6 +773,34 @@
     svg.style.height = h + "px";
   });
 
+})();
+</script>
+
+<div class="abx" role="group" aria-label="Colour scheme test">
+  <span class="abx-l">Colour</span>
+  <button type="button" data-pal="a" aria-pressed="true" title="Palette A - violet and coral">A</button>
+  <button type="button" data-pal="b" aria-pressed="false" title="Palette B - orchid and azure">B</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll(".abx button");
+  function paint(p){
+    root.setAttribute("data-pal",p);
+    try{localStorage.setItem("rsr-pal",p);}catch(e){}
+    btns.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pal===p));});
+    /* the wordmark is artwork, not CSS, so it is swapped by hand */
+    document.querySelectorAll("img[data-logo]").forEach(function(im){
+      im.setAttribute("src","assets/logo-"+p+(im.dataset.logo==="dark"?"-dark":"")+".svg");
+    });
+    /* carry the choice to every other page in the set */
+    document.querySelectorAll("a[href]").forEach(function(a){
+      var h=a.getAttribute("href");
+      if(!h||/^(#|\/|mailto:|tel:|https?:)/.test(h))return;
+      a.setAttribute("href",h.split("?")[0].split("#")[0]+"?pal="+p+(h.indexOf("#")>-1?"#"+h.split("#")[1]:""));
+    });
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){paint(b.dataset.pal);});});
+  paint(root.getAttribute("data-pal")||"a");
 })();
 </script>
 </body>

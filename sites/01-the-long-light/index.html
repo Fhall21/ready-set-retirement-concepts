@@ -1,5 +1,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+/* Palette before first paint, so the page never flashes the other option. */
+(function(){try{
+  var q=new URL(location.href).searchParams.get("pal")||(location.hash.match(/pal=([ab])/i)||[])[1];
+  var p=(q||localStorage.getItem("rsr-pal")||"a").toLowerCase();
+  if(p!=="b")p="a";
+  document.documentElement.setAttribute("data-pal",p);
+  localStorage.setItem("rsr-pal",p);
+}catch(e){}})();
+</script>
 <title>The Long Light — Ready Set Retirement</title>
 <meta name="description" content="Human-centred retirement planning with Dr San. You have planned for the money. Now plan for the person.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -7,13 +18,59 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..600;1,8..60,300..600&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   A/B PALETTE — the second colour pass. Two schemes, switchable live from the
+   control in the bottom-right corner. Full rationale in sites/PALETTE.md.
+   A: violet and coral, warm and energetic.
+   B: orchid and azure, cooler and more corporate.
+   Neither contains a brown, a grey-blue or an aged cream, because those are
+   what the client marked down six sites out of seven for.
+   ═══════════════════════════════════════════════════════════════════════════ */
 :root{
-  --void:#08070A;
-  --bone:#F2EDE4;
-  --amber:#ECC24D;      /* brand gold */
-  --teal:#2E5F63;
-  --dim:rgba(242,237,228,.52);
-  --hair:rgba(242,237,228,.16);
+  --p-ground:#FFFFFF;
+  --p-ground-2:#FBF6FF;
+  --p-ground-3:#F3E7FD;
+  --p-ink:#211A2A;
+  --p-ink-soft:#574B66;
+  --p-brand:#7B2FB5;
+  --p-brand-deep:#5F1F92;
+  --p-brand-bright:#9A45DE;
+  --p-accent:#D91A54;
+  --p-accent-bright:#FF4F70;
+  --p-gold:#FFC233;
+  /* the few places a dark ground is the idea rather than the mood */
+  --p-dark:#1B1024;
+  --p-dark-2:#2B1839;
+  --p-on-dark:#FDF7FF;
+  --p-on-dark-soft:#CBB6DC;
+  --p-on-dark-accent:#FF7C96;
+}
+html[data-pal="b"]{
+  --p-ground:#FFFFFF;
+  --p-ground-2:#F6F8FE;
+  --p-ground-3:#E9EFFC;
+  --p-ink:#17203A;
+  --p-ink-soft:#495271;
+  --p-brand:#C01B7A;
+  --p-brand-deep:#9A1461;
+  --p-brand-bright:#E82F96;
+  --p-accent:#1F5FE0;
+  --p-accent-bright:#3B82F6;
+  --p-gold:#FFB020;
+  --p-dark:#0F1729;
+  --p-dark-2:#1B2440;
+  --p-on-dark:#F7F9FF;
+  --p-on-dark-soft:#B6C1DA;
+  --p-on-dark-accent:#7FA8FF;
+}
+
+:root{
+  --void:var(--p-ground);          /* was #08070A. The page is now lit. */
+  --bone:var(--p-ink);             /* was #F2EDE4 */
+  --amber:var(--p-brand);          /* the accent layer, brightened off gold */
+  --teal:var(--p-accent);
+  --dim:var(--p-ink-soft);
+  --hair:color-mix(in srgb, var(--p-ink) 14%, transparent);
   --serif:"Source Serif 4",Georgia,serif;
   --sans:"Space Grotesk",system-ui,sans-serif;
   --gut:clamp(1.5rem,5vw,5rem);
@@ -30,7 +87,7 @@ body{
 img{max-width:100%;display:block}
 a{color:inherit}
 h1,h2,h3,p,figure,blockquote{margin:0}
-::selection{background:var(--amber);color:var(--void)}
+::selection{background:var(--p-ground-3);color:var(--p-ink)}
 :focus-visible{outline:2px solid var(--amber);outline-offset:4px}
 
 .wrap{max-width:1440px;margin-inline:auto;padding-inline:var(--gut)}
@@ -61,12 +118,17 @@ h1,h2,h3,p,figure,blockquote{margin:0}
   clip-path:inset(49.8% 0 49.8% 0);
   will-change:clip-path;
 }
-.panel canvas{width:100%;height:100%;display:block}
+.panel canvas{
+  width:100%;height:100%;display:block;
+  /* the supplied frames are graded cold and flat. This is the warm re-grade:
+     static, so it costs nothing at 60fps. */
+  filter:saturate(1.24) brightness(1.15) contrast(.97) sepia(.06);
+}
 /* faint edge so the frame reads as an object, not a hole */
 .panel::after{
   content:"";position:absolute;inset:0;pointer-events:none;
-  box-shadow:inset 0 0 0 1px rgba(242,237,228,.08),
-             inset 0 0 140px 20px rgba(0,0,0,.55);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.35),
+             inset 0 0 120px 24px rgba(0,0,0,.22);
 }
 /* All cues share one grid cell so they stack and cross-fade in place,
    without absolute positioning fighting the pinned layout. */
@@ -98,7 +160,7 @@ h1,h2,h3,p,figure,blockquote{margin:0}
 .losses li{
   list-style:none;font-family:var(--serif);font-weight:300;
   font-size:clamp(1.1rem,2.2vw,2rem);line-height:1.1;
-  letter-spacing:-.02em;opacity:.12;
+  letter-spacing:-.02em;opacity:.22;
 }
 
 /* ---------- editorial body ---------- */
@@ -120,7 +182,7 @@ h2{
   letter-spacing:-.015em;max-width:32ch;
 }
 p+p{margin-top:1.35em}
-.body p{max-width:62ch;color:rgba(242,237,228,.86)}
+.body p{max-width:62ch;color:var(--p-ink-soft)}
 
 .split{display:grid;gap:clamp(2.5rem,6vw,6rem);grid-template-columns:1fr}
 @media(min-width:900px){.split{grid-template-columns:1.05fr 1fr;align-items:start}}
@@ -133,7 +195,7 @@ p+p{margin-top:1.35em}
 .still img{
   display:block;width:100%;height:auto;
   aspect-ratio:4/5;object-fit:cover;object-position:50% 8%;
-  filter:saturate(.9) contrast(1.03) brightness(.94);
+  filter:saturate(1.12) contrast(1.02) brightness(1.06);
 }
 .still figcaption{
   margin-top:.9rem;font-size:10px;letter-spacing:.24em;
@@ -165,7 +227,7 @@ p+p{margin-top:1.35em}
   text-decoration:none;display:block;position:relative;
   transition:flex-basis .7s cubic-bezier(.16,1,.3,1),background-color .7s;
 }
-.door:hover,.door:focus-visible{background:rgba(236,194,77,.055)}
+.door:hover,.door:focus-visible{background:var(--p-ground-2)}
 .door h3{
   font-family:var(--serif);font-weight:300;
   font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.05;letter-spacing:-.03em;
@@ -187,14 +249,14 @@ p+p{margin-top:1.35em}
 
 /* ---------- close ---------- */
 .close{text-align:center;padding-block:clamp(7rem,18vh,14rem)}
-.slit{height:2px;background:var(--amber);width:min(76vw,1180px);margin:0 auto clamp(3rem,8vh,6rem);opacity:.85}
+.slit{height:3px;background:var(--p-brand);width:min(76vw,1180px);margin:0 auto clamp(3rem,8vh,6rem);opacity:.85}
 .cta{
-  display:inline-block;text-decoration:none;
-  border:1px solid var(--bone);padding:1.15rem 2.6rem;
+  display:inline-block;text-decoration:none;color:var(--p-brand);
+  border:1.5px solid var(--p-brand);padding:1.15rem 2.6rem;
   font-size:12px;letter-spacing:.24em;text-transform:uppercase;
   transition:background-color .45s,color .45s;
 }
-.cta:hover,.cta:focus-visible{background:var(--bone);color:var(--void)}
+.cta:hover,.cta:focus-visible{background:var(--p-brand);border-color:var(--p-brand);color:#fff}
 .foot{
   display:flex;flex-wrap:wrap;gap:1.6rem;justify-content:space-between;
   padding:2.4rem var(--gut);border-top:1px solid var(--hair);
@@ -204,14 +266,10 @@ p+p{margin-top:1.35em}
 .foot a:hover{color:var(--amber)}
 
 /* ---------- grain ---------- */
-.grain{
-  position:fixed;inset:0;z-index:60;pointer-events:none;
-  opacity:.055;mix-blend-mode:overlay;background-repeat:repeat;
-}
-.vig{
-  position:fixed;inset:0;z-index:50;pointer-events:none;
-  background:radial-gradient(120% 90% at 50% 45%,transparent 42%,rgba(0,0,0,.72) 100%);
-}
+.grain{display:none}
+/* The page-wide vignette and grain are gone. They were the single largest
+   source of "dark, dreary, depressing" and they were decoration, not idea. */
+.vig{display:none}
 
 /* ---------- reduced-motion / no-js photo essay ---------- */
 .essay{display:none}
@@ -231,13 +289,36 @@ p+p{margin-top:1.35em}
   body{font-size:17px}
   .panel{width:100%}
 }
+
+/* ═══════════════ A/B COLOUR TEST CONTROL ═══════════════ */
+.abx{
+  position:fixed;z-index:900;
+  right:clamp(.7rem,2vw,1.4rem);bottom:clamp(.7rem,2vw,1.4rem);
+  display:flex;align-items:center;gap:.45rem;
+  padding:.4rem .45rem .4rem .8rem;border-radius:999px;
+  background:var(--p-ground);color:var(--p-ink);
+  border:1px solid color-mix(in srgb, var(--p-ink) 22%, transparent);
+  box-shadow:0 10px 30px -12px color-mix(in srgb, var(--p-ink) 45%, transparent);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  line-height:1;
+}
+.abx .abx-l{color:var(--p-ink-soft)}
+.abx button{
+  appearance:none;cursor:pointer;border:0;border-radius:999px;
+  width:26px;height:26px;font:inherit;font-size:11px;
+  background:transparent;color:var(--p-ink-soft);
+}
+.abx button:hover{background:var(--p-ground-3);color:var(--p-brand)}
+.abx button[aria-pressed="true"]{background:var(--p-brand);color:#fff}
+@media(max-width:420px){.abx .abx-l{display:none}.abx{padding-left:.45rem}}
 </style>
 
 <div class="vig" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
 <header class="mast">
-  <img class="mark" src="assets/logo-film.svg" width="767" height="334"
+  <img class="mark" data-logo="light" src="assets/logo-a.svg" width="767" height="334"
        alt="Ready Set Retirement — psychosocial planning for retirement">
   <a href="/contact">Book a consult</a>
 </header>
@@ -277,15 +358,15 @@ p+p{margin-top:1.35em}
 <!-- reduced-motion / no-JS photo essay -->
 <section class="essay wrap" aria-label="Photo essay">
   <figure>
-    <img src="assets/frame-01.jpg" alt="A woman in her sixties stands at the start of a long timber jetty, looking toward a distant figure at the horizon at sunset." loading="lazy" decoding="async" width="1376" height="768">
+    <img src="assets/frame-03.jpg" alt="Close portrait of a woman in her sixties turned to face the camera at golden hour, calm and direct." loading="lazy" decoding="async" width="1376" height="768">
     <figcaption>You have planned for the money. Now plan for the person.</figcaption>
   </figure>
   <figure>
-    <img src="assets/frame-02.jpg" alt="The same jetty seen from further back, a small figure standing alone at its far end facing a low sun." loading="lazy" decoding="async" width="1376" height="768">
+    <img src="assets/frame-01.jpg" alt="A woman in her sixties stands at the start of a long timber jetty, looking toward a distant figure at the horizon at sunset." loading="lazy" decoding="async" width="1376" height="768">
     <figcaption>Forty years of planning for a date. About ten minutes planning for a life.</figcaption>
   </figure>
   <figure>
-    <img src="assets/frame-03.jpg" alt="Close portrait of a woman in her sixties turned to face the camera at golden hour, calm and direct." loading="lazy" decoding="async" width="1376" height="768">
+    <img src="assets/frame-02.jpg" alt="The same jetty seen from further back, a small figure standing alone at its far end facing a low sun." loading="lazy" decoding="async" width="1376" height="768">
     <figcaption>Direction. Identity. Purpose. Connection.</figcaption>
   </figure>
 </section>
@@ -411,7 +492,7 @@ p+p{margin-top:1.35em}
   buildGrain();
 
   /* ---------- load the three frames, then build the reel ---------- */
-  var SRC = ["assets/frame-01.jpg","assets/frame-02.jpg","assets/frame-03.jpg"];
+  var SRC = ["assets/frame-03.jpg","assets/frame-01.jpg","assets/frame-02.jpg"];
   var imgs = SRC.map(function(s){ var i=new Image(); i.src=s; return i; });
 
   Promise.all(imgs.map(function(i){
@@ -446,7 +527,7 @@ p+p{margin-top:1.35em}
       var mix = -1, dip = 0;
       for(k=0;k<CUTS.length;k++){
         if(t >= CUTS[k] && t < CUTS[k] + DUR){
-          i = k; mix = (t - CUTS[k]) / DUR; dip = Math.sin(mix * Math.PI) * 0.9;
+          i = k; mix = (t - CUTS[k]) / DUR; dip = Math.sin(mix * Math.PI) * 0.5;
         }
       }
       return { i:i, mix:mix, dip:dip };
@@ -544,5 +625,33 @@ p+p{margin-top:1.35em}
         scrollTrigger:{trigger:el,start:"top 88%",end:"top 58%",scrub:1.2}});
     });
   }
+})();
+</script>
+
+<div class="abx" role="group" aria-label="Colour scheme test">
+  <span class="abx-l">Colour</span>
+  <button type="button" data-pal="a" aria-pressed="true" title="Palette A - violet and coral">A</button>
+  <button type="button" data-pal="b" aria-pressed="false" title="Palette B - orchid and azure">B</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll(".abx button");
+  function paint(p){
+    root.setAttribute("data-pal",p);
+    try{localStorage.setItem("rsr-pal",p);}catch(e){}
+    btns.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pal===p));});
+    /* the wordmark is artwork, not CSS, so it is swapped by hand */
+    document.querySelectorAll("img[data-logo]").forEach(function(im){
+      im.setAttribute("src","assets/logo-"+p+(im.dataset.logo==="dark"?"-dark":"")+".svg");
+    });
+    /* carry the choice to every other page in the set */
+    document.querySelectorAll("a[href]").forEach(function(a){
+      var h=a.getAttribute("href");
+      if(!h||/^(#|\/|mailto:|tel:|https?:)/.test(h))return;
+      a.setAttribute("href",h.split("?")[0].split("#")[0]+"?pal="+p+(h.indexOf("#")>-1?"#"+h.split("#")[1]:""));
+    });
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){paint(b.dataset.pal);});});
+  paint(root.getAttribute("data-pal")||"a");
 })();
 </script>

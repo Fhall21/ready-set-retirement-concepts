@@ -3,23 +3,81 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+/* Palette before first paint, so the page never flashes the other option. */
+(function(){try{
+  var q=new URL(location.href).searchParams.get("pal")||(location.hash.match(/pal=([ab])/i)||[])[1];
+  var p=(q||localStorage.getItem("rsr-pal")||"a").toLowerCase();
+  if(p!=="b")p="a";
+  document.documentElement.setAttribute("data-pal",p);
+  localStorage.setItem("rsr-pal",p);
+}catch(e){}})();
+</script>
 <title>Second Horizon — Ready Set Retirement</title>
 <meta name="description" content="Psychosocial retirement education with Dr Sandra Walden-Pearson. Forty years of planning for a date, and about ten minutes planning for a life. Book a complimentary 30-minute consult.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   A/B PALETTE — the second colour pass. Two schemes, switchable live from the
+   control in the bottom-right corner. Full rationale in sites/PALETTE.md.
+   A: violet and coral, warm and energetic.
+   B: orchid and azure, cooler and more corporate.
+   Neither contains a brown, a grey-blue or an aged cream, because those are
+   what the client marked down six sites out of seven for.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root{
+  --p-ground:#FFFFFF;
+  --p-ground-2:#FBF6FF;
+  --p-ground-3:#F3E7FD;
+  --p-ink:#211A2A;
+  --p-ink-soft:#574B66;
+  --p-brand:#7B2FB5;
+  --p-brand-deep:#5F1F92;
+  --p-brand-bright:#9A45DE;
+  --p-accent:#D91A54;
+  --p-accent-bright:#FF4F70;
+  --p-gold:#FFC233;
+  /* the few places a dark ground is the idea rather than the mood */
+  --p-dark:#1B1024;
+  --p-dark-2:#2B1839;
+  --p-on-dark:#FDF7FF;
+  --p-on-dark-soft:#CBB6DC;
+  --p-on-dark-accent:#FF7C96;
+}
+html[data-pal="b"]{
+  --p-ground:#FFFFFF;
+  --p-ground-2:#F6F8FE;
+  --p-ground-3:#E9EFFC;
+  --p-ink:#17203A;
+  --p-ink-soft:#495271;
+  --p-brand:#C01B7A;
+  --p-brand-deep:#9A1461;
+  --p-brand-bright:#E82F96;
+  --p-accent:#1F5FE0;
+  --p-accent-bright:#3B82F6;
+  --p-gold:#FFB020;
+  --p-dark:#0F1729;
+  --p-dark-2:#1B2440;
+  --p-on-dark:#F7F9FF;
+  --p-on-dark-soft:#B6C1DA;
+  --p-on-dark-accent:#7FA8FF;
+}
+
   *, *::before, *::after { box-sizing: border-box; }
 
   :root {
-    --void:      #05060A;
-    --ink:       #F3EDE2;
-    --ink-soft:  #C6BFB2;
-    --ink-quiet: #A79F92;
-    --gold:      #FFE9C4;   /* the light itself — never a brand colour */
-    --signal:    #ECC24D;   /* brand gold — only where the page invites an action */
-    --rule:      rgba(255,255,255,.14);
-    --rule-dim:  rgba(255,255,255,.08);
+    /* pre-dawn, not night: a deep violet twilight with the brand in it */
+    --void:      #1A1030;
+    --ink:       var(--p-on-dark);
+    --ink-soft:  var(--p-on-dark-soft);
+    --ink-quiet: #A796BC;
+    --gold:      #FFF0DA;   /* the light itself — never a brand colour */
+    --signal:    var(--p-on-dark-accent);  /* where the page invites an action */
+    --rule:      rgba(255,255,255,.18);
+    --rule-dim:  rgba(255,255,255,.10);
 
     /* section height unit — scaled down on small screens so the scroll stays sane */
     --u: 1vh;
@@ -48,6 +106,24 @@
     /* legibility halo: guarantees contrast where copy passes over the light body */
     text-shadow: 0 0 34px rgba(4,5,9,.94), 0 0 12px rgba(4,5,9,.85), 0 1px 2px rgba(4,5,9,.7);
   }
+
+  /* ---------- daylight ---------- */
+  /* Second half of the page, once the sun is properly up. Same layout, ink
+     inverted, halo inverted with it. */
+  html.is-day{
+    --ink:       var(--p-ink);
+    --ink-soft:  var(--p-ink-soft);
+    --ink-quiet: #6B5F7D;
+    --gold:      var(--p-brand);
+    --signal:    var(--p-brand);
+    --rule:      color-mix(in srgb, var(--p-ink) 24%, transparent);
+    --rule-dim:  color-mix(in srgb, var(--p-ink) 12%, transparent);
+  }
+  html.is-day body{
+    text-shadow:0 0 30px rgba(255,255,255,.95), 0 0 10px rgba(255,255,255,.9), 0 1px 2px rgba(255,255,255,.8);
+  }
+  html.is-day .cta{background:var(--p-brand);border-color:var(--p-brand);color:#fff;text-shadow:none}
+  html.is-day .cta:hover{background:var(--p-brand-deep);border-color:var(--p-brand-deep)}
 
   /* ---------- canvas ---------- */
   #sky {
@@ -358,6 +434,29 @@
     .js-motion [data-reveal] { opacity: 1; transform: none; }
     .cta { transition: none; }
   }
+
+/* ═══════════════ A/B COLOUR TEST CONTROL ═══════════════ */
+.abx{
+  position:fixed;z-index:900;
+  right:clamp(.7rem,2vw,1.4rem);bottom:clamp(.7rem,2vw,1.4rem);
+  display:flex;align-items:center;gap:.45rem;
+  padding:.4rem .45rem .4rem .8rem;border-radius:999px;
+  background:var(--p-ground);color:var(--p-ink);
+  border:1px solid color-mix(in srgb, var(--p-ink) 22%, transparent);
+  box-shadow:0 10px 30px -12px color-mix(in srgb, var(--p-ink) 45%, transparent);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  line-height:1;
+}
+.abx .abx-l{color:var(--p-ink-soft)}
+.abx button{
+  appearance:none;cursor:pointer;border:0;border-radius:999px;
+  width:26px;height:26px;font:inherit;font-size:11px;
+  background:transparent;color:var(--p-ink-soft);
+}
+.abx button:hover{background:var(--p-ground-3);color:var(--p-brand)}
+.abx button[aria-pressed="true"]{background:var(--p-brand);color:#fff}
+@media(max-width:420px){.abx .abx-l{display:none}.abx{padding-left:.45rem}}
 </style>
 </head>
 <body>
@@ -377,8 +476,8 @@
     <!-- ============ 1. FIRST LIGHT ============ -->
     <section class="sec" id="first-light" style="--h:130">
       <div class="wrap">
-        <h1 data-reveal>They call it the <em>sunset</em> years.</h1>
-        <p class="lede" data-reveal>The sun does not stop. It crosses a line and comes up somewhere else. So does a working life, provided somebody has thought about it first.</p>
+        <h1 data-reveal>The sun does not set. It comes up <em>somewhere else</em>.</h1>
+        <p class="lede" data-reveal>So does a working life, provided somebody has thought about it first. Retirement is a crossing, not an ending.</p>
         <p class="cue" data-reveal>Scroll</p>
       </div>
     </section>
@@ -605,8 +704,18 @@
   }
 
   /* ---------- the draw ---------- */
+  var isDay = false;
   function render(time) {
     var t    = clamp01(state.t);
+
+    /* daylight: the page inverts to dark ink once the sky is bright enough to
+       carry it. Hysteresis so it cannot flicker at the crossing point. */
+    var wantDay = isDay ? t > 0.66 : t > 0.72;
+    if (wantDay !== isDay) {
+      isDay = wantDay;
+      document.documentElement.classList.toggle("is-day", isDay);
+    }
+
     var dark = darkness(t);
     var warm = warmth(t);
 
@@ -627,9 +736,14 @@
     /* The cold end of the ramp carries a violet cast — the brand's purple,
        barely above black, so the darkest part of the page is still hers.
        It burns off entirely as the second horizon warms. */
-    var top   = mix([7, 5, 13],   [11, 10, 13], warm);
-    var mid   = mix([12, 8, 22],  [20, 16, 17], warm);
-    var horiz = mix([25, 16, 45], [70, 48, 32], warm);
+    /* Three stops, so the ramp is a sunrise and not a longer night:
+       pre-dawn violet, then dawn rose, then full morning. The page is
+       brightest at the end, which is the opposite of what it used to do. */
+    var dawn = smooth01((t - 0.42) / 0.34);     /* violet  -> rose    */
+    var day  = smooth01((t - 0.68) / 0.32);     /* rose    -> morning */
+    var top   = mix(mix([26, 16, 58],  [92,  62, 118], dawn), [176, 204, 240], day);
+    var mid   = mix(mix([40, 22, 78],  [168, 96, 128], dawn), [218, 232, 250], day);
+    var horiz = mix(mix([74, 36, 108], [255, 176, 128], dawn), [255, 244, 232], day);
 
     var sky = ctx.createLinearGradient(0, 0, 0, horizonY);
     sky.addColorStop(0, rgba(top, 1));
@@ -646,7 +760,7 @@
     ctx.globalCompositeOperation = "lighter";
 
     /* --- stars, three parallax depths --- */
-    var sa = 0.15 + 0.85 * dark;
+    var sa = (0.15 + 0.85 * dark) * (1 - smooth01((t - 0.52) / 0.30));
     if (sa > 0.01) {
       for (var i = 0; i < stars.length; i++) {
         var s = stars[i];
@@ -702,8 +816,9 @@
     /* --- the ground below the line --- */
     ctx.globalCompositeOperation = "source-over";
     var gr = ctx.createLinearGradient(0, horizonY, 0, H);
-    gr.addColorStop(0, rgba(mix([3, 4, 7], [12, 9, 9], warm), 1));
-    gr.addColorStop(1, rgba([2, 2, 4], 1));
+    /* land, lit by the same sunrise the sky is running. Never black. */
+    gr.addColorStop(0, rgba(mix(mix([32, 20, 58], [96, 58, 76], dawn), [150, 168, 190], day), 1));
+    gr.addColorStop(1, rgba(mix(mix([16,  9, 30], [44, 26, 42], dawn), [ 96, 112, 136], day), 1));
     ctx.fillStyle = gr;
     ctx.fillRect(0, horizonY, W, H - horizonY);
 
@@ -714,7 +829,7 @@
     /* --- vignette --- */
     var vg = ctx.createRadialGradient(W / 2, H * 0.5, Math.min(W, H) * 0.28, W / 2, H * 0.5, Math.max(W, H) * 0.78);
     vg.addColorStop(0, "rgba(0,0,0,0)");
-    vg.addColorStop(1, "rgba(0,0,0,0.46)");
+    vg.addColorStop(1, "rgba(20,10,34," + (0.26 * (1 - day)).toFixed(3) + ")");
     ctx.fillStyle = vg;
     ctx.fillRect(0, 0, W, H);
   }
@@ -765,7 +880,7 @@
 
   if (reduced || typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
     /* Static mid-arc composition. The page is an ordinary document. */
-    state.t = 0.30;
+    state.t = 0.56;
     render(0);
     window.addEventListener("resize", function () {
       sizeCanvas();
@@ -826,5 +941,33 @@
 })();
 </script>
 
+
+<div class="abx" role="group" aria-label="Colour scheme test">
+  <span class="abx-l">Colour</span>
+  <button type="button" data-pal="a" aria-pressed="true" title="Palette A - violet and coral">A</button>
+  <button type="button" data-pal="b" aria-pressed="false" title="Palette B - orchid and azure">B</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll(".abx button");
+  function paint(p){
+    root.setAttribute("data-pal",p);
+    try{localStorage.setItem("rsr-pal",p);}catch(e){}
+    btns.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pal===p));});
+    /* the wordmark is artwork, not CSS, so it is swapped by hand */
+    document.querySelectorAll("img[data-logo]").forEach(function(im){
+      im.setAttribute("src","assets/logo-"+p+(im.dataset.logo==="dark"?"-dark":"")+".svg");
+    });
+    /* carry the choice to every other page in the set */
+    document.querySelectorAll("a[href]").forEach(function(a){
+      var h=a.getAttribute("href");
+      if(!h||/^(#|\/|mailto:|tel:|https?:)/.test(h))return;
+      a.setAttribute("href",h.split("?")[0].split("#")[0]+"?pal="+p+(h.indexOf("#")>-1?"#"+h.split("#")[1]:""));
+    });
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){paint(b.dataset.pal);});});
+  paint(root.getAttribute("data-pal")||"a");
+})();
+</script>
 </body>
 </html>

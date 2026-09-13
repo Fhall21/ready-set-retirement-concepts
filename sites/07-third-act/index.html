@@ -3,24 +3,81 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+/* Palette before first paint, so the page never flashes the other option. */
+(function(){try{
+  var q=new URL(location.href).searchParams.get("pal")||(location.hash.match(/pal=([ab])/i)||[])[1];
+  var p=(q||localStorage.getItem("rsr-pal")||"a").toLowerCase();
+  if(p!=="b")p="a";
+  document.documentElement.setAttribute("data-pal",p);
+  localStorage.setItem("rsr-pal",p);
+}catch(e){}})();
+</script>
 <title>Third Act — Ready Set Retirement</title>
 <meta name="description" content="Ready Set Retirement. Psychosocial retirement education with Dr Sandra Walden-Pearson. A film in three acts about the part nobody rehearses.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   A/B PALETTE — the second colour pass. Two schemes, switchable live from the
+   control in the bottom-right corner. Full rationale in sites/PALETTE.md.
+   A: violet and coral, warm and energetic.
+   B: orchid and azure, cooler and more corporate.
+   Neither contains a brown, a grey-blue or an aged cream, because those are
+   what the client marked down six sites out of seven for.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root{
+  --p-ground:#FFFFFF;
+  --p-ground-2:#FBF6FF;
+  --p-ground-3:#F3E7FD;
+  --p-ink:#211A2A;
+  --p-ink-soft:#574B66;
+  --p-brand:#7B2FB5;
+  --p-brand-deep:#5F1F92;
+  --p-brand-bright:#9A45DE;
+  --p-accent:#D91A54;
+  --p-accent-bright:#FF4F70;
+  --p-gold:#FFC233;
+  /* the few places a dark ground is the idea rather than the mood */
+  --p-dark:#1B1024;
+  --p-dark-2:#2B1839;
+  --p-on-dark:#FDF7FF;
+  --p-on-dark-soft:#CBB6DC;
+  --p-on-dark-accent:#FF7C96;
+}
+html[data-pal="b"]{
+  --p-ground:#FFFFFF;
+  --p-ground-2:#F6F8FE;
+  --p-ground-3:#E9EFFC;
+  --p-ink:#17203A;
+  --p-ink-soft:#495271;
+  --p-brand:#C01B7A;
+  --p-brand-deep:#9A1461;
+  --p-brand-bright:#E82F96;
+  --p-accent:#1F5FE0;
+  --p-accent-bright:#3B82F6;
+  --p-gold:#FFB020;
+  --p-dark:#0F1729;
+  --p-dark-2:#1B2440;
+  --p-on-dark:#F7F9FF;
+  --p-on-dark-soft:#B6C1DA;
+  --p-on-dark-accent:#7FA8FF;
+}
+
   /* ------------------------------------------------------------------
      THIRD ACT — 70mm roadshow presentation.
      Pure code. No images. Type, black space and an aperture.
      ------------------------------------------------------------------ */
 
   :root{
-    --black:#000;
-    --cream:#EDE6D6;
-    --dim:#A79F8E;          /* 7.9:1 on black */
-    --red:#8C1D18;          /* the specified deep red — rules and hairlines only */
-    --red-num:#B02A24;      /* 3.2:1 — act numerals, display scale only */
-    --red-ink:#D8453A;      /* 4.8:1 — red at reading size */
+    --black:var(--p-dark);  /* was #000 — carries the brand's violet now */
+    --cream:var(--p-on-dark);         /* was #EDE6D6, an aged cream */
+    --dim:var(--p-on-dark-soft);      /* was a warm grey */
+    --red:var(--p-accent-bright);     /* was #8C1D18 — "sombre" was the note */
+    --red-num:var(--p-accent-bright); /* act numerals, display scale only */
+    --red-ink:var(--p-on-dark-accent);/* red at reading size, on the dark */
     --bar:60px;
     --display:'Playfair Display', Georgia, 'Times New Roman', serif;
     --text:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
@@ -59,6 +116,21 @@
     transition:transform .18s ease;
   }
   .skip:focus{transform:translate(-50%,0)}
+
+  /* ---------- Act III runs lit ----------
+     The three acts were identical in value, which is what made the whole film
+     read as one long night. Act III is the act about the work, so it is the
+     one that gets the lights up. */
+  #act3{
+    background:var(--p-ground);
+    color:var(--p-ink);
+    --cream:var(--p-ink);
+    --dim:var(--p-ink-soft);
+    --red:var(--p-accent);
+    --red-num:var(--p-accent);
+    --red-ink:var(--p-accent);
+  }
+  #act3 .actname,#act3 h3{color:var(--p-ink)}
 
   /* ---------- the aperture ---------- */
   .bar{
@@ -422,6 +494,29 @@
     .skip{transition:none}
     .cta{transition:none}
   }
+
+/* ═══════════════ A/B COLOUR TEST CONTROL ═══════════════ */
+.abx{
+  position:fixed;z-index:900;
+  right:clamp(.7rem,2vw,1.4rem);bottom:clamp(.7rem,2vw,1.4rem);
+  display:flex;align-items:center;gap:.45rem;
+  padding:.4rem .45rem .4rem .8rem;border-radius:999px;
+  background:var(--p-ground);color:var(--p-ink);
+  border:1px solid color-mix(in srgb, var(--p-ink) 22%, transparent);
+  box-shadow:0 10px 30px -12px color-mix(in srgb, var(--p-ink) 45%, transparent);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+  line-height:1;
+}
+.abx .abx-l{color:var(--p-ink-soft)}
+.abx button{
+  appearance:none;cursor:pointer;border:0;border-radius:999px;
+  width:26px;height:26px;font:inherit;font-size:11px;
+  background:transparent;color:var(--p-ink-soft);
+}
+.abx button:hover{background:var(--p-ground-3);color:var(--p-brand)}
+.abx button[aria-pressed="true"]{background:var(--p-brand);color:#fff}
+@media(max-width:420px){.abx .abx-l{display:none}.abx{padding-left:.45rem}}
 </style>
 </head>
 <body>
@@ -607,7 +702,7 @@
       <div class="roll" id="roll">
 
         <div class="roll-block">
-          <img class="co-mark" src="assets/logo-film.svg" width="767" height="334"
+          <img class="co-mark" data-logo="dark" src="assets/logo-a-dark.svg" width="767" height="334"
                alt="Ready Set Retirement">
           <p class="note">Psychosocial retirement education. The yin to financial planning&rsquo;s yang.</p>
         </div>
@@ -965,6 +1060,34 @@
     });
   }
 
+})();
+</script>
+
+<div class="abx" role="group" aria-label="Colour scheme test">
+  <span class="abx-l">Colour</span>
+  <button type="button" data-pal="a" aria-pressed="true" title="Palette A - violet and coral">A</button>
+  <button type="button" data-pal="b" aria-pressed="false" title="Palette B - orchid and azure">B</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll(".abx button");
+  function paint(p){
+    root.setAttribute("data-pal",p);
+    try{localStorage.setItem("rsr-pal",p);}catch(e){}
+    btns.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pal===p));});
+    /* the wordmark is artwork, not CSS, so it is swapped by hand */
+    document.querySelectorAll("img[data-logo]").forEach(function(im){
+      im.setAttribute("src","assets/logo-"+p+(im.dataset.logo==="dark"?"-dark":"")+".svg");
+    });
+    /* carry the choice to every other page in the set */
+    document.querySelectorAll("a[href]").forEach(function(a){
+      var h=a.getAttribute("href");
+      if(!h||/^(#|\/|mailto:|tel:|https?:)/.test(h))return;
+      a.setAttribute("href",h.split("?")[0].split("#")[0]+"?pal="+p+(h.indexOf("#")>-1?"#"+h.split("#")[1]:""));
+    });
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){paint(b.dataset.pal);});});
+  paint(root.getAttribute("data-pal")||"a");
 })();
 </script>
 </body>
