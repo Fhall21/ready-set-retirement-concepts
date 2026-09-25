@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Handover — Workforce Exit Risk | Ready Set Retirement</title>
+<meta name="description" content="A board briefing on psychosocial retirement exposure. Your people have a plan for the money. They do not have a plan for the person. Prepared by Ready Set Retirement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   THE HANDOVER — declassified operations document
+   Palette: ink #0A0A0A / paper #E4E1DA / signal #FF4A17
+   Signal orange appears five times on this page. Count them.
+   ============================================================ */
+
+:root{
+  --ink:#0A0A0A;
+  --paper:#E4E1DA;
+  --signal:#FF4A17;
+  --muted-on-paper:#55524B;   /* 5.97:1 on paper */
+  --muted-on-ink:#9A968C;     /* 6.70:1 on ink   */
+  --rule-on-paper:rgba(10,10,10,.24);
+  --rule-on-ink:rgba(228,225,218,.26);
+  --wrap:1360px;
+  --gut:clamp(1.25rem,4vw,3.5rem);
+  --chapter:clamp(6rem,12vh,12rem);
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --disp:"Archivo","Archivo Narrow",Helvetica Neue,Arial,sans-serif;
+  --focus:var(--ink);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:1.0625rem;      /* 17px */
+  line-height:1.6;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;height:auto}
+h1,h2,h3,h4,p,figure,ol,ul,blockquote{margin:0}
+ol,ul{padding:0;list-style:none}
+a{color:inherit}
+
+/* --- borders and boxes: 1px, zero radius, everywhere --- */
+.box{border:1px solid var(--rule-on-paper)}
+.on-ink .box{border-color:var(--rule-on-ink)}
+
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--ink);color:var(--paper);
+  padding:.75rem 1rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
+}
+.skip:focus{left:0}
+
+/* ============================================================
+   EXPOSED 12-COLUMN GRID — fixed hairline layer over the page
+   ============================================================ */
+.grid-layer{
+  position:fixed;
+  top:0;bottom:0;left:50%;
+  transform:translateX(-50%);
+  width:min(100%,var(--wrap));
+  padding-inline:var(--gut);
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  pointer-events:none;
+  z-index:40;
+}
+.gcol{border-left:1px solid rgba(126,124,118,.30)}
+.gcol:last-child{border-right:1px solid rgba(126,124,118,.30)}
+.reg{
+  position:fixed;width:13px;height:13px;z-index:41;pointer-events:none;
+  opacity:.42;
+}
+.reg::before,.reg::after{content:"";position:absolute;background:rgba(126,124,118,.9)}
+.reg::before{left:0;right:0;top:6px;height:1px}
+.reg::after{top:0;bottom:0;left:6px;width:1px}
+.reg-tl{top:14px;left:14px}
+.reg-tr{top:14px;right:14px}
+.reg-bl{bottom:14px;left:14px}
+.reg-br{bottom:14px;right:14px}
+
+/* ============================================================
+   TYPE
+   ============================================================ */
+.display{
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 66,"wght" 800;
+  font-weight:800;
+  letter-spacing:-.03em;
+  line-height:.86;
+  text-transform:uppercase;
+  text-wrap:balance;
+}
+.lbl{
+  font-family:var(--mono);
+  font-size:.6875rem;          /* 11px */
+  line-height:1.5;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:500;
+}
+.muted{color:var(--muted-on-paper)}
+.on-ink .muted{color:var(--muted-on-ink)}
+
+.wrap{
+  width:min(100%,var(--wrap));
+  margin-inline:auto;
+  padding-inline:var(--gut);
+  position:relative;
+  z-index:2;
+}
+.measure{max-width:66ch}
+
+section{position:relative}
+.on-ink{background:var(--ink);color:var(--paper);--focus:var(--signal)}
+.on-paper{background:var(--paper);color:var(--ink);--focus:var(--ink)}
+.chapter{padding-block:var(--chapter)}
+
+.rule{height:1px;background:var(--rule-on-paper);transform-origin:left center}
+.on-ink .rule{background:var(--rule-on-ink)}
+
+.idx{
+  display:flex;align-items:baseline;gap:1rem;
+  padding-bottom:.75rem;margin-bottom:clamp(2.5rem,6vh,4.5rem);
+  border-bottom:1px solid var(--rule-on-paper);
+}
+.on-ink .idx{border-bottom-color:var(--rule-on-ink)}
+.idx h2,.idx .idx-r{
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 70,"wght" 700;
+  font-size:clamp(1.35rem,2.6vw,2rem);
+  letter-spacing:-.01em;line-height:1;text-transform:uppercase;
+  margin-inline-start:auto;text-align:right;
+}
+
+/* ============================================================
+   1.0 DOCUMENT HEADER
+   ============================================================ */
+.masthead{
+  border-bottom:1px solid var(--rule-on-paper);
+  padding-block:1rem;
+  display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;align-items:baseline;
+}
+.masthead .lbl:last-child{margin-inline-start:auto}
+
+.doc-head{padding-block:clamp(3rem,8vh,6rem) clamp(4rem,9vh,7rem)}
+.doc-head h1{
+  font-size:clamp(2.75rem,9.4vw,8rem);
+  margin-block:0 clamp(2rem,5vh,3.5rem);
+  text-wrap:pretty;   /* balance was forcing a third line at every width */
+}
+.meta-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  border-top:1px solid var(--rule-on-paper);
+  border-left:1px solid var(--rule-on-paper);
+}
+.meta{
+  border-right:1px solid var(--rule-on-paper);
+  border-bottom:1px solid var(--rule-on-paper);
+  padding:.9rem 1rem 1.1rem;
+}
+.meta dt{color:var(--muted-on-paper)}
+.meta dd{margin:.4rem 0 0;font-size:.875rem;letter-spacing:.02em;line-height:1.45}
+.status{display:flex;align-items:center;gap:.55rem}
+.status .mark{width:11px;height:11px;background:var(--signal);flex:none}   /* SIGNAL 1 */
+
+.lede{margin-top:clamp(3rem,7vh,5rem);display:grid;gap:clamp(1.5rem,4vw,3rem);grid-template-columns:1fr}
+@media (min-width:900px){.lede{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}}
+.lede .kicker{
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 70,"wght" 600;
+  font-size:clamp(1.5rem,3.2vw,2.4rem);
+  line-height:1.02;letter-spacing:-.02em;text-transform:uppercase;
+}
+.lede p{max-width:64ch}
+.lede p + p{margin-top:1.4rem}
+
+/* ============================================================
+   2.0 PLATE
+   ============================================================ */
+.plate{max-width:1000px}
+.plate-frame{border:1px solid var(--rule-on-ink);padding:10px;overflow:hidden}
+.plate-frame img{
+  filter:grayscale(.5) saturate(.5) contrast(1.06) brightness(.92);
+  width:100%;
+}
+.plate figcaption{margin-top:.9rem;display:grid;gap:.35rem}
+.plate figcaption .cap{color:var(--paper);letter-spacing:.1em}
+.plate figcaption .sub{color:var(--muted-on-ink);letter-spacing:.14em}
+
+/* ============================================================
+   3.0 FINDINGS
+   ============================================================ */
+.findings{display:grid;gap:0;border-top:1px solid var(--rule-on-paper)}
+@media (min-width:820px){.findings{grid-template-columns:1fr 1fr}}
+.finding{
+  border-bottom:1px solid var(--rule-on-paper);
+  padding:clamp(1.75rem,4vh,3rem) 0 clamp(2rem,4vh,3rem);
+  display:grid;grid-template-columns:auto 1fr;gap:0 clamp(1rem,2.5vw,2rem);
+  align-items:start;
+}
+@media (min-width:820px){
+  .finding:nth-child(odd){padding-right:clamp(1.5rem,3vw,3rem);border-right:1px solid var(--rule-on-paper)}
+  .finding:nth-child(even){padding-left:clamp(1.5rem,3vw,3rem)}
+}
+.finding .num{
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 62,"wght" 800;
+  font-size:clamp(3.5rem,7.5vw,7.5rem);
+  line-height:.8;letter-spacing:-.04em;
+  grid-row:1 / span 2;
+}
+.finding h3{
+  font-family:var(--mono);font-size:.75rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;
+  padding-bottom:.6rem;margin-bottom:.9rem;
+  border-bottom:1px solid var(--rule-on-paper);
+}
+.finding p{max-width:52ch;font-size:1.0625rem}
+
+/* ============================================================
+   4.0 TIMELINE — vertical by default, horizontal only when JS
+   promotes it inside the matchMedia guard
+   ============================================================ */
+.tl-viewport{display:none}
+.tl.is-horizontal .tl-viewport{display:block}
+/* When the track is horizontal the list is not deleted, only taken
+   off-screen, so assistive technology still reads all twelve entries. */
+.tl.is-horizontal .tl-list{
+  position:absolute;width:1px;height:1px;overflow:hidden;
+  clip-path:inset(50%);white-space:nowrap;border:0;margin:-1px;
+}
+.tl-list-wrap{padding-bottom:var(--chapter)}
+.tl.is-horizontal .tl-list-wrap{padding-bottom:0}
+
+.tl-list{display:grid;border-top:1px solid var(--rule-on-ink)}
+.tl-list li{
+  border-bottom:1px solid var(--rule-on-ink);
+  padding-block:1.6rem;
+  display:grid;gap:.2rem .5rem;
+  grid-template-columns:5.5rem 1fr;
+}
+.tl-y{
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 66,"wght" 700;
+  font-size:1.5rem;letter-spacing:-.01em;line-height:1.1;
+  grid-row:1 / span 2;
+}
+.tl-list h3{
+  font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+}
+.tl-list p{color:var(--muted-on-ink);max-width:58ch;margin-top:.35rem}
+/* The orange track segment, translated into the vertical fallback:
+   one continuous rail down the final third of the list. */
+.tl-list li[data-zone="exposed"]{
+  border-left:2px solid var(--signal);
+  padding-left:1.1rem;
+  grid-template-columns:4.4rem 1fr;
+}
+
+/* --- horizontal apparatus --- */
+.tl-viewport{
+  position:relative;
+  height:100vh;
+  overflow:hidden;
+  border-top:1px solid var(--rule-on-ink);
+}
+.tl-hud{
+  position:absolute;top:0;left:0;right:0;z-index:3;
+  display:flex;align-items:baseline;gap:1.5rem;
+  padding:1.1rem var(--gut);
+  border-bottom:1px solid var(--rule-on-ink);
+  background:var(--ink);
+}
+.tl-hud .readout{
+  margin-inline-start:auto;
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 66,"wght" 700;
+  font-size:clamp(1.6rem,3vw,2.6rem);line-height:1;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+}
+.tl-progress{
+  position:absolute;left:0;right:0;bottom:0;height:2px;z-index:3;
+  background:rgba(228,225,218,.12);
+}
+.tl-progress span{
+  display:block;height:100%;width:100%;
+  background:var(--paper);
+  transform:scaleX(0);transform-origin:left center;
+}
+.tl-foot{
+  position:absolute;left:var(--gut);bottom:1.25rem;z-index:3;
+  color:var(--muted-on-ink);
+}
+.tl-track{
+  position:absolute;top:0;left:0;height:100%;
+  will-change:transform;
+}
+.tl-axis{
+  position:absolute;left:0;top:50%;height:1px;
+  background:var(--rule-on-ink);
+}
+.tl-zone{
+  position:absolute;top:50%;height:3px;
+  background:var(--signal);                                    /* SIGNAL 3 */
+}
+/* Sits below the year tick labels so the two never collide, and is
+   inset from the zone start so it clears the neighbouring markers. */
+.tl-zone-label{
+  position:absolute;top:calc(50% + 52px);
+  width:290px;
+  font-family:var(--mono);font-size:.6875rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;line-height:1.6;
+  color:var(--signal);                                         /* SIGNAL 4 */
+}
+.tl-zone-label small{
+  display:block;margin-top:.6rem;font-size:.6875rem;font-weight:400;
+  letter-spacing:.1em;text-transform:none;color:var(--muted-on-ink);
+  line-height:1.65;
+}
+.tick{position:absolute;top:50%;width:1px;height:7px;background:rgba(228,225,218,.3)}
+.tick.major{height:14px;background:rgba(228,225,218,.55)}
+.tick-lbl{
+  position:absolute;top:calc(50% + 20px);
+  font-size:.6875rem;letter-spacing:.14em;color:var(--muted-on-ink);
+  transform:translateX(-50%);
+}
+.mk{position:absolute;top:0;bottom:0;width:320px}
+.mk-dot{
+  position:absolute;top:50%;left:-4px;width:9px;height:9px;
+  margin-top:-4px;background:var(--paper);
+}
+.mk-stem{position:absolute;left:0;width:1px;background:var(--rule-on-ink)}
+.mk-up .mk-stem{bottom:50%;height:64px}
+.mk-down .mk-stem{top:50%;height:64px}
+.mk-box{position:absolute;left:0;width:320px;padding-left:.9rem}
+.mk-up .mk-box{bottom:calc(50% + 64px)}
+.mk-down .mk-box{top:calc(50% + 64px)}
+.mk-year{
+  display:block;
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 66,"wght" 700;
+  font-size:1.75rem;line-height:1;letter-spacing:-.02em;
+}
+.mk h3{
+  font-size:.6875rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  margin-top:.55rem;padding-bottom:.5rem;
+  border-bottom:1px solid var(--rule-on-ink);
+}
+.mk p{margin-top:.6rem;font-size:.9375rem;line-height:1.62;color:var(--muted-on-ink)}
+
+/* ============================================================
+   5.0 SPEC SHEET
+   ============================================================ */
+.spec{border-top:1px solid var(--rule-on-paper)}
+.spec-row{
+  border-bottom:1px solid var(--rule-on-paper);
+  padding-block:1.4rem;
+  display:grid;gap:.5rem 1.5rem;grid-template-columns:1fr;
+}
+@media (min-width:820px){.spec-row{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:baseline}}
+.spec-term{display:flex;align-items:baseline;gap:.6rem;font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.spec-lead{flex:1 1 auto;border-bottom:1px dotted rgba(10,10,10,.45);transform:translateY(-.24em);min-width:1.5rem}
+.spec-def{max-width:58ch}
+.tm{font-size:.72em;vertical-align:.35em;letter-spacing:0}
+
+/* ============================================================
+   6.0 EXHIBIT
+   ============================================================ */
+.exhibit{max-width:940px;border:1px solid var(--rule-on-ink);padding:clamp(1.5rem,4vw,3.25rem)}
+.exhibit .stamp{display:flex;gap:1rem;color:var(--muted-on-ink);border-bottom:1px solid var(--rule-on-ink);padding-bottom:.9rem;margin-bottom:clamp(1.5rem,4vh,2.5rem)}
+.exhibit .stamp span:last-child{margin-inline-start:auto}
+.exhibit blockquote p{
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 82,"wght" 500;
+  font-size:clamp(1.25rem,2.6vw,2rem);
+  line-height:1.18;letter-spacing:-.015em;
+  max-width:34ch;
+}
+.exhibit blockquote p + p{margin-top:1.1rem}
+.exhibit .attrib{
+  margin-top:clamp(1.75rem,4vh,2.5rem);padding-top:1rem;
+  border-top:1px solid var(--rule-on-ink);
+  display:grid;gap:.3rem;
+}
+.exhibit .attrib .name{font-size:.8125rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+
+/* ============================================================
+   7.0 ACTION BLOCK — the only full-bleed signal on the page
+   ============================================================ */
+.action{background:var(--signal);color:var(--ink);--focus:var(--ink)}   /* SIGNAL 6 */
+.action .idx{border-bottom-color:rgba(10,10,10,.35)}
+.action h2{color:var(--ink)}
+.action .big{
+  font-family:var(--disp);
+  font-variation-settings:"wdth" 66,"wght" 800;
+  font-size:clamp(2.5rem,8.5vw,7rem);
+  line-height:.86;letter-spacing:-.03em;text-transform:uppercase;
+  max-width:14ch;
+}
+.action p{max-width:52ch;margin-top:clamp(1.5rem,4vh,2.5rem);color:#26140C}
+.cta-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:clamp(2rem,5vh,3rem)}
+.cta{
+  display:inline-block;
+  position:relative;z-index:50;   /* above the grid layer: hairlines must not cross a control */
+  border:1px solid var(--ink);
+  padding:1.05rem 1.6rem;
+  font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);background:transparent;
+  transition:background-color .18s linear,color .18s linear;
+}
+.cta:hover,.cta:focus-visible{background:var(--ink);color:var(--signal)}
+.cta.solid{background:var(--ink);color:var(--paper)}
+.cta.solid:hover,.cta.solid:focus-visible{background:transparent;color:var(--ink)}
+.action .terms{display:flex;flex-wrap:wrap;gap:.5rem 2rem;margin-top:clamp(2rem,5vh,3rem);color:#26140C}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer.doc-foot{padding-block:clamp(3rem,8vh,5rem) clamp(2rem,5vh,3rem)}
+.foot-grid{display:grid;gap:2rem;grid-template-columns:1fr}
+@media (min-width:820px){.foot-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}}
+.creds{color:var(--muted-on-ink);font-size:.875rem;line-height:1.75;max-width:70ch}
+.foot-rule{margin-top:clamp(2.5rem,6vh,4rem);padding-top:1rem;border-top:1px solid var(--rule-on-ink);display:flex;flex-wrap:wrap;gap:.5rem 2rem;color:var(--muted-on-ink)}
+.foot-rule a{text-decoration:none;border-bottom:1px solid var(--rule-on-ink)}
+.foot-rule a:hover{border-bottom-color:var(--paper)}
+
+/* ============================================================
+   RESPONSIVE + REDUCED MOTION
+   ============================================================ */
+@media (max-width:719px){
+  .grid-layer{grid-template-columns:repeat(4,1fr)}
+  .gcol:nth-child(n+5){display:none}
+  .gcol:nth-child(4){border-right:1px solid rgba(126,124,118,.30)}
+}
+@media (max-width:899px){
+  .tl-viewport{display:none !important}
+  .tl .tl-list{display:grid !important}
+}
+@media (prefers-reduced-motion:reduce){
+  .tl-viewport{display:none !important}
+  .tl .tl-list{display:grid !important}
+  .cta{transition:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#doc">Skip to document</a>
+
+<div class="grid-layer" aria-hidden="true">
+  <div class="gcol"></div><div class="gcol"></div><div class="gcol"></div><div class="gcol"></div>
+  <div class="gcol"></div><div class="gcol"></div><div class="gcol"></div><div class="gcol"></div>
+  <div class="gcol"></div><div class="gcol"></div><div class="gcol"></div><div class="gcol"></div>
+</div>
+<div class="reg reg-tl" aria-hidden="true"></div>
+<div class="reg reg-tr" aria-hidden="true"></div>
+<div class="reg reg-bl" aria-hidden="true"></div>
+<div class="reg reg-br" aria-hidden="true"></div>
+
+<!-- ========================= 1.0 HEADER ========================= -->
+<header class="on-paper">
+  <div class="wrap">
+    <div class="masthead">
+      <span class="lbl">Ready Set Retirement</span>
+      <span class="lbl muted">Document 03 / The Handover</span>
+      <span class="lbl muted">Sheet 1 of 1</span>
+    </div>
+  </div>
+
+  <div class="wrap doc-head" id="doc">
+    <h1 class="display" id="h1">Mastery is leaving the building.</h1>
+
+    <dl class="meta-grid">
+      <div class="meta">
+        <dt class="lbl">Classification</dt>
+        <dd class="lbl">Internal — board briefing</dd>
+      </div>
+      <div class="meta">
+        <dt class="lbl">Subject</dt>
+        <dd class="lbl">Workforce exit risk, 2026&ndash;2035</dd>
+      </div>
+      <div class="meta">
+        <dt class="lbl">Prepared by</dt>
+        <dd class="lbl">Dr Sandra Walden-Pearson</dd>
+      </div>
+      <div class="meta">
+        <dt class="lbl">Date of issue</dt>
+        <dd class="lbl">July 2026</dd>
+      </div>
+      <div class="meta">
+        <dt class="lbl">Psychosocial exposure</dt>
+        <dd class="lbl status"><span class="mark" aria-hidden="true"></span>Unmanaged</dd>
+      </div>
+      <div class="meta">
+        <dt class="lbl">Scope</dt>
+        <dd class="lbl">Not financial advice</dd>
+      </div>
+    </dl>
+
+    <div class="lede">
+      <p class="kicker display" style="font-variation-settings:'wdth' 72,'wght' 600;line-height:1.02;text-wrap:pretty">
+        You have a plan for the money they leave with. You do not have a plan for the person who walks out.
+      </p>
+      <div>
+        <p>Australians are retiring at the fastest rate in the nation&rsquo;s history. Your most experienced people are in that number, and most of them have spent forty years planning for a date and about ten minutes planning who they will be when it arrives.</p>
+        <p>That gap does not stay with them. It arrives at your desk as a recruitment bill, a slower quarter, a culture reading itself in the car park, and a cohort ten years out quietly deciding what forty years is worth here.</p>
+        <p>This document sets out the exposure and what closing it involves. It takes about six minutes to read.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ========================= 2.0 PLATE ========================= -->
+<section class="on-ink chapter" aria-labelledby="h-plate">
+  <div class="wrap">
+    <div class="idx">
+      <span class="lbl muted">2.0</span>
+      <h2 id="h-plate">Plate 01</h2>
+    </div>
+
+    <figure class="plate" id="plate">
+      <div class="plate-frame">
+        <img src="assets/empty-office.jpg" width="1376" height="774" loading="lazy" decoding="async"
+             alt="An empty corner office at dusk. A cleared desk and an empty chair, two open cardboard boxes on the floor, a pale rectangle on the wall where a picture used to hang, and floor-to-ceiling windows onto a lit city skyline at blue hour.">
+      </div>
+      <figcaption>
+        <span class="lbl cap">Fig. 01 &mdash; Corner office, 18:40. Thirty-one years of institutional knowledge, boxed.</span>
+        <span class="lbl sub">Illustrative image. Not a photograph of a real office, employee or event.</span>
+      </figcaption>
+    </figure>
+
+    <p class="measure muted" style="margin-top:clamp(2.5rem,6vh,4rem)">The handover meeting covered passwords, files and the client list. It did not cover the part that actually walked out of the door, and it did not cover what happens to him on the Monday after.</p>
+  </div>
+</section>
+
+<!-- ========================= 3.0 THE EXPOSURE ========================= -->
+<section class="on-paper chapter" aria-labelledby="h-exposure">
+  <div class="wrap">
+    <div class="idx">
+      <span class="lbl muted">3.0</span>
+      <h2 id="h-exposure">The exposure</h2>
+    </div>
+
+    <div class="findings" id="findings">
+      <article class="finding">
+        <span class="num display" aria-hidden="true">01</span>
+        <h3>Recruitment</h3>
+        <p>You are not backfilling a role. You are backfilling a relationship map, an undocumented process and twenty years of judgement. The advertised salary is the smallest line in that cost. Search, onboarding and the long months before a replacement is genuinely useful are the rest of it, and they are rarely counted against the same budget.</p>
+      </article>
+
+      <article class="finding">
+        <span class="num display" aria-hidden="true">02</span>
+        <h3>Productivity</h3>
+        <p>Work slows in the quarter before a senior exit and stays slow well after it. Decisions queue. Approvals route to people who now have to ask. The handover document, where one exists, records the steps and not the reasoning, and the reasoning was the only part that mattered.</p>
+      </article>
+
+      <article class="finding">
+        <span class="num display" aria-hidden="true">03</span>
+        <h3>Culture</h3>
+        <p>Every remaining employee reads how you retire people. If the exit is a cake, a speech and a car park, they have learnt what forty years is worth in this organisation. If it is a planned and supported transition, they have learnt something else. You are teaching either way, and you do not get to choose whether the lesson lands.</p>
+      </article>
+
+      <article class="finding">
+        <span class="num display" aria-hidden="true">04</span>
+        <h3>Morale</h3>
+        <p>The cohort three to ten years out is watching closely. Some of them will quietly withdraw from the long projects. Some will leave early rather than walk into the ending they have just watched. Neither shows up in an exit interview, because neither of them is given one.</p>
+      </article>
+    </div>
+
+    <p class="measure" style="margin-top:clamp(2.5rem,6vh,4rem)">None of the four is a financial failure. Every one of them is a planning failure, and planning is the part you can actually do something about.</p>
+  </div>
+</section>
+
+<!-- ========================= 4.0 THE TIMELINE ========================= -->
+<section class="on-ink tl" id="tl" aria-labelledby="h-track">
+  <div class="wrap" style="padding-top:var(--chapter);padding-bottom:clamp(2rem,5vh,3rem)">
+    <div class="idx">
+      <span class="lbl muted">4.0</span>
+      <h2 id="h-track">Career track, 1985&ndash;2035</h2>
+    </div>
+    <p class="measure muted">One senior employee, plotted end to end. The financial plan is fully specified across the whole span. The psychosocial plan is specified nowhere, and the last third of the track is where that starts to cost you.</p>
+    <p class="lbl" style="margin-top:1.6rem;color:var(--signal)">Final third of track &mdash; unplanned psychosocial exposure</p>
+  </div>
+
+  <!-- Horizontal apparatus. Populated and shown only when the matchMedia guard passes.
+       Hidden from assistive technology: the ordered list below carries the same content. -->
+  <div class="tl-viewport" id="tl-viewport" aria-hidden="true">
+    <div class="tl-hud">
+      <span class="lbl">Career track</span>
+      <span class="lbl muted">Subject: one senior employee</span>
+      <span class="readout" id="tl-readout">1985</span>
+    </div>
+    <div class="tl-track" id="tl-track"></div>
+    <span class="lbl tl-foot">Scroll to advance the track</span>
+    <div class="tl-progress"><span id="tl-bar"></span></div>
+  </div>
+
+  <!-- Semantic source of truth. Visible under 900px and with reduced motion. -->
+  <div class="wrap tl-list-wrap">
+    <ol class="tl-list" id="tl-list">
+      <li data-year="1985"><span class="tl-y">1985</span><h3>Intake</h3><p>Starts on the floor. A superannuation account is opened in the first week and is not thought about again for thirty years.</p></li>
+      <li data-year="1991"><span class="tl-y">1991</span><h3>First promotion</h3><p>Given a team. Learns the business by repairing things nobody wrote down.</p></li>
+      <li data-year="1997"><span class="tl-y">1997</span><h3>Specialisation</h3><p>Becomes the person the others ask. Value starts compounding here. Record-keeping stops here.</p></li>
+      <li data-year="2004"><span class="tl-y">2004</span><h3>Custodian</h3><p>Holds the client relationships, the supplier history and the reason the process is done that way and not the other way.</p></li>
+      <li data-year="2011"><span class="tl-y">2011</span><h3>Senior</h3><p>Sits on the decisions. Named in the succession plan. Never once asked about it directly.</p></li>
+      <li data-year="2017"><span class="tl-y">2017</span><h3>Financial plan</h3><p>Adviser engaged. Contributions modelled to the year. The date becomes a number in a spreadsheet and everyone relaxes.</p></li>
+      <li data-year="2019" data-zone="exposed"><span class="tl-y">2019</span><h3>Exposure begins</h3><p>The last decade of a working life is when psychosocial preparation should start. Almost nobody starts it here, including your organisation.</p></li>
+      <li data-year="2024" data-zone="exposed"><span class="tl-y">2024</span><h3>Withdrawal</h3><p>Still entirely competent, quietly stepping back. Declines the projects that finish after the date. This is never logged as a risk.</p></li>
+      <li data-year="2028" data-zone="exposed"><span class="tl-y">2028</span><h3>Exit</h3><p>Card, cake, speech. Forty-three years of identity finish at four o&rsquo;clock on a Friday afternoon.</p></li>
+      <li data-year="2030" data-zone="exposed"><span class="tl-y">2030</span><h3>The drop</h3><p>Direction, identity, purpose and connection go at roughly the same time. The money is fine. The person is not.</p></li>
+      <li data-year="2033" data-zone="exposed"><span class="tl-y">2033</span><h3>Consequence</h3><p>Health decline, strain at home, a return to work on much worse terms, or a very long quiet. Your organisation hears about none of it.</p></li>
+      <li data-year="2035" data-zone="exposed"><span class="tl-y">2035</span><h3>End of record</h3><p>Nothing on this track was a financial failure.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========================= 5.0 THE INTERVENTION ========================= -->
+<section class="on-paper chapter" aria-labelledby="h-spec">
+  <div class="wrap">
+    <div class="idx">
+      <span class="lbl muted">5.0</span>
+      <h2 id="h-spec">The intervention</h2>
+    </div>
+
+    <dl class="spec" id="spec">
+      <div class="spec-row">
+        <dt class="spec-term"><span>What it is</span><span class="spec-lead" aria-hidden="true"></span></dt>
+        <dd class="spec-def">Structured psychosocial education for people approaching the end of a working life. Delivered before the date rather than after it.</dd>
+      </div>
+      <div class="spec-row">
+        <dt class="spec-term"><span>What it is not</span><span class="spec-lead" aria-hidden="true"></span></dt>
+        <dd class="spec-def">Financial advice. Dr San does not go near your people&rsquo;s money. This is the yin to financial planning&rsquo;s yang, and the two are meant to run together.</dd>
+      </div>
+      <div class="spec-row">
+        <dt class="spec-term"><span>Method</span><span class="spec-lead" aria-hidden="true"></span></dt>
+        <dd class="spec-def">human-centred retirement planning<span class="tm">&trade;</span>, delivered through readysetretirement psychosocial planning<span class="tm">&reg;</span>.</dd>
+      </div>
+      <div class="spec-row">
+        <dt class="spec-term"><span>The four exposures</span><span class="spec-lead" aria-hidden="true"></span></dt>
+        <dd class="spec-def">Direction. Identity. Purpose. Connection. Each one named, assessed and planned for separately, because they fail separately.</dd>
+      </div>
+      <div class="spec-row">
+        <dt class="spec-term"><span>Working window</span><span class="spec-lead" aria-hidden="true"></span></dt>
+        <dd class="spec-def">Three to ten years out. Six weeks before the farewell is not preparation, it is triage.</dd>
+      </div>
+      <div class="spec-row">
+        <dt class="spec-term"><span>Formats</span><span class="spec-lead" aria-hidden="true"></span></dt>
+        <dd class="spec-def">Training. Workshops. Seminars. One-to-one coaching. Group coaching. Consulting. Speaking. Run in-house or off-site, for a cohort or for one person.</dd>
+      </div>
+      <div class="spec-row">
+        <dt class="spec-term"><span>Who delivers it</span><span class="spec-lead" aria-hidden="true"></span></dt>
+        <dd class="spec-def">Dr Sandra Walden-Pearson, based in Far North Queensland and working nationally. PhD in business, MBA in human resources, Certified Professional Retirement Coach, accredited workplace mental health first aider.</dd>
+      </div>
+      <div class="spec-row">
+        <dt class="spec-term"><span>Evidence of need</span><span class="spec-lead" aria-hidden="true"></span></dt>
+        <dd class="spec-def">Retirement has a recognised dark side: loss of direction, identity, purpose and social connection. The financial side of this transition is well served in Australia. The human side is barely served at all.</dd>
+      </div>
+      <div class="spec-row">
+        <dt class="spec-term"><span>Outcome</span><span class="spec-lead" aria-hidden="true"></span></dt>
+        <dd class="spec-def">The mastery still leaves. It leaves on a schedule you set, with the reasoning written down, and the person leaves prepared. You run the exit on purpose instead of by surprise.</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ========================= 6.0 ATTESTATION ========================= -->
+<section class="on-ink chapter" aria-labelledby="h-exhibit">
+  <div class="wrap">
+    <div class="idx">
+      <span class="lbl muted">6.0</span>
+      <h2 id="h-exhibit">Attestation</h2>
+    </div>
+
+    <figure class="exhibit" id="exhibit">
+      <div class="stamp">
+        <span class="lbl">Exhibit A</span>
+        <span class="lbl">Statement, reproduced in full</span>
+      </div>
+      <blockquote cite="/contact">
+        <p>&ldquo;Financial planning for retirement is well known. I hadn&rsquo;t heard about psychosocial education focused on human-centred retirement planning &mdash; in 30 years of politics. In talking with Dr San I realised the critical need to plan for the human side of retirement. With hand on heart, I can honestly say that engaging Dr San has been life changing.&rdquo;</p>
+      </blockquote>
+      <figcaption class="attrib">
+        <span class="name">Hon. Warren Entsch</span>
+        <span class="lbl muted">Former Federal Member for Leichhardt</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ========================= 7.0 ACTION ========================= -->
+<section class="action chapter" aria-labelledby="h-action">
+  <div class="wrap">
+    <div class="idx">
+      <span class="lbl">7.0</span>
+      <span class="idx-r">Action</span>
+    </div>
+
+    <h2 class="big" id="h-action">Brief your board</h2>
+    <p>Thirty minutes, no fee, no obligation. You bring the retirement profile of your workforce. Dr San brings what the next ten years look like if nobody plans the human side of it, and what it takes to change that.</p>
+
+    <div class="cta-row">
+      <a class="cta solid" href="/contact">Book the briefing</a>
+      <a class="cta" href="/contact">Request the readiness map</a>
+    </div>
+
+    <div class="terms">
+      <span class="lbl">30 min</span>
+      <span class="lbl">No fee</span>
+      <span class="lbl">In person or online</span>
+      <span class="lbl">Australia wide</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ========================= FOOTER ========================= -->
+<footer class="on-ink doc-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="lbl">Ready Set Retirement</span>
+        <p class="lbl muted" style="margin-top:.6rem">Psychosocial retirement education<br>Far North Queensland, Australia</p>
+      </div>
+      <div>
+        <span class="lbl muted">Practitioner record</span>
+        <p class="creds" style="margin-top:.6rem">Dr Sandra Walden-Pearson holds a PhD in business and an MBA in human resources, with a BA and Diploma of Education. She is a Certified Professional Retirement Coach, a Certified Associate Meta Coach, a Certified Resilience Coach, a HART Coach, a Resilience First Aid Responder, an Accredited Mental Health First Aider including workplace accreditation, and an Accredited Cinergy Conflict Coach. She does not provide financial advice and does not hold herself out as doing so.</p>
+      </div>
+    </div>
+
+    <div class="foot-rule">
+      <span class="lbl">human-centred retirement planning&trade;</span>
+      <span class="lbl">readysetretirement psychosocial planning&reg;</span>
+      <a class="lbl" href="/contact">Contact</a>
+      <a class="lbl" href="#doc">Return to top of document</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  "use strict";
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  var DESKTOP_MOTION = "(min-width: 900px) and (prefers-reduced-motion: no-preference)";
+  var ANY_MOTION = "(prefers-reduced-motion: no-preference)";
+
+  var mm = gsap.matchMedia();
+
+  /* ----------------------------------------------------------
+     Document-level reveals. Everything is visible by default;
+     gsap.from() only borrows the start state, so a failed load
+     or reduced motion leaves a complete, readable document.
+     ---------------------------------------------------------- */
+  mm.add(ANY_MOTION, function () {
+
+    gsap.from("#h1", { y: 26, opacity: 0, duration: .9, ease: "power3.out" });
+    gsap.from(".meta-grid .meta", { opacity: 0, duration: .5, stagger: .05, delay: .18, ease: "none" });
+
+    gsap.utils.toArray(".idx").forEach(function (el) {
+      gsap.from(el, {
+        opacity: 0, y: 14, duration: .5, ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 88%" }
+      });
+    });
+
+    gsap.utils.toArray(".finding").forEach(function (el) {
+      gsap.from(el, {
+        opacity: 0, y: 30, duration: .6, ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 86%" }
+      });
+    });
+
+    gsap.utils.toArray(".spec-row").forEach(function (el) {
+      gsap.from(el, {
+        opacity: 0, y: 16, duration: .45, ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 92%" }
+      });
+    });
+
+    /* Plate: transform only, scrubbed, inside an overflow-hidden frame. */
+    gsap.fromTo("#plate img", { scale: 1.06 }, {
+      scale: 1, ease: "none",
+      scrollTrigger: { trigger: "#plate", start: "top bottom", end: "bottom top", scrub: 1 }
+    });
+
+    gsap.from("#exhibit", {
+      opacity: 0, y: 34, duration: .7, ease: "power2.out",
+      scrollTrigger: { trigger: "#exhibit", start: "top 84%" }
+    });
+
+    return function () { /* contexts revert their own tweens */ };
+  });
+
+  /* ----------------------------------------------------------
+     4.0 — Pinned horizontal career track.
+     Built from the semantic <ol> so the list stays the source
+     of truth. Promoted only inside the matchMedia guard, so
+     phones and reduced-motion users never see it at all.
+     ---------------------------------------------------------- */
+  var Y_START = 1985, Y_END = 2035;
+  var PPY = 104;          // pixels per year
+  var PAD_L = 300, PAD_R = 560;
+  var ZONE_START = 2019;  // final third of the track
+
+  function xOf(year) { return PAD_L + (year - Y_START) * PPY; }
+
+  mm.add(DESKTOP_MOTION, function () {
+    var section  = document.getElementById("tl");
+    var viewport = document.getElementById("tl-viewport");
+    var track    = document.getElementById("tl-track");
+    var readout  = document.getElementById("tl-readout");
+    var bar      = document.getElementById("tl-bar");
+    var list     = document.getElementById("tl-list");
+    if (!section || !track || !list) return;
+
+    var totalW = PAD_L + (Y_END - Y_START) * PPY + PAD_R;
+    track.style.width = totalW + "px";
+    section.classList.add("is-horizontal");
+
+    /* axis */
+    var axis = document.createElement("div");
+    axis.className = "tl-axis";
+    axis.style.width = totalW + "px";
+    track.appendChild(axis);
+
+    /* orange exposure zone — final third of the track */
+    var zone = document.createElement("div");
+    zone.className = "tl-zone";
+    zone.style.left = xOf(ZONE_START) + "px";
+    zone.style.width = (xOf(Y_END) - xOf(ZONE_START)) + "px";
+    track.appendChild(zone);
+
+    var zoneLabel = document.createElement("div");
+    zoneLabel.className = "tl-zone-label";
+    zoneLabel.style.left = (xOf(ZONE_START) + 170) + "px";
+    zoneLabel.innerHTML = "Unplanned &mdash; psychosocial exposure" +
+      "<small>Sixteen years in which the financial plan is fully specified and the human plan does not exist.</small>";
+    track.appendChild(zoneLabel);
+
+    /* year ticks */
+    for (var y = Y_START; y <= Y_END; y++) {
+      var t = document.createElement("span");
+      var major = (y % 5 === 0);
+      t.className = "tick" + (major ? " major" : "");
+      t.style.left = xOf(y) + "px";
+      track.appendChild(t);
+      if (major) {
+        var tl = document.createElement("span");
+        tl.className = "tick-lbl";
+        tl.style.left = xOf(y) + "px";
+        tl.textContent = String(y);
+        track.appendChild(tl);
+      }
+    }
+
+    /* markers, cloned from the list */
+    var markers = [];
+    Array.prototype.forEach.call(list.children, function (li, i) {
+      var year = parseInt(li.getAttribute("data-year"), 10);
+      var mk = document.createElement("div");
+      mk.className = "mk " + (i % 2 === 0 ? "mk-up" : "mk-down");
+      mk.style.left = xOf(year) + "px";
+      if (li.getAttribute("data-zone")) mk.setAttribute("data-zone", li.getAttribute("data-zone"));
+
+      var title = li.querySelector("h3").textContent;
+      var body  = li.querySelector("p").innerHTML;
+
+      var box = document.createElement("div");
+      box.className = "mk-box";
+      box.innerHTML =
+        '<span class="mk-year">' + year + '</span>' +
+        '<h3>' + title + '</h3>' +
+        '<p>' + body + '</p>';
+
+      var stem = document.createElement("span"); stem.className = "mk-stem";
+      var dot  = document.createElement("span"); dot.className  = "mk-dot";
+
+      mk.appendChild(box); mk.appendChild(stem); mk.appendChild(dot);
+      track.appendChild(mk);
+      markers.push(mk);
+    });
+
+    /* the one scroll trigger that drives the whole thing */
+    var tween = gsap.to(track, {
+      x: function () { return -(track.scrollWidth - window.innerWidth); },
+      ease: "none",
+      scrollTrigger: {
+        trigger: viewport,
+        start: "top top",
+        end: function () { return "+=" + Math.max(600, track.scrollWidth - window.innerWidth); },
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        onUpdate: function (self) {
+          var p = self.progress;
+          if (readout) readout.textContent = String(Y_START + Math.round(p * (Y_END - Y_START)));
+          if (bar) bar.style.transform = "scaleX(" + p + ")";
+        }
+      }
+    });
+
+    /* markers rise as they pass, driven off the horizontal tween */
+    markers.forEach(function (mk) {
+      gsap.from(mk, {
+        y: 34, opacity: 0, duration: .5, ease: "power2.out",
+        scrollTrigger: {
+          trigger: mk,
+          containerAnimation: tween,
+          start: "left 90%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+
+    ScrollTrigger.refresh();
+
+    /* leaving the media query: undo everything we added */
+    return function () {
+      section.classList.remove("is-horizontal");
+      track.style.width = "";
+      track.innerHTML = "";
+      gsap.set(track, { clearProps: "transform" });
+      if (bar) bar.style.transform = "";
+      if (readout) readout.textContent = String(Y_START);
+    };
+  });
+
+  /* Recalculate on resize. matchMedia handles the breakpoint swap;
+     this catches width changes inside the same breakpoint. */
+  var rid;
+  window.addEventListener("resize", function () {
+    clearTimeout(rid);
+    rid = setTimeout(function () { ScrollTrigger.refresh(); }, 180);
+  });
+
+  /* Fonts land after first paint and change measured heights. */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+  }
+  window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+})();
+</script>
+</body>
+</html>

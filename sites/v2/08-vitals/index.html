@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en-AU" data-pal="a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vitals &mdash; Ready Set Retirement</title>
+<meta name="description" content="Financial readiness is one vital sign. Four more stop arriving on the day you retire. Psychosocial retirement education with Dr San, Far North Queensland.">
+
+<script>
+/* Palette before first paint, so the page never flashes the other option. */
+(function(){try{
+  var u=new URL(location.href),q=u.searchParams.get("pal")||(location.hash.match(/pal=([ab])/i)||[])[1];
+  var p=(q||localStorage.getItem("rsr-pal")||"a").toLowerCase();
+  if(p!=="b")p="a";
+  document.documentElement.setAttribute("data-pal",p);
+  localStorage.setItem("rsr-pal",p);
+}catch(e){}})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   PALETTE — two test schemes, switchable live. See sites/PALETTE.md.
+   Both open white. Neither uses a brown, a grey-blue or an aged cream.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root{
+  /* A — VIOLET & CORAL */
+  --ground:#FFFFFF;
+  --ground-2:#FBF6FF;
+  --ground-3:#F3E7FD;
+  --ink:#211A2A;
+  --ink-soft:#574B66;
+  --brand:#7B2FB5;
+  --brand-deep:#5F1F92;
+  --brand-bright:#9A45DE;
+  --accent:#D91A54;
+  --accent-bright:#FF4F70;
+  --gold:#FFC233;
+  --logo:url("assets/logo-a.svg");
+}
+html[data-pal="b"]{
+  /* B — ORCHID & AZURE */
+  --ground:#FFFFFF;
+  --ground-2:#F6F8FE;
+  --ground-3:#E9EFFC;
+  --ink:#17203A;
+  --ink-soft:#495271;
+  --brand:#C01B7A;
+  --brand-deep:#9A1461;
+  --brand-bright:#E82F96;
+  --accent:#1F5FE0;
+  --accent-bright:#3B82F6;
+  --gold:#FFB020;
+  --logo:url("assets/logo-b.svg");
+}
+
+:root{
+  --rule:color-mix(in srgb, var(--ink) 13%, transparent);
+  --rule-strong:color-mix(in srgb, var(--ink) 24%, transparent);
+  --tick:color-mix(in srgb, var(--ink) 40%, transparent);
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gut:clamp(1.15rem,4vw,3rem);
+  --chapter:clamp(3.5rem,7vh,6rem);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+body{
+  margin:0;
+  overflow-x:clip;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:clamp(1.0625rem,1.0125rem + .22vw,1.1875rem);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--brand)}
+h1,h2,h3,p,dl,dd,dt,figure,blockquote,table{margin:0}
+::selection{background:var(--ground-3);color:var(--ink)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+
+/* The instrument's baseline grid. Kept, because the client read this page as a
+   dashboard and found that familiar. Lightened so it reads as paper ruling and
+   not as a cage. */
+.graticule{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:repeating-linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--ink) 5%, transparent) 0 1px,
+    transparent 1px 32px);
+  mask-image:linear-gradient(to bottom,transparent,#000 12vh,#000 88%,transparent);
+}
+.shell{position:relative;z-index:1}
+
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gut)}
+.measure{max-width:60ch}
+.measure-tight{max-width:26ch}
+
+.skip{
+  position:fixed;left:50%;top:0;transform:translate(-50%,-150%);z-index:300;
+  background:var(--brand);color:#fff;padding:.7rem 1.3rem;text-decoration:none;
+  font:500 13px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;
+  transition:transform .18s ease;
+}
+.skip:focus{transform:translate(-50%,0)}
+
+/* ── type ─────────────────────────────────────────────────────────────── */
+.mono{
+  font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);
+}
+h1{
+  font-size:clamp(2.1rem,1.35rem + 3.4vw,4.1rem);
+  line-height:1.02;letter-spacing:-.025em;font-weight:600;
+  max-width:19ch;
+  text-wrap:balance;
+}
+h1 em{font-style:normal;color:var(--brand)}
+h2{
+  font-size:clamp(1.55rem,1.15rem + 1.7vw,2.5rem);
+  line-height:1.08;letter-spacing:-.02em;font-weight:600;
+  text-wrap:balance;
+}
+h3{font-size:1.0625rem;font-weight:600;letter-spacing:-.005em;line-height:1.3}
+.lede{font-size:clamp(1.15rem,1.05rem + .45vw,1.4rem);line-height:1.5;font-weight:400}
+.soft{color:var(--ink-soft)}
+
+section{padding-block:var(--chapter)}
+
+/* section head: label, rule, label — the one piece of instrument furniture kept */
+.sec-head{
+  display:flex;align-items:center;gap:1rem;
+  padding-bottom:14px;margin-bottom:clamp(1.6rem,4vw,2.6rem);
+  border-bottom:1px solid var(--rule-strong);
+}
+.sec-head .rulefill{flex:1;height:1px;background:var(--rule);min-width:1rem}
+.sec-head .mono:last-child{color:var(--brand)}
+
+/* ── masthead ─────────────────────────────────────────────────────────── */
+.masthead{border-bottom:1px solid var(--rule);padding-block:clamp(1.1rem,2.4vw,1.6rem)}
+.masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap}
+.mark{
+  display:block;width:clamp(126px,13vw,168px);aspect-ratio:767/334;
+  background:var(--logo) left center/contain no-repeat;
+}
+.masthead .wrap > a{display:block;line-height:0}
+.masthead nav{display:flex;gap:clamp(.9rem,2.5vw,1.9rem);align-items:center}
+.masthead nav a{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-soft);text-decoration:none;
+}
+.masthead nav a:hover{color:var(--brand)}
+.masthead nav a.act{color:#fff;background:var(--brand);padding:.62rem .95rem;border-radius:2px}
+.masthead nav a.act:hover{background:var(--brand-deep);color:#fff}
+
+
+/* Narrow screens: the secondary links step aside so the wordmark and the one
+   action that matters always fit on a single row. */
+@media(max-width:560px){
+  .masthead nav{flex-wrap:wrap}
+  .masthead nav a:not(.act){display:none}
+  .mark{width:clamp(112px,34vw,140px)}
+}
+/* ── panels ───────────────────────────────────────────────────────────── */
+.panel{
+  position:relative;background:var(--ground-2);
+  border:1px solid var(--rule-strong);border-radius:3px;
+  padding:clamp(1.4rem,3.4vw,2.2rem);
+}
+.panel > .lab{
+  position:absolute;top:10px;left:clamp(1.4rem,3.4vw,2.2rem);
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brand);
+}
+.panel.labelled{padding-top:clamp(2.5rem,4.6vw,3.2rem)}
+/* corner ticks — instrument detail, one hairline each */
+.panel::before,.panel::after{
+  content:"";position:absolute;width:9px;height:9px;pointer-events:none;
+  border-color:var(--brand);
+}
+.panel::before{top:-1px;left:-1px;border-top:2px solid var(--brand);border-left:2px solid var(--brand)}
+.panel::after{bottom:-1px;right:-1px;border-bottom:2px solid var(--brand);border-right:2px solid var(--brand)}
+
+/* ── buttons ──────────────────────────────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;text-decoration:none;
+  padding:1rem 1.4rem;border-radius:2px;border:1.5px solid var(--brand);
+  transition:background-color .18s,color .18s,border-color .18s;
+}
+.btn-solid{background:var(--brand);color:#fff}
+.btn-solid:hover{background:var(--brand-deep);border-color:var(--brand-deep)}
+.btn-ghost{background:transparent;color:var(--brand)}
+.btn-ghost:hover{background:var(--ground-3)}
+.cta-row{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+
+/* ═══════════════ 01 INTAKE ═══════════════ */
+#intake{padding-top:clamp(2.5rem,6vh,4.5rem)}
+.intake-grid{display:grid;gap:clamp(2rem,5vw,3.5rem);grid-template-columns:1fr}
+@media(min-width:920px){.intake-grid{grid-template-columns:1.15fr .85fr;align-items:start}}
+#intake .lede{margin-top:clamp(1.4rem,3vw,2rem)}
+
+.chart-rows{display:grid;gap:0}
+.chart-rows > div{
+  display:grid;gap:.15rem .9rem;grid-template-columns:1fr;
+  padding:.95rem 0;border-bottom:1px dotted var(--rule-strong);
+}
+.chart-rows > div:last-child{border-bottom:0;padding-bottom:0}
+.chart-rows dt{
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-soft);
+}
+.chart-rows dd{font-size:.98rem;line-height:1.5}
+@media(min-width:520px){
+  .chart-rows > div{grid-template-columns:7.5rem 1fr;align-items:baseline}
+  .chart-rows dt{padding-top:.2rem}
+}
+
+/* ═══════════════ 02 THE FOUR DIALS ═══════════════
+   The one thing the client singled out. So it is now the centre of the page,
+   and it carries the whole argument on its own: one bank of four, one switch.  */
+.dial-switch{
+  display:flex;align-items:stretch;gap:0;
+  border:1.5px solid var(--brand);border-radius:3px;overflow:hidden;
+  width:max-content;max-width:100%;margin-bottom:clamp(1.8rem,4vw,2.6rem);
+}
+.dial-switch button{
+  appearance:none;border:0;cursor:pointer;background:var(--ground);color:var(--brand);
+  font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;padding:.95rem clamp(.8rem,2.5vw,1.5rem);
+  transition:background-color .2s,color .2s;
+}
+.dial-switch button + button{border-left:1.5px solid var(--brand)}
+.dial-switch button:hover{background:var(--ground-3)}
+.dial-switch button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.dial-switch button[aria-pressed="true"]:first-child{background:var(--accent);border-color:var(--accent)}
+
+.bank{display:grid;gap:clamp(1.4rem,3vw,2rem);grid-template-columns:1fr}
+@media(min-width:620px){.bank{grid-template-columns:1fr 1fr}}
+@media(min-width:1060px){.bank{grid-template-columns:repeat(4,1fr)}}
+
+.dial{
+  display:grid;gap:1rem;justify-items:center;align-content:start;text-align:center;
+  padding:clamp(1.3rem,3vw,1.8rem) clamp(1rem,2vw,1.4rem);
+  background:var(--ground-2);border:1px solid var(--rule-strong);border-radius:3px;
+}
+.dial-face{position:relative;width:clamp(122px,17vw,158px);aspect-ratio:1}
+.dial-face svg{width:100%;height:100%;display:block;overflow:visible}
+.g-track{fill:none;stroke:var(--rule);stroke-width:9;stroke-linecap:round}
+.g-arc{
+  fill:none;stroke-width:9;stroke-linecap:round;
+  stroke-dasharray:0 100;stroke:var(--accent-bright);
+  transition:stroke .45s ease;
+}
+.g-pips{stroke:var(--tick);stroke-width:1.4;opacity:.55}
+.dial-read{
+  position:absolute;inset:0;display:grid;place-content:center;gap:.15rem;text-align:center;
+}
+.dial-read b{
+  display:block;font-family:var(--mono);font-size:clamp(.82rem,2vw,.95rem);
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);
+  transition:color .45s ease;
+}
+.dial-read span{
+  display:block;font-family:var(--mono);font-size:9.5px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+}
+.dial h3{font-size:1.18rem}
+.dial p{font-size:.94rem;line-height:1.5;color:var(--ink-soft);max-width:24ch}
+
+.dial.on .g-arc{stroke:var(--brand)}
+.dial.on .dial-read b{color:var(--brand)}
+
+.state-line{
+  display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;
+  margin-top:clamp(1.5rem,3.5vw,2.2rem);padding:1rem 1.15rem;border-radius:3px;
+  background:color-mix(in srgb, var(--accent) 8%, var(--ground));
+  border-left:3px solid var(--accent);
+  font-size:1rem;line-height:1.45;
+}
+.state-line.on{
+  background:color-mix(in srgb, var(--brand) 8%, var(--ground));
+  border-left-color:var(--brand);
+}
+.state-line .mono{color:var(--accent);flex:none}
+.state-line.on .mono{color:var(--brand)}
+
+/* ═══════════════ 03 COVERED / NOT COVERED ═══════════════
+   Named in the feedback as the other thing that works, because it reads like a
+   health-fund benefits table. Eleven rows down to seven, plain-English rows.   */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--rule-strong);border-radius:3px}
+table{border-collapse:collapse;width:100%;min-width:34rem;background:var(--ground)}
+caption{
+  text-align:left;padding:1rem 1.15rem;background:var(--ground-2);
+  border-bottom:1px solid var(--rule-strong);
+  font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-soft);
+}
+th,td{text-align:left;padding:.95rem 1.15rem;border-bottom:1px solid var(--rule)}
+thead th{
+  font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);white-space:nowrap;
+  border-bottom:1.5px solid var(--rule-strong);
+}
+thead th:not(:first-child){text-align:center}
+tbody th{font-weight:450;font-size:1rem}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--ground-2)}
+td{text-align:center;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+td.yes{color:var(--brand)}
+td.no{color:var(--accent)}
+td .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:.5rem;vertical-align:.5px}
+td.yes .dot{background:var(--brand)}
+td.no .dot{background:var(--accent);border-radius:1px}
+
+/* ═══════════════ 04 PRACTITIONER ═══════════════ */
+.prac{display:grid;gap:clamp(2rem,5vw,3.5rem);grid-template-columns:1fr}
+@media(min-width:920px){.prac{grid-template-columns:.62fr 1fr;align-items:start}}
+.prac-plate{position:relative}
+.prac-plate img{
+  border:1px solid var(--rule-strong);border-radius:3px;width:100%;height:auto;
+  filter:saturate(1.04) contrast(1.02) brightness(1.03);
+}
+.prac-plate figcaption{
+  margin-top:.7rem;font-family:var(--mono);font-size:10px;font-weight:500;
+  letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);
+}
+.prac h2{margin-bottom:.4rem}
+.prac .role{
+  font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--brand);margin-bottom:1.4rem;
+}
+.prac p + p{margin-top:1rem}
+.cred{
+  list-style:none;padding:0;margin:1.6rem 0 0;display:flex;flex-wrap:wrap;gap:.5rem;
+}
+.cred li{
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;
+  text-transform:uppercase;padding:.5rem .75rem;border-radius:2px;
+  background:var(--ground-3);color:var(--brand-deep);
+}
+details.more{margin-top:1rem}
+details.more summary{
+  cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--brand);
+  padding:.35rem 0;width:max-content;
+}
+details.more summary::marker{color:var(--brand)}
+details.more ul{
+  margin:.8rem 0 0;padding-left:1.1rem;color:var(--ink-soft);
+  font-size:.95rem;line-height:1.75;columns:2;column-gap:2rem;
+}
+@media(max-width:620px){details.more ul{columns:1}}
+.tm{
+  margin-top:1.8rem;font-family:var(--mono);font-size:10.5px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);line-height:2;
+}
+
+/* ═══════════════ 05 CASE NOTE + CONSULT ═══════════════ */
+.casenote blockquote{
+  font-size:clamp(1.15rem,1.02rem + .6vw,1.55rem);line-height:1.45;font-weight:400;
+  max-width:44ch;letter-spacing:-.012em;
+}
+.casenote blockquote::first-letter{color:var(--brand)}
+.casenote cite{
+  display:block;margin-top:1.5rem;font-style:normal;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-soft);line-height:1.9;
+}
+.casenote cite b{color:var(--ink);font-weight:600}
+
+.consult{
+  display:grid;gap:clamp(1.6rem,4vw,3rem);grid-template-columns:1fr;align-items:center;
+}
+@media(min-width:900px){.consult{grid-template-columns:1fr auto}}
+#consult .panel{background:var(--ground-3)}
+
+footer{
+  border-top:1px solid var(--rule);padding-block:clamp(2.2rem,5vw,3.2rem) clamp(2.5rem,6vw,4rem);
+}
+footer .foot-grid{display:grid;gap:1.5rem 2.5rem;grid-template-columns:1fr}
+@media(min-width:760px){footer .foot-grid{grid-template-columns:1.4fr 1fr}}
+footer p{font-size:.92rem;line-height:1.6;color:var(--ink-soft);max-width:62ch}
+footer .colophon{
+  margin-top:2.2rem;padding-top:1.2rem;border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap:.6rem 2rem;
+  font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-soft);
+}
+
+/* ═══════════════ A/B COLOUR TEST CONTROL ═══════════════ */
+.abx{
+  position:fixed;z-index:400;
+  right:clamp(.7rem,2vw,1.4rem);bottom:clamp(.7rem,2vw,1.4rem);
+  display:flex;align-items:center;gap:.45rem;
+  padding:.4rem .45rem .4rem .8rem;border-radius:999px;
+  background:var(--ground);border:1px solid var(--rule-strong);
+  box-shadow:0 10px 30px -12px color-mix(in srgb, var(--ink) 45%, transparent);
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;
+}
+.abx .abx-l{color:var(--ink-soft)}
+.abx button{
+  appearance:none;cursor:pointer;border:0;border-radius:999px;
+  width:26px;height:26px;font:inherit;font-size:11px;
+  background:transparent;color:var(--ink-soft);
+}
+.abx button:hover{background:var(--ground-3);color:var(--brand)}
+.abx button[aria-pressed="true"]{background:var(--brand);color:#fff}
+@media(max-width:420px){.abx .abx-l{display:none}.abx{padding-left:.45rem}}
+
+/* ═══════════════ MOTION ═══════════════ */
+.rv{opacity:0;transform:translateY(18px)}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1!important;transform:none!important}
+  .g-arc{transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+
+<body>
+
+<div class="graticule" aria-hidden="true"></div>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+
+<header class="masthead">
+  <div class="wrap">
+    <a href="#main" aria-label="Ready Set Retirement — home"><span class="mark" role="img" aria-label="Ready Set Retirement"></span></a>
+    <nav aria-label="Primary">
+      <a href="#dials">The four</a>
+      <a href="#cover">What is covered</a>
+      <a class="act" href="/contact">Book a consult</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════════════════ 01 INTAKE ══════════════════════ -->
+<section id="intake">
+  <div class="wrap">
+    <div class="intake-grid">
+      <div>
+        <p class="mono" style="margin-bottom:1.2rem">Psychosocial vitals &nbsp;&middot;&nbsp; Far North Queensland</p>
+        <h1>Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+        <p class="lede measure">
+          We spend forty years planning the money and about ten minutes planning the person.
+          The balance gets reviewed every year. The person gets worked out on the drive home
+          from the farewell.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="/contact">Book a 30-minute consult</a>
+          <a class="btn btn-ghost" href="#cover">See what is covered</a>
+        </div>
+      </div>
+
+      <div class="panel labelled">
+        <span class="lab">Intake</span>
+        <dl class="chart-rows">
+          <div>
+            <dt>Who</dt>
+            <dd>Three to ten years from a retirement date. Or already in it, and finding it sour.</dd>
+          </div>
+          <div>
+            <dt>Presenting</dt>
+            <dd>A date, a balance, and no plan for the person who turns up on the Monday.</dd>
+          </div>
+          <div>
+            <dt>The work</dt>
+            <dd>Education and coaching. Not financial advice, and not treatment.</dd>
+          </div>
+          <div>
+            <dt>Practitioner</dt>
+            <dd>Dr Sandra Walden-Pearson &mdash; PhD (Business), MBA (HR).</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ 02 THE FOUR ══════════════════════ -->
+<section id="dials">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="mono">The four</span>
+      <span class="rulefill" aria-hidden="true"></span>
+      <span class="mono">Move the switch</span>
+    </div>
+
+    <h2 class="measure-tight">Four things leave on the same afternoon.</h2>
+    <p class="lede soft measure" style="margin-top:1.2rem;margin-bottom:2.4rem">
+      They were all attached to the job. Preparation is what puts them back.
+    </p>
+
+    <div class="dial-switch" role="group" aria-label="Show the four supplies with and without preparation">
+      <button type="button" id="btnOff" aria-pressed="true">No plan</button>
+      <button type="button" id="btnOn" aria-pressed="false">With preparation</button>
+    </div>
+
+    <div class="bank" id="bank">
+      <div class="dial rv">
+        <div class="dial-face">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <path class="g-track" d="M31.8 108.2A54 54 0 1 1 108.2 108.2"></path>
+            <g class="g-pips" fill="none">
+              <path d="M31.8 108.2 27.5 112.5M70 16v-6M108.2 108.2 112.5 112.5"></path>
+            </g>
+            <path class="g-arc" pathLength="100" d="M31.8 108.2A54 54 0 1 1 108.2 108.2"></path>
+          </svg>
+          <p class="dial-read"><b data-state>Low</b><span>Supply</span></p>
+        </div>
+        <div>
+          <h3>Direction</h3>
+          <p data-copy-off="Forty years of somewhere to be, finished on a Friday."
+             data-copy-on="A weekday shape you chose, in place before the date.">Forty years of somewhere to be, finished on a Friday.</p>
+        </div>
+      </div>
+
+      <div class="dial rv">
+        <div class="dial-face">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <path class="g-track" d="M31.8 108.2A54 54 0 1 1 108.2 108.2"></path>
+            <g class="g-pips" fill="none">
+              <path d="M31.8 108.2 27.5 112.5M70 16v-6M108.2 108.2 112.5 112.5"></path>
+            </g>
+            <path class="g-arc" pathLength="100" d="M31.8 108.2A54 54 0 1 1 108.2 108.2"></path>
+          </svg>
+          <p class="dial-read"><b data-state>Low</b><span>Supply</span></p>
+        </div>
+        <div>
+          <h3>Identity</h3>
+          <p data-copy-off="Introduced by your job title for thirty years. Then not."
+             data-copy-on="An answer to what you do that is yours, not the firm's.">Introduced by your job title for thirty years. Then not.</p>
+        </div>
+      </div>
+
+      <div class="dial rv">
+        <div class="dial-face">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <path class="g-track" d="M31.8 108.2A54 54 0 1 1 108.2 108.2"></path>
+            <g class="g-pips" fill="none">
+              <path d="M31.8 108.2 27.5 112.5M70 16v-6M108.2 108.2 112.5 112.5"></path>
+            </g>
+            <path class="g-arc" pathLength="100" d="M31.8 108.2A54 54 0 1 1 108.2 108.2"></path>
+          </svg>
+          <p class="dial-read"><b data-state>Low</b><span>Supply</span></p>
+        </div>
+        <div>
+          <h3>Purpose</h3>
+          <p data-copy-off="Work answered what you are for, daily. The question outlives it."
+             data-copy-on="Work worth doing, practised while you still have colleagues.">Work answered what you are for, daily. The question outlives it.</p>
+        </div>
+      </div>
+
+      <div class="dial rv">
+        <div class="dial-face">
+          <svg viewBox="0 0 140 140" aria-hidden="true">
+            <path class="g-track" d="M31.8 108.2A54 54 0 1 1 108.2 108.2"></path>
+            <g class="g-pips" fill="none">
+              <path d="M31.8 108.2 27.5 112.5M70 16v-6M108.2 108.2 112.5 112.5"></path>
+            </g>
+            <path class="g-arc" pathLength="100" d="M31.8 108.2A54 54 0 1 1 108.2 108.2"></path>
+          </svg>
+          <p class="dial-read"><b data-state>Low</b><span>Supply</span></p>
+        </div>
+        <div>
+          <h3>Connection</h3>
+          <p data-copy-off="Most work friendships were structural. Remove the structure and you find out."
+             data-copy-on="People who still ring in August, because you built that on purpose.">Most work friendships were structural. Remove the structure and you find out.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="state-line" id="stateLine">
+      <span class="mono" id="stateTag">No plan</span>
+      <span id="stateTxt">This is the recognised dark side of retirement, and it arrives on schedule for the people who did everything else right.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════ 03 COVERED / NOT COVERED ══════════════════════ -->
+<section id="cover">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="mono">Scope of cover</span>
+      <span class="rulefill" aria-hidden="true"></span>
+      <span class="mono">Two plans, one date</span>
+    </div>
+
+    <h2 class="measure-tight">A money plan is excellent at the things it covers.</h2>
+    <p class="lede soft measure" style="margin-top:1.2rem;margin-bottom:2.4rem">
+      Not one line in the lower half is a money problem. That is why the money plan
+      was never going to reach it.
+    </p>
+
+    <div class="tablewrap rv">
+      <table>
+        <caption>What each plan covers</caption>
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">Money plan</th>
+            <th scope="col">Psychosocial plan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Income, tax and drawdown</th>
+            <td class="yes"><span class="dot"></span>Covered</td><td class="no"><span class="dot"></span>Not covered</td></tr>
+          <tr><th scope="row">Super, pension and health cover</th>
+            <td class="yes"><span class="dot"></span>Covered</td><td class="no"><span class="dot"></span>Not covered</td></tr>
+          <tr><th scope="row">The house, and whether to move</th>
+            <td class="yes"><span class="dot"></span>Covered</td><td class="no"><span class="dot"></span>Not covered</td></tr>
+          <tr><th scope="row">What a Tuesday looks like</th>
+            <td class="no"><span class="dot"></span>Not covered</td><td class="yes"><span class="dot"></span>Covered</td></tr>
+          <tr><th scope="row">Who you are without the title</th>
+            <td class="no"><span class="dot"></span>Not covered</td><td class="yes"><span class="dot"></span>Covered</td></tr>
+          <tr><th scope="row">Something to be useful for</th>
+            <td class="no"><span class="dot"></span>Not covered</td><td class="yes"><span class="dot"></span>Covered</td></tr>
+          <tr><th scope="row">People who still call</th>
+            <td class="no"><span class="dot"></span>Not covered</td><td class="yes"><span class="dot"></span>Covered</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="lede measure" style="margin-top:2rem">
+      One funds the lifestyle. The other decides whether there is a life in it.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════ 04 PRACTITIONER ══════════════════════ -->
+<section id="practitioner">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="mono">Practitioner</span>
+      <span class="rulefill" aria-hidden="true"></span>
+      <span class="mono">Dr San</span>
+    </div>
+
+    <div class="prac">
+      <figure class="prac-plate rv">
+        <img src="assets/drsan.jpg" width="980" height="1470" loading="lazy" decoding="async"
+             alt="Dr Sandra Walden-Pearson, photographed against a plain background.">
+        <figcaption>Dr San &mdash; Psychosocial Retirement Educator</figcaption>
+      </figure>
+      <div>
+        <h2>Dr Sandra Walden-Pearson</h2>
+        <p class="role">Psychosocial retirement educator &nbsp;&middot;&nbsp; Far North Queensland</p>
+        <p class="measure">
+          Known as Dr San. She works with individuals who are three to ten years from a
+          retirement date, and with the HR and workforce planners who are about to lose thirty
+          years of institutional knowledge in a single quarter.
+        </p>
+        <p class="measure soft">
+          She is not a financial adviser and has no interest in becoming one. She teaches the
+          other half of the plan &mdash; the half that decides whether the first half was worth
+          doing.
+        </p>
+        <ul class="cred">
+          <li>PhD (Business)</li>
+          <li>MBA (HR)</li>
+          <li>BA Dip Ed</li>
+          <li>Certified Professional Retirement Coach</li>
+        </ul>
+        <details class="more">
+          <summary>Full credentials</summary>
+          <ul>
+            <li>Certified Associate Meta Coach</li>
+            <li>Certified Resilience Coach</li>
+            <li>HART Coach</li>
+            <li>Resilience First Aid Responder</li>
+            <li>Accredited Mental Health First Aider</li>
+            <li>Accredited Mental Health First Aider (Workplace)</li>
+            <li>Accredited Cinergy Conflict Coach</li>
+          </ul>
+        </details>
+        <p class="tm">
+          human-centred retirement planning&trade;<br>
+          readysetretirement psychosocial planning&reg;
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ 05 CASE NOTE + CONSULT ══════════════════════ -->
+<section id="consult">
+  <div class="wrap">
+    <div class="panel labelled casenote rv" style="margin-bottom:clamp(1.2rem,3vw,2rem)">
+      <span class="lab">Case note</span>
+      <blockquote>
+        &ldquo;In talking with Dr San I realised the critical need to plan for the human side of
+        retirement. With hand on heart, I can honestly say that engaging Dr San has been life
+        changing.&rdquo;
+      </blockquote>
+      <cite><b>Hon. Warren Entsch</b><br>Former Federal Member for Leichhardt</cite>
+    </div>
+
+    <div class="panel labelled rv">
+      <span class="lab">Consult &mdash; 30 min &mdash; no fee</span>
+      <div class="consult">
+        <div>
+          <h2 class="measure-tight">Thirty minutes, at no cost, well before the date.</h2>
+          <p class="lede soft measure" style="margin-top:1.2rem">
+            You describe the date and what you have planned for it. Dr San tells you plainly
+            which parts are covered and which are not.
+          </p>
+        </div>
+        <a class="btn btn-solid" href="/contact">Book the consult</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <p>
+        Ready Set Retirement is psychosocial retirement education: training, workshops,
+        seminars, coaching, consulting and speaking. Nothing on this page scores, diagnoses or
+        treats anybody. The dials are a drawing of an argument, not a clinical measure.
+      </p>
+      <p>
+        Dr Sandra Walden-Pearson, Far North Queensland.
+        <a href="/contact">Get in touch</a> &mdash; the first half hour is on the house.
+      </p>
+    </div>
+    <p class="colophon">
+      <span>Ready Set Retirement</span>
+      <span>human-centred retirement planning&trade;</span>
+      <span>readysetretirement psychosocial planning&reg;</span>
+    </p>
+  </div>
+</footer>
+
+</div><!-- /shell -->
+
+<div class="abx" role="group" aria-label="Colour scheme test">
+  <span class="abx-l">Colour</span>
+  <button type="button" data-pal="a" aria-pressed="true" title="Palette A — violet and coral">A</button>
+  <button type="button" data-pal="b" aria-pressed="false" title="Palette B — orchid and azure">B</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ── A/B colour test ─────────────────────────────────────────────────── */
+  (function ab(){
+    var root = document.documentElement;
+    var btns = document.querySelectorAll(".abx button");
+    function paint(p){
+      root.setAttribute("data-pal", p);
+      try{ localStorage.setItem("rsr-pal", p); }catch(e){}
+      btns.forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.pal === p)); });
+      /* carry the choice to every other page in the set */
+      document.querySelectorAll('a[href]').forEach(function(a){
+        var h = a.getAttribute("href");
+        if(!h || /^(#|\/|mailto:|tel:|https?:)/.test(h)) return;
+        a.setAttribute("href", h.split("?")[0].split("#")[0] + "?pal=" + p + (h.indexOf("#") > -1 ? "#" + h.split("#")[1] : ""));
+      });
+    }
+    btns.forEach(function(b){ b.addEventListener("click", function(){ paint(b.dataset.pal); }); });
+    paint(root.getAttribute("data-pal") || "a");
+  })();
+
+  /* ── the four dials ──────────────────────────────────────────────────── */
+  var OFF = [24, 19, 28, 16];      /* no plan   */
+  var ON  = [82, 78, 85, 74];      /* prepared  */
+  var dials = Array.prototype.slice.call(document.querySelectorAll("#bank .dial"));
+  var arcs  = dials.map(function(d){ return d.querySelector(".g-arc"); });
+  var states= dials.map(function(d){ return d.querySelector("[data-state]"); });
+  var copies= dials.map(function(d){ return d.querySelector("[data-copy-off]"); });
+  var btnOff = document.getElementById("btnOff");
+  var btnOn  = document.getElementById("btnOn");
+  var line   = document.getElementById("stateLine");
+  var tag    = document.getElementById("stateTag");
+  var txt    = document.getElementById("stateTxt");
+  var mode   = "off";
+  var shown  = false;
+
+  var COPY = {
+    off: "This is the recognised dark side of retirement, and it arrives on schedule for the people who did everything else right.",
+    on:  "Preparation does not remove the drop. It shortens it, and it gives you something to land on."
+  };
+
+  function setArc(el, v){ el.style.strokeDasharray = v + " 100"; }
+
+  /* One persistent value object per dial. The tween has to own a stable target,
+     or a second click starts a second tween writing to the same arc and the two
+     fight for it — which is exactly what happens if you flip the switch twice
+     inside three quarters of a second. overwrite lets the newer one win. */
+  var vals = arcs.map(function(){ return { v: 0 }; });
+
+  function renderText(next){
+    mode = next;
+    var on = next === "on";
+    dials.forEach(function(d, i){
+      d.classList.toggle("on", on);
+      states[i].textContent = on ? "Steady" : "Low";
+      copies[i].textContent = copies[i].dataset[on ? "copyOn" : "copyOff"];
+    });
+    line.classList.toggle("on", on);
+    tag.textContent = on ? "With preparation" : "No plan";
+    txt.textContent = COPY[next];
+    btnOff.setAttribute("aria-pressed", String(!on));
+    btnOn.setAttribute("aria-pressed", String(on));
+  }
+
+  function render(next, animate){
+    renderText(next);
+    var target = next === "on" ? ON : OFF;
+    arcs.forEach(function(arc, i){
+      if(animate && !reduced){
+        gsap.to(vals[i], {
+          v: target[i], duration: .75, ease: "power2.out", delay: i * .05,
+          overwrite: "auto",
+          onUpdate: function(){ setArc(arc, vals[i].v.toFixed(2)); }
+        });
+      } else {
+        vals[i].v = target[i];
+        setArc(arc, target[i]);
+      }
+    });
+  }
+
+  btnOff.addEventListener("click", function(){ if(mode !== "off"){ shown = true; render("off", true); } });
+  btnOn.addEventListener("click",  function(){ if(mode !== "on"){  shown = true; render("on",  true); } });
+
+  /* Empty to begin with, filling to the deficit the first time it is seen.
+     The deficit is the argument, so it should happen in front of the reader. */
+  renderText("off");
+  arcs.forEach(function(a){ setArc(a, 0); });
+
+  if(reduced){
+    render("off", false);
+    document.querySelectorAll(".rv").forEach(function(el){ el.style.opacity = 1; el.style.transform = "none"; });
+  } else {
+    gsap.registerPlugin(ScrollTrigger);
+
+    ScrollTrigger.create({
+      trigger: "#bank", start: "top 72%", once: true,
+      onEnter: function(){ if(!shown){ shown = true; render("off", true); } }
+    });
+
+    gsap.utils.toArray(".rv").forEach(function(el){
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: .7, ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 88%", once: true }
+      });
+    });
+  }
+})();
+</script>
+
+<!-- Version Navigation Bar -->
+<script src="../../version-nav.js"></script>
+</body>
+</html>

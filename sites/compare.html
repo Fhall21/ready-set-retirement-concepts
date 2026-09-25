@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Side-by-Side Version Comparison — Ready Set Retirement</title>
+  <meta name="description" content="Compare different iterations and versions of Ready Set Retirement concepts side by side with synchronized scrolling.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0B0C;
+      --panel-bg: #141418;
+      --bar-bg: rgba(14, 14, 18, 0.95);
+      --fg: #EDEBE7;
+      --dim: #8A8781;
+      --hair: rgba(237, 235, 231, 0.12);
+      --acc: #D9A441;
+      --acc-hover: #F0B850;
+      --acc-soft: rgba(217, 164, 65, 0.18);
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --serif: "Fraunces", Georgia, serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.4;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- Header Bar ---- */
+    header {
+      background: var(--bar-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--hair);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-logo {
+      height: 22px;
+      width: auto;
+      opacity: 0.9;
+    }
+    .app-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--fg);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .app-tag {
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--acc-soft);
+      color: var(--acc);
+      border: 1px solid rgba(217, 164, 65, 0.3);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    /* Controls area */
+    .controls-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 3px 6px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+    }
+
+    .control-label {
+      font-size: 11px;
+      color: var(--dim);
+      padding: 0 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: rgba(255, 255, 255, 0.08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23EDEBE7' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E") no-repeat right 8px center;
+      border: 1px solid var(--hair);
+      border-radius: 999px;
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 5px 24px 5px 10px;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+    select:hover, select:focus {
+      border-color: var(--acc);
+      background-color: rgba(255, 255, 255, 0.14);
+    }
+    select option {
+      background: #141418;
+      color: #EDEBE7;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--hair);
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 11.5px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      outline: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.28);
+      color: #fff;
+    }
+    .btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .btn-active {
+      background: var(--acc) !important;
+      color: #0B0B0C !important;
+      border-color: var(--acc) !important;
+      font-weight: 600;
+    }
+    .btn-accent {
+      background: var(--acc-soft);
+      color: var(--acc);
+      border-color: rgba(217, 164, 65, 0.35);
+    }
+    .btn-accent:hover {
+      background: var(--acc);
+      color: #0B0B0C;
+    }
+
+    /* Actions area */
+    .actions-section {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ---- Main Split View ---- */
+    main {
+      flex: 1;
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .pane-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #left-pane {
+      width: 50%;
+      border-right: 1px solid var(--hair);
+    }
+    #right-pane {
+      flex: 1;
+    }
+
+    /* Mode classes */
+    main.mode-left-only #left-pane { width: 100% !important; border-right: none; }
+    main.mode-left-only #right-pane { display: none; }
+    main.mode-right-only #left-pane { display: none; }
+    main.mode-right-only #right-pane { width: 100% !important; }
+
+    /* Pane Header */
+    .pane-header {
+      background: #101014;
+      border-bottom: 1px solid var(--hair);
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--dim);
+      flex-shrink: 0;
+      user-select: none;
+    }
+    .pane-title {
+      font-weight: 600;
+      color: var(--fg);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pane-link {
+      color: var(--dim);
+      text-decoration: none;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.15s;
+    }
+    .pane-link:hover {
+      color: var(--acc);
+    }
+
+    /* Pane Frame */
+    .pane-frame-wrap {
+      flex: 1;
+      position: relative;
+      background: #0B0B0C;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #0B0B0C;
+    }
+
+    /* Draggable Split Handle */
+    .split-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 8px;
+      margin-left: -4px;
+      cursor: col-resize;
+      z-index: 50;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .split-divider::before {
+      content: "";
+      width: 2px;
+      height: 100%;
+      background: var(--hair);
+      transition: background-color 0.2s, width 0.2s;
+    }
+    .split-divider:hover::before,
+    .split-divider.dragging::before {
+      background: var(--acc);
+      width: 3px;
+    }
+
+    /* Dragging overlay to prevent iframe stealing pointer events */
+    .drag-overlay {
+      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 60;
+      cursor: col-resize;
+    }
+    body.is-dragging .drag-overlay {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      header {
+        padding: 8px 12px;
+        flex-wrap: wrap;
+      }
+      .brand-section {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .controls-section {
+        width: 100%;
+        justify-content: space-between;
+      }
+      main {
+        flex-direction: column;
+      }
+      #left-pane, #right-pane {
+        width: 100% !important;
+        height: 50% !important;
+      }
+      .split-divider {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Drag overlay prevents iframes swallowing mousemove during resize -->
+  <div class="drag-overlay" id="drag-overlay"></div>
+
+  <header>
+    <div class="brand-section">
+      <a href="index.html" title="Ready Set Retirement" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
+        <span class="app-title">Ready Set Retirement</span>
+        <span class="app-tag">Studio</span>
+      </a>
+    </div>
+
+    <div class="controls-section">
+      <!-- Concept Selector -->
+      <div class="control-group">
+        <span class="control-label">Concept:</span>
+        <select id="concept-select" title="Choose design direction to compare">
+          <option value="01-the-long-light">01 — The Long Light</option>
+          <option value="02-second-horizon">02 — Second Horizon</option>
+          <option value="04-unretired">04 — Unretired</option>
+          <option value="05-the-quiet-room">05 — The Quiet Room</option>
+          <option value="07-third-act">07 — Third Act</option>
+          <option value="08-vitals">08 — Vitals</option>
+          <option value="09-the-map">09 — The Map</option>
+          <option value="index">Gallery Hub</option>
+        </select>
+      </div>
+
+      <!-- Left Version Selector -->
+      <div class="control-group">
+        <span class="control-label">Left:</span>
+        <select id="left-ver-select" title="Left version">
+          <!-- Populated dynamically -->
+        </select>
+      </div>
+
+      <!-- Quick Steppers & Swap -->
+      <button type="button" class="btn" id="btn-prev-ver" title="Previous Version (Press [)">◀ Prev</button>
+      <button type="button" class="btn" id="btn-swap" title="Swap Left and Right Panes">⇄ Swap</button>
+      <button type="button" class="btn" id="btn-next-ver" title="Next Version (Press ])">Next ▶</button>
+
+      <!-- Right Version Selector -->
+      <div class="control-group">
+        <span class="control-label">Right:</span>
+        <select id="right-ver-select" title="Right version">
+          <!-- Populated dynamically -->
+        </select>
+      </div>
+
+      <!-- Synced Scroll Toggle -->
+      <button type="button" class="btn btn-accent btn-active" id="btn-sync-scroll" title="Toggle Synchronized Scrolling (Press S)">
+        ⇅ Sync: ON
+      </button>
+
+      <!-- Layout Mode -->
+      <div class="control-group">
+        <button type="button" class="btn btn-active" id="btn-mode-split" title="Split 50/50">◫ Split</button>
+        <button type="button" class="btn" id="btn-mode-left" title="Left pane only">◧ Left</button>
+        <button type="button" class="btn" id="btn-mode-right" title="Right pane only">◨ Right</button>
+      </div>
+
+      <!-- Palette Toggle -->
+      <div class="control-group">
+        <span class="control-label">Pal:</span>
+        <button type="button" class="btn btn-pal btn-active" id="btn-pal-a" data-pal="a" title="Palette A — Violet & Coral">A</button>
+        <button type="button" class="btn btn-pal" id="btn-pal-b" data-pal="b" title="Palette B — Orchid & Azure">B</button>
+      </div>
+    </div>
+
+    <div class="actions-section">
+      <a href="#" class="btn" id="btn-open-active" target="_blank" title="Open selected version standalone in new tab">↗ Standalone</a>
+      <a href="index.html" class="btn" title="Back to All Sites Hub (Press H)">☷ Hub</a>
+    </div>
+  </header>
+
+  <main id="main-split">
+    <!-- Left Pane -->
+    <div class="pane-container" id="left-pane">
+      <div class="pane-header">
+        <span class="pane-title" id="left-pane-title">VERSION 1 (Initial)</span>
+        <a href="#" class="pane-link" id="left-pane-external" target="_blank" title="Open standalone">Open full ↗</a>
+      </div>
+      <div class="pane-frame-wrap">
+        <iframe id="frame-left" src="about:blank"></iframe>
+      </div>
+    </div>
+
+    <!-- Draggable Divider -->
+    <div class="split-divider" id="split-divider" title="Drag to resize panels"></div>
+
+    <!-- Right Pane -->
+    <div class="pane-container" id="right-pane">
+      <div class="pane-header">
+        <span class="pane-title" id="right-pane-title">VERSION 2 (Feedback Iteration)</span>
+        <a href="#" class="pane-link" id="right-pane-external" target="_blank" title="Open standalone">Open full ↗</a>
+      </div>
+      <div class="pane-frame-wrap">
+        <iframe id="frame-right" src="about:blank"></iframe>
+      </div>
+    </div>
+  </main>
+
+  <script>
+  (function() {
+    let CONFIG = {
+      versions: [
+        { id: 'v1', label: 'Version 1', subtitle: 'Initial 10 Directions' },
+        { id: 'v2', label: 'Version 2', subtitle: 'Feedback Iteration' }
+      ]
+    };
+
+    // State
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentSite = urlParams.get('site') || '08-vitals';
+    let leftVer = urlParams.get('left') || 'v1';
+    let rightVer = urlParams.get('right') || 'v2';
+    let syncScroll = urlParams.get('sync') !== 'false';
+    let viewMode = urlParams.get('mode') || 'split'; // split, left, right
+
+    // DOM Elements
+    const conceptSelect = document.getElementById('concept-select');
+    const leftVerSelect = document.getElementById('left-ver-select');
+    const rightVerSelect = document.getElementById('right-ver-select');
+    const btnSyncScroll = document.getElementById('btn-sync-scroll');
+    const btnPrev = document.getElementById('btn-prev-ver');
+    const btnNext = document.getElementById('btn-next-ver');
+    const btnSwap = document.getElementById('btn-swap');
+    const btnOpenActive = document.getElementById('btn-open-active');
+
+    const btnModeSplit = document.getElementById('btn-mode-split');
+    const btnModeLeft = document.getElementById('btn-mode-left');
+    const btnModeRight = document.getElementById('btn-mode-right');
+
+    const mainSplit = document.getElementById('main-split');
+    const leftPane = document.getElementById('left-pane');
+    const rightPane = document.getElementById('right-pane');
+    const divider = document.getElementById('split-divider');
+    const frameLeft = document.getElementById('frame-left');
+    const frameRight = document.getElementById('frame-right');
+
+    const leftTitle = document.getElementById('left-pane-title');
+    const rightTitle = document.getElementById('right-pane-title');
+    const leftExternal = document.getElementById('left-pane-external');
+    const rightExternal = document.getElementById('right-pane-external');
+
+    // Attempt to load external versions.json to be dynamically extensible
+    try {
+      fetch('versions.json')
+        .then(r => r.json())
+        .then(data => {
+          if (data && Array.isArray(data.versions)) {
+            CONFIG.versions = data.versions;
+            populateVersionDropdowns();
+            render();
+          }
+        }).catch(() => {});
+    } catch(e) {}
+
+    function populateVersionDropdowns() {
+      leftVerSelect.innerHTML = CONFIG.versions.map(v => 
+        `<option value="${v.id}" ${v.id === leftVer ? 'selected' : ''}>${v.label}</option>`
+      ).join('');
+
+      rightVerSelect.innerHTML = CONFIG.versions.map(v => 
+        `<option value="${v.id}" ${v.id === rightVer ? 'selected' : ''}>${v.label}</option>`
+      ).join('');
+    }
+
+    function getSiteUrl(ver, slug) {
+      const palSuffix = (typeof currentPal !== 'undefined' && currentPal) ? '?pal=' + currentPal : '';
+      if (slug === 'index') {
+        return ver + '/index.html' + palSuffix;
+      }
+      return ver + '/' + slug + '/index.html' + palSuffix;
+    }
+
+    function updateURL() {
+      const p = new URLSearchParams();
+      p.set('site', currentSite);
+      p.set('left', leftVer);
+      p.set('right', rightVer);
+      if (!syncScroll) p.set('sync', 'false');
+      if (viewMode !== 'split') p.set('mode', viewMode);
+      window.history.replaceState({}, '', '?' + p.toString());
+    }
+
+    function render() {
+      // Validate versions
+      const verIds = CONFIG.versions.map(v => v.id);
+      if (!verIds.includes(leftVer)) leftVer = verIds[0] || 'v1';
+      if (!verIds.includes(rightVer)) rightVer = verIds[verIds.length - 1] || 'v2';
+
+      conceptSelect.value = currentSite;
+      leftVerSelect.value = leftVer;
+      rightVerSelect.value = rightVer;
+
+      const leftObj = CONFIG.versions.find(v => v.id === leftVer) || { label: leftVer };
+      const rightObj = CONFIG.versions.find(v => v.id === rightVer) || { label: rightVer };
+
+      leftTitle.textContent = `${leftObj.label.toUpperCase()} ${leftObj.subtitle ? '— ' + leftObj.subtitle : ''}`;
+      rightTitle.textContent = `${rightObj.label.toUpperCase()} ${rightObj.subtitle ? '— ' + rightObj.subtitle : ''}`;
+
+      const urlLeft = getSiteUrl(leftVer, currentSite);
+      const urlRight = getSiteUrl(rightVer, currentSite);
+
+      if (frameLeft.getAttribute('src') !== urlLeft) {
+        frameLeft.src = urlLeft;
+      }
+      if (frameRight.getAttribute('src') !== urlRight) {
+        frameRight.src = urlRight;
+      }
+
+      leftExternal.href = urlLeft;
+      rightExternal.href = urlRight;
+      btnOpenActive.href = urlRight;
+
+      // Mode
+      mainSplit.className = viewMode === 'split' ? '' : ('mode-' + viewMode + '-only');
+      btnModeSplit.classList.toggle('btn-active', viewMode === 'split');
+      btnModeLeft.classList.toggle('btn-active', viewMode === 'left');
+      btnModeRight.classList.toggle('btn-active', viewMode === 'right');
+
+      // Sync button
+      btnSyncScroll.classList.toggle('btn-active', syncScroll);
+      btnSyncScroll.textContent = syncScroll ? '⇅ Sync: ON' : '⇅ Sync: OFF';
+
+      updateURL();
+    }
+
+    // Step versions
+    function stepVersion(direction) {
+      const verIds = CONFIG.versions.map(v => v.id);
+      const rightIdx = verIds.indexOf(rightVer);
+      if (direction === -1 && rightIdx > 0) {
+        rightVer = verIds[rightIdx - 1];
+        if (leftVer === rightVer && rightIdx > 1) {
+          leftVer = verIds[rightIdx - 2];
+        }
+      } else if (direction === 1 && rightIdx < verIds.length - 1) {
+        rightVer = verIds[rightIdx + 1];
+        leftVer = verIds[rightIdx];
+      }
+      render();
+    }
+
+    // Synchronized scrolling engine
+    let isSyncing = false;
+
+    function bindFrameScroll(sourceIframe, targetIframe) {
+      function syncHandler() {
+        if (!syncScroll || isSyncing) return;
+        try {
+          const srcWin = sourceIframe.contentWindow;
+          const tgtWin = targetIframe.contentWindow;
+          if (!srcWin || !tgtWin) return;
+
+          const srcDoc = srcWin.document.documentElement;
+          const tgtDoc = tgtWin.document.documentElement;
+
+          const maxSrc = srcDoc.scrollHeight - srcWin.innerHeight;
+          const maxTgt = tgtDoc.scrollHeight - tgtWin.innerHeight;
+
+          if (maxSrc > 0 && maxTgt > 0) {
+            isSyncing = true;
+            const scrollRatio = srcWin.scrollY / maxSrc;
+            tgtWin.scrollTo(tgtWin.scrollX, scrollRatio * maxTgt);
+            setTimeout(() => { isSyncing = false; }, 50);
+          }
+        } catch (e) {
+          // Cross-origin fallback
+        }
+      }
+
+      try {
+        sourceIframe.contentWindow.addEventListener('scroll', syncHandler, { passive: true });
+      } catch(e) {}
+    }
+
+    frameLeft.addEventListener('load', () => {
+      bindFrameScroll(frameLeft, frameRight);
+    });
+    frameRight.addEventListener('load', () => {
+      bindFrameScroll(frameRight, frameLeft);
+    });
+
+    // Divider Resizing
+    let isDragging = false;
+    divider.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      isDragging = true;
+      document.body.classList.add('is-dragging');
+      divider.classList.add('dragging');
+    });
+
+    window.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      const rect = mainSplit.getBoundingClientRect();
+      let percentage = ((e.clientX - rect.left) / rect.width) * 100;
+      if (percentage < 15) percentage = 15;
+      if (percentage > 85) percentage = 85;
+      leftPane.style.width = percentage + '%';
+      divider.style.left = percentage + '%';
+    });
+
+    window.addEventListener('mouseup', function() {
+      if (isDragging) {
+        isDragging = false;
+        document.body.classList.remove('is-dragging');
+        divider.classList.remove('dragging');
+      }
+    });
+
+    // Event listeners
+    conceptSelect.addEventListener('change', function() {
+      currentSite = this.value;
+      render();
+    });
+
+    leftVerSelect.addEventListener('change', function() {
+      leftVer = this.value;
+      render();
+    });
+
+    rightVerSelect.addEventListener('change', function() {
+      rightVer = this.value;
+      render();
+    });
+
+    btnSyncScroll.addEventListener('click', function() {
+      syncScroll = !syncScroll;
+      render();
+    });
+
+    btnPrev.addEventListener('click', () => stepVersion(-1));
+    btnNext.addEventListener('click', () => stepVersion(1));
+
+    btnSwap.addEventListener('click', function() {
+      const temp = leftVer;
+      leftVer = rightVer;
+      rightVer = temp;
+      render();
+    });
+
+    btnModeSplit.addEventListener('click', () => { viewMode = 'split'; render(); });
+    btnModeLeft.addEventListener('click', () => { viewMode = 'left'; render(); });
+    btnModeRight.addEventListener('click', () => { viewMode = 'right'; render(); });
+
+    // Palette handling
+    const btnPalA = document.getElementById('btn-pal-a');
+    const btnPalB = document.getElementById('btn-pal-b');
+    let currentPal = (localStorage.getItem('rsr-pal') || 'a').toLowerCase();
+    if (currentPal !== 'b') currentPal = 'a';
+
+    function setPalette(p) {
+      currentPal = p;
+      try { localStorage.setItem('rsr-pal', p); } catch(e) {}
+      if (btnPalA && btnPalB) {
+        btnPalA.classList.toggle('btn-active', p === 'a');
+        btnPalB.classList.toggle('btn-active', p === 'b');
+      }
+      try {
+        if (frameLeft.contentDocument) frameLeft.contentDocument.documentElement.setAttribute('data-pal', p);
+        if (frameRight.contentDocument) frameRight.contentDocument.documentElement.setAttribute('data-pal', p);
+      } catch(e) {}
+      render();
+    }
+
+    if (btnPalA) btnPalA.addEventListener('click', () => setPalette('a'));
+    if (btnPalB) btnPalB.addEventListener('click', () => setPalette('b'));
+    setPalette(currentPal);
+
+    // Keyboard shortcuts
+    window.addEventListener('keydown', function(e) {
+      if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+      if (e.key === '[') {
+        stepVersion(-1);
+      } else if (e.key === ']') {
+        stepVersion(1);
+      } else if (e.key.toLowerCase() === 's') {
+        syncScroll = !syncScroll;
+        render();
+      } else if (e.key.toLowerCase() === 'h') {
+        window.location.href = 'index.html';
+      }
+    });
+
+    // Initial setup
+    populateVersionDropdowns();
+    render();
+  })();
+  </script>
+</body>
+</html>

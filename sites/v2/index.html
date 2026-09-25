@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-AU" data-pal="a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Round &mdash; Ready Set Retirement</title>
+<meta name="description" content="Seven directions for Ready Set Retirement, recoloured after Dr San's feedback. Two palettes to choose between on every page.">
+
+<script>
+/* Palette before first paint, so the page never flashes the other option. */
+(function(){try{
+  var q=new URL(location.href).searchParams.get("pal")||(location.hash.match(/pal=([ab])/i)||[])[1];
+  var p=(q||localStorage.getItem("rsr-pal")||"a").toLowerCase();
+  if(p!=="b")p="a";
+  document.documentElement.setAttribute("data-pal",p);
+  localStorage.setItem("rsr-pal",p);
+}catch(e){}})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   A/B PALETTE — see PALETTE.md. Both schemes open white, because six of the
+   seven sites were marked down for being dark and dreary and nothing else.
+   ═══════════════════════════════════════════════════════════════════════════ */
+:root{
+  --ground:#FFFFFF;
+  --ground-2:#FBF6FF;
+  --ground-3:#F3E7FD;
+  --ink:#211A2A;
+  --ink-soft:#574B66;
+  --brand:#7B2FB5;
+  --brand-deep:#5F1F92;
+  --accent:#D91A54;
+  --logo:url("assets/logo-a.svg");
+}
+html[data-pal="b"]{
+  --ground:#FFFFFF;
+  --ground-2:#F6F8FE;
+  --ground-3:#E9EFFC;
+  --ink:#17203A;
+  --ink-soft:#495271;
+  --brand:#C01B7A;
+  --brand-deep:#9A1461;
+  --accent:#1F5FE0;
+  --logo:url("assets/logo-b.svg");
+}
+
+:root{
+  --rule:color-mix(in srgb, var(--ink) 13%, transparent);
+  --rule-strong:color-mix(in srgb, var(--ink) 22%, transparent);
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+  --serif:"Fraunces",Georgia,serif;
+  --gut:clamp(1.25rem,5vw,4rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--mono);font-size:14px;line-height:1.62;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1440px;margin-inline:auto;padding-inline:var(--gut)}
+
+header{padding-block:clamp(3rem,10vh,7rem) clamp(2rem,5vh,3.5rem)}
+header .mark{
+  display:block;width:clamp(132px,13vw,176px);aspect-ratio:767/334;
+  background:var(--logo) left center/contain no-repeat;
+  margin:0 0 clamp(2rem,5vh,3rem);
+}
+h1{
+  font-family:var(--serif);font-weight:400;font-variation-settings:"opsz" 144;
+  font-size:clamp(2.2rem,6.5vw,5.2rem);line-height:1;letter-spacing:-.035em;
+  margin:0 0 1.6rem;max-width:18ch;text-wrap:balance;
+}
+h1 em{font-style:normal;color:var(--brand)}
+.sub{
+  color:var(--ink-soft);max-width:64ch;
+  font-size:15px;line-height:1.8;margin:0 0 1.3em;
+}
+.sub:last-of-type{margin-bottom:0}
+.sub b{color:var(--ink);font-weight:600}
+.sub a{color:var(--brand);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+
+/* ---- the colour test callout ---- */
+.test{
+  margin-top:clamp(2rem,5vh,3rem);
+  border:1px solid var(--rule-strong);border-left:4px solid var(--brand);
+  border-radius:3px;padding:clamp(1.2rem,3vw,1.8rem);
+  background:var(--ground-2);max-width:72ch;
+}
+.test h2{
+  font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brand);margin:0 0 .9rem;
+}
+.test p{margin:0 0 1rem;color:var(--ink-soft);font-size:14px;line-height:1.75;max-width:60ch}
+.test p:last-child{margin-bottom:0}
+.swatches{display:flex;flex-wrap:wrap;gap:1.6rem;margin:0 0 1.1rem}
+.sw{display:flex;align-items:center;gap:.5rem}
+.sw i{display:block;width:22px;height:22px;border-radius:50%;border:1px solid var(--rule-strong)}
+.sw span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* ---- the list ---- */
+.list{border-top:1px solid var(--rule-strong);margin-top:clamp(2.5rem,7vh,5rem)}
+.row{
+  display:grid;gap:.4rem 2rem;
+  grid-template-columns:3.5rem 1fr;
+  padding:clamp(1.4rem,3vw,2rem) 0;
+  border-bottom:1px solid var(--rule);
+  transition:background-color .3s;
+}
+.row:hover{background:var(--ground-2)}
+.num{
+  font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--ink-soft);
+  padding-top:.6rem;font-variant-numeric:tabular-nums;
+}
+.row:hover .num{color:var(--brand)}
+.name{
+  font-family:var(--serif);font-weight:400;font-variation-settings:"opsz" 96;
+  font-size:clamp(1.5rem,3.2vw,2.5rem);line-height:1.04;letter-spacing:-.03em;
+}
+.name .tag{
+  display:inline-block;vertical-align:middle;margin-left:.7rem;
+  font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:#fff;background:var(--accent);
+  padding:.3rem .5rem;border-radius:2px;
+}
+.name .arrow{
+  display:inline-block;margin-left:.5rem;opacity:0;
+  transform:translateX(-6px);transition:opacity .3s,transform .3s;
+  font-family:var(--mono);font-size:.42em;vertical-align:middle;color:var(--brand);
+}
+.row:hover .arrow{opacity:1;transform:translateX(0)}
+.facts{
+  display:grid;gap:.35rem 2rem;margin-top:.7rem;
+  grid-template-columns:1fr;color:var(--ink-soft);font-size:12.5px;line-height:1.7;
+}
+.facts dt{
+  font-size:9.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:.15rem;
+}
+.facts dd{margin:0}
+.facts dd.chg{color:var(--ink)}
+@media(min-width:860px){
+  .row{grid-template-columns:3.5rem minmax(0,1fr) minmax(0,1.45fr);align-items:start}
+  .facts{grid-template-columns:1fr 1.3fr;margin-top:.5rem}
+}
+
+/* ---- notes ---- */
+.notes{
+  padding-block:clamp(3rem,8vh,6rem);
+  display:grid;gap:clamp(1.8rem,4vw,3.5rem);grid-template-columns:1fr;
+}
+@media(min-width:860px){.notes{grid-template-columns:repeat(3,1fr)}}
+.note h2{
+  font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--brand);margin:0 0 1rem;
+}
+.note p{margin:0 0 1em;color:var(--ink-soft);max-width:46ch;line-height:1.8}
+.note p:last-child{margin-bottom:0}
+footer{
+  border-top:1px solid var(--rule);padding:1.8rem 0 4rem;
+  font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);
+  display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;
+}
+
+/* ═══════════════ A/B COLOUR TEST CONTROL ═══════════════ */
+.abx{
+  position:fixed;z-index:900;
+  right:clamp(.7rem,2vw,1.4rem);bottom:clamp(.7rem,2vw,1.4rem);
+  display:flex;align-items:center;gap:.45rem;
+  padding:.4rem .45rem .4rem .8rem;border-radius:999px;
+  background:var(--ground);border:1px solid var(--rule-strong);
+  box-shadow:0 10px 30px -12px color-mix(in srgb, var(--ink) 45%, transparent);
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;line-height:1;
+}
+.abx .abx-l{color:var(--ink-soft)}
+.abx button{
+  appearance:none;cursor:pointer;border:0;border-radius:999px;
+  width:26px;height:26px;font:inherit;font-size:11px;
+  background:transparent;color:var(--ink-soft);
+}
+.abx button:hover{background:var(--ground-3);color:var(--brand)}
+.abx button[aria-pressed="true"]{background:var(--brand);color:#fff}
+@media(max-width:420px){.abx .abx-l{display:none}.abx{padding-left:.45rem}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <span class="mark" role="img" aria-label="Ready Set Retirement"></span>
+  <h1>Hi San &mdash; here they are again, <em>with the lights on</em>.</h1>
+  <p class="sub">
+    Thank you for the notes. They were unusually useful, because they said the same
+    thing seven times: the writing landed, and the colour did not. Six of the seven
+    got marked down on colour alone &mdash; <b>dark, dreary, sombre, monochrome,
+    depressing</b>. So this round is a colour round. Nothing that was working has
+    been moved.
+  </p>
+  <p class="sub">
+    Two of them have also been rebuilt. <b>Vitals</b>, because you singled out the
+    four dials and the covered/not-covered table, so those are now the whole page
+    and the rest is gone. <b>The Map</b>, because you said it was genius but took
+    too much thinking &mdash; so the surveyor's apparatus is gone and one clear
+    image is left.
+  </p>
+
+  <div class="test">
+    <h2>The one thing we need from you</h2>
+    <div class="swatches">
+      <span class="sw"><i style="background:#7B2FB5"></i><span>A &mdash; violet</span></span>
+      <span class="sw"><i style="background:#D91A54"></i><span>A &mdash; coral</span></span>
+      <span class="sw"><i style="background:#C01B7A"></i><span>B &mdash; orchid</span></span>
+      <span class="sw"><i style="background:#1F5FE0"></i><span>B &mdash; azure</span></span>
+    </div>
+    <p>
+      Every page now carries a small <b>A / B</b> switch in the bottom-right corner.
+      It changes the colour and nothing else, so a preference you express is a
+      preference about colour and not about layout. Your choice follows you from page
+      to page, so you can walk the whole set in one and then walk it again in the other.
+    </p>
+    <p>
+      <b>A is violet and coral</b> &mdash; warmer, more energetic, more distinctive.
+      <b>B is orchid and azure</b> &mdash; cooler, more corporate, better suited to
+      an HR or board audience. Both are brighter than anything you saw last time.
+      Tell us which one you keep reaching for.
+    </p>
+  </div>
+</header>
+
+<div class="list">
+
+  <a class="row" href="08-vitals/index.html">
+    <span class="num">01</span>
+    <span class="name">Vitals<span class="tag">Rebuilt</span><span class="arrow">&rarr;</span></span>
+    <dl class="facts">
+      <div><dt>Now</dt><dd>Bright instrument panel. Four dials and one switch.</dd></div>
+      <div><dt>What changed</dt><dd class="chg">Two banks of dials became one bank with an
+        <em>unprepared / prepared</em> switch. The ECG trace is gone. Table down from eleven
+        rows to seven. Two thirds of the words gone.</dd></div>
+    </dl>
+  </a>
+
+  <a class="row" href="09-the-map/index.html">
+    <span class="num">02</span>
+    <span class="name">The Map<span class="tag">Rebuilt</span><span class="arrow">&rarr;</span></span>
+    <dl class="facts">
+      <div><dt>Now</dt><dd>One route, three kinds of ground, five stops.</dd></div>
+      <div><dt>What changed</dt><dd class="chg">Grid references, elevation, bearings, scale bar,
+        north arrow and the ten-item legend are all gone, along with the words <em>traverse</em>
+        and <em>trigonometrical station</em>. Twelve annotations became four.</dd></div>
+    </dl>
+  </a>
+
+  <a class="row" href="01-the-long-light/index.html">
+    <span class="num">03</span>
+    <span class="name">The Long Light<span class="arrow">&rarr;</span></span>
+    <dl class="facts">
+      <div><dt>Now</dt><dd>A warm film strip on a white page.</dd></div>
+      <div><dt>What changed</dt><dd class="chg">The page-wide vignette and grain are gone.
+        Frames re-graded warm and opened up. The film now opens on her face rather than on a
+        figure at the end of a jetty.</dd></div>
+    </dl>
+  </a>
+
+  <a class="row" href="02-second-horizon/index.html">
+    <span class="num">04</span>
+    <span class="name">Second Horizon<span class="arrow">&rarr;</span></span>
+    <dl class="facts">
+      <div><dt>Now</dt><dd>A sunrise over a fixed horizon.</dd></div>
+      <div><dt>What changed</dt><dd class="chg">You said a night sky reads as the years getting
+        darker. So it runs the other way: pre-dawn to full morning, and the page inverts to dark
+        ink on light once the sun is up. The phrase <em>&ldquo;sunset years&rdquo;</em> is gone from the headline.</dd></div>
+    </dl>
+  </a>
+
+  <a class="row" href="04-unretired/index.html">
+    <span class="num">05</span>
+    <span class="name">Unretired<span class="arrow">&rarr;</span></span>
+    <dl class="facts">
+      <div><dt>Now</dt><dd>Swiss poster, violet and coral.</dd></div>
+      <div><dt>What changed</dt><dd class="chg">No longer monochrome. Poster type down by a
+        third, so it is emphatic rather than shouting, and the title now carries a line that
+        connects it to the argument underneath.</dd></div>
+    </dl>
+  </a>
+
+  <a class="row" href="05-the-quiet-room/index.html">
+    <span class="num">06</span>
+    <span class="name">The Quiet Room<span class="arrow">&rarr;</span></span>
+    <dl class="facts">
+      <div><dt>Now</dt><dd>White paper, one thread, violet into coral.</dd></div>
+      <div><dt>What changed</dt><dd class="chg">The aged cream and the paper-fibre texture are
+        gone. Photographs opened up. The thread is now the brightest object on the page instead
+        of the faintest.</dd></div>
+    </dl>
+  </a>
+
+  <a class="row" href="07-third-act/index.html">
+    <span class="num">07</span>
+    <span class="name">Third Act<span class="arrow">&rarr;</span></span>
+    <dl class="facts">
+      <div><dt>Now</dt><dd>Three acts, and the third one is lit.</dd></div>
+      <div><dt>What changed</dt><dd class="chg">You liked the black, white and red, so the
+        structure is untouched. The red is brighter, the black carries a violet cast, and Act III
+        &mdash; the act about the work &mdash; inverts to a bright ground.</dd></div>
+    </dl>
+  </a>
+
+</div>
+
+<div class="notes">
+  <div class="note">
+    <h2>What we did not touch</h2>
+    <p>
+      Every line you marked <em>excellent</em> is still there, word for word. The Monday with
+      nothing in the calendar. Four things attached to your work, all leaving on the same
+      afternoon. Forty years and roughly ten minutes. Thirty minutes, at no cost, well before
+      the date.
+    </p>
+  </div>
+  <div class="note">
+    <h2>On cognitive load</h2>
+    <p>
+      Your note on The Map &mdash; that people arrive at this already stressed, so it has to be
+      stress free rather than a challenge &mdash; has been applied to Vitals as well. Both pages
+      now hold three things in the head at once instead of nine.
+    </p>
+  </div>
+  <div class="note">
+    <h2>Still true</h2>
+    <p>
+      Seven sites, one brief, no build step and no frameworks. Each is a single file you can
+      open from a USB stick. The colour switch adds about forty lines to each of them and no
+      dependencies at all.
+    </p>
+  </div>
+</div>
+
+<footer>
+  <span>readysetretirement psychosocial planning&reg;</span>
+  <span>Second round &middot; seven directions &middot; two palettes</span>
+</footer>
+
+</div>
+
+<div class="abx" role="group" aria-label="Colour scheme test">
+  <span class="abx-l">Colour</span>
+  <button type="button" data-pal="a" aria-pressed="true" title="Palette A — violet and coral">A</button>
+  <button type="button" data-pal="b" aria-pressed="false" title="Palette B — orchid and azure">B</button>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll(".abx button");
+  function paint(p){
+    root.setAttribute("data-pal",p);
+    try{localStorage.setItem("rsr-pal",p);}catch(e){}
+    btns.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pal===p));});
+    /* carry the choice into every site in the set */
+    document.querySelectorAll('.row[href]').forEach(function(a){
+      a.setAttribute("href", a.getAttribute("href").split("?")[0] + "?pal=" + p);
+    });
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){paint(b.dataset.pal);});});
+  paint(root.getAttribute("data-pal")||"a");
+})();
+</script>
+
+<!-- Version Navigation Bar -->
+<script src="../version-nav.js"></script>
+</body>
+</html>

@@ -1,199 +1,536 @@
+<!DOCTYPE html>
+<html lang="en-AU" data-pal="a">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ten Directions — Ready Set Retirement</title>
-<meta name="description" content="Ten complete landing sites for Ready Set Retirement. One brief, ten answers.">
+<title>Ready Set Retirement — Concept Directions &amp; Version Studio</title>
+<meta name="description" content="Design directions for Ready Set Retirement across multiple iterations. Compare v1 and v2 side by side, review client feedback, and test brand palettes.">
+
+<script>
+/* Palette before first paint so the page never flashes the other option */
+(function(){try{
+  var q=new URL(location.href).searchParams.get("pal")||(location.hash.match(/pal=([ab])/i)||[])[1];
+  var p=(q||localStorage.getItem("rsr-pal")||"a").toLowerCase();
+  if(p!=="b")p="a";
+  document.documentElement.setAttribute("data-pal",p);
+  localStorage.setItem("rsr-pal",p);
+}catch(e){}})();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   A/B PALETTE — Brand options with instant switching across versions
+   ═══════════════════════════════════════════════════════════════════════════ */
 :root{
-  --bg:#0B0B0C; --fg:#EDEBE7; --dim:#8A8781; --hair:rgba(237,235,231,.13);
-  --acc:#D9A441;
+  --ground:#FFFFFF;
+  --ground-2:#FBF6FF;
+  --ground-3:#F3E7FD;
+  --ink:#211A2A;
+  --ink-soft:#574B66;
+  --brand:#7B2FB5;
+  --brand-deep:#5F1F92;
+  --accent:#D91A54;
+  --gold:#D9A441;
+  --logo:url("assets/logo-a.svg");
+  --rule:color-mix(in srgb, var(--ink) 13%, transparent);
+  --rule-strong:color-mix(in srgb, var(--ink) 22%, transparent);
   --mono:"JetBrains Mono",ui-monospace,monospace;
   --serif:"Fraunces",Georgia,serif;
   --gut:clamp(1.25rem,5vw,4.5rem);
 }
+html[data-pal="b"]{
+  --ground:#FFFFFF;
+  --ground-2:#F6F8FE;
+  --ground-3:#E9EFFC;
+  --ink:#17203A;
+  --ink-soft:#495271;
+  --brand:#C01B7A;
+  --brand-deep:#9A1461;
+  --accent:#1F5FE0;
+  --gold:#D9A441;
+  --logo:url("assets/logo-b.svg");
+}
+
 *,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
 body{
-  margin:0;background:var(--bg);color:var(--fg);
-  font-family:var(--mono);font-size:14px;line-height:1.6;
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--mono);font-size:14px;line-height:1.62;
   overflow-x:hidden;-webkit-font-smoothing:antialiased;
 }
 a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
-.wrap{max-width:1500px;margin-inline:auto;padding-inline:var(--gut)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1440px;margin-inline:auto;padding-inline:var(--gut)}
 
-header{padding-block:clamp(4rem,13vh,9rem) clamp(2.5rem,6vh,4rem)}
-header .mark{display:block;width:clamp(124px,12vw,164px);height:auto;margin:0 0 clamp(2rem,5vh,3.2rem);opacity:.9}
+header{padding-block:clamp(3rem,8vh,6rem) clamp(2rem,4vh,3rem)}
+header .mark{
+  display:block;width:clamp(132px,13vw,176px);aspect-ratio:767/334;
+  background:var(--logo) left center/contain no-repeat;
+  margin:0 0 clamp(1.8rem,4vh,2.5rem);
+}
 h1{
-  font-family:var(--serif);font-weight:300;font-variation-settings:"opsz" 144;
-  font-size:clamp(2.4rem,7vw,6rem);line-height:.98;letter-spacing:-.035em;
-  margin:0 0 2rem;max-width:14ch;
+  font-family:var(--serif);font-weight:400;font-variation-settings:"opsz" 144;
+  font-size:clamp(2.2rem,6vw,4.8rem);line-height:1.02;letter-spacing:-.035em;
+  margin:0 0 1.4rem;max-width:20ch;text-wrap:balance;
 }
-.sub{color:var(--dim);max-width:62ch;font-size:14px;line-height:1.8}
-.sub b{color:var(--fg);font-weight:500}
-.meta{
-  display:flex;flex-wrap:wrap;gap:.6rem 2.2rem;margin-top:2.5rem;
-  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+h1 em{font-style:normal;color:var(--brand)}
+.sub{
+  color:var(--ink-soft);max-width:68ch;
+  font-size:15px;line-height:1.8;margin:0 0 1.2em;
 }
-.meta span::before{content:"— ";color:var(--acc)}
+.sub b{color:var(--ink);font-weight:600}
+.sub a{color:var(--brand);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+
+/* Version switcher bar */
+.version-banner{
+  margin-top:2rem;
+  background:var(--ground-2);
+  border:1px solid var(--rule-strong);
+  border-radius:8px;
+  padding:1.2rem 1.5rem;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+.ver-tabs{
+  display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;
+}
+.ver-tab{
+  padding:.5rem 1rem;
+  border-radius:999px;
+  border:1px solid var(--rule-strong);
+  background:var(--ground);
+  font-size:12px;
+  font-weight:600;
+  color:var(--ink-soft);
+  cursor:pointer;
+  transition:all .15s ease;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+}
+.ver-tab:hover{
+  border-color:var(--brand);
+  color:var(--brand);
+}
+.ver-tab.active{
+  background:var(--brand);
+  color:#fff;
+  border-color:var(--brand);
+}
+.ver-tab .badge{
+  font-size:10px;padding:2px 6px;border-radius:4px;background:rgba(255,255,255,.2);
+}
+.studio-launch-btn{
+  background:var(--accent);
+  color:#fff;
+  padding:.55rem 1.2rem;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  transition:transform .15s ease, opacity .15s ease;
+}
+.studio-launch-btn:hover{
+  opacity:.92;
+  transform:translateY(-1px);
+}
+
+/* ---- feedback callout ---- */
+.feedback-box{
+  margin-top:1.5rem;
+  border:1px solid var(--rule);
+  border-radius:6px;
+  background:var(--ground-3);
+  padding:1rem 1.2rem;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:.8rem;
+  font-size:13px;
+}
+.feedback-links{
+  display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center;
+}
+.feedback-links a{
+  color:var(--brand-deep);
+  font-weight:600;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
 
 /* ---- the list ---- */
-.list{border-top:1px solid var(--hair);margin-top:clamp(3rem,8vh,6rem)}
+.list{border-top:1px solid var(--rule-strong);margin-top:clamp(2.5rem,6vh,4.5rem)}
 .row{
-  display:grid;gap:.4rem 2rem;
+  display:grid;gap:.6rem 2rem;
   grid-template-columns:3.5rem 1fr;
-  padding:clamp(1.4rem,3vw,2.1rem) 0;
-  border-bottom:1px solid var(--hair);
-  transition:background-color .35s;
+  padding:clamp(1.5rem,3vw,2.2rem) 0;
+  border-bottom:1px solid var(--rule);
+  transition:background-color .3s;
 }
-.row:hover,.row:focus-visible{background:rgba(217,164,65,.045)}
+.row:hover{background:var(--ground-2)}
 .num{
-  font-size:11px;letter-spacing:.1em;color:var(--dim);
-  padding-top:.55rem;font-variant-numeric:tabular-nums;
+  font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--ink-soft);
+  padding-top:.4rem;font-variant-numeric:tabular-nums;
 }
-.row:hover .num{color:var(--acc)}
+.row:hover .num{color:var(--brand)}
+
+.row-main{display:flex;flex-direction:column;gap:.6rem}
+.row-header{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem;
+}
+
 .name{
-  font-family:var(--serif);font-weight:300;font-variation-settings:"opsz" 96;
-  font-size:clamp(1.5rem,3.4vw,2.6rem);line-height:1.02;letter-spacing:-.03em;
+  font-family:var(--serif);font-weight:400;font-variation-settings:"opsz" 96;
+  font-size:clamp(1.6rem,3.2vw,2.4rem);line-height:1.05;letter-spacing:-.03em;
 }
-.name .arrow{
-  display:inline-block;margin-left:.5rem;opacity:0;
-  transform:translateX(-6px);transition:opacity .35s,transform .35s;
-  font-family:var(--mono);font-size:.42em;vertical-align:middle;color:var(--acc);
+.name .tag{
+  display:inline-block;vertical-align:middle;margin-left:.6rem;
+  font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:#fff;background:var(--accent);
+  padding:.25rem .5rem;border-radius:3px;
 }
-.row:hover .arrow{opacity:1;transform:translateX(0)}
+.name .tag-iter{
+  background:var(--brand);
+}
+
+.row-actions{
+  display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;
+}
+.btn-action{
+  padding:.45rem .85rem;
+  border-radius:999px;
+  font-size:11.5px;
+  font-weight:600;
+  border:1px solid var(--rule-strong);
+  background:var(--ground);
+  color:var(--ink);
+  transition:all .15s ease;
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+}
+.btn-action:hover{
+  border-color:var(--brand);
+  color:var(--brand);
+  background:var(--ground-2);
+}
+.btn-action.btn-v2{
+  background:var(--brand);
+  color:#fff;
+  border-color:var(--brand);
+}
+.btn-action.btn-v2:hover{
+  background:var(--brand-deep);
+  color:#fff;
+}
+.btn-action.btn-compare{
+  border-color:var(--gold);
+  color:var(--ink);
+  background:rgba(217,164,65,.12);
+}
+.btn-action.btn-compare:hover{
+  background:var(--gold);
+  color:#000;
+  border-color:var(--gold);
+}
+
 .facts{
-  display:grid;gap:.35rem 2rem;margin-top:.7rem;
-  grid-template-columns:1fr;color:var(--dim);font-size:12.5px;line-height:1.7;
+  display:grid;gap:.6rem 2rem;margin-top:.4rem;
+  grid-template-columns:1fr;color:var(--ink-soft);font-size:13px;line-height:1.7;
 }
 .facts dt{
-  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-  color:#615F5B;margin-bottom:.15rem;
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--brand);margin-bottom:.15rem;font-weight:600;
 }
 .facts dd{margin:0}
-@media(min-width:820px){
-  .row{grid-template-columns:3.5rem minmax(0,1.15fr) minmax(0,1.35fr);align-items:start}
-  .facts{grid-template-columns:1fr 1fr 1fr;margin-top:.5rem}
+.facts dd.chg{color:var(--ink)}
+
+@media(min-width:860px){
+  .row{grid-template-columns:3.5rem minmax(0,1.2fr) minmax(0,1.4fr);align-items:start}
+  .facts{grid-template-columns:1fr 1.3fr;margin-top:0}
 }
 
 /* ---- notes ---- */
 .notes{
-  padding-block:clamp(4rem,10vh,8rem);
-  display:grid;gap:clamp(2rem,5vw,4rem);grid-template-columns:1fr;
+  padding-block:clamp(3rem,8vh,6rem);
+  display:grid;gap:clamp(1.5rem,4vw,3rem);grid-template-columns:1fr;
 }
 @media(min-width:820px){.notes{grid-template-columns:repeat(3,1fr)}}
 .note h2{
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--acc);margin:0 0 1rem;font-weight:500;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--brand);margin:0 0 .8rem;font-weight:600;
 }
-.note p{margin:0 0 1em;color:var(--dim);max-width:46ch;line-height:1.75}
-.note p:last-child{margin-bottom:0}
+.note p{margin:0 0 1em;color:var(--ink-soft);font-size:13.5px;line-height:1.75}
+
 footer{
-  border-top:1px solid var(--hair);padding:2rem 0 4rem;
-  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#615F5B;
+  border-top:1px solid var(--rule-strong);padding:2.5rem 0 4rem;
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
   display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;
 }
-</style>
 
+/* Floating palette switch in bottom corner */
+.abx{
+  position:fixed;bottom:18px;right:18px;z-index:9000;
+  display:flex;align-items:center;gap:4px;
+  background:var(--ground);border:1px solid var(--rule-strong);
+  border-radius:999px;padding:4px 6px;
+  box-shadow:0 8px 24px rgba(0,0,0,.15);
+  font-family:var(--mono);font-size:11px;
+}
+.abx-l{color:var(--ink-soft);padding:0 6px;text-transform:uppercase;letter-spacing:.1em;font-size:9.5px;font-weight:600}
+.abx button{
+  border:none;background:transparent;cursor:pointer;
+  font-family:inherit;font-weight:600;font-size:11px;
+  width:24px;height:24px;border-radius:50%;
+  color:var(--ink-soft);transition:all .15s;
+}
+.abx button:hover{background:var(--ground-3);color:var(--ink)}
+.abx button[aria-pressed="true"]{background:var(--brand);color:#fff}
+</style>
+</head>
+
+<body>
 <div class="wrap">
 
 <header>
-  <img class="mark" src="assets/logo-film.svg" width="767" height="334"
-       alt="Ready Set Retirement — psychosocial planning for retirement">
-  <h1>Hi San &mdash; have a look through these.</h1>
+  <div class="mark" role="img" aria-label="Ready Set Retirement — psychosocial planning"></div>
+  <h1>Ready Set Retirement &mdash; <em>Concept Directions</em></h1>
   <p class="sub">
-    Here are seven different directions for your new site, each with its own look,
-    feel, and personality. Click into any of them, scroll around, and get a feel for
-    what it's like. There's no right answer here &mdash; we just want to know what
-    you respond to. As you go through, jot down what catches your eye (and what
-    doesn't) and why: a colour, a mood, a phrase, the way it moves. That's what will
-    shape the direction we take.
+    Welcome to the design studio. Here you can explore seven distinct design directions across multiple
+    iterations. Review our latest round based on Dr San's written feedback, compare <b>Version 1 (Initial)</b>
+    and <b>Version 2 (Iterated)</b> side by side, and test brand colour palettes.
   </p>
-  <div class="meta">
-    <span>Seven sites</span>
-    <span>No build step</span>
-    <span>No frameworks</span>
+
+  <!-- Version & Studio Controller -->
+  <div class="version-banner">
+    <div class="ver-tabs">
+      <span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);">Gallery View:</span>
+      <a class="ver-tab active" href="v2/index.html">
+        Version 2 <span class="badge">Feedback Iteration</span>
+      </a>
+      <a class="ver-tab" href="v1/index.html">
+        Version 1 <span class="badge">Initial Concepts</span>
+      </a>
+    </div>
+
+    <a href="compare.html?site=08-vitals&left=v1&right=v2" class="studio-launch-btn">
+      ◫ Open Comparison Studio &rarr;
+    </a>
+  </div>
+
+  <!-- Feedback links -->
+  <div class="feedback-box">
+    <div>
+      <strong>Written Feedback &amp; Review Docs:</strong>
+    </div>
+    <div class="feedback-links">
+      <a href="../feedback/Dr_San_for_Felix.md" target="_blank">Dr San's Round 1 Notes &rarr;</a>
+      <a href="../feedback/RESPONSE_second_round.md" target="_blank">Round 2 Design Response &rarr;</a>
+    </div>
   </div>
 </header>
 
 <div class="list">
 
-  <a class="row" href="01-the-long-light/index.html">
+  <!-- 08 VITALS -->
+  <div class="row">
     <span class="num">01</span>
-    <span class="name">The Long Light<span class="arrow">&rarr;</span></span>
-    <dl class="facts">
-      <div><dt>Aesthetic</dt><dd>A24 documentary, warm 35mm</dd></div>
-      <div><dt>Mechanic</dt><dd>Canvas frame-scrub inside a letterboxed cinema panel</dd></div>
-      <div><dt>For</dt><dd>Individuals</dd></div>
-    </dl>
-  </a>
+    <div class="row-main">
+      <div class="row-header">
+        <span class="name">Vitals<span class="tag">Rebuilt</span></span>
+        <div class="row-actions">
+          <a class="btn-action btn-v2" href="v2/08-vitals/index.html">View v2 &rarr;</a>
+          <a class="btn-action" href="v1/08-vitals/index.html">View v1</a>
+          <a class="btn-action btn-compare" href="compare.html?site=08-vitals&left=v1&right=v2">◫ Compare Side-by-Side</a>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>Concept</dt><dd>Clinical instrument panel with interactive diagnostic risk gauges.</dd></div>
+        <div><dt>What changed in v2</dt><dd class="chg">Two banks of dials became one bank with an <em>unprepared / prepared</em> switch. The ECG trace is gone. Diagnostic table cut from 11 rows to 7. Two thirds of words removed to eliminate cognitive overwhelm.</dd></div>
+      </dl>
+    </div>
+  </div>
 
-  <a class="row" href="02-second-horizon/index.html">
+  <!-- 09 THE MAP -->
+  <div class="row">
     <span class="num">02</span>
-    <span class="name">Second Horizon<span class="arrow">&rarr;</span></span>
-    <dl class="facts">
-      <div><dt>Aesthetic</dt><dd>Kubrick minimal, deep space</dd></div>
-      <div><dt>Mechanic</dt><dd>Scrubbed celestial arc over a fixed horizon</dd></div>
-      <div><dt>For</dt><dd>Individuals</dd></div>
-    </dl>
-  </a>
+    <div class="row-main">
+      <div class="row-header">
+        <span class="name">The Map<span class="tag">Rebuilt</span></span>
+        <div class="row-actions">
+          <a class="btn-action btn-v2" href="v2/09-the-map/index.html">View v2 &rarr;</a>
+          <a class="btn-action" href="v1/09-the-map/index.html">View v1</a>
+          <a class="btn-action btn-compare" href="compare.html?site=09-the-map&left=v1&right=v2">◫ Compare Side-by-Side</a>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>Concept</dt><dd>Survey cartography route traversal as terrain moves beneath.</dd></div>
+        <div><dt>What changed in v2</dt><dd class="chg">One route, three kinds of ground, five stops. Grid references, elevation, bearings, scale bar, north arrow and 10-item legend removed along with technical jargon. Annotations simplified from 12 to 4.</dd></div>
+      </dl>
+    </div>
+  </div>
 
-  <a class="row" href="04-unretired/index.html">
+  <!-- 01 THE LONG LIGHT -->
+  <div class="row">
     <span class="num">03</span>
-    <span class="name">Unretired<span class="arrow">&rarr;</span></span>
-    <dl class="facts">
-      <div><dt>Aesthetic</dt><dd>Swiss poster, type and nothing else</dd></div>
-      <div><dt>Mechanic</dt><dd>Kinetic type with hard polarity inversion</dd></div>
-      <div><dt>For</dt><dd>Individuals</dd></div>
-    </dl>
-  </a>
+    <div class="row-main">
+      <div class="row-header">
+        <span class="name">The Long Light<span class="tag tag-iter">Iterated</span></span>
+        <div class="row-actions">
+          <a class="btn-action btn-v2" href="v2/01-the-long-light/index.html">View v2 &rarr;</a>
+          <a class="btn-action" href="v1/01-the-long-light/index.html">View v1</a>
+          <a class="btn-action btn-compare" href="compare.html?site=01-the-long-light&left=v1&right=v2">◫ Compare Side-by-Side</a>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>Concept</dt><dd>A24 documentary, warm 35mm film strip letterboxed in cinema panel.</dd></div>
+        <div><dt>What changed in v2</dt><dd class="chg">Page-wide vignette and heavy grain removed. Frames re-graded warm and bright. Film now opens directly on her face rather than a figure at the end of a jetty.</dd></div>
+      </dl>
+    </div>
+  </div>
 
-  <a class="row" href="05-the-quiet-room/index.html">
+  <!-- 02 SECOND HORIZON -->
+  <div class="row">
     <span class="num">04</span>
-    <span class="name">The Quiet Room<span class="arrow">&rarr;</span></span>
-    <dl class="facts">
-      <div><dt>Aesthetic</dt><dd>Paper and linen, warm and tactile</dd></div>
-      <div><dt>Mechanic</dt><dd>A single thread drawing itself down the page</dd></div>
-      <div><dt>For</dt><dd>Individuals, already retired</dd></div>
-    </dl>
-  </a>
+    <div class="row-main">
+      <div class="row-header">
+        <span class="name">Second Horizon<span class="tag tag-iter">Iterated</span></span>
+        <div class="row-actions">
+          <a class="btn-action btn-v2" href="v2/02-second-horizon/index.html">View v2 &rarr;</a>
+          <a class="btn-action" href="v1/02-second-horizon/index.html">View v1</a>
+          <a class="btn-action btn-compare" href="compare.html?site=02-second-horizon&left=v1&right=v2">◫ Compare Side-by-Side</a>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>Concept</dt><dd>Scrubbed celestial arc over a fixed horizon.</dd></div>
+        <div><dt>What changed in v2</dt><dd class="chg">Night sky previously felt depressing ("getting darker as years progress"). Now runs pre-dawn to full morning, inverting to dark ink on light once the sun rises. "Sunset years" headline removed.</dd></div>
+      </dl>
+    </div>
+  </div>
 
-  <a class="row" href="07-third-act/index.html">
+  <!-- 04 UNRETIRED -->
+  <div class="row">
     <span class="num">05</span>
-    <span class="name">Third Act<span class="arrow">&rarr;</span></span>
-    <dl class="facts">
-      <div><dt>Aesthetic</dt><dd>70mm title cards, cream on black</dd></div>
-      <div><dt>Mechanic</dt><dd>Aperture that opens and closes between acts</dd></div>
-      <div><dt>For</dt><dd>Both</dd></div>
-    </dl>
-  </a>
+    <div class="row-main">
+      <div class="row-header">
+        <span class="name">Unretired<span class="tag tag-iter">Iterated</span></span>
+        <div class="row-actions">
+          <a class="btn-action btn-v2" href="v2/04-unretired/index.html">View v2 &rarr;</a>
+          <a class="btn-action" href="v1/04-unretired/index.html">View v1</a>
+          <a class="btn-action btn-compare" href="compare.html?site=04-unretired&left=v1&right=v2">◫ Compare Side-by-Side</a>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>Concept</dt><dd>Swiss poster, kinetic type with hard polarity inversion.</dd></div>
+        <div><dt>What changed in v2</dt><dd class="chg">No longer pure monochrome; integrated violet and coral brand scheme. Poster type sized down by one-third so it feels emphatic rather than shouting.</dd></div>
+      </dl>
+    </div>
+  </div>
 
-  <a class="row" href="08-vitals/index.html">
+  <!-- 05 THE QUIET ROOM -->
+  <div class="row">
     <span class="num">06</span>
-    <span class="name">Vitals<span class="arrow">&rarr;</span></span>
-    <dl class="facts">
-      <div><dt>Aesthetic</dt><dd>Clinical instrument panel</dd></div>
-      <div><dt>Mechanic</dt><dd>Scroll-drawn diagnostic trace and risk gauges</dd></div>
-      <div><dt>For</dt><dd>Individuals who distrust soft language</dd></div>
-    </dl>
-  </a>
+    <div class="row-main">
+      <div class="row-header">
+        <span class="name">The Quiet Room<span class="tag tag-iter">Iterated</span></span>
+        <div class="row-actions">
+          <a class="btn-action btn-v2" href="v2/05-the-quiet-room/index.html">View v2 &rarr;</a>
+          <a class="btn-action" href="v1/05-the-quiet-room/index.html">View v1</a>
+          <a class="btn-action btn-compare" href="compare.html?site=05-the-quiet-room&left=v1&right=v2">◫ Compare Side-by-Side</a>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>Concept</dt><dd>Tactile paper, a single thread drawing itself down the page.</dd></div>
+        <div><dt>What changed in v2</dt><dd class="chg">Aged cream and paper-fibre texture removed for crisp white ground. Photographs opened up. Thread is now bright violet into coral.</dd></div>
+      </dl>
+    </div>
+  </div>
 
-  <a class="row" href="09-the-map/index.html">
+  <!-- 07 THIRD ACT -->
+  <div class="row">
     <span class="num">07</span>
-    <span class="name">The Map<span class="arrow">&rarr;</span></span>
-    <dl class="facts">
-      <div><dt>Aesthetic</dt><dd>Vintage survey cartography</dd></div>
-      <div><dt>Mechanic</dt><dd>Marker travelling a route as the terrain pans beneath</dd></div>
-      <div><dt>For</dt><dd>Both</dd></div>
-    </dl>
-  </a>
+    <div class="row-main">
+      <div class="row-header">
+        <span class="name">Third Act<span class="tag tag-iter">Iterated</span></span>
+        <div class="row-actions">
+          <a class="btn-action btn-v2" href="v2/07-third-act/index.html">View v2 &rarr;</a>
+          <a class="btn-action" href="v1/07-third-act/index.html">View v1</a>
+          <a class="btn-action btn-compare" href="compare.html?site=07-third-act&left=v1&right=v2">◫ Compare Side-by-Side</a>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt>Concept</dt><dd>70mm title cards, cinematic aperture opening and closing.</dd></div>
+        <div><dt>What changed in v2</dt><dd class="chg">Black, white and red balance refined. Red is brighter, dark areas carry violet cast, and Act III (the act about the work) inverts to a bright ground.</dd></div>
+      </dl>
+    </div>
+  </div>
 
+</div>
+
+<div class="notes">
+  <div class="note">
+    <h2>On Cognitive Load</h2>
+    <p>
+      Dr San's feedback on The Map &mdash; that people arrive at retirement already overwhelmed, so the site must feel clear and effortless &mdash; was applied across both Vitals and The Map.
+    </p>
+  </div>
+  <div class="note">
+    <h2>Version Navigation</h2>
+    <p>
+      Within any individual site, you can use the top floating bar to step <b>[Back]</b> or <b>[Next]</b> between versions, or open side-by-side mode to compare them simultaneously.
+    </p>
+  </div>
+  <div class="note">
+    <h2>Palette Testing</h2>
+    <p>
+      Switch between <b>Palette A</b> (violet &amp; coral) and <b>Palette B</b> (orchid &amp; azure) using the pill in the bottom corner. Your preference carries across every site.
+    </p>
+  </div>
 </div>
 
 <footer>
-  <span>readysetretirement psychosocial planning&reg;</span>
-  <span>Seven directions &middot; 2026</span>
+  <span>Ready Set Retirement &middot; Psychosocial Planning</span>
+  <span>Multi-Version Review Studio &middot; 2026</span>
 </footer>
 
 </div>
+
+<!-- Palette test switch -->
+<div class="abx" role="group" aria-label="Colour scheme test">
+  <span class="abx-l">Palette</span>
+  <button type="button" data-pal="a" aria-pressed="true" title="Palette A — violet and coral">A</button>
+  <button type="button" data-pal="b" aria-pressed="false" title="Palette B — orchid and azure">B</button>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement, btns=document.querySelectorAll(".abx button");
+  function paint(p){
+    root.setAttribute("data-pal",p);
+    try{localStorage.setItem("rsr-pal",p);}catch(e){}
+    btns.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.pal===p));});
+    /* carry the choice into every link */
+    document.querySelectorAll('.btn-v2[href], .btn-action[href]').forEach(function(a){
+      var base = a.getAttribute("href").split("?")[0];
+      if (!base.includes("compare.html")) {
+        a.setAttribute("href", base + "?pal=" + p);
+      }
+    });
+  }
+  btns.forEach(function(b){b.addEventListener("click",function(){paint(b.dataset.pal);});});
+  paint(root.getAttribute("data-pal")||"a");
+})();
+</script>
+
+</body>
+</html>

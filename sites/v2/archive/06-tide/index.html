@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tide — Ready Set Retirement for workforce planners</title>
+<meta name="description" content="Australia is retiring faster than it ever has. Psychosocial retirement education for organisations, from Dr Sandra Walden-Pearson.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,300;0,400;0,600;0,800;1,400&family=Chivo+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#04121C;
+  --mid:#0A2A3D;
+  --shelf:#123C52;
+  --foam:#DCEAE8;
+  --buoy:#F2762E;
+  --buoy-tx:#F98A48;
+  --ink:#DCEAE8;
+  --dim:#9FB6BC;
+  --line:rgba(220,234,232,.18);
+  --bp:clamp(6rem,12vh,12rem);
+  --gut:clamp(1.25rem,5vw,4.5rem);
+  --measure:66ch;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  overflow-x:hidden;
+  background-color:var(--deep);
+  background-image:radial-gradient(130% 78% at 50% -14%,#10394E 0%,#0A2A3D 34%,#04121C 76%);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:'Chivo',system-ui,sans-serif;
+  font-size:clamp(1.0625rem,.98rem + .38vw,1.25rem);
+  line-height:1.58;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg,canvas{max-width:100%}
+
+/* ---------- fixed water canvas ---------- */
+#water{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  pointer-events:none;
+}
+.page{position:relative;z-index:1}
+
+/* ---------- structure ---------- */
+.wrap{
+  width:100%;
+  max-width:78rem;
+  margin:0 auto;
+  padding-left:var(--gut);
+  padding-right:var(--gut);
+}
+.band{
+  position:relative;
+  padding-top:var(--bp);
+  padding-bottom:var(--bp);
+}
+/* water strata: translucent depth bands over the live canvas */
+.band::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+}
+.band--a::after{background:rgba(4,18,28,.30)}
+.band--b::after{background:rgba(6,26,38,.44)}
+.band--c::after{background:rgba(9,34,49,.50)}
+.band--d::after{background:rgba(5,22,33,.56)}
+.band--e::after{background:rgba(3,13,21,.62)}
+.band--f::after{background:rgba(4,18,28,.36)}
+
+/* the heading straddles the band boundary; the rule beside it
+   IS the boundary line, so content sits on the strata edge */
+.head{
+  display:flex;
+  align-items:flex-start;
+  gap:clamp(1rem,3vw,2.25rem);
+  font-size:clamp(1.7rem,4.1vw,3.4rem);
+  margin-top:calc(-1 * var(--bp) - .52em);
+  margin-bottom:clamp(2.5rem,6vh,4.5rem);
+}
+.head h2{margin:0;min-width:0;font-size:1em}
+.head .rule{flex:1 1 2rem;min-width:1.5rem;height:1px;margin-top:.52em;background:var(--line)}
+
+/* ---------- type ---------- */
+h1,h2,h3{font-weight:800;letter-spacing:-.022em;line-height:1.02;text-wrap:balance}
+h1{
+  font-size:clamp(2.05rem,6.1vw,5.4rem);
+  margin:0 0 clamp(1.5rem,3.5vh,2.5rem);
+  max-width:15ch;
+}
+h2{font-size:clamp(1.7rem,4.1vw,3.4rem);line-height:1.04}
+h3{font-size:clamp(1.15rem,1.7vw,1.4rem);letter-spacing:-.01em;line-height:1.2;margin:0 0 .5rem}
+p{max-width:var(--measure)}
+.lede{
+  font-size:clamp(1.15rem,1.02rem + .62vw,1.5rem);
+  line-height:1.45;
+  font-weight:300;
+  color:var(--ink);
+  max-width:44ch;
+}
+.dim{color:var(--dim)}
+.mono{font-family:'Chivo Mono',ui-monospace,monospace;font-weight:400}
+.tm{font-size:.62em;vertical-align:.42em;letter-spacing:.02em}
+
+/* ---------- links + buttons ---------- */
+a{color:inherit}
+.actions{display:flex;flex-wrap:wrap;gap:.9rem 1rem;margin-top:clamp(2rem,4vh,3rem)}
+.btn{
+  display:inline-flex;align-items:center;
+  font:inherit;font-weight:600;font-size:1rem;line-height:1;
+  letter-spacing:.005em;
+  padding:1.05rem 1.7rem;
+  border:1px solid var(--foam);
+  border-radius:2px;
+  background:var(--foam);
+  color:#04121C;
+  text-decoration:none;
+  transition:transform .28s cubic-bezier(.2,.7,.3,1),background-color .28s,border-color .28s,color .28s;
+}
+.btn:hover{transform:translateY(-2px);background:#FFFFFF;border-color:#FFFFFF}
+.btn--ghost{background:transparent;color:var(--foam);border-color:rgba(220,234,232,.42)}
+.btn--ghost:hover{background:rgba(220,234,232,.10);border-color:var(--foam);color:var(--foam)}
+.btn--buoy{background:var(--buoy);border-color:var(--buoy);color:#180800}
+.btn--buoy:hover{background:#FF8A45;border-color:#FF8A45;color:#180800}
+.tlink{
+  color:var(--foam);
+  text-decoration:underline;
+  text-decoration-color:rgba(220,234,232,.42);
+  text-underline-offset:.24em;
+  text-decoration-thickness:1px;
+  transition:text-decoration-color .25s;
+}
+.tlink:hover{text-decoration-color:var(--foam)}
+:focus-visible{outline:2px solid var(--foam);outline-offset:3px;border-radius:1px}
+
+/* ---------- submersion ---------- */
+.sub{
+  --sub:0;
+  color:color-mix(in srgb,var(--ink),#8FB6C6 calc(var(--sub) * 34%));
+  text-shadow:
+    0 0 calc(var(--sub) * 4.5px) rgba(10,42,61,.9),
+    0 calc(var(--sub) * 1px) calc(var(--sub) * 8px) rgba(4,18,28,.55);
+}
+.sub .dim{color:color-mix(in srgb,var(--dim),#7FA6B6 calc(var(--sub) * 34%))}
+
+/* ---------- header ---------- */
+.masthead{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:1.5rem;flex-wrap:wrap;
+  padding-top:clamp(1.6rem,3vh,2.5rem);
+}
+.brand{
+  font-family:'Chivo Mono',ui-monospace,monospace;
+  font-size:.8rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  text-decoration:none;color:var(--foam);
+}
+.masthead .tlink{font-size:.9rem}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;flex-direction:column;
+  padding-bottom:clamp(4rem,10vh,8rem);
+}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(4,18,28,.24);pointer-events:none}
+.hero__body{margin-top:auto;padding-top:clamp(3rem,10vh,7rem)}
+.hero__meta{
+  display:flex;gap:1.4rem;flex-wrap:wrap;align-items:baseline;
+  margin-top:clamp(2.5rem,6vh,4rem);
+  padding-top:1.1rem;
+  border-top:1px solid var(--line);
+  font-family:'Chivo Mono',ui-monospace,monospace;
+  font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+}
+
+/* ---------- figures row ---------- */
+.figures{
+  margin-top:clamp(3rem,8vh,5.5rem);
+  display:grid;
+  gap:clamp(2rem,4vw,3rem);
+  grid-template-columns:1fr;
+}
+@media (min-width:820px){
+  .figures{grid-template-columns:1.15fr 1fr 1.25fr;align-items:end}
+}
+.fig{border-top:1px solid var(--line);padding-top:1.1rem}
+.fig__n{
+  font-family:'Chivo Mono',ui-monospace,monospace;
+  font-weight:300;
+  line-height:.86;
+  letter-spacing:-.04em;
+  display:block;
+  margin-bottom:.7rem;
+}
+.fig--1 .fig__n{font-size:clamp(4.5rem,13vw,9.5rem)}
+.fig--2 .fig__n{font-size:clamp(3.4rem,9vw,6.5rem)}
+.fig--3 .fig__n{font-size:clamp(4rem,11vw,8rem);color:var(--buoy)}
+.fig p{font-size:.98rem;line-height:1.5;max-width:26ch;margin:0}
+
+/* ---------- risk markers ---------- */
+.risk{
+  display:inline-block;
+  font-family:'Chivo Mono',ui-monospace,monospace;
+  font-size:.66rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--buoy-tx);
+  border-left:2px solid var(--buoy);
+  padding:.1rem 0 .1rem .55rem;
+  margin-right:.5rem;
+  text-shadow:none;
+}
+
+/* ---------- two column prose ---------- */
+.cols{display:grid;gap:clamp(1.75rem,4vw,3.25rem);grid-template-columns:1fr}
+@media (min-width:900px){.cols{grid-template-columns:1fr 1fr}}
+.cols p{max-width:52ch}
+
+/* ---------- depth chart ---------- */
+.depth{margin-top:clamp(2.5rem,6vh,4rem);border-top:1px solid var(--line)}
+.row{
+  display:grid;
+  grid-template-columns:5.2rem 1fr;
+  gap:clamp(1rem,3vw,2.5rem);
+  padding:clamp(1.5rem,3.5vh,2.4rem) 0;
+  border-bottom:1px solid rgba(220,234,232,.10);
+  align-items:start;
+}
+@media (min-width:760px){.row{grid-template-columns:7rem 1fr}}
+.row__d{
+  font-family:'Chivo Mono',ui-monospace,monospace;
+  font-size:clamp(1.6rem,3.4vw,2.5rem);
+  font-weight:300;
+  line-height:1;
+  letter-spacing:-.03em;
+  position:relative;
+  padding-left:1.1rem;
+}
+.row__d::before{
+  content:"";position:absolute;left:0;top:.1em;bottom:-.2em;width:1px;background:var(--line);
+}
+.row__d span{display:block;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:.65rem;line-height:1.4}
+.row--risk .row__d{color:var(--buoy)}
+.row--risk .row__d::before{background:var(--buoy)}
+.row p{margin:0;font-size:1rem;max-width:56ch}
+.depth__key{
+  margin-top:1.5rem;
+  font-family:'Chivo Mono',ui-monospace,monospace;
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+}
+
+/* ---------- services ---------- */
+.services{margin:clamp(2.5rem,6vh,4rem) 0 0;padding:0;list-style:none;max-width:60ch}
+.services li{
+  display:flex;gap:1.2rem;align-items:baseline;
+  padding:1.05rem 0;
+  border-top:1px solid rgba(220,234,232,.12);
+}
+.services .n{font-family:'Chivo Mono',ui-monospace,monospace;font-size:.78rem;color:var(--dim);letter-spacing:.1em;flex:none}
+.services .t{font-size:1.05rem}
+
+/* ---------- quote ---------- */
+.quote{margin:0;max-width:34ch}
+.quote p{
+  font-size:clamp(1.35rem,1.05rem + 1.5vw,2.35rem);
+  line-height:1.24;
+  letter-spacing:-.018em;
+  font-weight:300;
+  margin:0 0 1.6rem;
+  max-width:none;
+  text-wrap:pretty;
+}
+.quote footer{
+  font-family:'Chivo Mono',ui-monospace,monospace;
+  font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;line-height:1.7;color:var(--dim);
+}
+.quote footer b{color:var(--foam);font-weight:600}
+
+/* ---------- close + footer ---------- */
+.close h2{max-width:16ch}
+.pagefoot{
+  border-top:1px solid var(--line);
+  padding:clamp(2.5rem,5vh,4rem) 0 clamp(2.5rem,5vh,4rem);
+  display:grid;gap:1.5rem;
+  font-size:.9rem;
+  color:var(--dim);
+}
+@media (min-width:760px){.pagefoot{grid-template-columns:1.4fr 1fr;align-items:start}}
+.pagefoot p{max-width:46ch;margin:0}
+
+.reveal{will-change:transform,opacity}
+
+@media (prefers-reduced-motion:reduce){
+  .btn{transition:none}
+  .reveal{opacity:1!important;transform:none!important;will-change:auto}
+  .sub{--sub:0!important;text-shadow:none}
+}
+</style>
+</head>
+<body>
+
+<canvas id="water" aria-hidden="true"></canvas>
+
+<div class="page">
+
+  <header class="band band--a hero">
+    <div class="wrap masthead">
+      <a class="brand" href="#top">Ready Set Retirement</a>
+      <a class="tlink" href="/contact">Complimentary 30-minute consult</a>
+    </div>
+
+    <div class="wrap hero__body" id="top">
+      <h1>Australia is retiring faster than it ever has.</h1>
+      <p class="lede">It is not a wave. Waves break and clear. This is a tide, and it is already
+        under your workforce plan, lifting every organisation in the country at once.</p>
+      <div class="actions">
+        <a class="btn" href="/contact">Book a complimentary consult</a>
+        <a class="btn btn--ghost" href="#keel">Brief your board</a>
+      </div>
+      <p class="hero__meta">
+        <span>Psychosocial retirement education</span>
+        <span>For HR and workforce planning</span>
+        <span>Far North Queensland, working nationally</span>
+      </p>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ---------- THE SWELL ---------- -->
+    <section class="band band--b sub" aria-labelledby="swell-h">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="swell-h">A tide is not a scare story. It is a schedule.</h2>
+          <span class="rule" aria-hidden="true"></span>
+        </div>
+        <div class="cols">
+          <p>Tsunami is the wrong word, and the wrong word makes it easy to ignore. A tsunami arrives
+            without notice. This one has been on the books since the nineteen-fifties. Every person it
+            concerns is on your payroll right now, with a birthday and a date in mind.</p>
+          <p>Which means it can be planned for, and almost nowhere is. Organisations model the
+            superannuation, the payout, the succession chart and the handover checklist. What they do
+            not model is the person walking out, and what happens to them in the eighteen months after
+            the farewell cake.</p>
+        </div>
+
+        <div class="figures">
+          <div class="fig fig--1">
+            <span class="fig__n">40</span>
+            <p>Years an employee spends financially planning for the date.</p>
+          </div>
+          <div class="fig fig--2">
+            <span class="fig__n">10</span>
+            <p>Minutes, give or take, planning who they will be when it arrives.</p>
+          </div>
+          <div class="fig fig--3">
+            <span class="fig__n">00</span>
+            <p><span class="risk">At risk</span>Hours most workforce plans give the human side of the same event.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- SUBMERGED ---------- -->
+    <section class="band band--c sub" aria-labelledby="mastery-h">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="mastery-h">Mastery leaves quietly.</h2>
+          <span class="rule" aria-hidden="true"></span>
+        </div>
+        <div class="cols">
+          <p>The handover document captures the tasks. It does not capture the judgement. Who to ring
+            when the system is down at four on a Friday. Which supplier will bend and which one will
+            not. Why the process has that odd step in it, and what went wrong the year somebody
+            removed it.</p>
+          <p>That knowledge was never written down because it was never separable from the person.
+            It leaves in a car park at the end of a Friday, and the organisation only discovers what
+            it was worth when it has to buy the answer back from a consultant.</p>
+          <p><span class="risk">At risk</span>Recruitment cost is the visible line. The invisible
+            lines are the eleven months of reduced output while a capable replacement learns what
+            could not be handed over, and the two or three colleagues who quietly start looking
+            because the person who made the job bearable has gone.</p>
+          <p>Meanwhile the leaver is having their own bad year. Loss of direction, identity, purpose
+            and social connection are the recognised dark side of retirement, and they arrive on a
+            schedule as reliable as the tide. People who fall into it come back — as contractors, as
+            re-hires, as very expensive lessons — or they do not come back at all.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- DEPTH CHART ---------- -->
+    <section class="band band--d sub" aria-labelledby="depth-h">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="depth-h">Depth, in years to the date.</h2>
+          <span class="rule" aria-hidden="true"></span>
+        </div>
+        <p class="dim">Where your cohorts actually sit, and what each one needs. The useful work
+          happens in the shallows. Almost all of the spending happens at the bottom.</p>
+
+        <div class="depth">
+          <div class="row reveal">
+            <div class="row__d mono">10<span>Years out</span></div>
+            <p>Still building, still ambitious, and entirely willing to think about it because it is
+              not yet personal. This is the cheapest and most effective place to intervene, and the
+              one nobody uses.</p>
+          </div>
+          <div class="row reveal">
+            <div class="row__d mono">05<span>Years out</span></div>
+            <p>Decisions are being made privately and told to nobody at work. Deferred projects,
+              declined promotions, a quiet withdrawal from anything with a three-year horizon.
+              Most employers read this as coasting.</p>
+          </div>
+          <div class="row reveal">
+            <div class="row__d mono">02<span>Years out</span></div>
+            <p>The window for a real handover, and for the leaver to work out what replaces the
+              structure, the status and the people. Two years is enough. It is rarely offered.</p>
+          </div>
+          <div class="row reveal row--risk">
+            <div class="row__d mono">01<span>Final year</span></div>
+            <p><span class="risk">At risk</span>Discretionary effort goes first, and it goes without
+              comment. The organisation is planning a morning tea. The employee is planning the rest
+              of their life with no method for doing it.</p>
+          </div>
+          <div class="row reveal row--risk">
+            <div class="row__d mono">00<span>Year one, after</span></div>
+            <p><span class="risk">At risk</span>Monday with nowhere to be. Friendships that turned
+              out to be structural rather than chosen. Being introduced without a job title. This is
+              where the damage is done, and it lands months after your duty of care is assumed to
+              have ended.</p>
+          </div>
+        </div>
+        <p class="depth__key">Shallow is preparation. Deep is repair.</p>
+      </div>
+    </section>
+
+    <!-- ---------- THE KEEL ---------- -->
+    <section class="band band--e sub" id="keel" aria-labelledby="keel-h">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="keel-h">The water does not stop. The vessel changes.</h2>
+          <span class="rule" aria-hidden="true"></span>
+        </div>
+        <div class="cols">
+          <p>Nothing an employer does will slow the tide. What can be changed is what your people are
+            sitting in when it lifts them. A hull with a keel under it holds a heading in weather that
+            capsizes a flat-bottomed boat. Preparation is the keel.</p>
+          <p>Ready Set Retirement is psychosocial retirement education: the yin to financial
+            planning's yang. Dr Sandra Walden-Pearson works with organisations on
+            human-centred retirement planning<span class="tm">&trade;</span> — the identity, purpose,
+            direction and connection side of the same event your finance partner already covers.</p>
+        </div>
+
+        <ul class="services">
+          <li><span class="n">01</span><span class="t">Workforce briefings and board sessions on the psychosocial exposure you are actually carrying</span></li>
+          <li><span class="n">02</span><span class="t">Training, workshops and seminars for pre-retirement cohorts, three to ten years out</span></li>
+          <li><span class="n">03</span><span class="t">One-to-one and group coaching for senior people whose identity is welded to the role</span></li>
+          <li><span class="n">04</span><span class="t">Consulting on transition policy, and speaking at conferences and staff events</span></li>
+        </ul>
+
+        <p style="margin-top:clamp(2rem,4vh,3rem)">Delivered as readysetretirement psychosocial
+          planning<span class="tm">&reg;</span>. It is education, not financial advice, and it is
+          built for the people who will still be in your building next year as much as for the ones
+          who will not.</p>
+
+        <div class="actions">
+          <a class="btn btn--buoy" href="/contact">Brief your board — 30 minutes, no fee</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- SURFACE ---------- -->
+    <section class="band band--f sub close" aria-labelledby="close-h">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="close-h">Back above the line.</h2>
+          <span class="rule" aria-hidden="true"></span>
+        </div>
+
+        <div class="cols">
+          <blockquote class="quote">
+            <p>"Financial planning for retirement is well known. I hadn't heard about psychosocial
+              education focused on human-centred retirement planning — in 30 years of politics. In
+              talking with Dr San I realised the critical need to plan for the human side of
+              retirement. With hand on heart, I can honestly say that engaging Dr San has been life
+              changing."</p>
+            <footer><b>Hon. Warren Entsch</b><br>Former Federal Member for Leichhardt</footer>
+          </blockquote>
+
+          <div>
+            <h3>Dr Sandra Walden-Pearson</h3>
+            <p class="dim">PhD in Business, MBA in human resources, Certified Professional Retirement
+              Coach, Certified Resilience Coach and accredited mental health first aider for the
+              workplace. Based in Far North Queensland, working with organisations nationally.</p>
+            <p>Money funds a lifestyle. It has never once bought a quality of life. Thirty minutes
+              is enough to work out whether this belongs in your workforce plan.</p>
+            <div class="actions">
+              <a class="btn" href="/contact">Book a complimentary consult</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="pagefoot">
+          <p>Ready Set Retirement — psychosocial retirement education for individuals and
+            organisations. Training, workshops, seminars, coaching, consulting and speaking.</p>
+          <p><a class="tlink" href="/contact">Get in touch</a><br>
+            <span class="mono" style="font-size:.72rem;letter-spacing:.14em;text-transform:uppercase">
+            Education, not financial advice</span></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ----------------------------------------------------------------
+     Canvas: summed-sine wave field, three translucent layers.
+     ---------------------------------------------------------------- */
+  var cv  = document.getElementById('water');
+  var ctx = cv.getContext('2d');
+
+  var W = 0, H = 0, DPR = 1;
+
+  // Six sine components. chopGain says how strongly scroll velocity
+  // feeds each one: the short, high-frequency components respond most,
+  // which is what makes fast scrolling read as genuine roughness.
+  var COMPS = [
+    { f: 0.00160, a: 44, s: 0.00021, ph: 0.00, chopGain: 0.25 },
+    { f: 0.00305, a: 25, s: -0.00034, ph: 1.31, chopGain: 0.55 },
+    { f: 0.00570, a: 14, s: 0.00050, ph: 2.60, chopGain: 1.05 },
+    { f: 0.00930, a: 8.5, s: -0.00073, ph: 4.02, chopGain: 1.60 },
+    { f: 0.01610, a: 4.6, s: 0.00109, ph: 5.44, chopGain: 2.30 },
+    { f: 0.02700, a: 2.6, s: -0.00158, ph: 0.73, chopGain: 3.10 }
+  ];
+
+  var LAYERS = [
+    { off: 0,  alpha: 0.34, top: 'rgba(18,60,82,1)',  bot: 'rgba(10,42,61,1)' },
+    { off: 26, alpha: 0.46, top: 'rgba(10,42,61,1)',  bot: 'rgba(6,26,38,1)'  },
+    { off: 62, alpha: 0.86, top: 'rgba(5,22,33,1)',   bot: 'rgba(4,18,28,1)'  }
+  ];
+
+  var state = {
+    p: 0,          // scroll progress 0..1 (scrubbed)
+    chop: 0,       // smoothed scroll-velocity roughness 0..1
+    waterY: 0,     // waterline in CSS px from top of viewport
+    amp: 0.32
+  };
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = cv.clientWidth;
+    H = cv.clientHeight;
+    cv.width  = Math.round(W * DPR);
+    cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    if (reduce) { state.waterY = H * 0.72; draw(0); }
+  }
+
+  /* Waterline height as a fraction of the viewport (1 = bottom).
+     Rises through the argument, settles back down for the close. */
+  var KEYS = [
+    [0.00, 0.94], [0.14, 0.82], [0.34, 0.58],
+    [0.54, 0.36], [0.70, 0.19], [0.84, 0.44], [1.00, 0.88]
+  ];
+  function smooth(t) { return t * t * (3 - 2 * t); }
+  function waterFrac(p) {
+    for (var i = 1; i < KEYS.length; i++) {
+      if (p <= KEYS[i][0]) {
+        var a = KEYS[i - 1], b = KEYS[i];
+        var t = smooth((p - a[0]) / (b[0] - a[0] || 1));
+        return a[1] + (b[1] - a[1]) * t;
+      }
+    }
+    return KEYS[KEYS.length - 1][1];
+  }
+
+  function surfaceY(x, baseY, layer, t) {
+    var y = 0;
+    for (var i = 0; i < COMPS.length; i++) {
+      var c = COMPS[i];
+      var a = c.a * state.amp * (1 + state.chop * c.chopGain);
+      y += a * Math.sin(
+        x * c.f * (1 + layer * 0.09) +
+        t * c.s * (1 + state.chop * 1.1) +
+        c.ph + layer * 1.73
+      );
+    }
+    return baseY + y;
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+    var step = W > 900 ? 7 : 5;
+
+    for (var L = 0; L < LAYERS.length; L++) {
+      var lay = LAYERS[L];
+      var baseY = state.waterY + lay.off * (0.6 + state.amp * 0.7);
+
+      ctx.beginPath();
+      ctx.moveTo(-10, surfaceY(-10, baseY, L, t));
+      for (var x = 0; x <= W + step; x += step) {
+        ctx.lineTo(x, surfaceY(x, baseY, L, t));
+      }
+      ctx.lineTo(W + 10, H + 10);
+      ctx.lineTo(-10, H + 10);
+      ctx.closePath();
+
+      var g = ctx.createLinearGradient(0, Math.max(baseY - 80, 0), 0, H);
+      g.addColorStop(0, lay.top);
+      g.addColorStop(1, lay.bot);
+      ctx.globalAlpha = lay.alpha;
+      ctx.fillStyle = g;
+      ctx.fill();
+
+      // foam line on the leading surface, brighter as the water roughens
+      if (L === 0) {
+        ctx.globalAlpha = 0.10 + state.chop * 0.30;
+        ctx.strokeStyle = '#DCEAE8';
+        ctx.lineWidth = 1.1;
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  /* ----------------------------------------------------------------
+     Scroll inputs
+     ---------------------------------------------------------------- */
+  var lastY = window.scrollY || 0;
+  var lastMove = 0;
+
+  function tick(time) {
+    // 1. velocity -> chop. Rises fast, decays slowly so stopping
+    //    lets the water settle over roughly a second and a half.
+    var y = window.scrollY || 0;
+    if (Math.abs(y - lastY) > 0.5) { lastMove = time; lastY = y; }
+    var still = (time - lastMove) > 0.13;
+    var target = still
+      ? 0
+      : Math.min(Math.abs(ScrollTrigger.getVelocity()) / 2300, 1);
+
+    state.chop += (target - state.chop) * (target > state.chop ? 0.24 : 0.028);
+    if (state.chop < 0.0008) state.chop = 0;
+
+    // 2. position -> waterline + amplitude
+    var frac = waterFrac(state.p);
+    state.waterY = frac * H;
+    state.amp = 0.32 + 1.15 * Math.min(Math.max((0.94 - frac) / 0.74, 0), 1);
+
+    draw(time * 1000);
+    updateSubmersion();
+  }
+
+  /* ----------------------------------------------------------------
+     Submersion: one ScrollTrigger per section, writing --sub.
+     Quantised to 1/20 so text repaints ~20 times per traverse,
+     and capped so contrast never falls below 4.5:1.
+     ---------------------------------------------------------------- */
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.sub'));
+  var active = [];
+
+  function setSub(el, v) {
+    var q = Math.round(v * 20) / 20;
+    if (el._sub !== q) { el._sub = q; el.style.setProperty('--sub', q); }
+  }
+
+  function updateSubmersion() {
+    for (var i = 0; i < active.length; i++) {
+      var el = active[i];
+      var r = el.getBoundingClientRect();
+      var mid = r.top + r.height / 2;
+      // how far the section's centre sits below the waterline
+      var d = (mid - state.waterY) / (window.innerHeight * 0.9);
+      setSub(el, Math.min(Math.max(d, 0), 1));
+    }
+  }
+
+  /* ----------------------------------------------------------------
+     Boot
+     ---------------------------------------------------------------- */
+  resize();
+
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () { resize(); ScrollTrigger.refresh(); }, 150);
+  });
+
+  if (reduce) {
+    // One still, calm wave state. No submersion, no scrubs.
+    state.chop = 0;
+    state.amp = 0.34;
+    state.waterY = H * 0.72;
+    draw(0);
+  } else {
+    // Single master scrub for scroll position.
+    gsap.to(state, {
+      p: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.9
+      }
+    });
+
+    sections.forEach(function (el) {
+      el._sub = -1;
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top bottom',
+        end: 'bottom top',
+        onToggle: function (self) {
+          var i = active.indexOf(el);
+          if (self.isActive) { if (i === -1) active.push(el); }
+          else { if (i > -1) active.splice(i, 1); setSub(el, 0); }
+        }
+      });
+    });
+
+    gsap.utils.toArray('.reveal').forEach(function (el) {
+      gsap.fromTo(el,
+        { opacity: 0.15, y: 26 },
+        {
+          opacity: 1, y: 0, ease: 'none',
+          scrollTrigger: { trigger: el, start: 'top 92%', end: 'top 62%', scrub: 1 }
+        }
+      );
+    });
+
+    gsap.ticker.add(tick);
+  }
+})();
+</script>
+</body>
+</html>
