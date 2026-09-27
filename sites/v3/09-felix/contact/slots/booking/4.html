@@ -1,0 +1,107 @@
+<section class="s-book-4">
+  <div class="wrap">
+    <h2 data-copy="booking.h" class="s-book-4__h">Find a time that suits you</h2>
+    <p data-copy="booking.lede" class="s-book-4__lede">Pick a day, then a time. Bring whatever’s on your mind.</p>
+
+    <!-- TODO(Felix): static mock of a Cal.com / Calendly booking widget, shown beside an appointment card
+         that fills in as you choose. Swap for the real embed once the booking link is confirmed. -->
+    <div class="s-book-4__wrap" data-booking>
+      <div data-step="pick" class="s-book-4__pick">
+        <div class="cx-cal s-book-4__picker">
+          <div class="cx-month">
+            <span data-cal-title aria-live="polite"></span>
+            <span class="cx-nav">
+              <button type="button" data-cal-prev aria-label="Previous month"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5"/></svg></button>
+              <button type="button" data-cal-next aria-label="Next month"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
+            </span>
+          </div>
+          <div class="cx-grid" data-cal-grid role="group" aria-label="Days with free times"></div>
+          <div class="s-book-4__times">
+            <p class="cx-slots-label" data-slots-label aria-live="polite"></p>
+            <div class="cx-slots" data-slots role="group" aria-label="Free times"></div>
+          </div>
+        </div>
+
+        <div class="s-book-4__appt" aria-label="Your appointment" role="group">
+          <div class="s-book-4__appt-head">
+            <span class="s-book-4__mark" aria-hidden="true"></span>
+            <span data-copy="booking.title" class="s-book-4__appt-title">Your chat with Dr San</span>
+          </div>
+          <dl class="s-book-4__rows">
+            <div><dt>Day</dt><dd data-live-day>—</dd></div>
+            <div><dt>Time</dt><dd data-live-time>Choose a time</dd></div>
+            <div><dt>Length</dt><dd>30 minutes</dd></div>
+            <!-- TODO(Felix): confirm video and phone are both offered. -->
+            <div><dt>Where</dt><dd>Video call or phone</dd></div>
+            <div><dt>Cost</dt><dd>Free</dd></div>
+          </dl>
+          <div class="s-book-4__foot">
+            <p class="s-book-4__tz">Queensland time (AEST)</p>
+            <button type="button" class="cx-btn" data-continue disabled>Continue</button>
+          </div>
+        </div>
+      </div>
+
+      <div data-step="details" class="cx-cal s-book-4__step" hidden>
+        <div class="cx-picked"><span>Your chat:</span> <strong data-summary></strong> <button type="button" class="cx-quiet" data-back>Change</button></div>
+        <form novalidate class="cx-fields">
+          <div class="cx-pair">
+            <div class="cx-field"><label for="bk4-name">Your name</label><input id="bk4-name" name="name" autocomplete="name" required data-focus></div>
+            <div class="cx-field"><label for="bk4-email">Email</label><input id="bk4-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+          </div>
+          <div class="cx-field">
+            <label for="bk4-phone">Phone <span class="cx-opt">(optional)</span></label>
+            <p class="cx-hint" id="bk4-phone-hint">Add this if you’d rather Dr San rang you.</p>
+            <input id="bk4-phone" name="phone" type="tel" autocomplete="tel" aria-describedby="bk4-phone-hint">
+          </div>
+          <div><button class="cx-btn" type="submit">Book my chat</button></div>
+        </form>
+      </div>
+
+      <div data-step="done" class="s-book-4__step" hidden>
+        <!-- TODO(Felix): placeholder confirmation. Nothing is sent or booked until the real booking tool is wired in. -->
+        <div class="cx-done">
+          <div class="cx-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7 9.5 17.5 4 12"/></svg></div>
+          <h3 tabindex="-1" data-focus data-copy="booking.done">You’re booked in, <span data-first-name></span>.</h3>
+          <p><strong data-summary></strong></p>
+          <p>A confirmation is on its way to <span data-email></span>, with how to join and a link to change the time if you need to.</p>
+          <button type="button" class="cx-quiet" data-restart>Choose a different time</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-book-4{padding-block:clamp(2.5rem,6vw,5rem)}
+.s-book-4__h{font:800 clamp(1.8rem,1rem + 2.6vw,3rem)/1.1 var(--sans);letter-spacing:-.015em;text-wrap:balance}
+.s-book-4__lede{margin-top:.8rem;color:var(--ink-soft);max-width:48ch}
+.s-book-4__wrap{margin-top:clamp(1.4rem,3vw,2.2rem)}
+.s-book-4__pick{display:grid;gap:1.2rem;align-items:start}
+.s-book-4__picker{padding:clamp(1.1rem,2.4vw,1.6rem)}
+.s-book-4__times{margin-top:1.3rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+.s-book-4__appt{border:1px solid var(--rule-strong);border-radius:.7rem;background:var(--ground-3);padding:clamp(1.2rem,2.6vw,1.8rem)}
+.s-book-4__appt-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap-reverse;
+  padding-bottom:1rem;border-bottom:2px solid color-mix(in srgb,var(--brand) 35%,transparent)}
+.s-book-4__mark{width:108px;aspect-ratio:767/334;background:var(--logo) left center/contain no-repeat;order:2}
+.s-book-4__appt-title{font:800 1.3rem/1.2 var(--sans);letter-spacing:-.01em}
+.s-book-4__rows{margin:0;display:grid}
+.s-book-4__rows div{display:grid;grid-template-columns:5.5rem 1fr;gap:1rem;align-items:baseline;padding:.85rem 0;
+  border-bottom:1px dashed color-mix(in srgb,var(--brand) 30%,transparent)}
+.s-book-4__rows dt{font-size:.92rem;color:var(--ink-soft)}
+.s-book-4__rows dd{font-weight:700;min-height:1.5em}
+.s-book-4__rows [data-live-day],.s-book-4__rows [data-live-time]{color:var(--ink-soft);font-weight:500}
+.s-book-4__rows .is-set{color:var(--brand-deep);font-weight:700}
+.s-book-4__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.3rem}
+.s-book-4__tz{font:500 .8rem/1.3 var(--num);color:var(--ink-soft)}
+.s-book-4__step{padding:clamp(1.2rem,3vw,2rem);max-width:760px}
+.s-book-4 [data-step="done"]{padding:0}
+@media(min-width:900px){
+  .s-book-4__pick{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(1.5rem,3vw,2.5rem)}
+  .s-book-4__appt{position:sticky;top:1.5rem}
+}
+</style>
+<script>
+window.slotInit["booking"] = function(root, reduced){
+  RSRContact.booking(root);
+};
+</script>

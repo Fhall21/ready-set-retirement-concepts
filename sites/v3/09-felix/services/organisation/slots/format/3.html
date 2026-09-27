@@ -1,0 +1,81 @@
+<!-- Format 3: before, on the day, after. The logistics an HR lead actually has to plan, in the order they happen.
+     A single line joins the three as you scroll. TODO(Felix): steps and times are placeholders. Confirm with Dr San. -->
+<section class="s-ofmt-3">
+  <div class="wrap">
+    <h2 data-copy="format.h" class="s-ofmt-3-h">What a morning with Dr San looks like</h2>
+    <p data-copy="format.lede" class="s-ofmt-3-lede">The half-day workshop, as it usually runs. Times move to suit your roster.</p>
+    <div class="s-ofmt-3-track">
+      <i class="s-ofmt-3-line" aria-hidden="true"></i>
+      <ol class="s-ofmt-3-steps">
+        <li>
+          <span class="s-ofmt-3-dot" aria-hidden="true"></span>
+          <h3>Before</h3>
+          <p>A 30-minute call with you about your people, your workplace and anything to handle gently.</p>
+          <p>You let staff know it’s on. Dr San can give you a short note to send.</p>
+        </li>
+        <li>
+          <span class="s-ofmt-3-dot" aria-hidden="true"></span>
+          <h3>On the day</h3>
+          <ul class="s-ofmt-3-agenda">
+            <li><time>9:00</time>Welcome</li>
+            <li><time>9:20</time>The first Monday</li>
+            <li><time>10:00</time>What leaves with the job</li>
+            <li><time>10:45</time>Morning tea</li>
+            <li><time>11:05</time>An ordinary week</li>
+            <li><time>11:50</time>Talking about it at home</li>
+            <li><time>12:15</time>First steps</li>
+          </ul>
+          <p class="s-ofmt-3-small">You provide a room with tables, a screen and morning tea.</p>
+        </li>
+        <li>
+          <span class="s-ofmt-3-dot" aria-hidden="true"></span>
+          <h3>After</h3>
+          <p data-copy="format.note">Everyone keeps their workbook. Anyone who wants to go further can book a private session.</p>
+          <p>You get a short summary of the themes that came up, with nothing that identifies anyone.</p>
+          <!-- TODO(Felix): confirm Dr San provides a de-identified summary to the organisation. Remove this line if not. -->
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+<style>
+.s-ofmt-3{padding-block:clamp(3.5rem,9vw,7rem);background:var(--ground-2)}
+.s-ofmt-3-h{font:800 clamp(1.8rem,1rem + 3vw,3.1rem)/1.12 var(--sans);letter-spacing:-.015em;max-width:20ch;text-wrap:balance}
+.s-ofmt-3-lede{margin:1rem 0 clamp(2.4rem,5vw,3.5rem);color:var(--ink-soft);max-width:44ch}
+.s-ofmt-3-track{position:relative}
+.s-ofmt-3-line{position:absolute;left:.55rem;top:.6rem;bottom:0;width:2px;background:var(--brand);transform-origin:top center}
+.s-ofmt-3-steps{list-style:none;margin:0;padding:0;display:grid;gap:2.4rem}
+.s-ofmt-3-steps>li{position:relative;padding-left:2.4rem}
+.s-ofmt-3-dot{position:absolute;left:0;top:.35rem;width:1.15rem;height:1.15rem;border-radius:50%;background:var(--ground-2);border:2px solid var(--brand);transition:background-color .35s var(--ease-out)}
+.s-ofmt-3-dot.on{background:var(--brand)}
+.s-ofmt-3-steps h3{font:800 clamp(1.4rem,1vw + 1.1rem,1.9rem)/1.2 var(--sans);letter-spacing:-.01em;margin-bottom:.7rem}
+.s-ofmt-3-steps>li>p{color:var(--ink-soft);max-width:36ch}
+.s-ofmt-3-steps>li>p+p{margin-top:.7rem}
+.s-ofmt-3-agenda{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule-strong);max-width:24rem}
+.s-ofmt-3-agenda li{display:grid;grid-template-columns:3.6rem 1fr;gap:.6rem;padding:.55rem 0;border-bottom:1px solid var(--rule);font-weight:600;font-size:.98rem}
+.s-ofmt-3-agenda time{font:500 .9rem/1.5 var(--num);color:var(--brand-deep)}
+.s-ofmt-3-small{margin-top:.9rem;font-size:.95rem}
+@media (min-width:960px){
+  .s-ofmt-3-line{left:0;right:0;top:.55rem;bottom:auto;width:auto;height:2px;transform-origin:left center}
+  .s-ofmt-3-steps{grid-template-columns:1fr 1.15fr 1fr;gap:clamp(2rem,4vw,4rem)}
+  .s-ofmt-3-steps>li{padding-left:0;padding-top:2.4rem}
+  .s-ofmt-3-dot{top:0}
+}
+</style>
+<script>
+window.slotInit["format"] = function(root, reduced){
+  if (reduced) { root.querySelectorAll(".s-ofmt-3-dot").forEach(function(d){ d.classList.add("on"); }); return; }
+  var line = root.querySelector(".s-ofmt-3-line"), dots = root.querySelectorAll(".s-ofmt-3-dot");
+  // Static breakpoint check (not gsap.matchMedia): a matchMedia inside a slot context left stale triggers when several slots swapped at once.
+  var c = {conditions:{wide: matchMedia("(min-width:960px)").matches}};
+  (function(){
+    var prop = c.conditions.wide ? "scaleX" : "scaleY", from = {}, to = {ease:"none"};
+    from[prop] = 0; to[prop] = 1;
+    to.scrollTrigger = {trigger:root.querySelector(".s-ofmt-3-track"), start:"top 75%", end: c.conditions.wide ? "top 35%" : "bottom 70%", scrub:.6};
+    gsap.fromTo(line, from, to);
+    dots.forEach(function(d){
+      ScrollTrigger.create({trigger:d, start: c.conditions.wide ? "top 60%" : "top 70%", toggleClass:{targets:d, className:"on"}, end:"max"});
+    });
+  })();
+};
+</script>

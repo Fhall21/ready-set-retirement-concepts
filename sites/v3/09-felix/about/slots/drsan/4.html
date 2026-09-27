@@ -1,0 +1,51 @@
+<!-- Compact: small photo, bio, all credentials in one list, quote as a side note. Sources: readysetretirement.au. -->
+<section class="ab-ds4">
+  <div class="wrap ab-ds4-grid">
+    <div class="ab-ds4-main">
+      <div class="ab-ds4-id">
+        <img src="../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling" loading="lazy">
+        <div>
+          <h2 data-copy="drsan.h">Dr Sandra Walden-Pearson</h2>
+          <p data-copy="drsan.role" class="ab-ds4-role">Psychosocial Retirement Educator · Far North Queensland</p>
+        </div>
+      </div>
+      <p data-copy="drsan.p1" class="ab-ds4-lede">People say I’m a people person, a businessperson and a nerd. I bring all three to retirement education.</p>
+      <p data-copy="drsan.p2" class="ab-ds4-lede ab-ds4-soft">I work with people three to ten years from retirement, and with the organisations that support them.</p>
+      <ul class="ab-ds4-cred">
+        <li>PhD (Business)</li><li>MBA (HR)</li><li>BA Dip Ed</li><li>Certified Professional Retirement Coach</li>
+        <li>Certified Associate Meta Coach</li><li>Certified Resilience Coach</li><li>HART Coach</li><li>Resilience First Aid Responder</li>
+        <li>Accredited Mental Health First Aider</li><li>Accredited Mental Health First Aider (Workplace)</li><li>Accredited Cinergy Conflict Coach</li>
+      </ul>
+    </div>
+    <figure class="ab-ds4-q">
+      <blockquote><p>“In talking with Dr San I realised the critical need to plan for the human side of retirement.”</p></blockquote>
+      <figcaption><strong>Hon. Warren Entsch</strong><br>Former Federal Member for Leichhardt</figcaption>
+    </figure>
+  </div>
+</section>
+<style>
+.ab-ds4{background:var(--ground);padding-block:clamp(3.5rem,9vw,7rem);border-top:1px solid var(--rule)}
+.ab-ds4-grid{display:grid;gap:clamp(2rem,5vw,4rem);align-items:start}
+@media (min-width:960px){.ab-ds4-grid{grid-template-columns:minmax(0,7fr) minmax(0,4fr)}}
+.ab-ds4-id{display:flex;align-items:center;gap:1.2rem}
+.ab-ds4-id img{flex:none;width:clamp(84px,10vw,120px);height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;border-radius:.8rem}
+.ab-ds4 h2{font:800 clamp(1.6rem,2.6vw + .4rem,2.4rem)/1.1 var(--sans);letter-spacing:-.01em}
+.ab-ds4-role{margin-top:.4rem;color:var(--ink-soft);font-weight:600;font-size:.98rem}
+.ab-ds4-lede{margin-top:1.4rem;max-width:56ch}
+.ab-ds4-soft{color:var(--ink-soft)}
+.ab-ds4-cred{list-style:none;margin:1.8rem 0 0;padding:0;columns:2 16rem;column-gap:2rem}
+.ab-ds4-cred li{break-inside:avoid;padding-block:.6rem;border-top:1px solid var(--rule);font-weight:500;font-size:.98rem}
+.ab-ds4-q{margin:0;padding:clamp(1.6rem,3vw,2.2rem);background:var(--ground-2);border:1px solid var(--rule);border-radius:.7rem}
+.ab-ds4-q blockquote{margin:0}
+.ab-ds4-q p{font:600 clamp(1.25rem,1vw + 1rem,1.6rem)/1.35 var(--sans);letter-spacing:-.01em;color:var(--brand-deep)}
+.ab-ds4-q figcaption{margin-top:1.2rem;color:var(--ink-soft);font-size:.98rem}
+.ab-ds4-q figcaption strong{color:var(--ink)}
+@media (min-width:960px){.ab-ds4-q{position:sticky;top:2rem}}
+</style>
+<script>
+window.slotInit["drsan"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelectorAll(".ab-ds4-cred li"), {opacity:0}, {opacity:1, duration:.4, stagger:.04, ease:"power2.out", immediateRender:true,
+    scrollTrigger:{trigger:root.querySelector(".ab-ds4-cred"), start:"top 85%", once:true}});
+};
+</script>

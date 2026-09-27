@@ -1,0 +1,85 @@
+<!-- Problem 2: the home page's health-stat table, read for a staff member rather than "you".
+     Same rows, two columns; the "without" readings land first, then the "with preparation" column fills on scroll. -->
+<section class="s-oprob-2">
+  <div class="wrap">
+    <h2 data-copy="problem.h" class="s-oprob-2-h">When someone retires, the paperwork gets done. The rest is left to them.</h2>
+    <p data-copy="problem.lede" class="s-oprob-2-lede">Routine, purpose and daily company all leave with the job, on the same day.</p>
+
+    <div class="s-oprob-2-card">
+      <div class="s-oprob-2-bar"><span>Staff member retiring this year</span><span>Reading taken: the first Monday</span></div>
+      <table class="s-oprob-2-table">
+        <thead><tr><th>Measure</th><th>Without preparation</th><th>With preparation</th></tr></thead>
+        <tbody>
+          <tr data-off="22" data-on="80">
+            <td class="s-oprob-2-name">Direction<span>Somewhere to be each weekday.</span></td>
+            <td class="s-oprob-2-cell" data-th="Without preparation"><div class="s-oprob-2-track"><i class="s-oprob-2-fill off"></i></div><b class="low">Low</b></td>
+            <td class="s-oprob-2-cell" data-th="With preparation"><div class="s-oprob-2-track"><i class="s-oprob-2-fill on"></i></div><b class="ok">Healthy</b></td>
+          </tr>
+          <tr data-off="18" data-on="76">
+            <td class="s-oprob-2-name">Identity<span>An easy answer to “what do you do?”</span></td>
+            <td class="s-oprob-2-cell" data-th="Without preparation"><div class="s-oprob-2-track"><i class="s-oprob-2-fill off"></i></div><b class="low">Low</b></td>
+            <td class="s-oprob-2-cell" data-th="With preparation"><div class="s-oprob-2-track"><i class="s-oprob-2-fill on"></i></div><b class="ok">Healthy</b></td>
+          </tr>
+          <tr data-off="26" data-on="84">
+            <td class="s-oprob-2-name">Purpose<span>A reason to get going in the morning.</span></td>
+            <td class="s-oprob-2-cell" data-th="Without preparation"><div class="s-oprob-2-track"><i class="s-oprob-2-fill off"></i></div><b class="low">Low</b></td>
+            <td class="s-oprob-2-cell" data-th="With preparation"><div class="s-oprob-2-track"><i class="s-oprob-2-fill on"></i></div><b class="ok">Healthy</b></td>
+          </tr>
+          <tr data-off="30" data-on="79">
+            <td class="s-oprob-2-name">Connection<span>People who were there because the work was.</span></td>
+            <td class="s-oprob-2-cell" data-th="Without preparation"><div class="s-oprob-2-track"><i class="s-oprob-2-fill off"></i></div><b class="low">Low</b></td>
+            <td class="s-oprob-2-cell" data-th="With preparation"><div class="s-oprob-2-track"><i class="s-oprob-2-fill on"></i></div><b class="ok">Healthy</b></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="s-oprob-2-note" data-copy="problem.close">It’s easier to prepare while they’re still at work, with colleagues around them.</p>
+    </div>
+  </div>
+</section>
+<style>
+.s-oprob-2{padding-block:clamp(3.5rem,9vw,7rem);background:var(--ground)}
+.s-oprob-2-h{font:800 clamp(1.8rem,1rem + 3vw,3.2rem)/1.12 var(--sans);letter-spacing:-.015em;max-width:24ch;text-wrap:balance}
+.s-oprob-2-lede{margin:1.1rem 0 2.4rem;max-width:50ch;color:var(--ink-soft);font-size:1.05em}
+.s-oprob-2-card{border:1px solid var(--rule-strong);border-radius:.7rem;overflow:hidden;background:var(--ground)}
+.s-oprob-2-bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem 1rem;padding:.85rem 1.2rem;background:var(--ground-3);font:500 .82rem/1.3 var(--num);color:var(--ink-soft)}
+.s-oprob-2-table{width:100%;border-collapse:collapse}
+.s-oprob-2-table th{text-align:left;font:700 .75rem/1.2 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);padding:.9rem 1.2rem;border-bottom:1px solid var(--rule-strong)}
+.s-oprob-2-table td{padding:1.1rem 1.2rem;border-bottom:1px solid var(--rule);vertical-align:middle}
+.s-oprob-2-name{font:700 1.08rem/1.3 var(--sans);width:34%}
+.s-oprob-2-name span{display:block;margin-top:.25rem;font-weight:400;font-size:.92rem;color:var(--ink-soft)}
+.s-oprob-2-cell{width:33%}
+.s-oprob-2-cell:nth-child(2){background:color-mix(in srgb,var(--accent) 5%,transparent)}
+.s-oprob-2-track{height:.7rem;border-radius:99px;background:var(--rule);overflow:hidden}
+.s-oprob-2-fill{display:block;height:100%;border-radius:99px;width:var(--w,0%);transform-origin:left center}
+.s-oprob-2-fill.off{background:var(--accent)}
+.s-oprob-2-fill.on{background:var(--brand)}
+.s-oprob-2-cell b{display:inline-block;margin-top:.45rem;font:700 .9rem/1 var(--num)}
+.s-oprob-2-cell b.low{color:var(--accent)}
+.s-oprob-2-cell b.ok{color:var(--brand)}
+.s-oprob-2-note{padding:1.1rem 1.2rem 1.3rem;font-weight:600;font-size:1.05em}
+@media(max-width:640px){
+  .s-oprob-2-table thead{display:none}
+  .s-oprob-2-table tr{display:flex;flex-direction:column;border-bottom:1px solid var(--rule)}
+  .s-oprob-2-table td{border-bottom:0;padding:.45rem 1.1rem;width:auto}
+  .s-oprob-2-table td:first-child{padding-top:1rem}
+  .s-oprob-2-table td:last-child{padding-bottom:1rem}
+  .s-oprob-2-cell::before{content:attr(data-th);display:block;font:700 .72rem/1 var(--sans);letter-spacing:.04em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:.4rem}
+  .s-oprob-2-cell:nth-child(2){background:none}
+}
+</style>
+<script>
+window.slotInit["problem"] = function(root, reduced){
+  root.querySelectorAll("tbody tr").forEach(function(tr){
+    tr.querySelector(".off").style.setProperty("--w", tr.dataset.off + "%");
+    tr.querySelector(".on").style.setProperty("--w", tr.dataset.on + "%");
+  });
+  if (reduced) return;
+  var off = root.querySelectorAll(".s-oprob-2-fill.off"), on = root.querySelectorAll(".s-oprob-2-fill.on");
+  var offW = root.querySelectorAll("b.low"), onW = root.querySelectorAll("b.ok");
+  var tl = gsap.timeline({scrollTrigger:{trigger:root.querySelector(".s-oprob-2-card"), start:"top 75%", toggleActions:"play none none none"}});
+  tl.fromTo(off, {scaleX:0}, {scaleX:1, duration:.8, stagger:.07, ease:"power2.out"})
+    .fromTo(offW, {opacity:0}, {opacity:1, duration:.3, stagger:.07}, "<.3")
+    .fromTo(on, {scaleX:0}, {scaleX:1, duration:1, stagger:.09, ease:"power2.out"}, "+=.7")
+    .fromTo(onW, {opacity:0}, {opacity:1, duration:.3, stagger:.09}, "<.4");
+};
+</script>

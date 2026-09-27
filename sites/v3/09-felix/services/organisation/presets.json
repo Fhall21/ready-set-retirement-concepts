@@ -1,0 +1,28 @@
+{
+  "counts": { "hero": 4, "problem": 4, "programmes": 4, "format": 4, "proof": 4, "cta": 3 },
+  "presets": {
+    "default": {
+      "name": "Recommended: plain and practical (palette B)",
+      "pal": "b",
+      "slots": { "hero": 1, "problem": 1, "programmes": 2, "format": 1, "proof": 1, "cta": 1 }
+    },
+    "felt": {
+      "name": "Story: a felt Monday, fewest words (palette A)",
+      "pal": "a",
+      "slots": { "hero": 3, "problem": 3, "programmes": 1, "format": 4, "proof": 4, "cta": 1 },
+      "copy": { "hero": "b", "programmes": "b", "format": "b", "proof": "b", "cta": "b" }
+    },
+    "her": {
+      "name": "Story: in Dr San’s words (palette A)",
+      "pal": "a",
+      "slots": { "hero": 2, "problem": 4, "programmes": 3, "format": 3, "proof": 2, "cta": 3 },
+      "copy": { "hero": "c", "problem": "c", "programmes": "c", "format": "c", "proof": "c", "cta": "c" }
+    },
+    "hr": {
+      "name": "Story: the HR brief (palette B)",
+      "pal": "b",
+      "slots": { "hero": 4, "problem": 2, "programmes": 4, "format": 2, "proof": 3, "cta": 2 },
+      "copy": { "hero": "d", "problem": "d", "programmes": "d", "format": "d", "proof": "d", "cta": "d" }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+<!-- Photo-led: the photo stays beside you while the chapters scroll past at normal speed (no pin). Sources as backstory/1. -->
+<section class="ab-bs3">
+  <div class="wrap ab-bs3-grid">
+    <div class="ab-bs3-side">
+      <figure class="ab-bs3-photo" aria-hidden="true">
+        <img class="ab-bs3-a" src="assets/drsan-office.jpg" width="1100" height="1650" alt="">
+        <img class="ab-bs3-b" src="../assets/drsan.jpg" width="980" height="1470" alt="">
+      </figure>
+    </div>
+    <div class="ab-bs3-flow">
+      <h2 data-copy="backstory.h" class="ab-bs3-h">How I came to this work</h2>
+      <article class="ab-bs3-ch">
+        <h3 data-copy="backstory.c1h">I started out teaching English.</h3>
+        <p data-copy="backstory.c1p">Language was my first love. I even went back for an honours year in linguistics.</p>
+      </article>
+      <article class="ab-bs3-ch">
+        <h3 data-copy="backstory.c2h">Then came decades of leading people.</h3>
+        <!-- TODO(Felix): confirm plain-English reading of "educational, social and commercial sectors". -->
+        <p data-copy="backstory.c2p">In schools, community organisations and business, the work kept coming back to people: how they grow, and how they cope when things change.</p>
+      </article>
+      <article class="ab-bs3-ch" data-swap>
+        <h3 data-copy="backstory.c3h">Along the way, a PhD.</h3>
+        <p data-copy="backstory.c3p">An MBA in HR, then a PhD in Business. People say I’m a people person, a businessperson and a nerd. Fair enough.</p>
+      </article>
+      <article class="ab-bs3-ch">
+        <!-- TODO(Felix): chapter 4 is a plausible bridge, not a sourced fact. Confirm with Dr San. -->
+        <h3 data-copy="backstory.c4h">And a lot of farewells.</h3>
+        <p data-copy="backstory.c4p">I watched capable people leave work with the money sorted and nothing planned for who they’d be next. Nobody had shown them how.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<style>
+.ab-bs3{background:var(--ground);padding-block:clamp(3rem,8vw,6rem)}
+.ab-bs3-grid{display:grid;gap:2.4rem}
+.ab-bs3-photo{margin:0;position:relative;border-radius:1.2rem;overflow:hidden;background:var(--ground-2);aspect-ratio:4/5;max-height:58svh;width:100%}
+.ab-bs3-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%}
+.ab-bs3-b{clip-path:inset(100% 0 0 0)}
+.ab-bs3-h{font:800 clamp(1.9rem,2.6vw + .8rem,3rem)/1.1 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+.ab-bs3-ch{padding-block:1.6rem;border-top:1px solid var(--rule)}
+.ab-bs3-ch:first-of-type{margin-top:1.6rem}
+.ab-bs3-ch h3{font:800 clamp(1.45rem,1.8vw + .8rem,2.3rem)/1.14 var(--sans);letter-spacing:-.015em;text-wrap:balance}
+.ab-bs3-ch p{margin-top:.7rem;color:var(--ink-soft);max-width:40ch;text-wrap:pretty}
+@media (min-width:900px){
+  .ab-bs3-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(3rem,6vw,6rem);align-items:start}
+  .ab-bs3-side{position:sticky;top:10svh;height:80svh;display:flex;align-items:center}
+  .ab-bs3-photo{max-height:80svh;height:80svh;aspect-ratio:auto}
+  .ab-bs3-h{padding-top:10svh}
+  .ab-bs3-ch{min-height:52svh;display:flex;flex-direction:column;justify-content:center;border-top:0;padding-block:2rem}
+  .ab-bs3-ch:first-of-type{margin-top:0}
+  .ab-bs3-ch:last-child{min-height:62svh}
+}
+</style>
+<script>
+window.slotInit["backstory"] = function(root, reduced){
+  var b = root.querySelector(".ab-bs3-b"), swap = root.querySelector("[data-swap]");
+  if (reduced) { gsap.set(b, {clipPath:"inset(0% 0% 0% 0%)"}); return; }
+  // when the PhD chapter reaches the middle of the screen, the portrait wipes up over the office photo
+  gsap.fromTo(b, {clipPath:"inset(100% 0% 0% 0%)"}, {clipPath:"inset(0% 0% 0% 0%)", duration:1.1, ease:"expo.out",
+    scrollTrigger:{trigger:swap, start:"top 55%", toggleActions:"play none none reverse"}});
+};
+</script>

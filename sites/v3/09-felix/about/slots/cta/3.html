@@ -1,0 +1,26 @@
+<section class="ab-ct3">
+  <div class="wrap ab-ct3-in">
+    <div>
+      <h2 data-copy="cta.h" class="ab-ct3-h">Ready to chat?</h2>
+      <p data-copy="cta.lede" class="ab-ct3-lede">Book in a 30-minute friendly chat. Tell me about the date, and we’ll start there.</p>
+    </div>
+    <div class="ab-ct3-act">
+      <a data-copy="cta.btn" class="btn ab-ct3-btn" href="../contact/#book">Book a time</a>
+      <a class="ab-ct3-org" href="../services/organisation/">See workshops for organisations</a>
+    </div>
+  </div>
+</section>
+<style>
+.ab-ct3{background:var(--ground);border-top:1px solid var(--rule);padding-block:clamp(3.5rem,8vw,5.5rem)}
+.ab-ct3-in{display:grid;gap:1.8rem;align-items:center}
+@media (min-width:860px){.ab-ct3-in{grid-template-columns:1fr auto;gap:4rem}}
+.ab-ct3-h{font:800 clamp(2rem,3vw + .8rem,3.2rem)/1.08 var(--sans);letter-spacing:-.02em}
+.ab-ct3-lede{margin-top:.8rem;color:var(--ink-soft);max-width:44ch}
+.ab-ct3-act{display:flex;flex-direction:column;align-items:flex-start;gap:.8rem}
+.ab-ct3-btn{min-height:48px}
+.ab-ct3-org{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;font-weight:500;padding-block:.4rem}
+.ab-ct3-org:hover{color:var(--brand)}
+</style>
+<script>
+window.slotInit["cta"] = function(root, reduced){ /* deliberately still: a calm close */ };
+</script>

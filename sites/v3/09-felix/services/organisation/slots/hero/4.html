@@ -1,0 +1,47 @@
+<!-- Hero 4: type-led. The headline carries the screen; Dr San is introduced by a small portrait beside her name,
+     the way a practice letterhead or conference programme would. Tests whether the words can lead for an HR reader. -->
+<section class="s-ohero-4">
+  <div class="wrap s-ohero-4__in">
+    <div class="s-ohero-4__who">
+      <img src="../../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling">
+      <p><span data-copy="hero.name">Dr San · Psychosocial Retirement Educator</span><br><span class="s-ohero-4__where">Far North Queensland</span></p>
+    </div>
+    <h1 data-copy="hero.h1" class="s-ohero-4__h1">Some of your most experienced people are about to retire.</h1>
+    <div class="s-ohero-4__foot">
+      <p data-copy="hero.lede" class="s-ohero-4__lede">Workshops and talks on the human side of leaving work.</p>
+      <div class="s-ohero-4__act">
+        <a data-copy="hero.btn" class="btn" href="../../contact/#book">Talk to Dr San about your team</a>
+        <a data-copy="hero.alt" class="s-ohero-4__alt" href="../individual/">See sessions for individuals</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-ohero-4{background:var(--ground);padding-block:clamp(2rem,6vw,6rem) clamp(3rem,8vw,7rem);border-bottom:1px solid var(--rule)}
+.s-ohero-4__who{display:flex;align-items:center;gap:1rem;margin-bottom:clamp(1.8rem,4vw,3rem)}
+.s-ohero-4__who img{width:clamp(64px,7vw,92px);aspect-ratio:3/4;height:auto;object-fit:cover;object-position:50% 18%;border-radius:.6rem;flex:none}
+.s-ohero-4__who p{font:600 1rem/1.45 var(--sans);color:var(--ink)}
+.s-ohero-4__where{font-weight:400;color:var(--ink-soft)}
+.s-ohero-4__h1{font:800 clamp(2.3rem,1rem + 5.2vw,5.6rem)/1.02 var(--sans);letter-spacing:-.03em;max-width:17ch;text-wrap:balance}
+.s-ohero-4__h1 .w{display:inline-block}
+.s-ohero-4__foot{margin-top:clamp(1.6rem,4vw,3rem);display:grid;gap:1.6rem;align-items:end}
+.s-ohero-4__lede{font-size:clamp(1.1rem,.5vw + 1rem,1.35rem);color:var(--ink-soft);max-width:34ch}
+.s-ohero-4__act{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.6rem}
+.s-ohero-4__act .btn{min-height:48px}
+.s-ohero-4__alt{color:var(--ink);font-size:1rem;text-decoration-thickness:1px}
+.s-ohero-4__alt:hover{color:var(--brand)}
+@media (min-width:900px){
+  .s-ohero-4__foot{grid-template-columns:1fr auto}
+}
+</style>
+
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  var h = root.querySelector(".s-ohero-4__h1");
+  var split = new SplitText(h, {type:"words", wordsClass:"w"});
+  gsap.fromTo(split.words, {yPercent:40, opacity:0}, {yPercent:0, opacity:1, duration:.9, stagger:.04, ease:"expo.out", immediateRender:true});
+  gsap.fromTo(root.querySelector(".s-ohero-4__who img"), {clipPath:"inset(100% 0 0 0 round .6rem)"}, {clipPath:"inset(0% 0 0 0 round .6rem)", duration:1, ease:"expo.out", immediateRender:true});
+};
+</script>

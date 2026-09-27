@@ -1,0 +1,60 @@
+<!-- Programmes 4: sorted by who you want to reach, because that's the question an HR lead starts with.
+     TODO(Felix): lengths and group sizes are placeholders. Confirm with Dr San. -->
+<section class="s-oprog-4">
+  <div class="wrap">
+    <h2 data-copy="programmes.h" class="s-oprog-4-h">Workshops, seminars and talks</h2>
+    <p data-copy="programmes.lede" class="s-oprog-4-lede">Each one is adjusted for your people and the work they do.</p>
+    <div class="s-oprog-4-cols">
+      <div class="s-oprog-4-col">
+        <h3>For staff close to retiring</h3>
+        <dl>
+          <dt>Preparing for retirement</dt>
+          <dd>The core workshop. A first plan for the parts of retirement money doesn’t cover. <span>Half or full day · up to 20</span></dd>
+          <dt>One-to-one sessions</dt>
+          <dd>Private follow-up for anyone who wants to go further. <span>60 minutes</span></dd>
+        </dl>
+      </div>
+      <div class="s-oprog-4-col">
+        <h3>For everyone</h3>
+        <dl>
+          <dt>Lunchtime seminar</dt>
+          <dd>A friendly introduction to the human side of retirement. <span>60 minutes · any size</span></dd>
+          <dt>Talks and keynotes</dt>
+          <dd>For conferences, leadership days and member events. <span>20–45 minutes</span></dd>
+        </dl>
+      </div>
+      <div class="s-oprog-4-col">
+        <h3>For managers and HR</h3>
+        <dl>
+          <dt>Training for managers</dt>
+          <dd>How to talk with someone about retiring, kindly and without assumptions. <span>Half day · up to 15</span></dd>
+        </dl>
+      </div>
+    </div>
+    <p class="s-oprog-4-note" data-copy="programmes.note">Not sure which would suit? That’s what the first chat is for.</p>
+  </div>
+</section>
+<style>
+.s-oprog-4{padding-block:clamp(3.5rem,9vw,7rem);background:var(--ground)}
+.s-oprog-4-h{font:800 clamp(1.8rem,1rem + 3vw,3.2rem)/1.12 var(--sans);letter-spacing:-.015em;max-width:22ch}
+.s-oprog-4-lede{margin:1rem 0 clamp(2rem,5vw,3.2rem);color:var(--ink-soft);max-width:48ch}
+.s-oprog-4-cols{display:grid;gap:2.4rem}
+.s-oprog-4-col{border-top:3px solid var(--brand);padding-top:1.2rem}
+.s-oprog-4-col:nth-child(2){border-top-color:var(--accent)}
+.s-oprog-4-col:nth-child(3){border-top-color:var(--ink)}
+.s-oprog-4-col h3{font:700 1.2rem/1.3 var(--sans);margin-bottom:.4rem}
+.s-oprog-4-col dl{margin:0}
+.s-oprog-4-col dt{font:700 clamp(1.3rem,.8vw + 1.05rem,1.6rem)/1.2 var(--sans);letter-spacing:-.01em;margin-top:1.3rem}
+.s-oprog-4-col dd{margin:.4rem 0 0;color:var(--ink-soft);max-width:36ch}
+.s-oprog-4-col dd span{display:block;margin-top:.35rem;font-weight:600;color:var(--ink);font-size:.95rem}
+.s-oprog-4-note{margin-top:clamp(2.4rem,5vw,3.5rem);font-weight:600}
+@media (min-width:900px){ .s-oprog-4-cols{grid-template-columns:repeat(3,1fr);gap:clamp(2rem,4vw,3.5rem)} }
+</style>
+<script>
+window.slotInit["programmes"] = function(root, reduced){
+  if (reduced) return;
+  var cols = root.querySelectorAll(".s-oprog-4-col");
+  gsap.fromTo(cols, {opacity:0, y:16}, {opacity:1, y:0, duration:.8, stagger:.14, ease:"expo.out",
+    scrollTrigger:{trigger:root.querySelector(".s-oprog-4-cols"), start:"top 82%", toggleActions:"play none none none"}});
+};
+</script>

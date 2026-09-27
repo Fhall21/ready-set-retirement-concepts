@@ -1,0 +1,24 @@
+<section class="ab-ct1">
+  <div class="wrap ab-ct1-in">
+    <img class="ab-ct1-pic" src="../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling" loading="lazy">
+    <h2 data-copy="cta.h" class="ab-ct1-h">Ready to chat?</h2>
+    <p data-copy="cta.lede" class="ab-ct1-lede">Book in a 30-minute friendly chat. Tell me about the date, and we’ll start there.</p>
+    <a data-copy="cta.btn" class="btn ab-ct1-btn" href="../contact/#book">Book a time</a>
+  </div>
+</section>
+<style>
+.ab-ct1{background:var(--ground-2);border-top:1px solid var(--rule);padding-block:clamp(4rem,10vw,7.5rem)}
+.ab-ct1-in{max-width:44rem;text-align:center;display:flex;flex-direction:column;align-items:center}
+.ab-ct1-pic{width:clamp(88px,10vw,112px);height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;border-radius:.9rem;margin-bottom:1.6rem}
+.ab-ct1-h{font:800 clamp(2.1rem,4vw + .6rem,3.6rem)/1.08 var(--sans);letter-spacing:-.02em}
+.ab-ct1-lede{margin-top:1.1rem;color:var(--ink-soft);max-width:40ch;text-wrap:balance}
+.ab-ct1-btn{margin-top:2rem;min-height:48px;font-size:1.05rem;padding:1.05rem 1.8rem}
+</style>
+<script>
+window.slotInit["cta"] = function(root, reduced){
+  if (reduced) return;
+  var split = new SplitText(root.querySelector(".ab-ct1-h"), {type:"words"});
+  gsap.fromTo(split.words, {opacity:0, y:"0.6em"}, {opacity:1, y:0, duration:.8, stagger:.07, ease:"expo.out", immediateRender:true,
+    scrollTrigger:{trigger:root.querySelector(".ab-ct1-in"), start:"top 80%", once:true}});
+};
+</script>

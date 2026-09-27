@@ -1,0 +1,53 @@
+<!-- Will / won't. Left column uses the shared values copy keys; right column (w1–w4) is this layout's own.
+     TODO(Felix): the "won't" column is written from Dr San's stated stance (not a financial adviser, not a clinical assessment) — confirm wording with her. -->
+<section class="ab-va2">
+  <div class="wrap">
+    <h2 data-copy="values.h" class="ab-va2-h">What sitting down with me is like</h2>
+    <div class="ab-va2-cols">
+      <div class="ab-va2-col">
+        <h3 data-copy="values.willh" class="ab-va2-ch">What I will do</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><b data-copy="values.v1h">Plain talk.</b> <span data-copy="values.v1p">I’ll tell you plainly what your plans cover, and what they don’t.</span></span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><b data-copy="values.v2h">A conversation, not an assessment.</b> <span data-copy="values.v2p">You talk, I listen, and we work it out together.</span></span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><b data-copy="values.v3h">Alongside your adviser.</b> <span data-copy="values.v3p">I’m not a financial adviser. My work sits next to theirs.</span></span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><b data-copy="values.v4h">No rush.</b> <span data-copy="values.v4p">Ten years out or three, we start from where you are.</span></span></li>
+        </ul>
+      </div>
+      <div class="ab-va2-col ab-va2-not">
+        <h3 data-copy="values.wonth" class="ab-va2-ch">What I won’t do</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span data-copy="values.w1">Sell you a product.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span data-copy="values.w2">Give you advice about money.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span data-copy="values.w3">Hurry you towards a decision.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17"/></svg><span data-copy="values.w4">Treat you like a patient.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.ab-va2{background:var(--ground);padding-block:clamp(3.5rem,9vw,7rem)}
+.ab-va2-h{font:800 clamp(1.9rem,2.4vw + .9rem,3rem)/1.1 var(--sans);letter-spacing:-.02em;text-wrap:balance;max-width:20ch}
+.ab-va2-cols{display:grid;gap:1.2rem;margin-top:clamp(1.8rem,4vw,2.8rem)}
+@media (min-width:860px){.ab-va2-cols{grid-template-columns:3fr 2fr;gap:1.6rem}}
+.ab-va2-col{border:1px solid var(--rule-strong);border-radius:.7rem;padding:clamp(1.3rem,3vw,2rem)}
+.ab-va2-not{background:var(--ground-2)}
+.ab-va2-ch{font:700 1.15rem/1.3 var(--sans);margin-bottom:.4rem}
+.ab-va2-col ul{list-style:none;margin:0;padding:0}
+.ab-va2-col li{display:grid;grid-template-columns:1.5rem 1fr;gap:.8rem;padding-block:.9rem;border-top:1px solid var(--rule)}
+.ab-va2-col li:first-child{border-top:0}
+.ab-va2-col li b{font-weight:700;color:var(--ink)}
+.ab-va2-col li > span{color:var(--ink-soft)}
+.ab-va2-col svg{width:1.5rem;height:1.5rem;margin-top:.1rem}
+.ab-va2-col path{fill:none;stroke:var(--brand);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.ab-va2-not path{stroke:var(--accent)}
+.ab-va2-not li > span{color:var(--ink)}
+</style>
+<script>
+window.slotInit["values"] = function(root, reduced){
+  if (reduced) return;
+  // ticks and crosses are drawn in, left column first
+  gsap.fromTo(root.querySelectorAll(".ab-va2-col path"), {drawSVG:"0%"}, {drawSVG:"100%", duration:.4, stagger:.1, ease:"power2.out", immediateRender:true,
+    scrollTrigger:{trigger:root.querySelector(".ab-va2-cols"), start:"top 80%", once:true}});
+};
+</script>

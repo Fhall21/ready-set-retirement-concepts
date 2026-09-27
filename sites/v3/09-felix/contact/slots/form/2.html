@@ -1,0 +1,56 @@
+<section class="s-form-2">
+  <div class="wrap s-form-2__grid">
+    <div class="s-form-2__copy">
+      <h2 data-copy="form.h" class="s-form-2__h">Or send a message</h2>
+      <p data-copy="form.lede" class="s-form-2__lede">A question, a date that doesn’t suit, or a workshop for your team. Write it however it comes.</p>
+      <p class="s-form-2__org"><ahref="../services/organisation/">See workshops for organisations</a></p>
+    </div>
+
+    <div class="s-form-2__panel">
+      <!-- TODO(Felix): this form doesn't send anywhere yet. Wire it to Dr San's inbox. -->
+      <form data-enquiry novalidate class="s-form-2__form">
+        <fieldset class="cx-choice">
+          <legend class="cx-legend">Who is this for?</legend>
+          <div class="cx-choice-opts">
+            <label><input type="radio" name="who" value="me" checked><span><strong>Me</strong>, or me and my partner</span></label>
+            <label><input type="radio" name="who" value="org"><span><strong>An organisation</strong></span></label>
+          </div>
+        </fieldset>
+        <div class="cx-fields">
+          <div class="cx-field"><label for="fm2-name">Your name</label><input id="fm2-name" name="name" autocomplete="name" required></div>
+          <div class="cx-field"><label for="fm2-email">Email</label><input id="fm2-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+          <div class="cx-field" data-when="org" hidden><label for="fm2-org">Organisation</label><input id="fm2-org" name="org" autocomplete="organization" required></div>
+          <div class="cx-field">
+            <label for="fm2-msg">Your message</label>
+            <textarea id="fm2-msg" name="message" rows="5" required></textarea>
+          </div>
+          <div><button class="cx-btn" type="submit" data-copy="form.btn">Send message</button></div>
+        </div>
+      </form>
+
+      <!-- TODO(Felix): placeholder confirmation, shown without sending anything. -->
+      <div class="cx-done" data-done hidden>
+        <div class="cx-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7 9.5 17.5 4 12"/></svg></div>
+        <h3 tabindex="-1" data-copy="form.done">Thanks, <span data-first-name></span>. Your message is with Dr San.</h3>
+        <p data-for="me">She’ll reply to <span data-email></span>. If it’s easier to talk, you can also <a href="#book">pick a time for a chat</a>.</p>
+        <p data-for="org" hidden>She’ll reply to <span data-email></span> to talk about what would suit your people.</p>
+        <button type="button" class="cx-quiet" data-again>Send another message</button>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-form-2{padding-block:clamp(2.5rem,6vw,5.5rem);background:var(--ground-2)}
+.s-form-2__grid{display:grid;gap:1.8rem;align-items:start}
+.s-form-2__h{font:800 clamp(1.8rem,1rem + 2.6vw,3rem)/1.1 var(--sans);letter-spacing:-.015em;text-wrap:balance}
+.s-form-2__lede{margin-top:.8rem;color:var(--ink-soft);max-width:34ch}
+.s-form-2__org{margin-top:1.4rem;font-size:.98rem;color:var(--ink-soft)}
+.s-form-2__org a{color:var(--ink);font-weight:600;text-decoration-thickness:1px}
+.s-form-2__panel{background:var(--ground);border:1px solid var(--rule-strong);border-radius:.7rem;padding:clamp(1.2rem,3vw,2rem)}
+.s-form-2__panel .cx-done{border:0;padding:0;background:none}
+.s-form-2__form{display:grid;gap:1.4rem}
+@media(min-width:940px){ .s-form-2__grid{grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(3rem,6vw,6rem)} .s-form-2__copy{position:sticky;top:2rem} }
+</style>
+<script>
+window.slotInit["form"] = function(root, reduced){ RSRContact.form(root); };
+</script>

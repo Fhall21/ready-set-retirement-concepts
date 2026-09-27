@@ -1,0 +1,66 @@
+<!-- Why 2 — a week-to-a-page desk diary. Friday is full; Monday and Wednesday are ruled lines with almost nothing on them. The day's note writes in as you scroll. -->
+<section class="s-iw2">
+  <div class="wrap">
+    <h2 data-copy="why.h" class="s-iw2__h">Here’s how the first week often goes.</h2>
+    <div class="s-iw2__diary">
+      <div class="s-iw2__day s-iw2__day--full">
+        <div class="s-iw2__date"><b data-copy="why.d1">Friday</b><span>Last day</span></div>
+        <div class="s-iw2__lines">
+          <p class="s-iw2__entry"><time>9:00</time> Handover with Jo</p>
+          <p class="s-iw2__entry"><time>12:30</time> Farewell lunch, the Esplanade</p>
+          <p class="s-iw2__entry"><time>4:00</time> Speeches, cake</p>
+          <p class="s-iw2__note" data-copy="why.l1">A cake, a card, a speech. Everyone says “enjoy it”.</p>
+        </div>
+      </div>
+      <div class="s-iw2__day">
+        <div class="s-iw2__date"><b data-copy="why.d2">Monday</b><span>&nbsp;</span></div>
+        <div class="s-iw2__lines">
+          <p class="s-iw2__note" data-copy="why.l2">No alarm. The coffee’s nice. The house is very quiet.</p>
+          <i></i><i></i>
+        </div>
+      </div>
+      <div class="s-iw2__day">
+        <div class="s-iw2__date"><b data-copy="why.d3">Wednesday</b><span>&nbsp;</span></div>
+        <div class="s-iw2__lines">
+          <p class="s-iw2__note" data-copy="why.l3">Nobody needs you anywhere. Nobody’s rung.</p>
+          <i></i><i></i><i></i>
+        </div>
+      </div>
+    </div>
+    <p data-copy="why.close" class="s-iw2__close">Nothing went wrong. It just wasn’t planned.</p>
+  </div>
+</section>
+<style>
+.s-iw2{background:var(--ground-2);padding-block:clamp(3.5rem,9vw,7rem)}
+.s-iw2__h{font:800 clamp(1.8rem,1rem + 3vw,3rem)/1.1 var(--sans);letter-spacing:-.015em;max-width:22ch;margin-bottom:clamp(1.8rem,4vw,2.8rem);text-wrap:balance}
+.s-iw2__diary{background:var(--ground);border:1px solid var(--rule-strong);border-radius:.6rem;max-width:880px}
+.s-iw2__day{display:grid;grid-template-columns:1fr;border-bottom:1px solid var(--rule-strong)}
+.s-iw2__day:last-child{border-bottom:0}
+.s-iw2__date{display:flex;gap:.8rem;align-items:baseline;padding:1rem 1.2rem .2rem}
+.s-iw2__date b{font:800 1.15rem/1.2 var(--sans)}
+.s-iw2__date span{font:500 .88rem/1 var(--sans);color:var(--ink-soft)}
+.s-iw2__lines{padding:.3rem 1.2rem 1rem}
+.s-iw2__lines > *{min-height:2.6rem;margin:0;display:flex;align-items:center;border-bottom:1px solid var(--rule)}
+.s-iw2__entry{font-size:1rem;color:var(--ink-soft);gap:.8rem}
+.s-iw2__entry time{font:500 .85rem/1 var(--num);color:var(--ink);min-width:3.2rem}
+.s-iw2__note{font:700 clamp(1.1rem,.9rem + .8vw,1.45rem)/1.3 var(--sans);color:var(--ink);padding-block:.5rem}
+.s-iw2__day--full .s-iw2__note{color:var(--brand-deep)}
+.s-iw2__lines i{display:block}
+.s-iw2__close{margin-top:clamp(2rem,5vw,3rem);font:800 clamp(1.6rem,1rem + 2.8vw,2.8rem)/1.12 var(--sans);letter-spacing:-.015em;color:var(--brand);max-width:22ch;text-wrap:balance}
+@media (min-width:760px){
+  .s-iw2__day{grid-template-columns:11rem 1fr}
+  .s-iw2__date{flex-direction:column;gap:.35rem;padding:1.1rem 1.4rem;border-right:1px solid var(--rule)}
+  .s-iw2__lines{padding:.5rem 1.4rem 1rem}
+}
+</style>
+<script>
+window.slotInit["why"] = function(root, reduced){
+  if (reduced) return;
+  root.querySelectorAll(".s-iw2__note").forEach(function(n){
+    gsap.fromTo(n, {clipPath:"inset(0 100% 0 0)"}, {clipPath:"inset(0 0% 0 0)", ease:"none", immediateRender:true,
+      scrollTrigger:{trigger:n, start:"top 85%", end:"top 55%", scrub:.6}});
+  });
+  gsap.fromTo(root.querySelector(".s-iw2__close"), {opacity:0, y:16}, {opacity:1, y:0, duration:.9, ease:"power3.out", immediateRender:true,
+    scrollTrigger:{trigger:root.querySelector(".s-iw2__close"), start:"top 88%", once:true}});
+};
+</script>

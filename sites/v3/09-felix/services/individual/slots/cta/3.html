@@ -1,0 +1,31 @@
+<!-- CTA 3 — a calm full-width band: invitation on the left, button on the right. Short, no photo. -->
+<section class="s-ic3">
+  <div class="wrap s-ic3__in">
+    <div>
+      <h2 data-copy="cta.h" class="s-ic3__h">Ready to chat?</h2>
+      <p data-copy="cta.lede" class="s-ic3__lede">Book in a friendly 30-minute chat about what your weeks might look like.</p>
+    </div>
+    <div class="s-ic3__acts">
+      <a data-copy="cta.btn" class="btn s-ic3__btn" href="../../contact/#book">Book a time</a>
+      <a data-copy="cta.org" class="s-ic3__org" href="../organisation/">See workshops for organisations</a>
+    </div>
+  </div>
+</section>
+<style>
+.s-ic3{background:var(--ground-3);padding-block:clamp(3.5rem,9vw,6rem)}
+.s-ic3__in{display:grid;gap:1.8rem;align-items:center}
+.s-ic3__h{font:800 clamp(2rem,1rem + 3.6vw,3.4rem)/1.08 var(--sans);letter-spacing:-.02em}
+.s-ic3__lede{margin-top:.8rem;color:var(--ink-soft);max-width:40ch}
+.s-ic3__acts{display:flex;flex-direction:column;align-items:flex-start;gap:1rem}
+.s-ic3__btn{min-height:52px;font-size:1.05rem;padding:1.1rem 2rem}
+.s-ic3__org{color:var(--ink);font-size:1rem;text-decoration-thickness:1px;padding-block:.4rem}
+.s-ic3__org:hover{color:var(--brand)}
+@media (min-width:860px){.s-ic3__in{grid-template-columns:1fr auto;gap:3rem}.s-ic3__acts{align-items:flex-end}}
+</style>
+<script>
+window.slotInit["cta"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelector(".s-ic3__btn"), {scale:.9, opacity:0}, {scale:1, opacity:1, duration:.8, ease:"expo.out", immediateRender:true,
+    scrollTrigger:{trigger:root, start:"top 80%", once:true}});
+};
+</script>

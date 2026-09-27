@@ -1,0 +1,39 @@
+<section class="s-det-1">
+  <div class="wrap s-det-1__grid">
+    <div>
+      <h2 data-copy="details.h" class="s-det-1__h">Other ways to reach Dr San</h2>
+      <p data-copy="details.lede" class="s-det-1__lede">Rather talk first, or write it down? Either is fine.</p>
+    </div>
+    <!-- TODO(Felix): email, phone and ABN below are placeholders. Replace with Dr San's real details. -->
+    <div class="s-det-1__card">
+      <div class="s-det-1__head"><span>Contact details</span><span class="s-det-1__meta">Ready Set Retirement</span></div>
+      <dl class="s-det-1__rows">
+        <div><dt>Email</dt><dd><a href="mailto:hello@readysetretirement.au">hello@readysetretirement.au</a></dd></div>
+        <div><dt>Phone</dt><dd><a href="tel:+61400000000" class="s-det-1__num">0400 000 000</a></dd></div>
+        <div><dt>Based in</dt><dd>Far North Queensland</dd></div>
+        <!-- TODO(Felix): confirm "video call or phone" and whether in-person chats are offered locally. -->
+        <div><dt>Chats</dt><dd>Online by video call or phone, wherever you are</dd></div>
+        <div><dt>Workshops</dt><dd><a href="../services/organisation/">For organisations</a></dd></div>
+        <div><dt>ABN</dt><dd class="s-det-1__num">00 000 000 000</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+<style>
+.s-det-1{padding-block:clamp(2.5rem,6vw,5rem);background:var(--ground-2)}
+.s-det-1__grid{display:grid;gap:1.6rem;align-items:start}
+.s-det-1__h{font:800 clamp(1.6rem,1rem + 2vw,2.5rem)/1.12 var(--sans);letter-spacing:-.015em;text-wrap:balance;max-width:16ch}
+.s-det-1__lede{margin-top:.8rem;color:var(--ink-soft);max-width:34ch}
+.s-det-1__card{border:1px solid var(--rule-strong);border-radius:.6rem;background:var(--ground);overflow:hidden}
+.s-det-1__head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem 1rem;padding:.95rem 1.3rem;border-bottom:2px solid var(--rule-strong);font-weight:700}
+.s-det-1__meta{font:500 .8rem/1.6 var(--num);color:var(--ink-soft)}
+.s-det-1__rows{margin:0;padding:0 1.3rem}
+.s-det-1__rows div{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem;padding:.95rem 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.s-det-1__rows div:last-child{border-bottom:0}
+.s-det-1__rows dt{font:700 .78rem/1.4 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft)}
+.s-det-1__rows dd{font-weight:600;overflow-wrap:anywhere}
+.s-det-1__rows a{color:var(--brand-deep);text-decoration-thickness:1px}
+.s-det-1__num{font-family:var(--num);font-weight:500;font-variant-numeric:tabular-nums}
+@media(max-width:520px){ .s-det-1__rows div{grid-template-columns:1fr;gap:.2rem} }
+@media(min-width:900px){ .s-det-1__grid{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:4rem} }
+</style>

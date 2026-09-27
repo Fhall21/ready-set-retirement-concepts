@@ -1,0 +1,43 @@
+<!-- Hero 1 — the home pattern: full-height photo left, one headline, one button. Native to 09 home. -->
+<section class="s-ih1">
+  <div class="s-ih1__grid">
+    <figure class="s-ih1__photo">
+      <img src="../../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling, looking toward the camera">
+    </figure>
+    <div class="s-ih1__text">
+      <p data-copy="hero.name" class="s-ih1__name">Dr San · Psychosocial Retirement Educator</p>
+      <h1 data-copy="hero.h1" class="s-ih1__h1">You know the date. Let’s plan the weeks after it.</h1>
+      <p data-copy="hero.lede" class="s-ih1__lede">Human-centred retirement planning for individuals and couples, alongside your financial plan.</p>
+      <a data-copy="hero.btn" class="btn s-ih1__btn" href="../../contact/#book">Book a friendly 30-minute chat</a>
+      <p class="s-ih1__org"><a data-copy="hero.org" href="../organisation/">See workshops for organisations</a></p>
+    </div>
+  </div>
+</section>
+<style>
+.s-ih1{background:var(--ground);overflow:hidden}
+.s-ih1__grid{display:grid;grid-template-columns:1fr}
+.s-ih1__photo{margin:0;position:relative;height:clamp(240px,38svh,340px);overflow:hidden;background:var(--ground-2)}
+.s-ih1__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.s-ih1__text{padding:1.5rem var(--gut) 2.5rem;max-width:36rem}
+.s-ih1__name{margin:0 0 1.1rem;font:500 .95rem/1.4 var(--sans);color:var(--ink-soft)}
+.s-ih1__h1{font:700 clamp(2rem,2.2vw + 1.4rem,3.6rem)/1.08 var(--sans);letter-spacing:-.015em;text-wrap:balance}
+.s-ih1__lede{margin-top:1.2rem;font:400 clamp(1.1rem,.5vw + 1rem,1.3rem)/1.5 var(--sans);color:var(--ink-soft);max-width:34ch;text-wrap:pretty}
+.s-ih1__btn{margin-top:2rem;min-height:48px}
+.s-ih1__org{margin-top:1.4rem;font-size:1rem;color:var(--ink-soft)}
+.s-ih1__org a{color:var(--ink);text-decoration-thickness:1px}
+.s-ih1__org a:hover{color:var(--brand)}
+@media (min-width:860px){
+  .s-ih1__grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:min(92svh,820px)}
+  .s-ih1__photo{height:auto;min-height:100%}
+  .s-ih1__photo img{position:absolute;inset:0;object-position:50% 25%}
+  .s-ih1__text{align-self:center;padding:clamp(3rem,6vw,6rem) clamp(2rem,6vw,6rem);max-width:40rem}
+  .s-ih1__name{margin-bottom:1.6rem}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelector(".s-ih1__photo img"),
+    {scale:1.06, opacity:.001}, {scale:1, opacity:1, duration:1.6, ease:"power3.out", immediateRender:true});
+};
+</script>

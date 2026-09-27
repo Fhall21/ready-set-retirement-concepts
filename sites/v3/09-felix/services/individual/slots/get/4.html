@@ -1,0 +1,44 @@
+<!-- Get 4 — a short welcome letter from Dr San on a single sheet: what's included as a ticked list, signed off by her. -->
+<!-- TODO(Felix): confirm with Dr San — number and length of sessions, phone/video/in person, whether a written plan and follow-up check-ins are part of the package, and fees. Also check she's happy to "sign" this letter. -->
+<section class="s-ig4">
+  <div class="wrap">
+    <article class="s-ig4__sheet">
+      <h2 data-copy="get.h" class="s-ig4__h">Here’s what’s included.</h2>
+      <p data-copy="get.lede" class="s-ig4__lede">Nothing to prepare. Bring the date, and whatever’s on your mind.</p>
+      <ul class="s-ig4__list">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg><div><b data-copy="get.i1t">A friendly first chat</b><p data-copy="get.i1p">Thirty minutes, free, by phone or video. We work out together whether this is right for you.</p></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg><div><b data-copy="get.i2t">One-to-one sessions</b><p data-copy="get.i2p">Time with Dr San, on your own or with your partner, working through the four stages at your pace.</p></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg><div><b data-copy="get.i3t">Your plan, written down</b><p data-copy="get.i3p">A plain-words plan for your weeks, your people and the things you’ll be glad to get up for.</p></div></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg><div><b data-copy="get.i4t">Check-ins as the date gets closer</b><p data-copy="get.i4p">Short follow-ups, so the plan keeps up with you and with any changes at home or at work.</p></div></li>
+      </ul>
+      <div class="s-ig4__sign">
+        <img src="../../assets/drsan.jpg" width="980" height="1470" alt="" loading="lazy">
+        <p><b>Dr San</b><span>Dr Sandra Walden-Pearson · Far North Queensland</span></p>
+      </div>
+    </article>
+  </div>
+</section>
+<style>
+.s-ig4{background:var(--ground-3);padding-block:clamp(3.5rem,9vw,7rem)}
+.s-ig4__sheet{background:var(--ground);max-width:760px;margin-inline:auto;border:1px solid var(--rule);border-radius:.6rem;padding:clamp(1.6rem,5vw,3.4rem);box-shadow:0 30px 60px -40px color-mix(in srgb,var(--brand-deep) 45%,transparent)}
+.s-ig4__h{font:800 clamp(1.8rem,1rem + 2.6vw,2.8rem)/1.1 var(--sans);letter-spacing:-.015em}
+.s-ig4__lede{margin-top:.7rem;color:var(--ink-soft)}
+.s-ig4__list{list-style:none;margin:clamp(1.6rem,4vw,2.2rem) 0 0;padding:0;display:grid;gap:1.3rem}
+.s-ig4__list li{display:grid;grid-template-columns:1.6rem 1fr;gap:.9rem;align-items:start}
+.s-ig4__list svg{width:1.6rem;height:1.6rem;border-radius:50%;background:var(--brand);padding:.25rem;margin-top:.05rem}
+.s-ig4__list path{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.s-ig4__list b{font-weight:700;font-size:1.08rem}
+.s-ig4__list p{margin-top:.2rem;color:var(--ink-soft)}
+.s-ig4__sign{display:flex;align-items:center;gap:1rem;margin-top:clamp(1.8rem,4vw,2.6rem);padding-top:1.4rem;border-top:1px solid var(--rule)}
+.s-ig4__sign img{width:56px;height:70px;object-fit:cover;object-position:50% 14%;border-radius:.4rem}
+.s-ig4__sign b{display:block;font-size:1.15rem}
+.s-ig4__sign span{font-size:.92rem;color:var(--ink-soft)}
+</style>
+<script>
+window.slotInit["get"] = function(root, reduced){
+  if (reduced) return;
+  var paths = root.querySelectorAll(".s-ig4__list path");
+  gsap.fromTo(paths, {drawSVG:"0%"}, {drawSVG:"100%", duration:.6, ease:"power2.out", stagger:.18, immediateRender:true,
+    scrollTrigger:{trigger:root.querySelector(".s-ig4__list"), start:"top 78%", once:true}});
+};
+</script>

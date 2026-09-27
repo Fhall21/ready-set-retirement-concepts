@@ -1,0 +1,27 @@
+<!-- TODO(Felix): the turning point is phrased as a pattern Dr San saw, not a specific event. Confirm with her. -->
+<section class="ab-tp4">
+  <div class="wrap ab-tp4-in">
+    <p data-copy="turning.lead" class="ab-tp4-lead">Here’s what I kept seeing.</p>
+    <span class="ab-tp4-rule" aria-hidden="true"></span>
+    <h2 data-copy="turning.big" class="ab-tp4-big">The super was sorted. The date was set. The farewell was lovely. Then came <span>Monday.</span></h2>
+    <p data-copy="turning.close" class="ab-tp4-close">It happens to people who did everything else right.</p>
+  </div>
+</section>
+<style>
+.ab-tp4{background:var(--ground-3);padding-block:clamp(4rem,11vw,8.5rem)}
+.ab-tp4-in{max-width:980px;text-align:center}
+.ab-tp4-lead{font:600 1.1rem/1.3 var(--sans);color:var(--brand-deep)}
+.ab-tp4-rule{display:block;width:min(12rem,40%);height:2px;margin:1.4rem auto 1.8rem;background:var(--brand);transform-origin:center}
+.ab-tp4-big{font:800 clamp(1.9rem,3.4vw + .6rem,3.9rem)/1.1 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+.ab-tp4-big span{color:var(--accent)}
+.ab-tp4-close{margin:1.8rem auto 0;font:500 clamp(1.1rem,.6vw + 1rem,1.35rem)/1.45 var(--sans);color:var(--ink-soft);max-width:34ch}
+</style>
+<script>
+window.slotInit["turning"] = function(root, reduced){
+  if (reduced) return;
+  // a single line draws out from the centre, then the sentence arrives beneath it
+  var tl = gsap.timeline({scrollTrigger:{trigger:root.querySelector(".ab-tp4-in"), start:"top 75%", once:true}});
+  tl.fromTo(root.querySelector(".ab-tp4-rule"), {scaleX:0}, {scaleX:1, duration:.9, ease:"expo.out", immediateRender:true})
+    .fromTo(root.querySelector(".ab-tp4-big"), {opacity:0, y:18}, {opacity:1, y:0, duration:.9, ease:"power3.out", immediateRender:true}, "-=.5");
+};
+</script>

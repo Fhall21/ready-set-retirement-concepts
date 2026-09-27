@@ -1,0 +1,59 @@
+<!-- Get 1 — reads like a health-fund "what's included" statement: item, detail, and an Included mark that ticks in as each row arrives. -->
+<!-- TODO(Felix): confirm with Dr San — number and length of sessions, phone/video/in person, whether a written plan and follow-up check-ins are part of the package, and fees. -->
+<section class="s-ig1">
+  <div class="wrap">
+    <h2 data-copy="get.h" class="s-ig1__h">Here’s what’s included.</h2>
+    <div class="s-ig1__card">
+      <div class="s-ig1__bar"><span class="s-ig1__title">Individual and couples program</span><span class="s-ig1__meta">Inclusions</span></div>
+      <div class="s-ig1__rows" role="table" aria-label="What's included">
+        <div class="s-ig1__row" role="row">
+          <div role="rowheader"><b data-copy="get.i1t">A friendly first chat</b><p data-copy="get.i1p">Thirty minutes, free, by phone or video. We work out together whether this is right for you.</p></div>
+          <div class="s-ig1__inc" role="cell"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Included</div>
+        </div>
+        <div class="s-ig1__row" role="row">
+          <div role="rowheader"><b data-copy="get.i2t">One-to-one sessions</b><p data-copy="get.i2p">Time with Dr San, on your own or with your partner, working through the four stages at your pace.</p></div>
+          <div class="s-ig1__inc" role="cell"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Included</div>
+        </div>
+        <div class="s-ig1__row" role="row">
+          <div role="rowheader"><b data-copy="get.i3t">Your plan, written down</b><p data-copy="get.i3p">A plain-words plan for your weeks, your people and the things you’ll be glad to get up for.</p></div>
+          <div class="s-ig1__inc" role="cell"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Included</div>
+        </div>
+        <div class="s-ig1__row" role="row">
+          <div role="rowheader"><b data-copy="get.i4t">Check-ins as the date gets closer</b><p data-copy="get.i4p">Short follow-ups, so the plan keeps up with you and with any changes at home or at work.</p></div>
+          <div class="s-ig1__inc" role="cell"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Included</div>
+        </div>
+      </div>
+      <div class="s-ig1__comment"><span>Comment</span><p data-copy="get.lede">Nothing to prepare. Bring the date, and whatever’s on your mind.</p></div>
+    </div>
+  </div>
+</section>
+<style>
+.s-ig1{background:var(--ground-2);padding-block:clamp(3.5rem,9vw,7rem)}
+.s-ig1__h{font:800 clamp(1.9rem,1rem + 3.2vw,3.2rem)/1.08 var(--sans);letter-spacing:-.015em;margin-bottom:clamp(1.6rem,4vw,2.4rem)}
+.s-ig1__card{border:1px solid var(--rule-strong);border-radius:.6rem;background:var(--ground);overflow:hidden;max-width:960px}
+.s-ig1__bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1rem;padding:1rem 1.3rem;border-bottom:2px solid var(--rule-strong)}
+.s-ig1__title{font:700 1.05rem/1.3 var(--sans)}
+.s-ig1__meta{font:500 .82rem/1.3 var(--num);color:var(--ink-soft)}
+.s-ig1__rows{padding:0 1.3rem}
+.s-ig1__row{display:grid;grid-template-columns:1fr auto;gap:1rem 2rem;align-items:start;padding:1.1rem 0;border-bottom:1px solid var(--rule)}
+.s-ig1__row:last-child{border-bottom:0}
+.s-ig1__row b{font-weight:700;font-size:1.05rem}
+.s-ig1__row p{margin-top:.25rem;color:var(--ink-soft);font-size:1rem;max-width:56ch}
+.s-ig1__inc{display:inline-flex;align-items:center;gap:.45rem;font:700 .93rem/1 var(--sans);color:var(--brand);background:color-mix(in srgb,var(--brand) 8%,transparent);padding:.4rem .7rem .4rem .45rem;border-radius:.3rem;white-space:nowrap}
+.s-ig1__inc svg{width:1.3rem;height:1.3rem;border-radius:50%;background:var(--brand);padding:.18rem}
+.s-ig1__inc path{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.s-ig1__comment{padding:1.1rem 1.3rem 1.3rem;border-top:2px solid var(--rule-strong)}
+.s-ig1__comment span{display:block;font:700 .75rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem}
+.s-ig1__comment p{font:600 1.1em/1.5 var(--sans)}
+@media (max-width:560px){.s-ig1__row{grid-template-columns:1fr}.s-ig1__inc{justify-self:start}}
+</style>
+<script>
+window.slotInit["get"] = function(root, reduced){
+  if (reduced) return;
+  root.querySelectorAll(".s-ig1__row").forEach(function(r){
+    var p = r.querySelector("path");
+    gsap.fromTo(p, {drawSVG:"0%"}, {drawSVG:"100%", duration:.7, ease:"power2.out", immediateRender:true,
+      scrollTrigger:{trigger:r, start:"top 80%", once:true}});
+  });
+};
+</script>

@@ -1,0 +1,37 @@
+<section class="ab-mi2">
+  <div class="wrap ab-mi2-top">
+    <h2 data-copy="mission.h" class="ab-mi2-h">So now I teach the other half of the plan.</h2>
+    <p data-copy="mission.big" class="ab-mi2-big"><span>One pays for the life.</span> <span>The other helps you live it.</span></p>
+  </div>
+  <figure class="ab-mi2-band" aria-hidden="true">
+    <img src="../assets/drsan.jpg" width="980" height="1470" alt="" loading="lazy">
+  </figure>
+  <div class="wrap ab-mi2-foot">
+    <p data-copy="mission.lede" class="ab-mi2-lede">Human-centred retirement planning™ sits alongside your financial plan. I offer coaching, workshops, seminars, training, consulting and talks.</p>
+    <p class="ab-mi2-org"><a data-copy="mission.org" href="../services/organisation/">See workshops for organisations</a></p>
+  </div>
+</section>
+<style>
+.ab-mi2{background:var(--ground);padding-block:clamp(3.5rem,9vw,7rem)}
+.ab-mi2-top{display:grid;gap:1rem}
+@media (min-width:900px){.ab-mi2-top{grid-template-columns:minmax(0,4fr) minmax(0,7fr);align-items:end;gap:4rem}}
+.ab-mi2-h{font:700 clamp(1.3rem,1.2vw + 1rem,1.8rem)/1.25 var(--sans);color:var(--brand-deep);max-width:22ch}
+.ab-mi2-big{font:800 clamp(2rem,3.6vw + .6rem,4.2rem)/1.05 var(--sans);letter-spacing:-.025em;text-wrap:balance}
+.ab-mi2-big span + span{color:var(--brand)}
+.ab-mi2-band{margin:clamp(2.2rem,5vw,3.5rem) 0 0;height:clamp(300px,64svh,640px);overflow:hidden;background:var(--ground-2)}
+.ab-mi2-band img{width:100%;height:100%;object-fit:cover;object-position:50% 16%}
+.ab-mi2-foot{display:grid;gap:.8rem;margin-top:clamp(1.8rem,4vw,2.6rem)}
+@media (min-width:900px){.ab-mi2-foot{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:4rem}.ab-mi2-lede{grid-column:2}.ab-mi2-org{grid-column:2}}
+.ab-mi2-lede{color:var(--ink-soft);max-width:48ch}
+.ab-mi2-org a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;font-weight:500;display:inline-block;padding-block:.5rem}
+.ab-mi2-org a:hover{color:var(--brand)}
+</style>
+<script>
+window.slotInit["mission"] = function(root, reduced){
+  if (reduced) return;
+  var band = root.querySelector(".ab-mi2-band");
+  // the photo opens from a narrow slit to the full width of the page as you scroll past
+  gsap.fromTo(band, {clipPath:"inset(0% 38% 0% 38% round 1.5rem)"}, {clipPath:"inset(0% 0% 0% 0% round 0rem)", ease:"none",
+    scrollTrigger:{trigger:band, start:"top 90%", end:"center 50%", scrub:.6}});
+};
+</script>

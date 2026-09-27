@@ -1,0 +1,45 @@
+<!-- TODO(Felix): the turning point is phrased as a pattern Dr San saw, not a specific event. Confirm with her. -->
+<section class="ab-tp2">
+  <div class="wrap ab-tp2-grid">
+    <div class="ab-tp2-text">
+      <p data-copy="turning.lead" class="ab-tp2-lead">Here’s what I kept seeing.</p>
+      <h2 data-copy="turning.big" class="ab-tp2-big">The super was sorted. The date was set. The farewell was lovely. Then came <span class="ab-tp1-acc">Monday.</span></h2>
+      <p data-copy="turning.close" class="ab-tp2-close">It happens to people who did everything else right.</p>
+    </div>
+    <div class="ab-tp2-list" role="list" aria-label="A typical retirement checklist">
+      <div class="ab-tp2-row" role="listitem"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="25" rx="6"/><path class="tk" d="M7.5 14.5l4.5 4.5 8.5-10"/></svg><span>Super sorted</span><em>Done</em></div>
+      <div class="ab-tp2-row" role="listitem"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="25" rx="6"/><path class="tk" d="M7.5 14.5l4.5 4.5 8.5-10"/></svg><span>Date agreed with work</span><em>Done</em></div>
+      <div class="ab-tp2-row" role="listitem"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="25" rx="6"/><path class="tk" d="M7.5 14.5l4.5 4.5 8.5-10"/></svg><span>Farewell lunch booked</span><em>Done</em></div>
+      <div class="ab-tp2-row ab-tp2-gap" role="listitem"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="1.5" y="1.5" width="25" height="25" rx="6"/></svg><span>What I’ll do on Monday</span><em>Not started</em></div>
+    </div>
+  </div>
+</section>
+<style>
+.ab-tp2{background:var(--ground-2);border-block:1px solid var(--rule);padding-block:clamp(3.5rem,9vw,6.5rem)}
+.ab-tp2-grid{display:grid;gap:clamp(2.2rem,5vw,4rem);align-items:center}
+@media (min-width:900px){.ab-tp2-grid{grid-template-columns:minmax(0,6fr) minmax(0,5fr)}}
+.ab-tp2-lead{font:600 1.1rem/1.3 var(--sans);color:var(--brand-deep);margin-bottom:1rem}
+.ab-tp2-big{font:800 clamp(1.8rem,2.8vw + .7rem,3.4rem)/1.1 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+.ab-tp2-big span{color:var(--accent)}
+.ab-tp2-close{margin-top:1.6rem;font:500 clamp(1.1rem,.6vw + 1rem,1.35rem)/1.45 var(--sans);color:var(--ink-soft);max-width:34ch}
+.ab-tp2-list{background:var(--ground);border:1px solid var(--rule-strong);border-radius:.7rem;overflow:hidden}
+.ab-tp2-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:1.05rem 1.2rem;border-top:1px solid var(--rule);font-weight:600}
+.ab-tp2-row:first-child{border-top:0}
+.ab-tp2-row svg{width:28px;height:28px}
+.ab-tp2-row rect{fill:none;stroke:var(--brand);stroke-width:2}
+.ab-tp2-row .tk{fill:none;stroke:var(--brand);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.ab-tp2-row em{font:500 .8rem/1 var(--num);font-style:normal;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em}
+.ab-tp2-gap{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.ab-tp2-gap rect{stroke:var(--accent)}
+.ab-tp2-gap em{color:var(--accent)}
+</style>
+<script>
+window.slotInit["turning"] = function(root, reduced){
+  if (reduced) return;
+  var ticks = root.querySelectorAll(".tk"), gap = root.querySelector(".ab-tp2-gap");
+  // three boxes tick themselves off; the last one is left empty and flagged
+  var tl = gsap.timeline({scrollTrigger:{trigger:root.querySelector(".ab-tp2-list"), start:"top 75%", once:true}});
+  tl.fromTo(ticks, {drawSVG:"0%"}, {drawSVG:"100%", duration:.45, stagger:.35, ease:"power2.out", immediateRender:true})
+    .fromTo(gap.querySelector("em"), {opacity:0, x:-8}, {opacity:1, x:0, duration:.5, ease:"power2.out", immediateRender:true}, "+=.3");
+};
+</script>

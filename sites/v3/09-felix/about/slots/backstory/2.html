@@ -1,0 +1,88 @@
+<!-- Horizontal timeline: echoes the sideways "Monday" scroll Felix liked (v3-vitals-log round 2). Sources as backstory/1. -->
+<section class="ab-bs2">
+  <div class="ab-bs2-view">
+    <div class="ab-bs2-track">
+      <div class="ab-bs2-intro">
+        <h2 data-copy="backstory.h" class="ab-bs2-h">How I came to this work</h2>
+      </div>
+      <div class="ab-bs2-line" aria-hidden="true"><i></i></div>
+      <article class="ab-bs2-ch">
+        <span class="ab-bs2-dot" aria-hidden="true"></span>
+        <h3 data-copy="backstory.c1h">I started out teaching English.</h3>
+        <p data-copy="backstory.c1p">Language was my first love. I even went back for an honours year in linguistics.</p>
+      </article>
+      <article class="ab-bs2-ch">
+        <span class="ab-bs2-dot" aria-hidden="true"></span>
+        <h3 data-copy="backstory.c2h">Then came decades of leading people.</h3>
+        <!-- TODO(Felix): confirm plain-English reading of "educational, social and commercial sectors". -->
+        <p data-copy="backstory.c2p">In schools, community organisations and business, the work kept coming back to people: how they grow, and how they cope when things change.</p>
+      </article>
+      <article class="ab-bs2-ch ab-bs2-ch--pic">
+        <span class="ab-bs2-dot" aria-hidden="true"></span>
+        <figure><img src="assets/drsan-office.jpg" width="1100" height="1650" alt="Dr San in her office, in front of a bookshelf" loading="lazy"></figure>
+        <h3 data-copy="backstory.c3h">Along the way, a PhD.</h3>
+        <p data-copy="backstory.c3p">An MBA in HR, then a PhD in Business. People say I’m a people person, a businessperson and a nerd. Fair enough.</p>
+      </article>
+      <article class="ab-bs2-ch">
+        <span class="ab-bs2-dot" aria-hidden="true"></span>
+        <!-- TODO(Felix): chapter 4 is a plausible bridge, not a sourced fact. Confirm with Dr San. -->
+        <h3 data-copy="backstory.c4h">And a lot of farewells.</h3>
+        <p data-copy="backstory.c4p">I watched capable people leave work with the money sorted and nothing planned for who they’d be next. Nobody had shown them how.</p>
+      </article>
+    </div>
+  </div>
+</section>
+<style>
+.ab-bs2{background:var(--ground);overflow-x:clip}
+.ab-bs2-view{padding-block:clamp(3rem,8vw,5rem)}
+.ab-bs2-track{position:relative;display:grid;gap:2.6rem;padding-inline:var(--gut);max-width:1240px;margin-inline:auto;padding-left:calc(var(--gut) + 1.6rem)}
+.ab-bs2-h{font:800 clamp(2rem,3vw + .8rem,3.6rem)/1.05 var(--sans);letter-spacing:-.025em;text-wrap:balance;max-width:12ch}
+.ab-bs2-intro{margin-left:-1.6rem}
+.ab-bs2-line{position:absolute;left:calc(var(--gut) + .35rem);top:7rem;bottom:.5rem;width:1px;background:var(--rule-strong)}
+.ab-bs2-line i{position:absolute;inset:0;background:var(--brand);transform-origin:top;transform:scaleY(1)}
+.ab-bs2-ch{position:relative}
+.ab-bs2-dot{position:absolute;left:-1.6rem;top:.55rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--ground);border:2px solid var(--brand)}
+.ab-bs2-ch h3{font:800 clamp(1.45rem,1.6vw + .9rem,2.2rem)/1.15 var(--sans);letter-spacing:-.015em;text-wrap:balance}
+.ab-bs2-ch p{margin-top:.7rem;color:var(--ink-soft);max-width:36ch;text-wrap:pretty}
+.ab-bs2-ch figure{margin:0 0 1.2rem;border-radius:1rem;overflow:hidden;aspect-ratio:4/3;background:var(--ground-2);max-width:28rem}
+.ab-bs2-ch figure img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+
+/* desktop: one long row, pinned and scrolled sideways */
+@media (min-width:900px){
+  .ab-bs2.is-h .ab-bs2-view{height:100svh;display:flex;align-items:center;padding-block:0}
+  .ab-bs2.is-h .ab-bs2-track{--lt:38svh;display:flex;align-items:flex-start;gap:clamp(4rem,7vw,7rem);max-width:none;margin:0;
+    padding:var(--lt) 12vw 0 max(var(--gut),calc((100vw - 1240px)/2 + var(--gut)));width:max-content}
+  .ab-bs2.is-h .ab-bs2-intro{margin:calc(var(--lt) * -1) 0 0;width:min(30rem,34vw);flex:none;align-self:stretch;display:flex;align-items:center;
+    position:relative;z-index:1;background:var(--ground);padding-right:2rem}
+  .ab-bs2.is-h .ab-bs2-h{font-size:clamp(2.6rem,4vw,4.4rem)}
+  .ab-bs2.is-h .ab-bs2-line{left:0;right:0;top:var(--lt);bottom:auto;width:auto;height:1px}
+  .ab-bs2.is-h .ab-bs2-line i{transform-origin:left}
+  .ab-bs2.is-h .ab-bs2-ch{flex:none;width:clamp(20rem,28vw,26rem);padding-top:2.2rem}
+  .ab-bs2.is-h .ab-bs2-dot{left:0;top:-.42rem}
+  .ab-bs2.is-h .ab-bs2-ch figure{position:absolute;bottom:calc(100% + 1.4rem);left:0;width:100%;height:calc(var(--lt) - 3.4rem);aspect-ratio:auto;margin:0;max-width:none}
+}
+</style>
+<script>
+window.slotInit["backstory"] = function(root, reduced){
+  var sec = root.querySelector(".ab-bs2"), track = root.querySelector(".ab-bs2-track"),
+      fill = root.querySelector(".ab-bs2-line i");
+  if (reduced) return; // stacked vertical timeline, fully drawn
+
+  var mm = gsap.matchMedia();
+  mm.add("(min-width: 900px)", function(){
+    sec.classList.add("is-h");
+    function dist(){ return Math.max(0, track.scrollWidth - window.innerWidth); }
+    var tl = gsap.timeline({scrollTrigger:{
+      trigger:sec, start:"top top", pin:true, scrub:.8, invalidateOnRefresh:true,
+      end:function(){ return "+=" + Math.min(dist(), window.innerHeight * 1.5); } // never longer than 150vh
+    }});
+    tl.fromTo(track, {x:0}, {x:function(){ return -dist(); }, ease:"none"}, 0)
+      .fromTo(fill, {scaleX:0}, {scaleX:1, ease:"none"}, 0);
+    return function(){ sec.classList.remove("is-h"); };
+  });
+  mm.add("(max-width: 899px)", function(){
+    gsap.fromTo(fill, {scaleY:0}, {scaleY:1, ease:"none",
+      scrollTrigger:{trigger:track, start:"top 70%", end:"bottom 60%", scrub:.6}});
+  });
+};
+</script>

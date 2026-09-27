@@ -1,0 +1,32 @@
+<!-- "One pays for the life. The other helps you live it." is Felix's picked line (v3-vitals-log round 5). Offer list from readysetretirement.au. -->
+<section class="ab-mi1">
+  <div class="wrap ab-mi1-in">
+    <h2 data-copy="mission.h" class="ab-mi1-h">So now I teach the other half of the plan.</h2>
+    <p data-copy="mission.big" class="ab-mi1-big"><span>One pays for the life.</span> <span>The other helps you live it.</span></p>
+    <p data-copy="mission.lede" class="ab-mi1-lede">Human-centred retirement planning™ sits alongside your financial plan. I offer coaching, workshops, seminars, training, consulting and talks.</p>
+    <p class="ab-mi1-org"><a data-copy="mission.org" href="../services/organisation/">See workshops for organisations</a></p>
+  </div>
+</section>
+<style>
+.ab-mi1{background:var(--ground);padding-block:clamp(4rem,10vw,8rem);overflow-x:clip}
+.ab-mi1-in{max-width:1100px}
+.ab-mi1-h{font:700 clamp(1.3rem,1.2vw + 1rem,1.8rem)/1.25 var(--sans);color:var(--brand-deep);letter-spacing:-.01em;max-width:30ch}
+.ab-mi1-big{margin-top:clamp(1.2rem,3vw,2rem);font:800 clamp(2.3rem,5vw + .5rem,5.4rem)/1.02 var(--sans);letter-spacing:-.03em;text-wrap:balance}
+.ab-mi1-big span{display:block}
+.ab-mi1-big span + span{color:var(--brand)}
+.ab-mi1-lede{margin-top:clamp(1.6rem,4vw,2.6rem);color:var(--ink-soft);max-width:48ch;text-wrap:pretty}
+.ab-mi1-org{margin-top:1.2rem}
+.ab-mi1-org a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;font-weight:500;display:inline-block;padding-block:.5rem}
+.ab-mi1-org a:hover{color:var(--brand)}
+</style>
+<script>
+window.slotInit["mission"] = function(root, reduced){
+  if (reduced) return;
+  var big = root.querySelector(".ab-mi1-big"), parts = big.querySelectorAll("span");
+  if (parts.length < 2) parts = [big];
+  // the two plans slide in from opposite sides and meet in the middle of the page
+  var st = {trigger:big, start:"top 92%", end:"center 55%", scrub:.6};
+  gsap.fromTo(parts[0], {xPercent:-14, opacity:.15}, {xPercent:0, opacity:1, ease:"none", scrollTrigger:st});
+  if (parts[1]) gsap.fromTo(parts[1], {xPercent:14, opacity:.15}, {xPercent:0, opacity:1, ease:"none", scrollTrigger:Object.assign({}, st)});
+};
+</script>

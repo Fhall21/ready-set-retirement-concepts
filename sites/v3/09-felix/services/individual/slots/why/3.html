@@ -1,0 +1,42 @@
+<!-- Why 3 — heading holds still on the left (sticky, no pin); each day passes it in turn, the one in view is full strength. -->
+<section class="s-iw3">
+  <div class="wrap s-iw3__grid">
+    <div class="s-iw3__side">
+      <h2 data-copy="why.h" class="s-iw3__h">Here’s how the first week often goes.</h2>
+    </div>
+    <div class="s-iw3__days">
+      <div class="s-iw3__day"><b data-copy="why.d1">Friday</b><p data-copy="why.l1">A cake, a card, a speech. Everyone says “enjoy it”.</p></div>
+      <div class="s-iw3__day"><b data-copy="why.d2">Monday</b><p data-copy="why.l2">No alarm. The coffee’s nice. The house is very quiet.</p></div>
+      <div class="s-iw3__day"><b data-copy="why.d3">Wednesday</b><p data-copy="why.l3">Nobody needs you anywhere. Nobody’s rung.</p></div>
+      <p data-copy="why.close" class="s-iw3__close">Nothing went wrong. It just wasn’t planned.</p>
+    </div>
+  </div>
+</section>
+<style>
+.s-iw3{background:var(--ground);padding-block:clamp(3.5rem,9vw,7rem)}
+.s-iw3__grid{display:grid;gap:1.6rem}
+.s-iw3__h{font:800 clamp(1.8rem,1rem + 3vw,3rem)/1.1 var(--sans);letter-spacing:-.015em;max-width:16ch;text-wrap:balance}
+.s-iw3__days{display:grid;gap:clamp(1.6rem,4vw,2.4rem)}
+.s-iw3__day{padding-top:1.2rem;border-top:1px solid var(--rule-strong)}
+.s-iw3__day b{display:block;font:600 1rem/1 var(--sans);color:var(--brand-deep);margin-bottom:.6rem}
+.s-iw3__day p{font:700 clamp(1.4rem,1rem + 1.8vw,2.3rem)/1.22 var(--sans);letter-spacing:-.01em;max-width:24ch;text-wrap:balance}
+.s-iw3__close{margin-top:1rem;padding:clamp(1.4rem,3vw,2rem);background:var(--ground-3);border-radius:.6rem;font:800 clamp(1.5rem,1rem + 2.2vw,2.5rem)/1.15 var(--sans);color:var(--brand-deep);text-wrap:balance}
+@media (min-width:900px){
+  .s-iw3__grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,5vw,5rem);align-items:start}
+  .s-iw3__side{position:sticky;top:30vh}
+  .s-iw3__day{min-height:38vh}
+}
+</style>
+<script>
+window.slotInit["why"] = function(root, reduced){
+  if (reduced) return;
+  var days = root.querySelectorAll(".s-iw3__day");
+  days.forEach(function(d){
+    gsap.fromTo(d, {opacity:.18}, {opacity:1, ease:"none", immediateRender:true,
+      scrollTrigger:{trigger:d, start:"top 80%", end:"top 50%", scrub:.5}});
+  });
+  var c = root.querySelector(".s-iw3__close");
+  gsap.fromTo(c, {clipPath:"inset(0 0 100% 0 round .6rem)"}, {clipPath:"inset(0 0 0% 0 round .6rem)", duration:1, ease:"expo.out", immediateRender:true,
+    scrollTrigger:{trigger:c, start:"top 85%", once:true}});
+};
+</script>

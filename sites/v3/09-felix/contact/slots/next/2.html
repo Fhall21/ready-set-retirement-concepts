@@ -1,0 +1,53 @@
+<section class="s-next-2">
+  <div class="wrap s-next-2__grid">
+    <div>
+      <h2 data-copy="next.h" class="s-next-2__h">What happens after you book</h2>
+      <p data-copy="next.lede" class="s-next-2__lede">Nothing to prepare, and nothing to sign up for.</p>
+    </div>
+    <div class="s-next-2__faq">
+      <details open>
+        <summary>Is the chat really free?</summary>
+        <p>Yes. It’s 30 minutes, and there’s nothing to pay.</p>
+      </details>
+      <details>
+        <summary>Do I need to prepare anything?</summary>
+        <p>No. If something about retiring has been on your mind, bring that. If not, that’s fine too.</p>
+      </details>
+      <details>
+        <summary>Can my partner join?</summary>
+        <!-- TODO(Felix): confirm partners are welcome in the first chat (footer lists "individuals and couples"). -->
+        <p>Yes, you’re welcome to chat together.</p>
+      </details>
+      <details>
+        <summary>I’m not retiring for years. Is it too early?</summary>
+        <p>No. Dr San works with people three to ten years from retirement.</p>
+      </details>
+      <details>
+        <summary>Is this financial advice?</summary>
+        <p>No. Dr San helps with the personal and social side of retiring. Keep working with your financial adviser on the money; this sits alongside it.</p>
+      </details>
+      <details>
+        <summary>I’m asking for an organisation. Where do I start?</summary>
+        <p>Send a message and choose “An organisation”, or read about <a href="../services/organisation/">workshops for organisations</a> first.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<style>
+.s-next-2{padding-block:clamp(3rem,7vw,6rem);background:var(--ground-2)}
+.s-next-2__grid{display:grid;gap:1.8rem;align-items:start}
+.s-next-2__h{font:800 clamp(1.8rem,1rem + 2.6vw,3rem)/1.1 var(--sans);letter-spacing:-.015em;text-wrap:balance;max-width:14ch}
+.s-next-2__lede{margin-top:.8rem;color:var(--ink-soft);max-width:30ch}
+.s-next-2__faq{border-top:1px solid var(--rule-strong)}
+.s-next-2__faq details{border-bottom:1px solid var(--rule)}
+.s-next-2__faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:1.1rem 0;font:700 1.08rem/1.35 var(--sans);min-height:48px}
+.s-next-2__faq summary::-webkit-details-marker{display:none}
+.s-next-2__faq summary::after{content:"";flex:none;width:.7rem;height:.7rem;border-right:2px solid var(--brand);border-bottom:2px solid var(--brand);
+  transform:translateY(-25%) rotate(45deg);transition:transform .2s var(--ease-out)}
+.s-next-2__faq details[open] summary::after{transform:translateY(20%) rotate(-135deg)}
+.s-next-2__faq summary:hover{color:var(--brand)}
+.s-next-2__faq summary:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:.2rem}
+.s-next-2__faq p{padding:0 2rem 1.2rem 0;color:var(--ink-soft);max-width:60ch}
+@media(min-width:900px){ .s-next-2__grid{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:4rem} }
+</style>

@@ -1,0 +1,33 @@
+<!-- Why 1 — pinned, short (120%) scrubbed sequence: one day at a time, the earlier day dims, then the close. -->
+<section class="s-iw1">
+  <div class="wrap s-iw1__in">
+    <h2 data-copy="why.h" class="s-iw1__h">Here’s how the first week often goes.</h2>
+    <ol class="s-iw1__days">
+      <li class="s-iw1__day"><b data-copy="why.d1">Friday</b><p data-copy="why.l1">A cake, a card, a speech. Everyone says “enjoy it”.</p></li>
+      <li class="s-iw1__day"><b data-copy="why.d2">Monday</b><p data-copy="why.l2">No alarm. The coffee’s nice. The house is very quiet.</p></li>
+      <li class="s-iw1__day"><b data-copy="why.d3">Wednesday</b><p data-copy="why.l3">Nobody needs you anywhere. Nobody’s rung.</p></li>
+    </ol>
+    <p data-copy="why.close" class="s-iw1__close">Nothing went wrong. It just wasn’t planned.</p>
+  </div>
+</section>
+<style>
+.s-iw1{background:var(--ground-2)}
+.s-iw1__in{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(3rem,8vw,5rem);max-width:980px}
+.s-iw1__h{font:600 clamp(1rem,2vw,1.15rem)/1.3 var(--sans);color:var(--brand-deep);margin-bottom:clamp(1.4rem,4vw,2.4rem)}
+.s-iw1__days{list-style:none;margin:0;padding:0;display:grid;gap:clamp(1rem,3vw,1.8rem)}
+.s-iw1__day b{display:block;font:600 1rem/1 var(--sans);color:var(--ink-soft);margin-bottom:.45rem}
+.s-iw1__day p{font:700 clamp(1.45rem,1rem + 2.4vw,2.6rem)/1.2 var(--sans);letter-spacing:-.01em;max-width:30ch;text-wrap:balance}
+.s-iw1__close{margin-top:clamp(2rem,6vw,3.4rem);font:800 clamp(1.7rem,1rem + 3.4vw,3.2rem)/1.1 var(--sans);letter-spacing:-.015em;color:var(--brand);max-width:20ch;text-wrap:balance}
+</style>
+<script>
+window.slotInit["why"] = function(root, reduced){
+  if (reduced) return;
+  var days = root.querySelectorAll(".s-iw1__day"), close = root.querySelector(".s-iw1__close");
+  var tl = gsap.timeline({scrollTrigger:{trigger:root, start:"top top", end:"+=120%", scrub:.8, pin:true, invalidateOnRefresh:true}});
+  tl.fromTo(days, {opacity:.08, y:14}, {opacity:1, y:0, stagger:1, duration:1, ease:"none", immediateRender:true}, 0);
+  tl.to(days[0], {opacity:.4, duration:.6, ease:"none"}, 1.4);
+  tl.to(days[1], {opacity:.4, duration:.6, ease:"none"}, 2.4);
+  tl.fromTo(close, {opacity:0, y:14}, {opacity:1, y:0, duration:1, ease:"none", immediateRender:true}, 3);
+  tl.to({}, {duration:.4});
+};
+</script>

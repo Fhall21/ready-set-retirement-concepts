@@ -1,0 +1,39 @@
+<!-- CTA 1: the home page's phone close, centred on every screen. One heading, one line, one button; a ring draws round it. -->
+<section class="s-octa-1">
+  <div class="wrap s-octa-1-in">
+    <h2 data-copy="cta.h" class="s-octa-1-h">Ready to talk about your team?</h2>
+    <p data-copy="cta.lede" class="s-octa-1-lede">Book a 30-minute friendly chat, and we’ll work out what would suit your people.</p>
+    <div class="s-octa-1-cta">
+      <svg class="s-octa-1-ring" aria-hidden="true"><rect class="tr"></rect><rect class="dr"></rect></svg>
+      <a data-copy="cta.btn" class="btn s-octa-1-pill" href="../../contact/#book">Book a time to talk</a>
+    </div>
+  </div>
+</section>
+<style>
+.s-octa-1{padding-block:clamp(4.5rem,12vw,9rem);background:var(--ground)}
+.s-octa-1-in{max-width:720px;text-align:center}
+.s-octa-1-h{font:800 clamp(2rem,1rem + 3.6vw,3.4rem)/1.1 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+.s-octa-1-lede{margin:1.2rem auto 0;color:var(--ink-soft);max-width:42ch}
+.s-octa-1-cta{position:relative;display:inline-grid;place-items:center;margin-top:clamp(2.4rem,5vw,3rem)}
+.s-octa-1-ring{position:absolute;inset:-14px;width:calc(100% + 28px);height:calc(100% + 28px);overflow:visible;pointer-events:none}
+.s-octa-1-ring rect{fill:none;stroke-width:3}
+.s-octa-1-ring .tr{stroke:var(--rule)}
+.s-octa-1-ring .dr{stroke:var(--brand);stroke-linecap:round}
+.s-octa-1-pill{font-size:1.05rem;padding:1.1rem 2rem;min-height:52px}
+</style>
+<script>
+window.slotInit["cta"] = function(root, reduced){
+  var pill = root.querySelector(".s-octa-1-pill"), svg = root.querySelector(".s-octa-1-ring");
+  var rects = root.querySelectorAll(".s-octa-1-ring rect"), draw = root.querySelector(".s-octa-1-ring .dr");
+  function size(){
+    var r = pill.getBoundingClientRect(), pad = 14, w = r.width + pad*2, h = r.height + pad*2, rx = h/2;
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    rects.forEach(function(el){ el.setAttribute("x",1.5); el.setAttribute("y",1.5); el.setAttribute("width",w-3); el.setAttribute("height",h-3); el.setAttribute("rx",rx-1.5); });
+    return 2*(w-3) + 2*(h-3) - 8*(rx-1.5) + 2*Math.PI*(rx-1.5);
+  }
+  var perim = size();
+  if (reduced) return;
+  gsap.fromTo(draw, {strokeDasharray:perim, strokeDashoffset:perim}, {strokeDashoffset:0, duration:1.3, ease:"power2.out",
+    scrollTrigger:{trigger:root, start:"top 70%", toggleActions:"play none none none"}});
+};
+</script>

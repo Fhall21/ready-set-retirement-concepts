@@ -1,0 +1,94 @@
+<!-- Backstory facts: English teacher start + linguistics honours year (Dr San's own notes, feedback/Dr_San_for_Felix.md #5, #7);
+     decades of leadership across educational, social and commercial sectors, MBA (HR), PhD (Business), "people person,
+     businessperson and nerd" (readysetretirement.au). -->
+<section class="ab-bs1">
+  <div class="wrap ab-bs1-stage">
+    <figure class="ab-bs1-photo" aria-hidden="true">
+      <img class="ab-bs1-img-a" src="assets/drsan-office.jpg" width="1100" height="1650" alt="">
+      <img class="ab-bs1-img-b" src="../assets/drsan.jpg" width="980" height="1470" alt="">
+    </figure>
+    <div class="ab-bs1-text">
+      <h2 data-copy="backstory.h" class="ab-bs1-h">How I came to this work</h2>
+      <ol class="ab-bs1-steps" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+      <div class="ab-bs1-chs">
+        <article class="ab-bs1-ch">
+          <h3 data-copy="backstory.c1h">I started out teaching English.</h3>
+          <p data-copy="backstory.c1p">Language was my first love. I even went back for an honours year in linguistics.</p>
+        </article>
+        <article class="ab-bs1-ch">
+          <h3 data-copy="backstory.c2h">Then came decades of leading people.</h3>
+          <!-- TODO(Felix): confirm "schools, community organisations and business" as a fair plain-English reading of "educational, social and commercial sectors". -->
+          <p data-copy="backstory.c2p">In schools, community organisations and business, the work kept coming back to people: how they grow, and how they cope when things change.</p>
+        </article>
+        <article class="ab-bs1-ch">
+          <h3 data-copy="backstory.c3h">Along the way, a PhD.</h3>
+          <p data-copy="backstory.c3p">An MBA in HR, then a PhD in Business. People say I’m a people person, a businessperson and a nerd. Fair enough.</p>
+        </article>
+        <article class="ab-bs1-ch">
+          <!-- TODO(Felix): chapter 4 is a plausible bridge, not a sourced fact. Ask Dr San what actually turned her toward retirement education and replace. -->
+          <h3 data-copy="backstory.c4h">And a lot of farewells.</h3>
+          <p data-copy="backstory.c4p">I watched capable people leave work with the money sorted and nothing planned for who they’d be next. Nobody had shown them how.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.ab-bs1{background:var(--ground-2);border-block:1px solid var(--rule)}
+.ab-bs1-stage{display:grid;gap:clamp(2rem,4vw,3rem);padding-block:clamp(3rem,8vw,5rem)}
+.ab-bs1-photo{margin:0;position:relative;border-radius:1.1rem;overflow:hidden;background:var(--ground-3);aspect-ratio:4/5;max-height:62svh;width:100%}
+.ab-bs1-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ab-bs1-img-a{object-position:50% 14%}
+.ab-bs1-img-b{object-position:50% 16%;clip-path:inset(100% 0 0 0)}
+.ab-bs1-h{font:800 clamp(1.9rem,2.6vw + .8rem,3rem)/1.1 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+.ab-bs1-steps{display:none}
+.ab-bs1-chs{display:grid;gap:2.2rem;margin-top:2rem}
+.ab-bs1-ch h3{font:800 clamp(1.5rem,2vw + .8rem,2.4rem)/1.12 var(--sans);letter-spacing:-.015em;color:var(--brand-deep);text-wrap:balance}
+.ab-bs1-ch p{margin-top:.8rem;color:var(--ink-soft);max-width:40ch;text-wrap:pretty}
+
+/* pinned desktop story: one chapter at a time */
+@media (min-width:900px){
+  .ab-bs1.is-pinned .ab-bs1-stage{min-height:100svh;grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:center;gap:clamp(3rem,6vw,6rem);padding-block:clamp(2rem,5vh,3.5rem)}
+  .ab-bs1.is-pinned .ab-bs1-photo{max-height:78svh;aspect-ratio:4/5}
+  .ab-bs1.is-pinned .ab-bs1-steps{display:flex;gap:.5rem;list-style:none;margin:1.6rem 0 0;padding:0;max-width:22rem}
+  .ab-bs1.is-pinned .ab-bs1-steps li{flex:1;height:3px;border-radius:3px;background:var(--rule-strong);position:relative;overflow:hidden}
+  .ab-bs1.is-pinned .ab-bs1-steps li::after{content:"";position:absolute;inset:0;background:var(--brand);transform:scaleX(var(--f,0));transform-origin:left}
+  .ab-bs1.is-pinned .ab-bs1-chs{display:grid;margin-top:clamp(2rem,5vh,3rem)}
+  .ab-bs1.is-pinned .ab-bs1-ch{grid-area:1/1}
+  .ab-bs1.is-pinned .ab-bs1-ch h3{font-size:clamp(2rem,2.4vw + 1rem,3.4rem)}
+  .ab-bs1.is-pinned .ab-bs1-ch p{font-size:clamp(1.15rem,.4vw + 1rem,1.35rem);max-width:34ch}
+}
+</style>
+<script>
+window.slotInit["backstory"] = function(root, reduced){
+  var sec = root.querySelector(".ab-bs1"), photo = root.querySelector(".ab-bs1-photo"),
+      imgB = root.querySelector(".ab-bs1-img-b"), chs = root.querySelectorAll(".ab-bs1-ch"),
+      steps = root.querySelectorAll(".ab-bs1-steps li");
+
+  if (reduced) { gsap.set(imgB, {clipPath:"inset(100% 0 0 0)"}); return; } // every chapter stacked and readable
+
+  var mm = gsap.matchMedia();
+  mm.add("(min-width: 900px)", function(){
+    sec.classList.add("is-pinned");
+    gsap.set(chs, {autoAlpha:0, y:28}); gsap.set(chs[0], {autoAlpha:1, y:0});
+    gsap.set(steps[0], {"--f":1});
+    var tl = gsap.timeline({
+      scrollTrigger:{trigger:sec, start:"top top", end:"+=150%", scrub:.8, pin:true, invalidateOnRefresh:true}
+    });
+    for (var i = 1; i < chs.length; i++) {
+      var at = i - .5;
+      tl.to(chs[i-1], {autoAlpha:0, y:-28, duration:.25, ease:"none"}, at)
+        .to(chs[i],   {autoAlpha:1, y:0,   duration:.3, ease:"none"}, at + .28)
+        .to(steps[i], {"--f":1, duration:.5, ease:"none"}, at);
+    }
+    // the PhD chapter: office gives way to the portrait, wiping up from below
+    tl.fromTo(imgB, {clipPath:"inset(100% 0% 0% 0%)"}, {clipPath:"inset(0% 0% 0% 0%)", duration:.6, ease:"none"}, 1.5);
+    tl.to({}, {duration:.4}); // hold the last chapter before the pin lets go
+    return function(){ sec.classList.remove("is-pinned"); };
+  });
+  mm.add("(max-width: 899px)", function(){
+    gsap.fromTo(photo, {clipPath:"inset(100% 0% 0% 0% round 1.1rem)"}, {clipPath:"inset(0% 0% 0% 0% round 1.1rem)", duration:1.1, ease:"expo.out",
+      scrollTrigger:{trigger:photo, start:"top 85%"}});
+  });
+};
+</script>

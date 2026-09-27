@@ -1,0 +1,30 @@
+<!-- Values as large statements; the one in the middle of the screen is at full strength. Sources as values/1. -->
+<section class="ab-va3">
+  <div class="wrap ab-va3-in">
+    <h2 data-copy="values.h" class="ab-va3-h">What sitting down with me is like</h2>
+    <div class="ab-va3-item"><h3 data-copy="values.v1h">Plain talk.</h3><p data-copy="values.v1p">I’ll tell you plainly what your plans cover, and what they don’t.</p></div>
+    <div class="ab-va3-item"><h3 data-copy="values.v2h">A conversation, not an assessment.</h3><p data-copy="values.v2p">You talk, I listen, and we work it out together.</p></div>
+    <div class="ab-va3-item"><h3 data-copy="values.v3h">Alongside your adviser.</h3><p data-copy="values.v3p">I’m not a financial adviser. My work sits next to theirs.</p></div>
+    <div class="ab-va3-item"><h3 data-copy="values.v4h">No rush.</h3><p data-copy="values.v4p">Ten years out or three, we start from where you are.</p></div>
+  </div>
+</section>
+<style>
+.ab-va3{background:var(--ground);padding-block:clamp(3.5rem,9vw,7rem)}
+.ab-va3-in{max-width:1000px}
+.ab-va3-h{font:700 clamp(1.25rem,1vw + 1rem,1.6rem)/1.3 var(--sans);color:var(--brand-deep);margin-bottom:clamp(1.4rem,4vw,2.4rem)}
+.ab-va3-item{padding-block:clamp(1.4rem,4vw,2.4rem)}
+.ab-va3-item h3{font:800 clamp(2rem,4.2vw + .5rem,4.4rem)/1.04 var(--sans);letter-spacing:-.03em;text-wrap:balance}
+.ab-va3-item p{margin-top:.8rem;font-size:clamp(1.1rem,.5vw + 1rem,1.35rem);color:var(--ink-soft);max-width:40ch}
+</style>
+<script>
+window.slotInit["values"] = function(root, reduced){
+  if (reduced) return;
+  // each statement comes up to full strength as it crosses the middle of the screen, then eases back
+  root.querySelectorAll(".ab-va3-item").forEach(function(it){
+    gsap.timeline({scrollTrigger:{trigger:it, start:"top 85%", end:"bottom 15%", scrub:.5}})
+      .fromTo(it, {opacity:.2}, {opacity:1, duration:.4, ease:"none"})
+      .to(it, {opacity:1, duration:.3})
+      .to(it, {opacity:.35, duration:.3, ease:"none"});
+  });
+};
+</script>

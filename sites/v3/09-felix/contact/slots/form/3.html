@@ -1,0 +1,65 @@
+<section class="s-form-3">
+  <div class="wrap s-form-3__in">
+    <h2 data-copy="form.h" class="s-form-3__h">Or send a message</h2>
+    <p data-copy="form.lede" class="s-form-3__lede">A question, a date that doesn’t suit, or a workshop for your team. Write it however it comes.</p>
+
+    <!-- TODO(Felix): this form doesn't send anywhere yet. Wire it to Dr San's inbox. -->
+    <form data-enquiry novalidate class="s-form-3__letter">
+      <p class="s-form-3__dear" aria-hidden="true">Dear Dr San,</p>
+      <div class="cx-field s-form-3__body">
+        <label for="fm3-msg" class="s-form-3__sr">Your message to Dr San</label>
+        <textarea id="fm3-msg" name="message" rows="6" required placeholder="I’m retiring next year and…"></textarea>
+      </div>
+
+      <div class="s-form-3__from">
+        <p class="s-form-3__sign" aria-hidden="true">From,</p>
+        <div class="cx-fields">
+          <div class="cx-pair">
+            <div class="cx-field"><label for="fm3-name">Your name</label><input id="fm3-name" name="name" autocomplete="name" required></div>
+            <div class="cx-field"><label for="fm3-email">Email</label><input id="fm3-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+          </div>
+          <fieldset class="cx-choice s-form-3__who">
+            <legend class="cx-legend">I’m writing</legend>
+            <div class="cx-choice-opts">
+              <label><input type="radio" name="who" value="me" checked><span>For myself</span></label>
+              <label><input type="radio" name="who" value="org"><span>For my organisation</span></label>
+            </div>
+          </fieldset>
+          <div class="cx-field" data-when="org" hidden><label for="fm3-org">Organisation</label><input id="fm3-org" name="org" autocomplete="organization" required></div>
+          <div><button class="cx-btn" type="submit" data-copy="form.btn">Send message</button></div>
+        </div>
+      </div>
+    </form>
+
+    <!-- TODO(Felix): placeholder confirmation, shown without sending anything. -->
+    <div class="cx-done" data-done hidden>
+      <div class="cx-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7 9.5 17.5 4 12"/></svg></div>
+      <h3 tabindex="-1" data-copy="form.done">Thanks, <span data-first-name></span>. Your message is with Dr San.</h3>
+      <p data-for="me">She’ll reply to <span data-email></span>. If it’s easier to talk, you can also <a href="#book">pick a time for a chat</a>.</p>
+      <p data-for="org" hidden>She’ll reply to <span data-email></span> to talk about what would suit your people.</p>
+      <button type="button" class="cx-quiet" data-again>Send another message</button>
+    </div>
+  </div>
+</section>
+<style>
+.s-form-3{padding-block:clamp(2.5rem,6vw,5rem);background:var(--ground-3)}
+.s-form-3__in>*{max-width:820px}
+.s-form-3__h{font:800 clamp(1.8rem,1rem + 2.6vw,3rem)/1.1 var(--sans);letter-spacing:-.015em}
+.s-form-3__lede{margin-top:.8rem;color:var(--ink-soft);max-width:46ch}
+.s-form-3__letter{margin-top:clamp(1.5rem,3vw,2.2rem);background:var(--ground);border:1px solid var(--rule-strong);border-radius:.7rem;
+  padding:clamp(1.3rem,4vw,2.8rem)}
+.s-form-3__dear,.s-form-3__sign{font:italic 600 clamp(1.2rem,1rem + .6vw,1.45rem)/1.3 var(--sans);color:var(--brand-deep)}
+.s-form-3__sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.s-form-3__body{margin-top:.8rem}
+.s-form-3__body textarea{border:0;border-radius:0;padding:.3rem 0;min-height:10rem;font-size:1.15rem;line-height:2rem;
+  background:repeating-linear-gradient(to bottom,transparent 0 calc(2rem - 1px),var(--rule) calc(2rem - 1px) 2rem);background-attachment:local;box-shadow:none}
+.s-form-3__body textarea:focus{box-shadow:none;outline:2px solid color-mix(in srgb,var(--brand) 40%,transparent);outline-offset:6px;border-radius:.2rem}
+.s-form-3__body textarea[aria-invalid="true"]{background-color:color-mix(in srgb,var(--accent) 4%,var(--ground))}
+.s-form-3__from{margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid var(--rule)}
+.s-form-3__sign{margin-bottom:1rem}
+.s-form-3__who .cx-choice-opts label{padding:.7rem .9rem}
+.s-form-3 .cx-done{margin-top:2rem;background:var(--ground)}
+</style>
+<script>
+window.slotInit["form"] = function(root, reduced){ RSRContact.form(root); };
+</script>

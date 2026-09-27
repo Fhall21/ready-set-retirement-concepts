@@ -1,0 +1,38 @@
+<!-- Get 3 — plain two-by-two: big item names, short lines, hairlines that draw across as the block arrives. No cards. -->
+<!-- TODO(Felix): confirm with Dr San — number and length of sessions, phone/video/in person, whether a written plan and follow-up check-ins are part of the package, and fees. -->
+<section class="s-ig3">
+  <div class="wrap">
+    <div class="s-ig3__head">
+      <h2 data-copy="get.h" class="s-ig3__h">Here’s what’s included.</h2>
+      <p data-copy="get.lede" class="s-ig3__lede">Nothing to prepare. Bring the date, and whatever’s on your mind.</p>
+    </div>
+    <div class="s-ig3__grid">
+      <div class="s-ig3__it"><i class="s-ig3__rule"></i><h3 data-copy="get.i1t">A friendly first chat</h3><p data-copy="get.i1p">Thirty minutes, free, by phone or video. We work out together whether this is right for you.</p></div>
+      <div class="s-ig3__it"><i class="s-ig3__rule"></i><h3 data-copy="get.i2t">One-to-one sessions</h3><p data-copy="get.i2p">Time with Dr San, on your own or with your partner, working through the four stages at your pace.</p></div>
+      <div class="s-ig3__it"><i class="s-ig3__rule"></i><h3 data-copy="get.i3t">Your plan, written down</h3><p data-copy="get.i3p">A plain-words plan for your weeks, your people and the things you’ll be glad to get up for.</p></div>
+      <div class="s-ig3__it"><i class="s-ig3__rule"></i><h3 data-copy="get.i4t">Check-ins as the date gets closer</h3><p data-copy="get.i4p">Short follow-ups, so the plan keeps up with you and with any changes at home or at work.</p></div>
+    </div>
+  </div>
+</section>
+<style>
+.s-ig3{background:var(--ground-2);padding-block:clamp(3.5rem,9vw,7rem)}
+.s-ig3__head{display:grid;gap:.8rem;margin-bottom:clamp(2rem,5vw,3.2rem)}
+.s-ig3__h{font:800 clamp(1.9rem,1rem + 3.2vw,3.2rem)/1.08 var(--sans);letter-spacing:-.015em}
+.s-ig3__lede{color:var(--ink-soft);max-width:44ch}
+.s-ig3__grid{display:grid;gap:clamp(1.8rem,4vw,2.6rem) clamp(2rem,5vw,4rem)}
+.s-ig3__it{position:relative;padding-top:1.2rem}
+.s-ig3__rule{position:absolute;top:0;left:0;right:0;height:2px;background:var(--brand);transform-origin:left;display:block}
+.s-ig3__it h3{font:800 clamp(1.4rem,1rem + 1.4vw,2rem)/1.15 var(--sans);letter-spacing:-.01em;text-wrap:balance}
+.s-ig3__it p{margin-top:.55rem;color:var(--ink-soft);max-width:44ch}
+@media (min-width:760px){
+  .s-ig3__grid{grid-template-columns:1fr 1fr}
+  .s-ig3__head{grid-template-columns:1fr 1fr;align-items:end}
+}
+</style>
+<script>
+window.slotInit["get"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelectorAll(".s-ig3__rule"), {scaleX:0}, {scaleX:1, duration:.9, ease:"expo.out", stagger:.12, immediateRender:true,
+    scrollTrigger:{trigger:root.querySelector(".s-ig3__grid"), start:"top 80%", once:true}});
+};
+</script>

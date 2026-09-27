@@ -1,0 +1,34 @@
+<section class="ab-ct2">
+  <div class="ab-ct2-grid">
+    <figure class="ab-ct2-photo"><img src="assets/drsan-office.jpg" width="1100" height="1650" alt="Dr San in her office, smiling" loading="lazy"></figure>
+    <div class="ab-ct2-text">
+      <h2 data-copy="cta.h" class="ab-ct2-h">Ready to chat?</h2>
+      <p data-copy="cta.lede" class="ab-ct2-lede">Book in a 30-minute friendly chat. Tell me about the date, and we’ll start there.</p>
+      <a data-copy="cta.btn" class="btn ab-ct2-btn" href="../contact/#book">Book a time</a>
+    </div>
+  </div>
+</section>
+<style>
+.ab-ct2{background:var(--ground-3);overflow:hidden}
+.ab-ct2-grid{display:grid}
+.ab-ct2-photo{margin:0;height:clamp(240px,40svh,360px);overflow:hidden;position:relative}
+.ab-ct2-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 16%}
+.ab-ct2-text{padding:2.4rem var(--gut) 3.5rem;max-width:36rem}
+.ab-ct2-h{font:800 clamp(2.1rem,3.4vw + .8rem,3.6rem)/1.08 var(--sans);letter-spacing:-.02em}
+.ab-ct2-lede{margin-top:1.1rem;color:var(--ink-soft);max-width:36ch}
+.ab-ct2-btn{margin-top:2rem;min-height:48px}
+@media (min-width:860px){
+  .ab-ct2-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:min(80svh,720px)}
+  .ab-ct2-photo{height:auto}
+  .ab-ct2-photo img{position:absolute;inset:0;object-position:50% 20%}
+  .ab-ct2-text{align-self:center;padding:4rem clamp(2rem,6vw,6rem)}
+}
+</style>
+<script>
+window.slotInit["cta"] = function(root, reduced){
+  if (reduced) return;
+  var ph = root.querySelector(".ab-ct2-photo");
+  gsap.fromTo(ph, {clipPath:"inset(0% 100% 0% 0%)"}, {clipPath:"inset(0% 0% 0% 0%)", duration:1.2, ease:"expo.out", immediateRender:true,
+    scrollTrigger:{trigger:root.querySelector(".ab-ct2"), start:"top 75%", once:true}});
+};
+</script>

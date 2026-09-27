@@ -1,0 +1,39 @@
+<!-- CTA 2 — Dr San's photo beside the invitation, so the last thing you see is the person you'd be talking to. -->
+<section class="s-ic2">
+  <div class="s-ic2__grid">
+    <figure class="s-ic2__photo"><img src="../../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling" loading="lazy"></figure>
+    <div class="s-ic2__text">
+      <h2 data-copy="cta.h" class="s-ic2__h">Ready to chat?</h2>
+      <p data-copy="cta.lede" class="s-ic2__lede">Book in a friendly 30-minute chat about what your weeks might look like.</p>
+      <a data-copy="cta.btn" class="btn s-ic2__btn" href="../../contact/#book">Book a time</a>
+      <p class="s-ic2__org"><a data-copy="cta.org" href="../organisation/">See workshops for organisations</a></p>
+    </div>
+  </div>
+</section>
+<style>
+.s-ic2{background:var(--ground-3);overflow:hidden}
+.s-ic2__grid{display:grid}
+.s-ic2__photo{margin:0;height:clamp(260px,40svh,380px);overflow:hidden}
+.s-ic2__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.s-ic2__text{padding:clamp(2.2rem,6vw,3rem) var(--gut) clamp(3rem,8vw,4rem)}
+.s-ic2__h{font:800 clamp(2.1rem,1rem + 4vw,3.6rem)/1.08 var(--sans);letter-spacing:-.02em}
+.s-ic2__lede{margin-top:1rem;color:var(--ink-soft);max-width:36ch}
+.s-ic2__btn{margin-top:2rem;min-height:52px;font-size:1.05rem;padding:1.1rem 2rem}
+.s-ic2__org{margin-top:1.6rem;font-size:1rem}
+.s-ic2__org a{color:var(--ink);text-decoration-thickness:1px}
+.s-ic2__org a:hover{color:var(--brand)}
+@media (min-width:860px){
+  .s-ic2__grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:min(78svh,680px)}
+  .s-ic2__photo{height:auto;position:relative}
+  .s-ic2__photo img{position:absolute;inset:0}
+  .s-ic2__text{align-self:center;padding:clamp(3rem,6vw,6rem)}
+}
+</style>
+<script>
+window.slotInit["cta"] = function(root, reduced){
+  if (reduced) return;
+  var img = root.querySelector(".s-ic2__photo img");
+  gsap.fromTo(img, {scale:1.12}, {scale:1, ease:"none", immediateRender:true,
+    scrollTrigger:{trigger:root, start:"top bottom", end:"center center", scrub:.6}});
+};
+</script>

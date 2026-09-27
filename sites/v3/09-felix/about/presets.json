@@ -1,0 +1,32 @@
+{
+  "counts": {
+    "opening": 4,
+    "backstory": 4,
+    "turning": 4,
+    "mission": 4,
+    "values": 4,
+    "drsan": 4,
+    "cta": 4
+  },
+  "presets": {
+    "default": {
+      "name": "Her story, one chapter at a time",
+      "slots": { "opening": 1, "backstory": 1, "turning": 1, "mission": 1, "values": 1, "drsan": 1, "cta": 1 }
+    },
+    "sideways": {
+      "name": "Her words, told sideways",
+      "slots": { "opening": 3, "backstory": 2, "turning": 3, "mission": 3, "values": 4, "drsan": 3, "cta": 4 },
+      "copy": { "opening": "c", "backstory": "c", "turning": "c", "mission": "c", "values": "c", "drsan": "c", "cta": "c" }
+    },
+    "plain": {
+      "name": "Plain and few, photo-led",
+      "slots": { "opening": 2, "backstory": 3, "turning": 2, "mission": 2, "values": 2, "drsan": 4, "cta": 3 },
+      "copy": { "opening": "b", "backstory": "b", "turning": "b", "mission": "b", "values": "b", "drsan": "b", "cta": "b" }
+    },
+    "profile": {
+      "name": "A profile for HR readers",
+      "slots": { "opening": 4, "backstory": 4, "turning": 4, "mission": 4, "values": 1, "drsan": 2, "cta": 2 },
+      "copy": { "opening": "d", "backstory": "d", "turning": "d", "mission": "d", "values": "d", "drsan": "d", "cta": "d" }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+<!-- Format 4: the all-staff invitation. Shows HR the workshop from the staff member's side, in a document they already know.
+     TODO(Felix): the email is illustrative (sender, date, venue and times are placeholders). Dr San may already have a template she sends. -->
+<section class="s-ofmt-4">
+  <div class="wrap s-ofmt-4-grid">
+    <div class="s-ofmt-4-side">
+      <h2 data-copy="format.h" class="s-ofmt-4-h">What a morning with Dr San looks like</h2>
+      <p data-copy="format.lede" class="s-ofmt-4-lede">The half-day workshop, as it usually runs. Times move to suit your roster.</p>
+      <dl class="s-ofmt-4-facts">
+        <div><dt>You arrange</dt><dd>A room with tables, a screen, morning tea</dd></div>
+        <div><dt>Dr San brings</dt><dd>Workbooks, and a note like this one for you to send</dd></div>
+        <div><dt>Afterwards</dt><dd data-copy="format.note">Everyone keeps their workbook. Anyone who wants to go further can book a private session.</dd></div>
+      </dl>
+    </div>
+
+    <article class="s-ofmt-4-mail" aria-label="Example invitation email to staff">
+      <div class="s-ofmt-4-mhead">
+        <p><span>From</span>People and Culture</p>
+        <p><span>To</span>Staff interested in retirement planning</p>
+        <p class="subj"><span>Subject</span>A morning on life after work, with Dr San</p>
+      </div>
+      <div class="s-ofmt-4-body">
+        <p>Hi all,</p>
+        <p>If retirement is somewhere on your horizon, even a few years off, you’re welcome to join a relaxed morning with Dr San, a retirement educator based here in Far North Queensland.</p>
+        <p>It isn’t about super or money. It’s about the rest: what your weeks might look like, who you’ll see, and how to talk it over at home.</p>
+        <table class="s-ofmt-4-when">
+          <tr><th scope="row">When</th><td>Thursday, 9:00 am – 12:30 pm</td></tr>
+          <tr><th scope="row">Where</th><td>Training Room 2, and morning tea is on us</td></tr>
+          <tr><th scope="row">Bring</th><td>Just yourself. A partner is welcome too.</td></tr>
+        </table>
+        <p>It’s confidential, and there’s nothing to prepare. Reply to this email to save a seat.</p>
+        <p class="sig">Thanks,<br>The People and Culture team</p>
+      </div>
+    </article>
+  </div>
+</section>
+<style>
+.s-ofmt-4{padding-block:clamp(3.5rem,9vw,7rem);background:var(--ground-2)}
+.s-ofmt-4-grid{display:grid;gap:clamp(2.2rem,5vw,4rem)}
+.s-ofmt-4-h{font:800 clamp(1.8rem,1rem + 3vw,3.1rem)/1.12 var(--sans);letter-spacing:-.015em;max-width:18ch;text-wrap:balance}
+.s-ofmt-4-lede{margin-top:1rem;color:var(--ink-soft);max-width:40ch}
+.s-ofmt-4-facts{margin:clamp(1.8rem,4vw,2.6rem) 0 0}
+.s-ofmt-4-facts div{padding-block:.9rem;border-top:1px solid var(--rule-strong)}
+.s-ofmt-4-facts dt{font-weight:700}
+.s-ofmt-4-facts dd{margin:.2rem 0 0;color:var(--ink-soft);max-width:38ch}
+.s-ofmt-4-mail{background:var(--ground);border:1px solid var(--rule-strong);border-radius:.7rem;overflow:hidden;box-shadow:0 30px 60px -40px color-mix(in srgb,var(--ink) 45%,transparent);align-self:start}
+.s-ofmt-4-mhead{padding:1rem 1.4rem;border-bottom:1px solid var(--rule-strong);display:grid;gap:.35rem;font-size:.95rem}
+.s-ofmt-4-mhead span{display:inline-block;width:4.6rem;color:var(--ink-soft);font-size:.88rem}
+.s-ofmt-4-mhead .subj{font-weight:700;font-size:1.05rem}
+.s-ofmt-4-mhead .subj span{font-weight:400}
+.s-ofmt-4-body{padding:1.4rem 1.4rem 1.8rem;display:grid;gap:1rem;max-width:62ch}
+.s-ofmt-4-when{border-collapse:collapse;width:100%;background:var(--ground-2);border-radius:.4rem;overflow:hidden}
+.s-ofmt-4-when th,.s-ofmt-4-when td{text-align:left;padding:.6rem .9rem;border-bottom:1px solid var(--rule);vertical-align:top}
+.s-ofmt-4-when tr:last-child th,.s-ofmt-4-when tr:last-child td{border-bottom:0}
+.s-ofmt-4-when th{width:5rem;font-weight:700}
+.s-ofmt-4-sig,.s-ofmt-4-body .sig{color:var(--ink-soft)}
+@media (max-width:520px){
+  .s-ofmt-4-mhead span{display:block;width:auto}
+}
+@media (min-width:900px){
+  .s-ofmt-4-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start}
+}
+</style>
+<script>
+window.slotInit["format"] = function(root, reduced){
+  if (reduced) return;
+  var mail = root.querySelector(".s-ofmt-4-mail");
+  var tl = gsap.timeline({scrollTrigger:{trigger:mail, start:"top 80%", toggleActions:"play none none none"}});
+  tl.fromTo(mail, {y:40, rotation:1.2, opacity:.001}, {y:0, rotation:0, opacity:1, duration:1.1, ease:"expo.out"})
+    .fromTo(mail.querySelectorAll(".s-ofmt-4-body > *"), {opacity:0}, {opacity:1, duration:.5, stagger:.07, ease:"power2.out"}, "<.3");
+};
+</script>

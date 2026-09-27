@@ -1,0 +1,179 @@
+{
+  "_directions": {
+    "a": "Recommended default, written into each fragment: plain, warm, one felt moment, third person for Dr San.",
+    "b": "Plain and few: the shortest honest version of each line. Empty strings hide a line.",
+    "c": "In her words: Dr San speaks in the first person, drawing on her own lines (map, test, build, practise; 'no interest in becoming one').",
+    "d": "Warmer and more direct: conversational, answers the question a reader would actually ask."
+  },
+  "hero": {
+    "b": {
+      "h1": "Retiring soon? Here’s how we’d plan it together.",
+      "lede": "",
+      "btn": "Book a 30-minute chat"
+    },
+    "c": {
+      "h1": "I help you plan who you’ll be when work stops.",
+      "lede": "Human-centred retirement planning™, for your psychological and social wellbeing. On your own or as a couple.",
+      "btn": "Book a chat with me",
+      "org": "See my workshops for organisations"
+    },
+    "d": {
+      "h1": "The date is set. What about the Monday after?",
+      "lede": "We’ll plan it together, alongside the financial plan you already have.",
+      "btn": "Book your free 30-minute chat"
+    }
+  },
+  "why": {
+    "b": {
+      "h": "The first week.",
+      "l1": "A cake. A card. A speech.",
+      "l2": "No alarm. A very quiet house.",
+      "l3": "Nowhere to be. Nobody’s rung."
+    },
+    "c": {
+      "h": "Picture your first week.",
+      "l1": "The cake, the card, the speech. Everyone tells you to enjoy it.",
+      "l2": "The alarm doesn’t go off. The coffee is lovely. The house is very quiet.",
+      "l3": "No one needs you anywhere today. The phone hasn’t rung since Friday.",
+      "close": "That isn’t a failing. It’s a change nobody planned for, and it can be."
+    },
+    "d": {
+      "h": "What the first week can feel like.",
+      "l1": "Cake, a card, a speech, and a lot of people telling you you’ve earned it.",
+      "l2": "You sleep in. It’s lovely. By lunchtime the house feels very big.",
+      "l3": "Nobody needs anything from you. You check your phone more than you’d like to admit.",
+      "close": "That’s normal, and it’s fixable. It just needs a plan of its own."
+    }
+  },
+  "method": {
+    "b": {
+      "h": "How it works.",
+      "lede": "Four stages. You always know where you are.",
+      "s1p": "What does work give you now? We write it down.",
+      "s1o": "A clear list.",
+      "s2p": "We try a week without it and see what’s missing.",
+      "s2o": "The gaps, named.",
+      "s3p": "We plan what fills each gap.",
+      "s3o": "A plan for your weeks.",
+      "s4p": "You try it before you finish work, and we adjust.",
+      "s4o": "Habits that already work.",
+      "note": "Partners welcome."
+    },
+    "c": {
+      "h": "Here’s how we’ll work together.",
+      "lede": "You map what work is actually doing for you, test what happens when it stops, then build the replacements and practise them.",
+      "s1p": "We start with what your work is quietly doing for you: the routine, the identity, the purpose, the people.",
+      "s1o": "You’ll see exactly what leaves with the job.",
+      "s2p": "We test what happens when it stops, before it actually does.",
+      "s2o": "You’ll know where the gaps are.",
+      "s3p": "We build the replacements: real things, in your own community, that suit you.",
+      "s3o": "You’ll have a plan for your weeks.",
+      "s4p": "You practise them while you still have somewhere to be on Monday.",
+      "s4o": "By your last day, they’re already part of your week.",
+      "note": "If you have a partner, bring them. I’m very happy to work with couples."
+    },
+    "d": {
+      "h": "Here’s what happens, step by step.",
+      "lede": "Good conversations, and a plan you can actually use.",
+      "s1p": "We talk about what a normal work week gives you, beyond the pay.",
+      "s1o": "You’ll see what’s really at stake.",
+      "s2p": "We picture the week without it, then try a few days of it for real.",
+      "s2o": "No surprises later.",
+      "s3p": "We choose what goes back in: people, purpose, a reason to get going.",
+      "s3o": "A week worth waking up for.",
+      "s4p": "You try the new routine now, while it’s low stakes, and we fine-tune it.",
+      "s4o": "Confidence on your last day.",
+      "note": "Coming as a couple? Even better. You’ll be sharing those weeks."
+    }
+  },
+  "get": {
+    "b": {
+      "h": "What you get.",
+      "lede": "",
+      "i1t": "A first chat",
+      "i1p": "30 minutes. Free.",
+      "i2t": "Sessions",
+      "i2p": "On your own or with your partner.",
+      "i3t": "A written plan",
+      "i3p": "In plain words.",
+      "i4t": "Check-ins",
+      "i4p": "As the date gets closer."
+    },
+    "c": {
+      "h": "What we’ll do together.",
+      "lede": "You don’t need to prepare anything. Just bring the date, and whatever’s on your mind.",
+      "i1t": "A friendly first chat",
+      "i1p": "Thirty minutes, at no cost, so we can see whether I’m the right fit for you.",
+      "i2t": "Time together, one to one",
+      "i2p": "Just you and me, or you, your partner and me, working through the four stages.",
+      "i3t": "Your plan, in writing",
+      "i3p": "Everything we work out, written down in plain words for you to keep.",
+      "i4t": "Check-ins along the way",
+      "i4p": "I’ll check in as your date gets closer, so the plan keeps up with your life."
+    },
+    "d": {
+      "h": "Everything you’ll walk away with.",
+      "lede": "Straightforward, no jargon, and at a pace that suits you.",
+      "i1t": "A no-pressure first chat",
+      "i1p": "Thirty free minutes to talk it through and ask anything.",
+      "i2t": "Proper time to think",
+      "i2p": "Sessions with Dr San, just you or both of you.",
+      "i3t": "A plan you can stick on the fridge",
+      "i3p": "Short, clear and yours. Not a report that sits in a drawer.",
+      "i4t": "Someone in your corner",
+      "i4p": "Check-ins as the date gets closer."
+    }
+  },
+  "faq": {
+    "b": {
+      "h": "Questions.",
+      "a1": "No. It sits alongside your financial plan.",
+      "a2": "No. It’s education and planning.",
+      "a3": "Three to ten years out is easiest. Any time is fine.",
+      "a4": "Yes.",
+      "a5": "No. Video works anywhere.",
+      "a6": "The first chat is free."
+    },
+    "c": {
+      "h": "Questions you might have for me.",
+      "a1": "No. I’m not a financial adviser, and I have no interest in becoming one. I help with the other half of the plan.",
+      "a2": "No. It’s education: practical planning for your days, your people and your purpose. If something bigger comes up, I’ll help you find the right support.",
+      "a3": "Three to ten years out is ideal, while you still have time, colleagues and energy. But I’m happy to talk whenever you’re ready.",
+      "a4": "Yes, please do. Two people retiring into one house is well worth planning for together.",
+      "a5": "Not at all. I work by video wherever you are, and in person around Cairns.",
+      "a6": "The first 30-minute chat is free. I’ll talk you through the rest then, with no pressure either way."
+    },
+    "d": {
+      "h": "The questions everyone asks.",
+      "q1": "Isn’t this what my financial planner does?",
+      "a1": "Not quite. Your planner makes sure the money lasts. This makes sure the days are worth it. The two work well together.",
+      "q2": "Is this therapy?",
+      "a2": "No. It’s practical planning, done with care. If you need a different kind of support, Dr San will help you find it.",
+      "q3": "Am I too early? Too late?",
+      "a3": "Probably neither. Three to ten years out is the easiest time, but it’s never too late to start.",
+      "q4": "My partner retires at a different time. Does that matter?",
+      "a4": "Not at all. Come together or separately. Planning around two different dates is part of the work.",
+      "q5": "Where are you based?",
+      "a5": "Far North Queensland. Sessions run by video anywhere, and in person around Cairns.",
+      "q6": "How much is it?",
+      "a6": "The first chat is free. After that, Dr San will be upfront about cost before anything is booked."
+    }
+  },
+  "cta": {
+    "b": {
+      "lede": "",
+      "btn": "Book 30 minutes"
+    },
+    "c": {
+      "h": "I’d love to hear from you.",
+      "lede": "Book a friendly 30-minute chat with me. We’ll talk about what your weeks might look like.",
+      "btn": "Book a chat with me",
+      "org": "See my workshops for organisations"
+    },
+    "d": {
+      "h": "Let’s talk about your weeks.",
+      "lede": "Thirty minutes, free, and no pressure either way.",
+      "btn": "Find a time that suits"
+    }
+  }
+}

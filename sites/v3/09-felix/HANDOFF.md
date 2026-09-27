@@ -13,4 +13,4 @@
 **TODO before launch.**
 - Contact details: Dr San's email, phone and ABN. None were in the reference material, so none are shown. There is one `TODO(Felix)` HTML comment at the top of the footer.
 - Booking link: all "Book" buttons point to `#consult`. Point them to `/contact` or the booking tool once it exists, including the consult section's button.
-- The GSAP scripts are loaded from the jsDelivr CDN, and the version bar comes from `sites/version-nav.js`. Remove the version bar and the mixer script for production.
+- The GSAP scripts are loaded from the jsDelivr CDN, and the dev version bar is `/site-nav.js`, injected by `shared/engine.js` (versions listed in `sites/site-versions.json`). Remove that line and the mixer script for production.

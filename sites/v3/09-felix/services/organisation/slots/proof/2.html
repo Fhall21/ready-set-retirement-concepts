@@ -1,0 +1,37 @@
+<!-- Proof 2: split quote. The line that lands ("life changing") set large on the left, the full words and attribution beside it.
+     TODO(Felix): add a named organisation or workshop quote here only if Dr San has permission to use it. -->
+<section class="s-oproof-2">
+  <div class="wrap">
+    <h2 data-copy="proof.h" class="s-oproof-2-h">From someone who’s been through it</h2>
+    <figure class="s-oproof-2-grid">
+      <p class="s-oproof-2-big" aria-hidden="true">“With hand on heart, I can honestly say that engaging Dr San has been <em>life changing</em>.”</p>
+      <div class="s-oproof-2-full">
+        <blockquote>
+          <p>“Financial planning for retirement is well known. I hadn’t heard about psychosocial education focused on human-centred retirement planning — in 30 years of politics. In talking with Dr San I realised the critical need to plan for the human side of retirement. With hand on heart, I can honestly say that engaging Dr San has been life changing.”</p>
+        </blockquote>
+        <figcaption><strong>Hon. Warren Entsch</strong>Former Federal Member for Leichhardt</figcaption>
+      </div>
+    </figure>
+  </div>
+</section>
+<style>
+.s-oproof-2{padding-block:clamp(3.5rem,9vw,7rem);background:var(--ground)}
+.s-oproof-2-h{font:600 clamp(1.05rem,.5vw + 1rem,1.2rem)/1.4 var(--sans);color:var(--ink-soft);margin-bottom:clamp(1.4rem,3vw,2.4rem)}
+.s-oproof-2-grid{margin:0;display:grid;gap:2rem;padding-top:clamp(1.6rem,3vw,2.4rem);border-top:2px solid var(--ink)}
+.s-oproof-2-big{font:700 clamp(1.9rem,1rem + 3.4vw,4rem)/1.08 var(--sans);letter-spacing:-.025em;text-wrap:balance}
+.s-oproof-2-big em{font-style:italic;font-weight:800;color:var(--brand)}
+.s-oproof-2-full blockquote{margin:0}
+.s-oproof-2-full blockquote p{color:var(--ink-soft);font-size:1.05rem;line-height:1.6;max-width:46ch}
+.s-oproof-2-full figcaption{margin-top:1.4rem;display:grid;gap:.15rem;color:var(--ink-soft);font-size:1rem}
+.s-oproof-2-full figcaption strong{color:var(--ink);font-size:1.1rem}
+@media (min-width:900px){ .s-oproof-2-grid{grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(3rem,6vw,6rem);align-items:end} }
+</style>
+<script>
+window.slotInit["proof"] = function(root, reduced){
+  if (reduced) return;
+  var big = root.querySelector(".s-oproof-2-big");
+  var split = new SplitText(big, {type:"lines", linesClass:"ln", mask:"lines"});
+  gsap.fromTo(split.lines, {yPercent:100}, {yPercent:0, duration:1, stagger:.1, ease:"expo.out",
+    scrollTrigger:{trigger:big, start:"top 80%", toggleActions:"play none none none"}});
+};
+</script>

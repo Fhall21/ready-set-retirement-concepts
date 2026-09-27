@@ -1,0 +1,33 @@
+{
+  "_directions": {
+    "a": "Default, written into each fragment: 'ready to chat', plain, about Dr San in the third person.",
+    "b": "Plain and few: the fewest words that still work. Some support lines hidden.",
+    "c": "In her words: Dr San speaking in the first person, warm and unhurried.",
+    "d": "A little more detail: answers the practical questions (where, when, who can come) up front."
+  },
+  "hero": {
+    "b": { "h": "Let’s talk.", "lede": "A free 30-minute chat with Dr San.", "btn": "Book a time", "alt": "Send a message" },
+    "c": { "h": "Ready to chat?", "lede": "I’m Dr San. Pick a time that suits, and we’ll talk about what your weeks might look like after work.", "btn": "Find a time", "alt": "Or send me a message" },
+    "d": { "h": "Retiring soon, and not sure what comes next?", "lede": "Start with a free 30-minute chat with Dr San, online from wherever you are.", "btn": "Find a time", "alt": "Or send a message" }
+  },
+  "booking": {
+    "b": { "h": "Pick a time", "lede": "Thirty minutes, free.", "title": "Friendly chat · 30 minutes", "done": "Booked. Talk soon, <span data-first-name></span>." },
+    "c": { "h": "Choose a time, and we’ll talk", "lede": "Bring whatever’s on your mind. There’s nothing to prepare.", "title": "Our first chat", "done": "Lovely, <span data-first-name></span>. I’ll talk to you then." },
+    "d": { "h": "Book a friendly chat", "lede": "Pick a day, then a time. Come on your own, or bring your partner.", "title": "A friendly chat with Dr San", "done": "All set, <span data-first-name></span>. Talk soon." }
+  },
+  "details": {
+    "b": { "h": "Contact details", "lede": "" },
+    "c": { "h": "Or get in touch directly", "lede": "Email or ring me, whichever is easier." },
+    "d": { "h": "Other ways to reach Dr San", "lede": "She’s based in Far North Queensland. Chats happen online, so you can be anywhere." }
+  },
+  "form": {
+    "b": { "h": "Send a message", "lede": "", "btn": "Send", "done": "Thanks, <span data-first-name></span>. Message sent." },
+    "c": { "h": "Or write to me", "lede": "If you’d rather write first, that’s fine. Tell me a little about where you’re at.", "btn": "Send to Dr San", "done": "Thank you, <span data-first-name></span>. I’ll be in touch soon." },
+    "d": { "h": "Prefer to write?", "lede": "Ask a question, suggest another time, or tell Dr San about your team.", "btn": "Send message", "done": "Thanks, <span data-first-name></span>. Your message is with Dr San." }
+  },
+  "next": {
+    "b": { "h": "What happens next", "lede": "", "s1h": "Pick a time", "s1": "Or send a message.", "s2h": "Have a chat", "s2": "Thirty minutes, by video call or phone.", "s3h": "Decide", "s3": "Keep going, or don’t. Either is fine." },
+    "c": { "h": "What happens after you book", "lede": "No homework. Just come as you are.", "s1h": "You pick a time", "s1": "Or write to me and we’ll find one together.", "s2h": "We talk", "s2": "Thirty minutes about what’s coming up for you, and what your weeks might look like.", "s3h": "You decide", "s3": "If working together would help, I’ll suggest what that could look like. If not, that’s fine too." },
+    "d": { "h": "Here’s how it works", "lede": "Nothing to prepare, and nothing to sign up for.", "s1h": "Choose a time", "s1": "Times are in Queensland time, so check the clock if you’re interstate.", "s2h": "Talk it through", "s2": "Thirty minutes with Dr San, by video call or phone.", "s3h": "Take your time", "s3": "There’s no rush to decide anything. If it would help to keep going, she’ll suggest what that might look like." }
+  }
+}

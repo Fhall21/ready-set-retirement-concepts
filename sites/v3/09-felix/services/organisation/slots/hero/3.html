@@ -1,0 +1,47 @@
+<!-- Hero 3: portrait fills the right of the screen and fades into a light ground; text sits on the light side. -->
+<section class="s-ohero-3">
+  <figure class="s-ohero-3__photo">
+    <img src="../../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling, looking toward the camera">
+  </figure>
+  <div class="wrap s-ohero-3__in">
+    <div class="s-ohero-3__text">
+      <p data-copy="hero.name" class="s-ohero-3__name">Dr San · Psychosocial Retirement Educator</p>
+      <h1 data-copy="hero.h1" class="s-ohero-3__h1">Some of your most experienced people are about to retire.</h1>
+      <p data-copy="hero.lede" class="s-ohero-3__lede">Workshops and talks on the human side of leaving work.</p>
+      <a data-copy="hero.btn" class="btn s-ohero-3__btn" href="../../contact/#book">Talk to Dr San about your team</a>
+      <p class="s-ohero-3__alt"><a data-copy="hero.alt" href="../individual/">See sessions for individuals</a></p>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-ohero-3{position:relative;background:var(--ground);overflow:hidden}
+.s-ohero-3__photo{margin:0;height:clamp(260px,44svh,380px);overflow:hidden;background:var(--ground-2)}
+.s-ohero-3__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.s-ohero-3__in{position:relative;padding-block:1.6rem 2.8rem}
+.s-ohero-3__name{margin:0 0 1.1rem;font:500 .95rem/1.4 var(--sans);color:var(--ink-soft)}
+.s-ohero-3__h1{font:700 clamp(2rem,2.4vw + 1.3rem,3.8rem)/1.06 var(--sans);letter-spacing:-.02em;text-wrap:balance;max-width:16ch}
+.s-ohero-3__lede{margin-top:1.2rem;font-size:clamp(1.1rem,.5vw + 1rem,1.3rem);color:var(--ink-soft);max-width:32ch}
+.s-ohero-3__btn{margin-top:2rem;min-height:48px}
+.s-ohero-3__alt{margin-top:1.4rem;font-size:1rem}
+.s-ohero-3__alt a{color:var(--ink);text-decoration-thickness:1px}
+.s-ohero-3__alt a:hover{color:var(--brand)}
+@media (min-width:860px){
+  .s-ohero-3{min-height:min(92svh,860px);display:flex;align-items:center}
+  .s-ohero-3__photo{position:absolute;top:0;right:0;bottom:0;width:58%;height:auto}
+  .s-ohero-3__photo img{object-position:50% 22%}
+  .s-ohero-3__photo::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,var(--ground) 0%,color-mix(in srgb,var(--ground) 70%,transparent) 22%,transparent 50%)}
+  .s-ohero-3__in{width:100%;padding-block:clamp(3rem,8vw,6rem)}
+  .s-ohero-3__text{max-width:36rem}
+  .s-ohero-3__name{margin-bottom:1.6rem}
+}
+</style>
+
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelector(".s-ohero-3__photo img"),
+    {scale:1.08, xPercent:3, opacity:.001}, {scale:1, xPercent:0, opacity:1, duration:1.8, ease:"power3.out", immediateRender:true});
+};
+</script>

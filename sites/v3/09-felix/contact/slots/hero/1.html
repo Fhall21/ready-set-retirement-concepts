@@ -1,0 +1,40 @@
+<section class="s-chero-1">
+  <div class="s-chero-1__grid">
+    <figure class="s-chero-1__photo">
+      <img src="../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling, looking toward the camera">
+    </figure>
+    <div class="s-chero-1__text">
+      <p class="s-chero-1__name">Dr San · Psychosocial Retirement Educator</p>
+      <h1 data-copy="hero.h" class="s-chero-1__h1">Ready to chat?</h1>
+      <p data-copy="hero.lede" class="s-chero-1__lede">A free 30-minute chat about what your weeks might look like after work.</p>
+      <a data-copy="hero.btn" class="btn s-chero-1__btn" href="#book">Find a time</a>
+      <p class="s-chero-1__alt"><a data-copy="hero.alt" href="#message">Or send Dr San a message</a></p>
+    </div>
+  </div>
+</section>
+<style>
+.s-chero-1{background:var(--ground);overflow:hidden}
+.s-chero-1__grid{display:grid}
+.s-chero-1__photo{margin:0;height:clamp(220px,32svh,300px);overflow:hidden;background:var(--ground-2)}
+.s-chero-1__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.s-chero-1__text{padding:1.5rem var(--gut) 2.75rem;max-width:36rem}
+.s-chero-1__name{font:500 .95rem/1.4 var(--sans);color:var(--ink-soft);margin-bottom:1rem}
+.s-chero-1__h1{font:800 clamp(2.4rem,2.6vw + 1.6rem,4.2rem)/1.05 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+.s-chero-1__lede{margin-top:1.1rem;font-size:clamp(1.1rem,.5vw + 1rem,1.3rem);color:var(--ink-soft);max-width:34ch;text-wrap:pretty}
+.s-chero-1__btn{margin-top:1.9rem;min-height:48px}
+.s-chero-1__alt{margin-top:1.2rem;font-size:1rem}
+.s-chero-1__alt a{color:var(--ink);text-decoration-thickness:1px}
+.s-chero-1__alt a:hover{color:var(--brand)}
+@media(min-width:860px){
+  .s-chero-1__grid{grid-template-columns:minmax(0,4fr) minmax(0,7fr);min-height:min(72svh,640px)}
+  .s-chero-1__photo{height:auto;position:relative}
+  .s-chero-1__photo img{position:absolute;inset:0;object-position:50% 22%}
+  .s-chero-1__text{align-self:center;padding:clamp(3rem,5vw,5rem) clamp(2rem,6vw,6rem);max-width:42rem}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelector("img"), {scale:1.06, opacity:.001}, {scale:1, opacity:1, duration:1.4, ease:"power3.out", immediateRender:true});
+};
+</script>

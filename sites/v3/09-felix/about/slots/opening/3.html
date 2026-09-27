@@ -1,0 +1,28 @@
+<section class="ab-op3">
+  <div class="wrap ab-op3-in">
+    <p data-copy="opening.name" class="ab-op3-name">Dr San · Psychosocial Retirement Educator</p>
+    <div class="ab-op3-row">
+      <span class="ab-op3-pic"><img src="../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling"></span>
+      <h1 data-copy="opening.h" class="ab-op3-h">Hello, I’m Dr San.</h1>
+    </div>
+    <p data-copy="opening.sub" class="ab-op3-sub">I help people plan the human side of retirement.</p>
+  </div>
+</section>
+<style>
+.ab-op3{background:var(--ground-2);border-bottom:1px solid var(--rule);padding-block:clamp(3.5rem,10vw,8rem)}
+.ab-op3-in{max-width:1100px}
+.ab-op3-name{font:500 .95rem/1.4 var(--sans);color:var(--ink-soft);margin-bottom:clamp(1.2rem,3vw,2rem)}
+.ab-op3-row{display:flex;align-items:center;gap:clamp(1rem,3vw,2.2rem);flex-wrap:wrap}
+.ab-op3-pic{flex:none;display:block;width:clamp(96px,14vw,190px);aspect-ratio:3/4;border-radius:1rem;overflow:hidden;background:var(--ground-3)}
+.ab-op3-pic img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.ab-op3-h{flex:1 1 12ch;font:800 clamp(2.6rem,6vw + .6rem,6rem)/1 var(--sans);letter-spacing:-.03em;text-wrap:balance}
+.ab-op3-sub{margin-top:clamp(1.4rem,3vw,2.2rem);font:500 clamp(1.3rem,1.4vw + .9rem,2.1rem)/1.3 var(--sans);letter-spacing:-.01em;color:var(--brand-deep);max-width:28ch;text-wrap:balance}
+</style>
+<script>
+window.slotInit["opening"] = function(root, reduced){
+  if (reduced) return;
+  // the portrait slides open like a door, then the words settle beside it
+  gsap.fromTo(root.querySelector(".ab-op3-pic"),
+    {clipPath:"inset(0% 100% 0% 0% round 1rem)"}, {clipPath:"inset(0% 0% 0% 0% round 1rem)", duration:1.2, ease:"expo.out", delay:.15, immediateRender:true});
+};
+</script>

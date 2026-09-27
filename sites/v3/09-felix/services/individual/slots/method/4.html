@@ -1,0 +1,72 @@
+<!-- Method 4 — four columns read left to right like a chart. One bar runs under the four stage names and fills as you scroll past. Stacks on phones. -->
+<section class="s-im4">
+  <div class="wrap">
+    <h2 data-copy="method.h" class="s-im4__h">So what do we actually do together?</h2>
+    <p data-copy="method.lede" class="s-im4__lede">It’s a structured program in four stages. You’ll always know which one you’re in.</p>
+    <div class="s-im4__chart">
+      <div class="s-im4__track" aria-hidden="true"><i class="s-im4__fill"></i></div>
+      <div class="s-im4__cols">
+        <div class="s-im4__col">
+          <h3 data-copy="method.s1t">Map</h3>
+          <p data-copy="method.s1p">We look at what work is quietly doing for you: your routine, your sense of who you are, your purpose, your people.</p>
+          <p class="s-im4__out" data-copy="method.s1o">A clear picture of what leaves with the job.</p>
+        </div>
+        <div class="s-im4__col">
+          <h3 data-copy="method.s2t">Test</h3>
+          <p data-copy="method.s2p">We try out an ordinary week without work, on paper and then for real, and notice what goes missing.</p>
+          <p class="s-im4__out" data-copy="method.s2o">The gaps, named, before you meet them.</p>
+        </div>
+        <div class="s-im4__col">
+          <h3 data-copy="method.s3t">Build</h3>
+          <p data-copy="method.s3p">We plan what will fill those gaps. Real things, close to home, with people you choose.</p>
+          <p class="s-im4__out" data-copy="method.s3o">A plan for your weeks, in plain words.</p>
+        </div>
+        <div class="s-im4__col">
+          <h3 data-copy="method.s4t">Practise</h3>
+          <p data-copy="method.s4p">You try the new pieces while you still have somewhere to be on Monday, and we adjust as we go.</p>
+          <p class="s-im4__out" data-copy="method.s4o">Habits that already work on the day you finish.</p>
+        </div>
+      </div>
+    </div>
+    <!-- TODO(Felix): confirm with Dr San that couples can do every stage together. -->
+    <p data-copy="method.note" class="s-im4__note">Bring your partner if you like. Retirement changes the whole household, not just one diary.</p>
+  </div>
+</section>
+<style>
+.s-im4{background:var(--ground-2);padding-block:clamp(3.5rem,9vw,7rem)}
+.s-im4__h{font:800 clamp(1.9rem,1rem + 3.2vw,3.2rem)/1.08 var(--sans);letter-spacing:-.015em;max-width:22ch;text-wrap:balance}
+.s-im4__lede{margin-top:.8rem;color:var(--ink-soft);max-width:48ch}
+.s-im4__chart{margin-top:clamp(2rem,5vw,3rem);position:relative}
+.s-im4__track{display:none}
+.s-im4__cols{display:grid;gap:0}
+.s-im4__col{padding:1.3rem 0;border-top:1px solid var(--rule-strong)}
+.s-im4__col h3{font:800 clamp(1.7rem,1.2rem + 1.6vw,2.4rem)/1.1 var(--sans);letter-spacing:-.02em;color:var(--brand-deep)}
+.s-im4__col p{margin-top:.55rem;color:var(--ink-soft);font-size:1rem;max-width:40ch}
+.s-im4__col .s-im4__out{color:var(--ink);font-weight:700}
+.s-im4__note{margin-top:clamp(1.8rem,4vw,2.6rem);font-weight:600;max-width:60ch}
+@media (min-width:900px){
+  .s-im4__track{display:block;height:10px;border-radius:999px;background:var(--ground-3);overflow:hidden;margin-bottom:1.4rem}
+  .s-im4__fill{display:block;height:100%;width:100%;background:var(--brand);border-radius:999px;transform-origin:left}
+  .s-im4__cols{grid-template-columns:repeat(4,minmax(0,1fr));gap:1.6rem}
+  .s-im4__col{border-top:0;padding:0}
+  .s-im4__col + .s-im4__col{border-left:1px solid var(--rule);padding-left:1.6rem}
+}
+</style>
+<script>
+window.slotInit["method"] = function(root, reduced){
+  if (reduced) return;
+  var cols = root.querySelectorAll(".s-im4__col");
+  var mm = gsap.matchMedia();
+  mm.add({desk:"(min-width:900px)", phone:"(max-width:899px)"}, function(c){
+    if (c.conditions.desk) {
+      var tl = gsap.timeline({scrollTrigger:{trigger:root.querySelector(".s-im4__chart"), start:"top 75%", end:"bottom 55%", scrub:.6}});
+      tl.fromTo(root.querySelector(".s-im4__fill"), {scaleX:0}, {scaleX:1, ease:"none", duration:4, immediateRender:true}, 0);
+      tl.fromTo(cols, {opacity:.25}, {opacity:1, stagger:1, duration:1, ease:"none", immediateRender:true}, 0);
+    } else {
+      cols.forEach(function(col){
+        gsap.fromTo(col, {opacity:.25}, {opacity:1, ease:"none", immediateRender:true, scrollTrigger:{trigger:col, start:"top 85%", end:"top 60%", scrub:.5}});
+      });
+    }
+  });
+};
+</script>

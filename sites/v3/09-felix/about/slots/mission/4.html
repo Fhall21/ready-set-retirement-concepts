@@ -1,0 +1,66 @@
+<!-- Offer ledger. Services list is from readysetretirement.au ("training, workshops, seminars, 1:1 and group coaching, consulting and presenting").
+     TODO(Felix): which services suit individuals vs organisations is a guess — confirm the split with Dr San. -->
+<section class="ab-mi4">
+  <div class="wrap ab-mi4-grid">
+    <div>
+      <h2 data-copy="mission.h" class="ab-mi4-h">So now I teach the other half of the plan.</h2>
+      <p data-copy="mission.big" class="ab-mi4-big"><span>One pays for the life.</span> <span>The other helps you live it.</span></p>
+      <p data-copy="mission.lede" class="ab-mi4-lede">Human-centred retirement planning™ sits alongside your financial plan. I offer coaching, workshops, seminars, training, consulting and talks.</p>
+    </div>
+    <div class="ab-mi4-card">
+      <div class="ab-mi4-head"><strong>What I offer</strong><span>readysetretirement psychosocial planning®</span></div>
+      <table class="ab-mi4-t">
+        <thead><tr><th scope="col">Service</th><th scope="col">For you</th><th scope="col">For organisations</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">1:1 coaching</th><td data-th="For you"><i class="y" role="img" aria-label="Yes"></i></td><td data-th="For organisations"><i class="n" role="img" aria-label="No"></i></td></tr>
+          <tr><th scope="row">Group coaching</th><td data-th="For you"><i class="y" role="img" aria-label="Yes"></i></td><td data-th="For organisations"><i class="y" role="img" aria-label="Yes"></i></td></tr>
+          <tr><th scope="row">Seminars</th><td data-th="For you"><i class="y" role="img" aria-label="Yes"></i></td><td data-th="For organisations"><i class="y" role="img" aria-label="Yes"></i></td></tr>
+          <tr><th scope="row">Workshops and training</th><td data-th="For you"><i class="n" role="img" aria-label="No"></i></td><td data-th="For organisations"><i class="y" role="img" aria-label="Yes"></i></td></tr>
+          <tr><th scope="row">Consulting</th><td data-th="For you"><i class="n" role="img" aria-label="No"></i></td><td data-th="For organisations"><i class="y" role="img" aria-label="Yes"></i></td></tr>
+          <tr><th scope="row">Speaking</th><td data-th="For you"><i class="n" role="img" aria-label="No"></i></td><td data-th="For organisations"><i class="y" role="img" aria-label="Yes"></i></td></tr>
+        </tbody>
+      </table>
+      <p class="ab-mi4-org"><a data-copy="mission.org" href="../services/organisation/">See workshops for organisations</a></p>
+    </div>
+  </div>
+</section>
+<style>
+.ab-mi4{background:var(--ground);padding-block:clamp(3.5rem,9vw,7rem)}
+.ab-mi4-grid{display:grid;gap:clamp(2.2rem,5vw,4rem);align-items:start}
+@media (min-width:960px){.ab-mi4-grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}}
+.ab-mi4-h{font:700 clamp(1.25rem,1vw + 1rem,1.6rem)/1.3 var(--sans);color:var(--brand-deep)}
+.ab-mi4-big{margin-top:1.2rem;font:800 clamp(2rem,2.8vw + .8rem,3.4rem)/1.06 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+.ab-mi4-big span + span{color:var(--brand)}
+.ab-mi4-lede{margin-top:1.4rem;color:var(--ink-soft);max-width:44ch}
+.ab-mi4-card{border:1px solid var(--rule-strong);border-radius:.7rem;overflow:hidden;background:var(--ground)}
+.ab-mi4-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem 1rem;padding:1rem 1.2rem;background:var(--ground-3);border-bottom:1px solid var(--rule-strong)}
+.ab-mi4-head strong{font-weight:800}
+.ab-mi4-head span{font-size:.85rem;color:var(--ink-soft);align-self:center}
+.ab-mi4-t{width:100%;border-collapse:collapse}
+.ab-mi4-t th,.ab-mi4-t td{padding:.9rem 1.2rem;text-align:left;border-top:1px solid var(--rule)}
+.ab-mi4-t thead th{border-top:0;font:700 .75rem/1.2 var(--sans);text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft)}
+.ab-mi4-t tbody th{font-weight:600}
+.ab-mi4-t td{width:24%}
+.ab-mi4-t i{display:inline-block;width:1.25rem;height:1.25rem;border-radius:50%;vertical-align:middle}
+.ab-mi4-t i.y{background:var(--brand) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat}
+.ab-mi4-t i.n{width:.9rem;height:2px;border-radius:2px;background:var(--rule-strong)}
+.ab-mi4-org{padding:1rem 1.2rem;border-top:1px solid var(--rule)}
+.ab-mi4-org a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;font-weight:500;display:inline-block;padding-block:.3rem}
+.ab-mi4-org a:hover{color:var(--brand)}
+@media (max-width:560px){
+  .ab-mi4-t thead{display:none}
+  .ab-mi4-t tr{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule)}
+  .ab-mi4-t tbody th{grid-column:1/-1;border-top:0;padding-bottom:.2rem}
+  .ab-mi4-t td{width:auto;border-top:0;padding-top:.3rem;display:flex;flex-direction:column;gap:.35rem;font-size:.85rem;color:var(--ink-soft)}
+  .ab-mi4-t td::before{content:attr(data-th)}
+  .ab-mi4-t tr:first-child{border-top:0}
+}
+</style>
+<script>
+window.slotInit["mission"] = function(root, reduced){
+  if (reduced) return;
+  // the ledger fills in row by row, like a statement being printed
+  gsap.fromTo(root.querySelectorAll(".ab-mi4-t tbody tr"), {opacity:0, x:-10}, {opacity:1, x:0, duration:.5, stagger:.07, ease:"power2.out", immediateRender:true,
+    scrollTrigger:{trigger:root.querySelector(".ab-mi4-card"), start:"top 80%", once:true}});
+};
+</script>

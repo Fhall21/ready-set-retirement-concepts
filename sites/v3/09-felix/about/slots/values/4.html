@@ -1,0 +1,30 @@
+<!-- Values as one plain paragraph; the key phrases are highlighted as you read. Sources as values/1. -->
+<section class="ab-va4">
+  <div class="wrap ab-va4-in">
+    <h2 data-copy="values.h" class="ab-va4-h">What sitting down with me is like</h2>
+    <p class="ab-va4-p">
+      <mark data-copy="values.v1h">Plain talk.</mark> <span data-copy="values.v1p">I’ll tell you plainly what your plans cover, and what they don’t.</span>
+      <mark data-copy="values.v2h">A conversation, not an assessment.</mark> <span data-copy="values.v2p">You talk, I listen, and we work it out together.</span>
+      <mark data-copy="values.v3h">Alongside your adviser.</mark> <span data-copy="values.v3p">I’m not a financial adviser. My work sits next to theirs.</span>
+      <mark data-copy="values.v4h">No rush.</mark> <span data-copy="values.v4p">Ten years out or three, we start from where you are.</span>
+    </p>
+  </div>
+</section>
+<style>
+.ab-va4{background:var(--ground);padding-block:clamp(3.5rem,9vw,7rem)}
+.ab-va4-in{max-width:980px}
+.ab-va4-h{font:700 clamp(1.25rem,1vw + 1rem,1.6rem)/1.3 var(--sans);color:var(--brand-deep);margin-bottom:1.4rem}
+.ab-va4-p{font:500 clamp(1.5rem,2vw + .9rem,2.6rem)/1.35 var(--sans);letter-spacing:-.015em;color:var(--ink-soft);text-wrap:pretty}
+.ab-va4-p mark{color:var(--ink);font-weight:800;padding:0 .12em;border-radius:.2em;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  background:linear-gradient(color-mix(in srgb,var(--gold) 55%,transparent),color-mix(in srgb,var(--gold) 55%,transparent)) left 88% / var(--m,100%) 42% no-repeat}
+</style>
+<script>
+window.slotInit["values"] = function(root, reduced){
+  if (reduced) return;
+  // a highlighter pen runs under each key phrase in reading order
+  root.querySelectorAll(".ab-va4-p mark").forEach(function(m){
+    gsap.fromTo(m, {"--m":"0%"}, {"--m":"100%", ease:"none",
+      scrollTrigger:{trigger:m, start:"top 80%", end:"top 60%", scrub:.5}});
+  });
+};
+</script>

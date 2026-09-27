@@ -1,0 +1,40 @@
+<!-- CTA 1 — the home consult close, centred: one line, one button with a ring that draws around it once. -->
+<section class="s-ic1">
+  <div class="wrap s-ic1__in">
+    <h2 data-copy="cta.h" class="s-ic1__h">Ready to chat?</h2>
+    <p data-copy="cta.lede" class="s-ic1__lede">Book in a friendly 30-minute chat about what your weeks might look like.</p>
+    <div class="s-ic1__cta">
+      <svg class="s-ic1__ring" aria-hidden="true"><rect class="s-ic1__track"></rect><rect class="s-ic1__draw"></rect></svg>
+      <a data-copy="cta.btn" class="btn s-ic1__btn" href="../../contact/#book">Book a time</a>
+    </div>
+    <p class="s-ic1__org"><a data-copy="cta.org" href="../organisation/">See workshops for organisations</a></p>
+  </div>
+</section>
+<style>
+.s-ic1{background:var(--ground);padding-block:clamp(4.5rem,12vw,8.5rem)}
+.s-ic1__in{text-align:center;max-width:720px}
+.s-ic1__h{font:800 clamp(2.1rem,1rem + 4vw,3.6rem)/1.08 var(--sans);letter-spacing:-.02em}
+.s-ic1__lede{margin:1.1rem auto 0;color:var(--ink-soft);max-width:40ch}
+.s-ic1__cta{position:relative;display:inline-grid;place-items:center;margin-top:clamp(2.2rem,5vw,3rem)}
+.s-ic1__ring{position:absolute;inset:-12px;width:calc(100% + 24px);height:calc(100% + 24px);overflow:visible;pointer-events:none}
+.s-ic1__ring rect{fill:none;stroke-width:2.5}
+.s-ic1__track{stroke:var(--rule)}
+.s-ic1__draw{stroke:var(--brand);stroke-linecap:round}
+.s-ic1__btn{font-size:1.05rem;padding:1.1rem 2rem;min-height:52px}
+.s-ic1__org{margin-top:2rem;font-size:1rem}
+.s-ic1__org a{color:var(--ink);text-decoration-thickness:1px}
+.s-ic1__org a:hover{color:var(--brand)}
+</style>
+<script>
+window.slotInit["cta"] = function(root, reduced){
+  var svg = root.querySelector(".s-ic1__ring"), rects = svg.querySelectorAll("rect");
+  function size(){
+    var w = svg.clientWidth, h = svg.clientHeight;
+    rects.forEach(function(r){ r.setAttribute("x",1.25); r.setAttribute("y",1.25); r.setAttribute("width",Math.max(0,w-2.5)); r.setAttribute("height",Math.max(0,h-2.5)); r.setAttribute("rx",(h-2.5)/2); });
+  }
+  size();
+  if (reduced) return;
+  gsap.fromTo(rects[1], {drawSVG:"0%"}, {drawSVG:"100%", duration:1.4, ease:"power2.inOut", immediateRender:true,
+    scrollTrigger:{trigger:svg, start:"top 85%", once:true, onRefresh:size}});
+};
+</script>

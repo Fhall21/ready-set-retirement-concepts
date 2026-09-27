@@ -1,0 +1,31 @@
+<!-- FAQ 2 — a printed leaflet: every answer already open, two columns, nothing to click. -->
+<!-- TODO(Felix): confirm with Dr San — referral wording in "Is it counselling?", couples sessions, video + in-person locations (Cairns assumed), and fees. -->
+<section class="s-if2">
+  <div class="wrap">
+    <h2 data-copy="faq.h" class="s-if2__h">Things people often ask.</h2>
+    <div class="s-if2__grid">
+      <div class="s-if2__it"><h3 data-copy="faq.q1">Is this financial advice?</h3><p data-copy="faq.a1">No. Dr San isn’t a financial adviser. This sits alongside the plan you already have: one pays for the life, the other helps you live it.</p></div>
+      <div class="s-if2__it"><h3 data-copy="faq.q2">Is it counselling?</h3><p data-copy="faq.a2">No. It’s education and planning: practical work on your weeks, your people and what gets you up in the morning. If something bigger comes up, Dr San can point you to the right support.</p></div>
+      <div class="s-if2__it"><h3 data-copy="faq.q3">When should I start?</h3><p data-copy="faq.a3">Three to ten years out is the easiest time, while you still have colleagues, routine and energy to draw on. But there’s no wrong time for a first chat.</p></div>
+      <div class="s-if2__it"><h3 data-copy="faq.q4">Can my partner come too?</h3><p data-copy="faq.a4">Yes, you’re welcome to come together. Two people retiring into one house is well worth planning for.</p></div>
+      <div class="s-if2__it"><h3 data-copy="faq.q5">Do I need to live in Far North Queensland?</h3><p data-copy="faq.a5">No. Sessions can run by video wherever you are, and in person around Cairns.</p></div>
+      <div class="s-if2__it"><h3 data-copy="faq.q6">What does it cost?</h3><p data-copy="faq.a6">The first 30-minute chat is free. Dr San will talk you through the rest then, with no pressure either way.</p></div>
+    </div>
+  </div>
+</section>
+<style>
+.s-if2{background:var(--ground-2);padding-block:clamp(3.5rem,9vw,7rem)}
+.s-if2__h{font:800 clamp(1.9rem,1rem + 3.2vw,3.2rem)/1.08 var(--sans);letter-spacing:-.015em;margin-bottom:clamp(1.8rem,4vw,2.8rem)}
+.s-if2__grid{display:grid;gap:0 clamp(2rem,5vw,4rem)}
+.s-if2__it{padding:1.3rem 0;border-top:1px solid var(--rule-strong)}
+.s-if2__it h3{font:700 clamp(1.1rem,1rem + .4vw,1.3rem)/1.3 var(--sans)}
+.s-if2__it p{margin-top:.45rem;color:var(--ink-soft);max-width:52ch}
+@media (min-width:860px){.s-if2__grid{grid-template-columns:1fr 1fr}}
+</style>
+<script>
+window.slotInit["faq"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelectorAll(".s-if2__it"), {opacity:0, y:12}, {opacity:1, y:0, duration:.6, ease:"power3.out", stagger:.06, immediateRender:true,
+    scrollTrigger:{trigger:root.querySelector(".s-if2__grid"), start:"top 82%", once:true}});
+};
+</script>

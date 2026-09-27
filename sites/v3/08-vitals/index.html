@@ -72,9 +72,6 @@ a{color:var(--brand);text-underline-offset:.2em}
 .site-foot .org{display:inline-block;margin-top:1rem;padding-block:.5rem;font-weight:600}
 .site-foot .base{margin-top:clamp(2.5rem,6vw,4rem);padding-top:1.4rem;border-top:1px solid var(--rule-strong);display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between;font-size:.85rem}
 .site-foot .base p{max-width:70ch}
-/* Version bar (sites/version-nav.js) sits top-centre over the logo; on this page move it bottom-right, clear of the mixer (bottom-left). */
-#rsr-version-bar{top:auto!important;bottom:12px;left:auto!important;right:12px;transform:none!important;max-width:calc(100vw - 24px)}
-@media(max-width:760px){body:has(#rsr-version-bar) .mx{bottom:64px}}
 [data-slot]:empty{display:none}
 /* Pause -> dials seam: one experience. The pause line already says the lede, so dials
    drops it and its top padding; pause fades to dials' ground (GSAP on desktop, gradient on mobile). */
@@ -220,6 +217,5 @@ Promise.all(["presets.json","copy.json"].map(function(f){
   if (q.get("clean") === null) { var s = document.createElement("script"); s.src = "mixer.js"; document.body.appendChild(s); }
 });
 </script>
-<script src="../../version-nav.js"></script>
 </body>
 </html>

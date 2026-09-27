@@ -1,0 +1,45 @@
+<!-- Hero 1: the home hero's pattern (full-height photo left, one headline, one button, one quiet link). -->
+<section class="s-ohero-1">
+  <div class="s-ohero-1__grid">
+    <figure class="s-ohero-1__photo">
+      <img src="../../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling, looking toward the camera">
+    </figure>
+    <div class="s-ohero-1__text">
+      <p data-copy="hero.name" class="s-ohero-1__name">Dr San · Psychosocial Retirement Educator</p>
+      <h1 data-copy="hero.h1" class="s-ohero-1__h1">Some of your most experienced people are about to retire.</h1>
+      <p data-copy="hero.lede" class="s-ohero-1__lede">Workshops and talks on the human side of leaving work.</p>
+      <a data-copy="hero.btn" class="btn s-ohero-1__btn" href="../../contact/#book">Talk to Dr San about your team</a>
+      <p class="s-ohero-1__alt"><a data-copy="hero.alt" href="../individual/">See sessions for individuals</a></p>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-ohero-1{background:var(--ground);overflow:hidden}
+.s-ohero-1__grid{display:grid;grid-template-columns:1fr}
+.s-ohero-1__photo{margin:0;position:relative;height:clamp(240px,38svh,340px);overflow:hidden;background:var(--ground-2)}
+.s-ohero-1__photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.s-ohero-1__text{padding:1.5rem var(--gut) 2.5rem;max-width:38rem}
+.s-ohero-1__name{margin:0 0 1.1rem;font:500 .95rem/1.4 var(--sans);color:var(--ink-soft)}
+.s-ohero-1__h1{margin:0;font:700 clamp(2rem,2.2vw + 1.4rem,3.5rem)/1.08 var(--sans);letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
+.s-ohero-1__lede{margin:1.2rem 0 0;font:400 clamp(1.1rem,.5vw + 1rem,1.3rem)/1.5 var(--sans);color:var(--ink-soft);max-width:34ch;text-wrap:pretty}
+.s-ohero-1__btn{margin-top:2rem;min-height:48px}
+.s-ohero-1__alt{margin:1.4rem 0 0;font:400 1rem/1.5 var(--sans)}
+.s-ohero-1__alt a{color:var(--ink);text-decoration-thickness:1px}
+.s-ohero-1__alt a:hover{color:var(--brand)}
+@media (min-width:860px){
+  .s-ohero-1__grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:min(100svh,860px)}
+  .s-ohero-1__photo{height:auto;min-height:100%}
+  .s-ohero-1__photo img{position:absolute;inset:0;object-position:50% 25%}
+  .s-ohero-1__text{align-self:center;padding:clamp(3rem,6vw,6rem) clamp(2rem,6vw,6rem);max-width:42rem}
+  .s-ohero-1__name{margin-bottom:1.6rem}
+}
+</style>
+
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelector(".s-ohero-1__photo img"),
+    {scale:1.06, opacity:.001}, {scale:1, opacity:1, duration:1.6, ease:"power3.out", immediateRender:true});
+};
+</script>

@@ -1,0 +1,29 @@
+<!-- CTA 3: ends the page with Dr San herself: her portrait beside the invitation, so the last thing seen is a person, not a form. -->
+<section class="s-octa-3">
+  <div class="wrap s-octa-3-in">
+    <figure class="s-octa-3-plate"><img src="../../assets/drsan.jpg" width="980" height="1470" loading="lazy" decoding="async" alt="Dr San"></figure>
+    <div class="s-octa-3-text">
+      <h2 data-copy="cta.h" class="s-octa-3-h">Ready to talk about your team?</h2>
+      <p data-copy="cta.lede" class="s-octa-3-lede">Book a 30-minute friendly chat, and we’ll work out what would suit your people.</p>
+      <a data-copy="cta.btn" class="btn s-octa-3-btn" href="../../contact/#book">Book a time to talk</a>
+    </div>
+  </div>
+</section>
+<style>
+.s-octa-3{padding-block:clamp(3.5rem,9vw,7rem);background:var(--ground-2);border-top:1px solid var(--rule)}
+.s-octa-3-in{display:grid;gap:clamp(1.8rem,4vw,3.5rem);max-width:1000px}
+.s-octa-3-plate{margin:0;width:clamp(140px,34vw,300px);aspect-ratio:4/5;border-radius:1rem;overflow:clip;background:var(--ground-3)}
+.s-octa-3-plate img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.s-octa-3-h{font:800 clamp(2rem,1rem + 3.2vw,3.2rem)/1.08 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+.s-octa-3-lede{margin-top:1.2rem;font-size:clamp(1.1rem,.5vw + 1rem,1.3rem);color:var(--ink-soft);max-width:38ch}
+.s-octa-3-btn{margin-top:1.4rem;min-height:52px}
+@media (min-width:760px){ .s-octa-3-in{grid-template-columns:auto 1fr;align-items:center} }
+</style>
+<script>
+window.slotInit["cta"] = function(root, reduced){
+  if (reduced) return;
+  var plate = root.querySelector(".s-octa-3-plate");
+  gsap.fromTo(plate, {clipPath:"inset(0% 0% 100% 0% round 1rem)"}, {clipPath:"inset(0% 0% 0% 0% round 1rem)", duration:1.1, ease:"expo.out",
+    scrollTrigger:{trigger:plate, start:"top 85%", toggleActions:"play none none none"}});
+};
+</script>

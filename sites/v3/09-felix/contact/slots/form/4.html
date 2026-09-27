@@ -1,0 +1,46 @@
+<section class="s-form-4">
+  <div class="wrap s-form-4__in">
+    <h2 data-copy="form.h" class="s-form-4__h">Or send a message</h2>
+    <p data-copy="form.lede" class="s-form-4__lede">A question, a date that doesn’t suit, or a workshop for your team. Write it however it comes.</p>
+
+    <!-- TODO(Felix): this form doesn't send anywhere yet. Wire it to Dr San's inbox. -->
+    <form data-enquiry novalidate class="cx-fields s-form-4__form">
+      <div class="cx-field"><label for="fm4-name">Your name</label><input id="fm4-name" name="name" autocomplete="name" required></div>
+      <div class="cx-field"><label for="fm4-email">Email</label><input id="fm4-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+      <div class="cx-field">
+        <label for="fm4-msg">Your message</label>
+        <textarea id="fm4-msg" name="message" rows="5" required></textarea>
+      </div>
+      <label class="s-form-4__check"><input type="checkbox" name="who" value="org"><span>This is about workshops for my organisation</span></label>
+      <div class="cx-field" data-when="org" hidden><label for="fm4-org">Organisation</label><input id="fm4-org" name="org" autocomplete="organization" required></div>
+      <div><button class="cx-btn" type="submit" data-copy="form.btn">Send message</button></div>
+    </form>
+
+    <!-- TODO(Felix): placeholder confirmation, shown without sending anything. -->
+    <div class="cx-done" data-done hidden>
+      <div class="cx-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7 9.5 17.5 4 12"/></svg></div>
+      <h3 tabindex="-1" data-copy="form.done">Thanks, <span data-first-name></span>. Your message is with Dr San.</h3>
+      <p data-for="me">She’ll reply to <span data-email></span>. If it’s easier to talk, you can also <a href="#book">pick a time for a chat</a>.</p>
+      <p data-for="org" hidden>She’ll reply to <span data-email></span> to talk about what would suit your people.</p>
+      <button type="button" class="cx-quiet" data-again>Send another message</button>
+    </div>
+  </div>
+</section>
+<style>
+.s-form-4{padding-block:clamp(2.5rem,6vw,5rem)}
+.s-form-4__in>*{max-width:640px}
+.s-form-4__h{font:800 clamp(1.8rem,1rem + 2.6vw,3rem)/1.1 var(--sans);letter-spacing:-.015em}
+.s-form-4__lede{margin-top:.8rem;color:var(--ink-soft)}
+.s-form-4__form{margin-top:clamp(1.5rem,3vw,2rem)}
+.s-form-4__check{display:flex;align-items:center;gap:.7rem;cursor:pointer;font-weight:500;min-height:44px}
+.s-form-4__check input{appearance:none;flex:none;width:1.35rem;height:1.35rem;margin:0;border:2px solid var(--rule-strong);border-radius:.3rem;background:var(--ground);
+  display:grid;place-items:center;transition:background .15s,border-color .15s}
+.s-form-4__check input::after{content:"";width:.7rem;height:.4rem;border:2.5px solid #fff;border-top:0;border-right:0;transform:translateY(-.08rem) rotate(-45deg) scale(0);transition:transform .15s var(--ease-out)}
+.s-form-4__check input:checked{background:var(--brand);border-color:var(--brand)}
+.s-form-4__check input:checked::after{transform:translateY(-.08rem) rotate(-45deg) scale(1)}
+.s-form-4__check input:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+.s-form-4 .cx-done{margin-top:2rem}
+</style>
+<script>
+window.slotInit["form"] = function(root, reduced){ RSRContact.form(root); };
+</script>

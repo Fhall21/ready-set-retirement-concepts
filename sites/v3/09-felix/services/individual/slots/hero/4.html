@@ -1,0 +1,40 @@
+<!-- Hero 4 — short page header: small portrait beside her name, big headline under it. Gets you to the method fast. -->
+<section class="s-ih4">
+  <div class="wrap s-ih4__in">
+    <div class="s-ih4__who">
+      <img class="s-ih4__pic" src="../../assets/drsan.jpg" width="980" height="1470" alt="Dr San">
+      <p data-copy="hero.name" class="s-ih4__name">Dr San · Psychosocial Retirement Educator</p>
+    </div>
+    <h1 data-copy="hero.h1" class="s-ih4__h1">You know the date. Let’s plan the weeks after it.</h1>
+    <div class="s-ih4__foot">
+      <p data-copy="hero.lede" class="s-ih4__lede">Human-centred retirement planning for individuals and couples, alongside your financial plan.</p>
+      <div class="s-ih4__acts">
+        <a data-copy="hero.btn" class="btn" href="../../contact/#book">Book a friendly 30-minute chat</a>
+        <a data-copy="hero.org" class="s-ih4__org" href="../organisation/">See workshops for organisations</a>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-ih4{background:var(--ground);padding-block:clamp(2.5rem,7vw,6rem) clamp(3rem,7vw,5.5rem);border-bottom:1px solid var(--rule)}
+.s-ih4__who{display:flex;align-items:center;gap:1rem;margin-bottom:clamp(1.6rem,4vw,2.6rem)}
+.s-ih4__pic{flex:none;height:auto;width:clamp(64px,8vw,92px);aspect-ratio:4/5;object-fit:cover;object-position:50% 14%;border-radius:.5rem}
+.s-ih4__name{font:500 .95rem/1.4 var(--sans);color:var(--ink-soft)}
+.s-ih4__h1{font:800 clamp(2.2rem,1rem + 5vw,5.6rem)/1 var(--sans);letter-spacing:-.025em;max-width:16ch;text-wrap:balance}
+.s-ih4__h1 .ln{overflow:hidden;padding-bottom:.06em}
+.s-ih4__foot{margin-top:clamp(1.8rem,4vw,3rem);display:grid;gap:1.6rem;align-items:end}
+.s-ih4__lede{font-size:clamp(1.1rem,.5vw + 1rem,1.3rem);color:var(--ink-soft);max-width:40ch;text-wrap:pretty}
+.s-ih4__acts{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.6rem}
+.s-ih4__acts .btn{min-height:48px}
+.s-ih4__org{color:var(--ink);font-weight:500;text-decoration-thickness:1px;padding-block:.5rem}
+.s-ih4__org:hover{color:var(--brand)}
+@media (min-width:960px){.s-ih4__foot{grid-template-columns:1fr auto}}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  var h = root.querySelector(".s-ih4__h1");
+  var split = SplitText.create(h, {type:"lines", linesClass:"ln", mask:"lines"});
+  gsap.fromTo(split.lines, {yPercent:105}, {yPercent:0, duration:1.1, ease:"expo.out", stagger:.09, immediateRender:true});
+};
+</script>

@@ -1,0 +1,31 @@
+<section class="ab-op2">
+  <div class="wrap ab-op2-text">
+    <p data-copy="opening.name" class="ab-op2-name">Dr San · Psychosocial Retirement Educator</p>
+    <h1 data-copy="opening.h" class="ab-op2-h">Hello, I’m Dr San.</h1>
+    <p data-copy="opening.sub" class="ab-op2-sub">I help people plan the human side of retirement.</p>
+  </div>
+  <figure class="ab-op2-band">
+    <img src="assets/drsan-office.jpg" width="1100" height="1650" alt="Dr San in her office, smiling, with a full bookshelf behind her">
+  </figure>
+</section>
+<style>
+.ab-op2{background:var(--ground);padding-top:clamp(2.5rem,7vw,5.5rem)}
+.ab-op2-text{text-align:center;max-width:58rem}
+.ab-op2-name{font:500 .95rem/1.4 var(--sans);color:var(--ink-soft);margin-bottom:1.1rem}
+.ab-op2-h{font:800 clamp(2.5rem,5.5vw + .8rem,6rem)/1 var(--sans);letter-spacing:-.03em;text-wrap:balance}
+.ab-op2-sub{margin:1.3rem auto 0;font:400 clamp(1.15rem,.6vw + 1rem,1.45rem)/1.45 var(--sans);color:var(--ink-soft);max-width:32ch;text-wrap:balance}
+.ab-op2-band{margin:clamp(2.5rem,6vw,4.5rem) 0 0;height:clamp(340px,70svh,720px);overflow:hidden;background:var(--ground-2)}
+.ab-op2-band img{width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+@media (max-width:640px){.ab-op2-band img{object-position:50% 14%}}
+</style>
+<script>
+window.slotInit["opening"] = function(root, reduced){
+  if (reduced) return;
+  var band = root.querySelector(".ab-op2-band");
+  // the photo opens up as you scroll into it, from a framed window to full width
+  gsap.fromTo(band, {clipPath:"inset(0% 22% 0% 22% round 1.5rem)"}, {
+    clipPath:"inset(0% 0% 0% 0% round 0rem)", ease:"none", immediateRender:true,
+    scrollTrigger:{trigger:band, start:"top 92%", end:"top 25%", scrub:.6}
+  });
+};
+</script>

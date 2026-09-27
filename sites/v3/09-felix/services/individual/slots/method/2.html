@@ -1,0 +1,79 @@
+<!-- Method 2 — four pages side by side that slide past as you scroll (desktop, pinned, capped at ~140vh).
+     On phones they simply stack. Echoes the home page's Monday sideways scroll. -->
+<section class="s-im2">
+  <div class="s-im2__pin">
+    <div class="wrap s-im2__head">
+      <h2 data-copy="method.h" class="s-im2__h">So what do we actually do together?</h2>
+      <p data-copy="method.lede" class="s-im2__lede">It’s a structured program in four stages. You’ll always know which one you’re in.</p>
+    </div>
+    <div class="s-im2__vp">
+      <ol class="s-im2__track">
+        <li class="s-im2__page">
+          <div class="s-im2__top"><span class="s-im2__n">1</span><h3 data-copy="method.s1t">Map</h3></div>
+          <p data-copy="method.s1p">We look at what work is quietly doing for you: your routine, your sense of who you are, your purpose, your people.</p>
+          <p class="s-im2__out"><span>You leave with</span><b data-copy="method.s1o">A clear picture of what leaves with the job.</b></p>
+        </li>
+        <li class="s-im2__page">
+          <div class="s-im2__top"><span class="s-im2__n">2</span><h3 data-copy="method.s2t">Test</h3></div>
+          <p data-copy="method.s2p">We try out an ordinary week without work, on paper and then for real, and notice what goes missing.</p>
+          <p class="s-im2__out"><span>You leave with</span><b data-copy="method.s2o">The gaps, named, before you meet them.</b></p>
+        </li>
+        <li class="s-im2__page">
+          <div class="s-im2__top"><span class="s-im2__n">3</span><h3 data-copy="method.s3t">Build</h3></div>
+          <p data-copy="method.s3p">We plan what will fill those gaps. Real things, close to home, with people you choose.</p>
+          <p class="s-im2__out"><span>You leave with</span><b data-copy="method.s3o">A plan for your weeks, in plain words.</b></p>
+        </li>
+        <li class="s-im2__page">
+          <div class="s-im2__top"><span class="s-im2__n">4</span><h3 data-copy="method.s4t">Practise</h3></div>
+          <p data-copy="method.s4p">You try the new pieces while you still have somewhere to be on Monday, and we adjust as we go.</p>
+          <p class="s-im2__out"><span>You leave with</span><b data-copy="method.s4o">Habits that already work on the day you finish.</b></p>
+        </li>
+      </ol>
+    </div>
+    <!-- TODO(Felix): confirm with Dr San that couples can do every stage together. -->
+    <p data-copy="method.note" class="wrap s-im2__note">Bring your partner if you like. Retirement changes the whole household, not just one diary.</p>
+  </div>
+</section>
+<style>
+.s-im2{background:var(--ground-2);overflow:hidden}
+.s-im2__pin{padding-block:clamp(3.5rem,8vw,5rem)}
+.s-im2__h{font:800 clamp(1.9rem,1rem + 3.2vw,3.2rem)/1.08 var(--sans);letter-spacing:-.015em;max-width:22ch;text-wrap:balance}
+.s-im2__lede{margin-top:.8rem;color:var(--ink-soft);max-width:48ch}
+.s-im2__vp{margin-top:clamp(1.8rem,4vw,2.6rem)}
+.s-im2__track{list-style:none;margin:0;padding:0 var(--gut);display:grid;gap:1rem}
+.s-im2__page{background:var(--ground);border:1px solid var(--rule-strong);border-radius:.7rem;padding:1.4rem 1.4rem 1.2rem;display:flex;flex-direction:column;gap:.9rem}
+.s-im2__top{display:flex;justify-content:space-between;align-items:center;flex-direction:row-reverse;gap:1rem;padding-bottom:.8rem;border-bottom:1px solid var(--rule)}
+.s-im2__top h3{font:800 clamp(1.8rem,1.2rem + 2vw,2.8rem)/1 var(--sans);letter-spacing:-.02em;color:var(--brand-deep)}
+.s-im2__n{display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:var(--ground-3);font:700 .9rem/1 var(--num);color:var(--brand-deep)}
+.s-im2__page > p{color:var(--ink-soft);max-width:40ch}
+.s-im2__out{margin-top:auto!important;padding-top:.9rem;border-top:1px solid var(--rule);color:var(--ink)!important}
+.s-im2__out span{display:block;font-size:.88rem;color:var(--ink-soft);margin-bottom:.2rem}
+.s-im2__out b{font-weight:700}
+.s-im2__note{margin-top:1.6rem;font-weight:600}
+@media (min-width:900px){
+  .s-im2__pin{min-height:100svh;display:flex;flex-direction:column;justify-content:center}
+  .s-im2__track{display:flex;width:max-content;gap:1.4rem;padding-inline:max(var(--gut),calc((100vw - 1240px)/2 + var(--gut)))}
+  .s-im2__page{width:clamp(340px,34vw,460px);min-height:clamp(320px,44svh,420px);padding:1.8rem}
+}
+</style>
+<script>
+window.slotInit["method"] = function(root, reduced){
+  var mm = gsap.matchMedia();
+  mm.add({desk:"(min-width:900px)", phone:"(max-width:899px)"}, function(c){
+    var pages = root.querySelectorAll(".s-im2__page");
+    if (reduced) return;
+    if (c.conditions.desk) {
+      var track = root.querySelector(".s-im2__track");
+      var dist = function(){ return Math.max(0, track.scrollWidth - window.innerWidth); };
+      gsap.to(track, {x:function(){ return -dist(); }, ease:"none",
+        scrollTrigger:{trigger:root.querySelector(".s-im2__pin"), start:"top top", end:function(){ return "+=" + Math.min(dist(), window.innerHeight*1.4); },
+          scrub:.8, pin:true, invalidateOnRefresh:true}});
+    } else {
+      pages.forEach(function(p){
+        gsap.fromTo(p, {opacity:0, y:18}, {opacity:1, y:0, duration:.7, ease:"power3.out", immediateRender:true,
+          scrollTrigger:{trigger:p, start:"top 88%", once:true}});
+      });
+    }
+  });
+};
+</script>

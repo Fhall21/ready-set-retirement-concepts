@@ -1,0 +1,32 @@
+<!-- CTA 2: a coloured band that closes the page. Heading left, the line and button right; a quiet link for individuals underneath. -->
+<section class="s-octa-2">
+  <div class="wrap s-octa-2-grid">
+    <h2 data-copy="cta.h" class="s-octa-2-h">Ready to talk about your team?</h2>
+    <div class="s-octa-2-act">
+      <p data-copy="cta.lede" class="s-octa-2-lede">Book a 30-minute friendly chat, and we’ll work out what would suit your people.</p>
+      <a data-copy="cta.btn" class="btn s-octa-2-btn" href="../../contact/#book">Book a time to talk</a>
+      <p class="s-octa-2-alt"><a href="../individual/">Planning your own retirement instead? See sessions for individuals</a></p>
+    </div>
+  </div>
+</section>
+<style>
+.s-octa-2{padding-block:clamp(3.5rem,9vw,6.5rem);background:var(--ground-3)}
+.s-octa-2-grid{display:grid;gap:1.6rem}
+.s-octa-2-h{font:800 clamp(2rem,1rem + 3.6vw,3.6rem)/1.06 var(--sans);letter-spacing:-.02em;max-width:14ch;text-wrap:balance}
+.s-octa-2-lede{color:var(--ink-soft);max-width:40ch}
+.s-octa-2-btn{margin-top:1.6rem;min-height:52px;font-size:1.05rem;padding:1.1rem 1.8rem}
+.s-octa-2-alt{margin-top:1.4rem;font-size:.98rem}
+.s-octa-2-alt a{color:var(--ink);text-decoration-thickness:1px}
+.s-octa-2-alt a:hover{color:var(--brand)}
+@media (min-width:900px){ .s-octa-2-grid{grid-template-columns:1fr 1fr;align-items:center;gap:4rem} }
+</style>
+<script>
+window.slotInit["cta"] = function(root, reduced){
+  if (reduced) return;
+  var h = root.querySelector(".s-octa-2-h");
+  var split = new SplitText(h, {type:"words", wordsClass:"w"});
+  gsap.fromTo(split.words, {opacity:0, y:"0.6em"}, {opacity:1, y:0, duration:.8, stagger:.05, ease:"expo.out",
+    scrollTrigger:{trigger:root, start:"top 75%", toggleActions:"play none none none"}});
+};
+</script>
+<style>.s-octa-2-h .w{display:inline-block}</style>

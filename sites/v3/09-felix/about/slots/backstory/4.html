@@ -1,0 +1,38 @@
+<!-- Quiet long-read: plain prose, no pin. The text "lights up" as you read it. Sources as backstory/1. -->
+<section class="ab-bs4">
+  <div class="wrap ab-bs4-in">
+    <h2 data-copy="backstory.h" class="ab-bs4-h">How I came to this work</h2>
+    <figure class="ab-bs4-fig">
+      <img src="assets/drsan-office.jpg" width="1100" height="1650" alt="Dr San in her office, arms folded, smiling" loading="lazy">
+    </figure>
+    <p class="ab-bs4-p"><strong data-copy="backstory.c1h">I started out teaching English.</strong> <span data-copy="backstory.c1p">Language was my first love. I even went back for an honours year in linguistics.</span></p>
+    <!-- TODO(Felix): confirm plain-English reading of "educational, social and commercial sectors". -->
+    <p class="ab-bs4-p"><strong data-copy="backstory.c2h">Then came decades of leading people.</strong> <span data-copy="backstory.c2p">In schools, community organisations and business, the work kept coming back to people: how they grow, and how they cope when things change.</span></p>
+    <p class="ab-bs4-p"><strong data-copy="backstory.c3h">Along the way, a PhD.</strong> <span data-copy="backstory.c3p">An MBA in HR, then a PhD in Business. People say I’m a people person, a businessperson and a nerd. Fair enough.</span></p>
+    <!-- TODO(Felix): this paragraph is a plausible bridge, not a sourced fact. Confirm with Dr San. -->
+    <p class="ab-bs4-p"><strong data-copy="backstory.c4h">And a lot of farewells.</strong> <span data-copy="backstory.c4p">I watched capable people leave work with the money sorted and nothing planned for who they’d be next. Nobody had shown them how.</span></p>
+  </div>
+</section>
+<style>
+.ab-bs4{background:var(--ground);padding-block:clamp(3.5rem,9vw,7rem)}
+.ab-bs4-in{max-width:46rem}
+.ab-bs4-h{font:800 clamp(2rem,3vw + .8rem,3.4rem)/1.08 var(--sans);letter-spacing:-.025em;text-wrap:balance;margin-bottom:clamp(1.6rem,4vw,2.6rem)}
+.ab-bs4-fig{margin:0 0 1.6rem;border-radius:1rem;overflow:hidden;background:var(--ground-2);aspect-ratio:4/3}
+.ab-bs4-fig img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.ab-bs4-p{font-size:clamp(1.2rem,.5vw + 1.05rem,1.45rem);line-height:1.6;color:var(--ink);text-wrap:pretty;margin-top:1.4rem}
+.ab-bs4-p strong{font-weight:800;color:var(--brand-deep)}
+@media (min-width:760px){
+  .ab-bs4-fig{float:right;width:40%;aspect-ratio:3/4;margin:.4rem 0 1.2rem 2rem;shape-outside:inset(0 round 1rem)}
+}
+.ab-bs4-in::after{content:"";display:block;clear:both}
+</style>
+<script>
+window.slotInit["backstory"] = function(root, reduced){
+  if (reduced) return;
+  // each paragraph brightens from faint to full ink as it passes through the reading zone
+  root.querySelectorAll(".ab-bs4-p").forEach(function(p){
+    gsap.fromTo(p, {opacity:.22}, {opacity:1, ease:"none",
+      scrollTrigger:{trigger:p, start:"top 88%", end:"top 58%", scrub:.5}});
+  });
+};
+</script>

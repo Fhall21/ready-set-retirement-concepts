@@ -1,0 +1,30 @@
+{
+  "counts": {
+    "hero": 4,
+    "booking": 4,
+    "details": 4,
+    "form": 4,
+    "next": 4
+  },
+  "presets": {
+    "default": {
+      "name": "Ready to chat (recommended)",
+      "slots": { "hero": 1, "booking": 1, "details": 1, "form": 1, "next": 1 }
+    },
+    "plain": {
+      "name": "Story: plain and few",
+      "slots": { "hero": 2, "booking": 3, "details": 2, "form": 4, "next": 1 },
+      "copy": { "hero": "b", "booking": "b", "details": "b", "form": "b", "next": "b" }
+    },
+    "words": {
+      "name": "Story: in her words",
+      "slots": { "hero": 3, "booking": 4, "details": 3, "form": 3, "next": 4 },
+      "copy": { "hero": "c", "booking": "c", "details": "c", "form": "c", "next": "c" }
+    },
+    "questions": {
+      "name": "Story: questions answered",
+      "slots": { "hero": 4, "booking": 2, "details": 4, "form": 2, "next": 2 },
+      "copy": { "hero": "d", "booking": "d", "details": "d", "form": "d", "next": "d" }
+    }
+  }
+}

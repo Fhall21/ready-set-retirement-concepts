@@ -1,0 +1,38 @@
+{
+  "_directions": {
+    "a": "Default, written into each fragment: plain and warm, HR reader in mind but person-first.",
+    "b": "Plain and few: the shortest honest version of each line.",
+    "c": "Her words: Dr San speaking in the first person, as on the home page's practitioner section.",
+    "d": "The HR brief: calm, specific and practical, for a reader who has to justify the booking."
+  },
+  "hero": {
+    "b": { "h1": "Help your people get ready for life after work.", "lede": "Workshops and talks, run in your workplace.", "btn": "Book a chat about your team" },
+    "c": { "h1": "I help people get ready for the part of retirement money doesn’t cover.", "lede": "Human-centred retirement planning™, for your people’s psychological and social wellbeing.", "btn": "Book a chat with Dr San" },
+    "d": { "h1": "Retirement workshops for staff three to ten years out.", "lede": "Seminars, workshops and talks from Dr San, run in your workplace.", "btn": "Plan a workshop with Dr San" }
+  },
+  "problem": {
+    "b": { "h": "Retiring changes a lot more than a pay slip.", "lede": "Routine, purpose and daily company all go with the job.", "close": "Most of it can be prepared for, while they’re still at work." },
+    "c": { "h": "After the farewell, the first Monday arrives.", "lede": "No meetings, no colleagues, nobody expecting them. That’s the part worth preparing for.", "close": "It’s far easier to plan while they’re still surrounded by colleagues." },
+    "d": { "h": "Retirement is a people change, not just a payroll one.", "lede": "Staff lose routine, purpose and daily company on the same day, and it’s rarely planned for.", "close": "A workshop gives them time to prepare while they’re still at work." }
+  },
+  "programmes": {
+    "b": { "h": "What Dr San runs", "lede": "", "note": "Not sure which? Ask in the first chat." },
+    "c": { "h": "Ways we could work together", "lede": "I shape each one around your people and the work they do.", "note": "If you’re not sure which would suit, we can work it out together in a first chat." },
+    "d": { "h": "Programmes and formats", "lede": "From a 20-minute talk to a full-day workshop, on site or online.", "note": "Cost depends on the format and group size. Dr San will quote after a first chat." }
+  },
+  "format": {
+    "b": { "h": "How a workshop runs", "lede": "", "note": "Everyone takes home their workbook and a first plan." },
+    "c": { "h": "Here’s how I usually run a morning", "lede": "It’s relaxed, practical and private. Nobody has to share anything they don’t want to.", "note": "Everyone keeps their workbook, and anyone can book a private session with me afterwards." },
+    "d": { "h": "The half-day workshop, hour by hour", "lede": "Times are a guide. We’ll fit it around your rosters and shifts.", "note": "Participants keep their workbooks. Optional one-to-one sessions can follow." }
+  },
+  "proof": {
+    "b": { "h": "" },
+    "c": { "h": "In the words of someone I’ve worked with" },
+    "d": { "h": "Who you’d be bringing in" }
+  },
+  "cta": {
+    "b": { "h": "Ready to chat?", "lede": "A friendly 30-minute chat about your team.", "btn": "Book a time" },
+    "c": { "h": "I’d love to hear about your people.", "lede": "Book a 30-minute chat and we’ll work out what would help.", "btn": "Book a time with me" },
+    "d": { "h": "Talk to Dr San about a workshop", "lede": "A 30-minute call to talk through your people, dates and format.", "btn": "Book a planning call" }
+  }
+}

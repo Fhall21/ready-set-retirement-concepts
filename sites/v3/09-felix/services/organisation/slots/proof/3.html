@@ -1,0 +1,71 @@
+<!-- Proof 3: for the HR or board reader who needs to justify the booking. Who Dr San is, her qualifications
+     (the same real list as the home page), then the one real testimonial.
+     TODO(Felix): check Dr San is happy for "MBA (HR)" and "Mental Health First Aider (Workplace)" to lead for this audience. -->
+<section class="s-oproof-3">
+  <div class="wrap s-oproof-3-grid">
+    <figure class="s-oproof-3-plate">
+      <img src="../../assets/drsan.jpg" width="980" height="1470" loading="lazy" decoding="async" alt="Dr Sandra Walden-Pearson">
+    </figure>
+    <div class="s-oproof-3-bio">
+      <h2 data-copy="proof.h" class="s-oproof-3-h">Who you’d be bringing in</h2>
+      <p class="s-oproof-3-name">Dr Sandra Walden-Pearson <span>· Far North Queensland</span></p>
+      <p class="s-oproof-3-lede">Dr San works with people three to ten years from retirement, and with the HR teams who support them. She isn’t a financial adviser: she helps with the other half of the plan.</p>
+      <ul class="s-oproof-3-cred">
+        <li>PhD (Business)</li>
+        <li>MBA (HR)</li>
+        <li>Certified Professional Retirement Coach</li>
+        <li>Accredited Mental Health First Aider (Workplace)</li>
+      </ul>
+      <details class="s-oproof-3-more">
+        <summary>Full qualifications</summary>
+        <ul>
+          <li>BA Dip Ed</li>
+          <li>Certified Associate Meta Coach</li>
+          <li>Certified Resilience Coach</li>
+          <li>HART Coach</li>
+          <li>Resilience First Aid Responder</li>
+          <li>Accredited Mental Health First Aider</li>
+          <li>Accredited Cinergy Conflict Coach</li>
+        </ul>
+      </details>
+      <blockquote class="s-oproof-3-q">
+        <p>“With hand on heart, I can honestly say that engaging Dr San has been life changing.”</p>
+        <footer><strong>Hon. Warren Entsch</strong>, former Federal Member for Leichhardt</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+<style>
+.s-oproof-3{padding-block:clamp(3.5rem,9vw,7rem);background:var(--ground)}
+.s-oproof-3-grid{display:grid;gap:clamp(2rem,5vw,4rem);align-items:start}
+.s-oproof-3-plate{margin:0;border-radius:1.25rem;overflow:clip;background:var(--ground-2);aspect-ratio:4/3}
+.s-oproof-3-plate img{width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.s-oproof-3-h{font:800 clamp(1.8rem,1rem + 2.6vw,2.8rem)/1.12 var(--sans);letter-spacing:-.015em}
+.s-oproof-3-name{margin-top:.6rem;font-weight:700}
+.s-oproof-3-name span{font-weight:500;color:var(--ink-soft)}
+.s-oproof-3-lede{margin-top:1.1rem;color:var(--ink-soft);max-width:52ch}
+.s-oproof-3-cred{list-style:none;margin:1.6rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));column-gap:2rem}
+.s-oproof-3-cred li{padding-block:.7rem;border-top:1px solid var(--rule);font-weight:600}
+.s-oproof-3-more{margin-top:1rem}
+.s-oproof-3-more summary{cursor:pointer;font-weight:600;color:var(--brand);list-style:none;padding-block:.4rem}
+.s-oproof-3-more summary::-webkit-details-marker{display:none}
+.s-oproof-3-more summary::after{content:" +"}
+.s-oproof-3-more[open] summary::after{content:" \2212"}
+.s-oproof-3-more ul{list-style:none;margin:.6rem 0 0;padding:0;display:grid;gap:.45rem;color:var(--ink-soft)}
+.s-oproof-3-q{margin:2.2rem 0 0;padding:1.6rem 1.6rem 1.4rem;background:var(--ground-2);border-radius:.8rem}
+.s-oproof-3-q p{font:700 clamp(1.2rem,.8vw + 1rem,1.55rem)/1.35 var(--sans);letter-spacing:-.01em;color:var(--brand-deep);text-wrap:pretty}
+.s-oproof-3-q footer{margin-top:.9rem;color:var(--ink-soft);font-size:.98rem}
+.s-oproof-3-q footer strong{color:var(--ink)}
+@media (min-width:900px){
+  .s-oproof-3-grid{grid-template-columns:minmax(260px,4fr) minmax(0,7fr)}
+  .s-oproof-3-plate{aspect-ratio:980/1470;position:sticky;top:2rem}
+}
+</style>
+<script>
+window.slotInit["proof"] = function(root, reduced){
+  var plate = root.querySelector(".s-oproof-3-plate");
+  if (reduced) return;
+  gsap.fromTo(plate, {clipPath:"inset(100% 0% 0% 0%)"}, {clipPath:"inset(0% 0% 0% 0%)", duration:1.1, ease:"expo.out",
+    scrollTrigger:{trigger:plate, start:"top 85%", toggleActions:"play none none none"}});
+};
+</script>

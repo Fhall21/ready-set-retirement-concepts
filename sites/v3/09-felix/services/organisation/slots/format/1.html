@@ -1,0 +1,76 @@
+<!-- Format 1: the run sheet. The document an HR coordinator would print and pin to the room door.
+     A line draws down the time column as you scroll through it.
+     TODO(Felix): times, session names and the "what we need" list are placeholders built from the site's own themes.
+     Replace with Dr San's actual workshop outline. -->
+<section class="s-ofmt-1">
+  <div class="wrap s-ofmt-1-grid">
+    <div class="s-ofmt-1-side">
+      <h2 data-copy="format.h" class="s-ofmt-1-h">What a morning with Dr San looks like</h2>
+      <p data-copy="format.lede" class="s-ofmt-1-lede">The half-day workshop, as it usually runs. Times move to suit your roster.</p>
+    </div>
+
+    <div class="s-ofmt-1-sheet">
+      <div class="s-ofmt-1-head"><span class="t">Run sheet — Preparing for retirement</span><span class="m">Half day · 9:00–12:30</span></div>
+      <ol class="s-ofmt-1-rows">
+        <li><time>9:00</time><div><strong>Welcome</strong><span>Who’s here, and what today is (and isn’t) about.</span></div></li>
+        <li><time>9:20</time><div><strong>The first Monday</strong><span>What changes when work stops, and what doesn’t.</span></div></li>
+        <li><time>10:00</time><div><strong>What leaves with the job</strong><span>Direction, identity, purpose and connection.</span></div></li>
+        <li class="brk"><time>10:45</time><div><strong>Morning tea</strong></div></li>
+        <li><time>11:05</time><div><strong>An ordinary week</strong><span>Each person sketches a week they’d actually want.</span></div></li>
+        <li><time>11:50</time><div><strong>Talking about it at home</strong><span>How to raise it with a partner or family.</span></div></li>
+        <li><time>12:15</time><div><strong>First steps</strong><span>A short written plan to take home.</span></div></li>
+        <li><time>12:30</time><div><strong>Close</strong></div></li>
+      </ol>
+      <i class="s-ofmt-1-line" aria-hidden="true"></i>
+    </div>
+    <div class="s-ofmt-1-need">
+      <h3>What we’ll ask you for</h3>
+      <ul>
+        <li>A room with tables, for up to 20</li>
+        <li>A screen or TV to plug into</li>
+        <li>Morning tea</li>
+        <li>A quiet word to staff that it’s on</li>
+      </ul>
+      <p>Dr San brings the workbooks, and works out the rest with you on a short call beforehand.</p>
+      <p data-copy="format.note" class="s-ofmt-1-after">Everyone keeps their workbook. Anyone who wants to go further can book a private session.</p>
+    </div>
+  </div>
+</section>
+<style>
+.s-ofmt-1{padding-block:clamp(3.5rem,9vw,7rem);background:var(--ground-2)}
+.s-ofmt-1-grid{display:grid;gap:clamp(2rem,5vw,3rem)}
+.s-ofmt-1-h{font:800 clamp(1.8rem,1rem + 3vw,3.1rem)/1.12 var(--sans);letter-spacing:-.015em;max-width:18ch;text-wrap:balance}
+.s-ofmt-1-lede{margin-top:1rem;color:var(--ink-soft);max-width:40ch}
+.s-ofmt-1-need{margin-top:clamp(1.8rem,4vw,2.6rem);padding-top:1.3rem;border-top:1px solid var(--rule-strong)}
+.s-ofmt-1-need h3{font:700 1.1rem/1.3 var(--sans);margin-bottom:.6rem}
+.s-ofmt-1-need ul{margin:0;padding-left:1.1rem;display:grid;gap:.35rem}
+.s-ofmt-1-need li::marker{color:var(--brand)}
+.s-ofmt-1-need p{margin-top:1rem;color:var(--ink-soft);max-width:40ch}
+.s-ofmt-1-need p.s-ofmt-1-after{color:var(--ink);font-weight:600}
+.s-ofmt-1-sheet{position:relative;background:var(--ground);border:1px solid var(--rule-strong);border-radius:.5rem;overflow:hidden;align-self:start}
+.s-ofmt-1-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem 1rem;padding:1rem 1.3rem;border-bottom:2px solid var(--rule-strong)}
+.s-ofmt-1-head .t{font:700 1.05rem/1.3 var(--sans)}
+.s-ofmt-1-head .m{font:500 .85rem/1.3 var(--num);color:var(--ink-soft)}
+.s-ofmt-1-rows{list-style:none;margin:0;padding:0 1.3rem}
+.s-ofmt-1-rows li{display:grid;grid-template-columns:4.2rem 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--rule)}
+.s-ofmt-1-rows li:last-child{border-bottom:0}
+.s-ofmt-1-rows time{font:700 .98rem/1.35 var(--num);color:var(--brand-deep);padding-left:.9rem}
+.s-ofmt-1-rows strong{display:block;font-size:1.05rem}
+.s-ofmt-1-rows span{display:block;color:var(--ink-soft);font-size:.95rem;margin-top:.15rem}
+.s-ofmt-1-rows li.brk{background:color-mix(in srgb,var(--gold) 16%,transparent);margin-inline:-1.3rem;padding-inline:1.3rem}
+.s-ofmt-1-rows li.brk time{color:var(--ink-soft)}
+.s-ofmt-1-line{position:absolute;left:1.55rem;top:4.2rem;bottom:1.2rem;width:2px;background:var(--brand);transform-origin:top center;transform:scaleY(1)}
+@media (min-width:900px){
+  .s-ofmt-1-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto 1fr;column-gap:clamp(3rem,6vw,6rem);row-gap:0}
+  .s-ofmt-1-sheet{grid-column:2;grid-row:1 / span 2}
+  .s-ofmt-1-need{grid-column:1;grid-row:2;align-self:start}
+}
+</style>
+<script>
+window.slotInit["format"] = function(root, reduced){
+  if (reduced) return;
+  var sheet = root.querySelector(".s-ofmt-1-sheet");
+  gsap.fromTo(root.querySelector(".s-ofmt-1-line"), {scaleY:0}, {scaleY:1, ease:"none",
+    scrollTrigger:{trigger:sheet, start:"top 70%", end:"bottom 60%", scrub:.6}});
+};
+</script>

@@ -1,0 +1,67 @@
+<!-- FAQ 4 — an information-sheet card like the ones handed out at a clinic: header bar, then the questions as rows. -->
+<!-- TODO(Felix): confirm with Dr San — referral wording in "Is it counselling?", couples sessions, video + in-person locations (Cairns assumed), and fees. -->
+<section class="s-if4">
+  <div class="wrap">
+    <div class="s-if4__card">
+      <div class="s-if4__bar"><h2 data-copy="faq.h" class="s-if4__h">Things people often ask.</h2><span class="s-if4__meta">6 answers</span></div>
+      <div class="s-if4__list">
+      <details class="s-if4__it">
+        <summary><span data-copy="faq.q1">Is this financial advice?</span><i class="s-if4__pm" aria-hidden="true"></i></summary>
+        <div class="s-if4__a"><p data-copy="faq.a1">No. Dr San isn’t a financial adviser. This sits alongside the plan you already have: one pays for the life, the other helps you live it.</p></div>
+      </details>
+      <details class="s-if4__it">
+        <summary><span data-copy="faq.q2">Is it counselling?</span><i class="s-if4__pm" aria-hidden="true"></i></summary>
+        <div class="s-if4__a"><p data-copy="faq.a2">No. It’s education and planning: practical work on your weeks, your people and what gets you up in the morning. If something bigger comes up, Dr San can point you to the right support.</p></div>
+      </details>
+      <details class="s-if4__it">
+        <summary><span data-copy="faq.q3">When should I start?</span><i class="s-if4__pm" aria-hidden="true"></i></summary>
+        <div class="s-if4__a"><p data-copy="faq.a3">Three to ten years out is the easiest time, while you still have colleagues, routine and energy to draw on. But there’s no wrong time for a first chat.</p></div>
+      </details>
+      <details class="s-if4__it">
+        <summary><span data-copy="faq.q4">Can my partner come too?</span><i class="s-if4__pm" aria-hidden="true"></i></summary>
+        <div class="s-if4__a"><p data-copy="faq.a4">Yes, you’re welcome to come together. Two people retiring into one house is well worth planning for.</p></div>
+      </details>
+      <details class="s-if4__it">
+        <summary><span data-copy="faq.q5">Do I need to live in Far North Queensland?</span><i class="s-if4__pm" aria-hidden="true"></i></summary>
+        <div class="s-if4__a"><p data-copy="faq.a5">No. Sessions can run by video wherever you are, and in person around Cairns.</p></div>
+      </details>
+      <details class="s-if4__it">
+        <summary><span data-copy="faq.q6">What does it cost?</span><i class="s-if4__pm" aria-hidden="true"></i></summary>
+        <div class="s-if4__a"><p data-copy="faq.a6">The first 30-minute chat is free. Dr San will talk you through the rest then, with no pressure either way.</p></div>
+      </details>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-if4{background:var(--ground-2);padding-block:clamp(3.5rem,9vw,7rem)}
+.s-if4__card{background:var(--ground);border:1px solid var(--rule-strong);border-radius:.6rem;overflow:hidden;max-width:900px;margin-inline:auto}
+.s-if4__bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.4rem 1rem;padding:1.2rem 1.4rem;border-bottom:2px solid var(--rule-strong)}
+.s-if4__h{font:800 clamp(1.4rem,1rem + 1.6vw,2rem)/1.15 var(--sans);letter-spacing:-.01em}
+.s-if4__meta{font:500 .82rem/1 var(--num);color:var(--ink-soft)}
+.s-if4__list{padding:0 1.4rem}
+.s-if4__it{border-bottom:1px solid var(--rule)}
+.s-if4__it summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.15rem 0;font:700 clamp(1.05rem,1rem + .3vw,1.2rem)/1.35 var(--sans);min-height:48px}
+.s-if4__it summary::-webkit-details-marker{display:none}
+.s-if4__it summary:hover{color:var(--brand)}
+.s-if4__pm{position:relative;flex:none;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--ground-3)}
+.s-if4__pm::before,.s-if4__pm::after{content:"";position:absolute;left:50%;top:50%;width:.8rem;height:2px;margin:-1px 0 0 -.4rem;background:var(--brand-deep);border-radius:2px;transition:transform .3s var(--ease-out)}
+.s-if4__pm::after{transform:rotate(90deg)}
+.s-if4__it[open] .s-if4__pm::after{transform:rotate(0deg)}
+.s-if4__a{overflow:hidden}
+.s-if4__a p{padding:0 2.5rem 1.3rem 0;color:var(--ink-soft);max-width:60ch}
+.s-if4__it:last-child{border-bottom:0}
+</style>
+<script>
+window.slotInit["faq"] = function(root, reduced){
+  root.querySelectorAll("details").forEach(function(d){
+    var s = d.querySelector("summary"), a = d.querySelector(".s-if4__a");
+    s.addEventListener("click", function(e){
+      if (reduced) return;
+      e.preventDefault();
+      if (d.open) { gsap.to(a, {height:0, duration:.35, ease:"power2.inOut", onComplete:function(){ d.open = false; gsap.set(a, {clearProps:"height"}); }}); }
+      else { d.open = true; gsap.fromTo(a, {height:0}, {height:"auto", duration:.45, ease:"expo.out", clearProps:"height"}); }
+    });
+  });
+};
+</script>
