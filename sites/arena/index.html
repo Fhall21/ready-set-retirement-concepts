@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vitals Arena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F1F8;--panel:#fff;--ink:#1d1726;--soft:#6b6178;--rule:#e2dcea;--brand:#7B2FB5;--accent:#D91A54;--ok:#1b8a5a}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:15px/1.4 "Schibsted Grotesk",system-ui,sans-serif;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+button,select,textarea{font:inherit;color:inherit}
+header{display:flex;align-items:center;gap:1rem;padding:.7rem 1rem;border-bottom:1px solid var(--rule);background:var(--panel)}
+header h1{font-size:1rem;margin:0;font-weight:750}
+header .what{flex:1;color:var(--soft)}
+header .what b{color:var(--ink);text-transform:capitalize}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}
+.seg button{border:0;background:none;padding:.4rem .8rem;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff}
+label.chk{display:flex;gap:.35rem;align-items:center;color:var(--soft);cursor:pointer}
+.stage{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1rem;min-height:0}
+.pane{position:relative;background:var(--panel);border:1px solid var(--rule);border-radius:12px;overflow:hidden;min-height:0;display:grid;place-items:start center}
+.pane.phone{place-items:center}
+.pane .tag{position:absolute;top:.6rem;left:.6rem;z-index:2;background:var(--ink);color:#fff;border-radius:999px;padding:.2rem .65rem;font-weight:700;font-size:.8rem}
+.pane .reveal{position:absolute;inset:auto .6rem .6rem auto;z-index:2;background:var(--brand);color:#fff;border-radius:8px;padding:.35rem .7rem;font-family:"JetBrains Mono",monospace;font-size:.8rem;opacity:0;transition:opacity .2s}
+.pane.won{outline:3px solid var(--ok);outline-offset:-3px}
+.revealed .reveal{opacity:1}
+iframe{border:0;display:block;transform-origin:top left;background:#fff}
+.pane.phone iframe{transform-origin:center;border-radius:28px;box-shadow:0 0 0 8px #1d1726}
+footer{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding:.8rem 1rem;border-top:1px solid var(--rule);background:var(--panel)}
+.votes{display:flex;gap:.5rem}
+.votes button{border:1px solid var(--rule);background:#fff;border-radius:10px;padding:.65rem 1rem;cursor:pointer;font-weight:650;min-width:7.5rem}
+.votes button:hover{border-color:var(--ink)}
+.votes button.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.votes kbd{font-family:"JetBrains Mono",monospace;font-size:.75rem;opacity:.6;margin-left:.35rem}
+textarea{width:100%;resize:none;height:2.9rem;border:1px solid var(--rule);border-radius:10px;padding:.6rem .8rem}
+textarea:focus,button:focus-visible{outline:2px solid var(--brand);outline-offset:1px}
+.count{color:var(--soft);white-space:nowrap}
+aside{position:fixed;right:1rem;top:3.6rem;bottom:5.4rem;width:320px;background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:1rem;overflow:auto;box-shadow:0 20px 50px -20px rgba(0,0,0,.35);z-index:5}
+aside h2{font-size:.95rem;margin:0 0 .6rem}
+aside table{width:100%;border-collapse:collapse;font-size:.88rem}
+aside td{padding:.3rem 0;border-bottom:1px solid var(--rule)}
+aside td:last-child{text-align:right;font-family:"JetBrains Mono",monospace}
+.toast{position:fixed;left:50%;top:4.2rem;transform:translateX(-50%);background:var(--ink);color:#fff;padding:.5rem .9rem;border-radius:999px;z-index:6;font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+  <a href="../index.html" style="color:inherit;text-decoration:none;font-size:.85rem">&larr; Gallery</a>
+  <h1>Vitals Arena</h1>
+  <span class="what" id="what">Loading…</span>
+  <div class="seg" role="group" aria-label="Compare"><button data-mode="slot" aria-pressed="true">Sections</button><button data-mode="page" aria-pressed="false">Whole page</button></div>
+  <select id="slotSel" aria-label="Section filter"><option value="">Any section</option></select>
+  <div class="seg" role="group" aria-label="Device"><button data-view="desktop" aria-pressed="true">Desktop</button><button data-view="phone" aria-pressed="false">Phone</button></div>
+  <div class="seg" role="group" aria-label="Palette"><button data-pal="a" aria-pressed="true">A</button><button data-pal="b" aria-pressed="false">B</button></div>
+  <label class="chk"><input type="checkbox" id="sync" checked> Sync scroll</label>
+  <button class="seg" id="statsBtn" style="padding:.4rem .8rem;background:#fff;cursor:pointer">Rankings</button>
+</header>
+
+<main class="stage">
+  <div class="pane" id="paneL"><span class="tag">Left</span><span class="reveal"></span><iframe title="Left variant"></iframe></div>
+  <div class="pane" id="paneR"><span class="tag">Right</span><span class="reveal"></span><iframe title="Right variant"></iframe></div>
+</main>
+
+<footer>
+  <div class="votes">
+    <button data-choice="left" class="primary">Left <kbd>←</kbd></button>
+    <button data-choice="tie">Same <kbd>↑</kbd></button>
+    <button data-choice="both_bad">Neither <kbd>↓</kbd></button>
+    <button data-choice="right" class="primary">Right <kbd>→</kbd></button>
+  </div>
+  <textarea id="comment" placeholder="Why? (optional, feeds the next variant — press Enter to focus, Esc to leave)"></textarea>
+  <span class="count" id="count"></span>
+</footer>
+
+<aside id="stats" hidden><h2>Rankings (Elo)</h2><table id="statsT"></table></aside>
+
+<script>
+const S = { mode: 'slot', view: 'desktop', pal: 'a', slot: new URLSearchParams(location.search).get('slot') || '', pair: null, busy: false };
+const $ = s => document.querySelector(s);
+const panes = [$('#paneL'), $('#paneR')];
+const SLOTS = ['hero','monday','dials','speech','cover','pause','audience','practitioner','consult'];
+SLOTS.forEach(s => $('#slotSel').add(new Option(s, s)));
+$('#slotSel').value = S.slot;
+
+const src = side => {
+  const u = new URL('/v3/08-vitals/', location.origin);
+  if (side.preset) u.searchParams.set('preset', side.preset);
+  else { u.searchParams.set('only', side.slot); u.searchParams.set(side.slot, side.n); }
+  u.searchParams.set('clean', ''); u.searchParams.set('pal', S.pal);
+  return u.pathname + u.search;
+};
+const label = side => side.preset ? `version ${side.preset}` : `${side.slot} ${side.n}`;
+
+function fit() {  // desktop: render at 1280 and scale to the pane; phone: 390x844 scaled to fit height
+  panes.forEach(p => {
+    const f = p.querySelector('iframe'), r = p.getBoundingClientRect();
+    p.classList.toggle('phone', S.view === 'phone');
+    if (S.view === 'desktop') {
+      const k = r.width / 1280;
+      Object.assign(f.style, { width: '1280px', height: (r.height / k) + 'px', transform: `scale(${k})` });
+    } else {
+      const k = Math.min(1, (r.height - 40) / 844, (r.width - 40) / 390);
+      Object.assign(f.style, { width: '390px', height: '844px', transform: `scale(${k})` });
+    }
+  });
+}
+
+let syncing = false;
+function hookSync(i) {  // same-origin iframes: mirror scroll position by ratio
+  const f = panes[i].querySelector('iframe');
+  f.onload = () => f.contentWindow.addEventListener('scroll', () => {
+    if (!$('#sync').checked || syncing) return;
+    const me = f.contentWindow, other = panes[1 - i].querySelector('iframe').contentWindow;
+    try {
+      const ratio = me.scrollY / Math.max(1, me.document.documentElement.scrollHeight - me.innerHeight);
+      syncing = true;
+      other.scrollTo(0, ratio * (other.document.documentElement.scrollHeight - other.innerHeight));
+      requestAnimationFrame(() => syncing = false);
+    } catch (e) { syncing = false; }
+  }, { passive: true });
+}
+hookSync(0); hookSync(1);
+
+async function load() {
+  const q = new URLSearchParams({ mode: S.mode }); if (S.slot && S.mode === 'slot') q.set('slot', S.slot);
+  S.pair = await (await fetch('/api/next?' + q)).json();
+  if (!S.pair) { $('#what').textContent = 'Not enough variants to compare here.'; return; }
+  panes.forEach(p => p.classList.remove('won'));
+  document.body.classList.remove('revealed');
+  panes[0].querySelector('iframe').src = src(S.pair.left);
+  panes[1].querySelector('iframe').src = src(S.pair.right);
+  panes[0].querySelector('.reveal').textContent = label(S.pair.left);
+  panes[1].querySelector('.reveal').textContent = label(S.pair.right);
+  $('#what').innerHTML = S.mode === 'page' ? 'Comparing <b>whole pages</b>' : `Comparing <b>${S.pair.left.slot}</b> — two variants, blind`;
+  fit(); stats();
+}
+
+async function vote(choice) {
+  if (S.busy || !S.pair) return; S.busy = true;
+  const body = { mode: S.mode, left: S.pair.left, right: S.pair.right, choice, comment: $('#comment').value.trim(), view: S.view, pal: S.pal };
+  const r = await fetch('/api/vote', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (!r.ok) { toast('Vote failed — is the server running?'); S.busy = false; return; }
+  if (choice === 'left' || choice === 'right') panes[choice === 'left' ? 0 : 1].classList.add('won');
+  document.body.classList.add('revealed');           // show which variants they were, briefly
+  $('#comment').value = '';
+  setTimeout(async () => { await load(); S.busy = false; }, 1100);
+}
+
+async function stats() {
+  const s = await (await fetch('/api/stats')).json();
+  $('#count').textContent = `${s.total} vote${s.total === 1 ? '' : 's'}`;
+  if ($('#stats').hidden) return;
+  let slot = '';
+  $('#statsT').innerHTML = s.elo.sort((a, b) => a.key.split('/')[0].localeCompare(b.key.split('/')[0]) || b.elo - a.elo).map(e => {
+    const [g] = e.key.split('/'), head = g !== slot ? `<tr><td colspan="2" style="padding-top:.8rem"><b>${slot = g}</b></td></tr>` : '';
+    return head + `<tr><td>${e.key} <span style="color:var(--soft)">· ${e.games}</span></td><td>${e.elo}</td></tr>`;
+  }).join('') || '<tr><td>No votes yet.</td></tr>';
+}
+function toast(t) { const d = document.createElement('div'); d.className = 'toast'; d.textContent = t; document.body.appendChild(d); setTimeout(() => d.remove(), 1800); }
+
+document.querySelectorAll('[data-choice]').forEach(b => b.onclick = () => vote(b.dataset.choice));
+const seg = (attr, fn) => document.querySelectorAll(`[data-${attr}]`).forEach(b => b.onclick = () => {
+  document.querySelectorAll(`[data-${attr}]`).forEach(x => x.setAttribute('aria-pressed', String(x === b))); fn(b.dataset[attr]);
+});
+seg('mode', v => { S.mode = v; $('#slotSel').disabled = v === 'page'; load(); });
+seg('view', v => { S.view = v; fit(); });
+seg('pal', v => { S.pal = v; load(); });
+$('#slotSel').onchange = e => { S.slot = e.target.value; load(); };
+$('#statsBtn').onclick = () => { $('#stats').hidden = !$('#stats').hidden; stats(); };
+addEventListener('resize', fit);
+addEventListener('keydown', e => {
+  if (e.target.tagName === 'TEXTAREA') { if (e.key === 'Escape') e.target.blur(); if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); e.target.blur(); } return; }
+  const k = { ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'tie', ArrowDown: 'both_bad' }[e.key];
+  if (k) { e.preventDefault(); vote(k); }
+  if (e.key === 'Enter') { e.preventDefault(); $('#comment').focus(); }
+});
+load();
+setInterval(stats, 5000);
+</script>
+</body>
+</html>
