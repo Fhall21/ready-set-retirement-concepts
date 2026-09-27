@@ -120,7 +120,7 @@ window.slotInit["consult"] = function(root, reduced){
     gsap.set(split.words, {opacity:0, y:"1em"});
 
     var tl = gsap.timeline({
-      scrollTrigger:{trigger:root, start:"top 78%", once:true, invalidateOnRefresh:true}
+      scrollTrigger:{trigger:root, start:"top 78%", toggleActions:"play none none none", invalidateOnRefresh:true}
     });
     tl.to(split.words, {opacity:1, y:0, duration:.7, stagger:.05, ease:"expo.out"})
       .to(draw, {strokeDashoffset:0, duration:1.1, ease:"power2.out"}, "-=.2");

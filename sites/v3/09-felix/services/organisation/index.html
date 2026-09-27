@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-AU" data-pal="a">
+<html lang="en-AU" data-pal="b">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
 <script>
 (function(){try{
   var q=new URL(location.href).searchParams.get("pal");
-  var p=(q||localStorage.getItem("rsr-pal")||"a").toLowerCase();
+  var p=(q||"b") /* this page defaults to palette B (its default preset); ?pal= or a preset overrides */.toLowerCase();
   if(p!=="b")p="a";
   document.documentElement.setAttribute("data-pal",p);
 }catch(e){}})();

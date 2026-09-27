@@ -74,7 +74,7 @@
   },
   "cta": {
     "b": { "lede": "", "btn": "Book a 30-minute chat" },
-    "c": { "h": "Let’s have a chat.", "lede": "It’s a conversation, not a clinical assessment. Thirty minutes, at no cost.", "btn": "Find a time" },
+    "c": { "h": "Ready to chat?", "lede": "It’s a conversation, not a clinical assessment. Thirty minutes, at no cost.", "btn": "Find a time" },
     "d": { "h": "Talk with Dr San", "lede": "A free, friendly 30-minute chat about what your weeks might look like.", "btn": "Book a time" }
   }
 }
