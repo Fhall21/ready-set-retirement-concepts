@@ -101,6 +101,7 @@
   let state = parseLocation();
 
   function getVersionUrl(targetVer) {
+    if (targetVer === 'v3') return state.relativeSitesRoot + 'v3/08-vitals/';
     if (state.siteSlug === 'index') {
       return state.relativeSitesRoot + targetVer + '/index.html';
     }

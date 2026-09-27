@@ -13,6 +13,13 @@
       "subtitle": "Feedback Iteration",
       "date": "September 2026",
       "description": "Second round iteration incorporating Dr San's feedback: lighter cognitive load, brand palettes A/B, streamlined copy."
+    },
+    {
+      "id": "v3",
+      "label": "Version 3",
+      "subtitle": "Vitals Deep Dive",
+      "date": "September 2026",
+      "description": "Five versions of Vitals with a mix-and-match mixer: scroll-told dials, no toggles, one authored motion moment per section."
     }
   ],
   "defaultVersion": "v2",
