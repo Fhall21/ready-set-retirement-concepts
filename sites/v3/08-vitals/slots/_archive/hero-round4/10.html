@@ -1,0 +1,85 @@
+<!-- c1 × c2: hero 4's report, filled with hero 2's working week. Held long enough to read, then the farewell strikes the week out; only the planned line (Financial) survives. -->
+<section class="s-hero-10">
+  <div class="wrap s-hero-10__grid">
+    <div>
+      <h1 class="s-hero-10__h1">Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+      <p class="s-hero-10__lede">We spend forty years planning the money and about ten minutes planning the person. The balance gets reviewed every year. The person gets worked out on the drive home from the farewell.</p>
+      <div class="s-hero-10__cta">
+        <a class="btn" href="/contact">Book a 30-minute consult</a>
+        <a class="s-hero-10__ghost" href="#cover">See what is covered</a>
+      </div>
+    </div>
+
+    <div class="s-hero-10__doc" role="img" aria-label="A working week of standup, meetings, reports, team and wrap-up. After the farewell every day is cleared. Only the financial line, reviewed every year, remains.">
+      <div class="s-hero-10__head">
+        <span>Your week</span>
+        <span class="s-hero-10__when"><span data-before>This week</span><span data-after>After the farewell</span></span>
+      </div>
+      <div class="s-hero-10__row"><span class="s-hero-10__day">Mon</span><span class="s-hero-10__what">Standup<i></i></span></div>
+      <div class="s-hero-10__row"><span class="s-hero-10__day">Tue</span><span class="s-hero-10__what">Meetings<i></i></span></div>
+      <div class="s-hero-10__row"><span class="s-hero-10__day">Wed</span><span class="s-hero-10__what">Reports<i></i></span></div>
+      <div class="s-hero-10__row"><span class="s-hero-10__day">Thu</span><span class="s-hero-10__what">Team<i></i></span></div>
+      <div class="s-hero-10__row"><span class="s-hero-10__day">Fri</span><span class="s-hero-10__what">Wrap-up<i></i></span></div>
+      <div class="s-hero-10__row s-hero-10__row--kept"><span class="s-hero-10__day">Financial</span><span class="s-hero-10__status">Reviewed every year</span></div>
+      <p class="s-hero-10__note">What catches people out is Monday.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-10{min-height:min(100svh,900px);display:flex;align-items:center;padding-block:clamp(2rem,5vw,3rem);background:var(--ground)}
+.s-hero-10__grid{display:grid;gap:clamp(2rem,5vw,3rem);align-items:center;width:100%}
+.s-hero-10__h1{font:800 clamp(3.2rem,4vw + 2rem,5.5rem)/1.04 var(--sans);letter-spacing:-.015em;max-width:14ch}
+.s-hero-10__h1 em{font-style:normal;color:var(--brand)}
+.s-hero-10__lede{margin-top:1.3rem;max-width:44ch;color:var(--ink-soft);font-size:1.15rem}
+.s-hero-10__cta{margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center}
+.s-hero-10__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.6rem 0}
+
+.s-hero-10__doc{border:1px solid var(--rule-strong);border-radius:4px;padding:1.8rem 1.8rem 1.4rem;background:var(--ground-2)}
+.s-hero-10__head{display:flex;justify-content:space-between;gap:1rem;font:700 .85rem/1 var(--num);color:var(--ink-soft);letter-spacing:.03em;padding-bottom:1.1rem;border-bottom:2px solid var(--ink)}
+.s-hero-10__when{display:grid;text-align:right}
+.s-hero-10__when>span{grid-area:1/1}
+.s-hero-10__when [data-before]{visibility:hidden}
+.s-hero-10__when [data-after]{color:var(--accent)}
+.s-hero-10__row{display:grid;grid-template-columns:6.5rem 1fr;align-items:baseline;padding:.95rem 0;border-bottom:1px solid var(--rule)}
+.s-hero-10__day{font:600 1rem/1 var(--num);color:var(--ink-soft)}
+.s-hero-10__what{position:relative;justify-self:start;font:700 1.3rem/1.2 var(--sans);color:var(--ink-soft);opacity:.45}
+.s-hero-10__what i{position:absolute;left:-.1em;right:-.1em;top:55%;height:2px;background:var(--accent);transform-origin:left center}
+.s-hero-10__row--kept{border-bottom:2px solid var(--ink)}
+.s-hero-10__row--kept .s-hero-10__day{color:var(--ink);font-weight:700}
+.s-hero-10__status{font:700 1.1rem/1.2 var(--sans);color:var(--brand)}
+.s-hero-10__note{margin-top:1.1rem;font:700 1.1rem/1.3 var(--sans);color:var(--accent)}
+@media (min-width:760px){
+  .s-hero-10__grid{grid-template-columns:1.1fr 1fr}
+  .s-hero-10__what{font-size:1.45rem}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  // Reduced / no-JS state (CSS): week shown struck through, Financial kept — both states readable at once.
+  if (reduced) return;
+  var q = function(s){ return root.querySelectorAll(s); };
+  var whats = q(".s-hero-10__what"), strikes = q(".s-hero-10__what i");
+  var before = root.querySelector("[data-before]"), after = root.querySelector("[data-after]");
+  var kept = root.querySelector(".s-hero-10__row--kept"), note = root.querySelector(".s-hero-10__note");
+
+  // Start: a full, ordinary working week. Hold it ~2.4s so it registers (learning 7).
+  gsap.set(before, {visibility:"visible"});
+  gsap.set(after, {autoAlpha:0});
+  gsap.set(whats, {opacity:1, color:"var(--ink)"});
+  gsap.set(strikes, {scaleX:0});
+  gsap.set([kept, note], {autoAlpha:0});
+
+  // The one moment: the farewell. Each day is struck out and falls silent; only the money line remains.
+  // Clock starts only once the report is fully on screen (on phones it sits below the fold).
+  var tl = gsap.timeline({paused:true});
+  ScrollTrigger.create({trigger:root.querySelector(".s-hero-10__doc"), start:"bottom 95%", once:true, onEnter:function(){ gsap.delayedCall(2.4, function(){ tl.play(); }); }});
+  tl
+    .to(before, {autoAlpha:0, duration:.3})
+    .to(after, {autoAlpha:1, duration:.4}, "<.15")
+    .to(strikes, {scaleX:1, duration:.45, ease:"power2.inOut", stagger:.22}, "<")
+    .to(whats, {opacity:.45, color:"var(--ink-soft)", duration:.5, stagger:.22}, "<.25")
+    .to(kept, {autoAlpha:1, duration:.6, ease:"power3.out"}, "+=.3")
+    .to(note, {autoAlpha:1, duration:.5, ease:"power3.out"}, "+=.5");
+};
+</script>

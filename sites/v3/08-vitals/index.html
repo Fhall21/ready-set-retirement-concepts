@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-AU" data-pal="a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vitals &mdash; Ready Set Retirement</title>
+<meta name="description" content="Financial readiness is one vital sign. Four more stop arriving on the day you retire. Psychosocial retirement education with Dr San, Far North Queensland.">
+<script>
+(function(){try{
+  var q=new URL(location.href).searchParams.get("pal");
+  var p=(q||localStorage.getItem("rsr-pal")||"a").toLowerCase();
+  if(p!=="b")p="a";
+  document.documentElement.setAttribute("data-pal",p);
+}catch(e){}})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Shared tokens only. Every slot variant styles itself, scoped to [data-slot]. */
+:root{
+  --ground:#FFFFFF; --ground-2:#FBF6FF; --ground-3:#F3E7FD;
+  --ink:#211A2A; --ink-soft:#574B66;
+  --brand:#7B2FB5; --brand-deep:#5F1F92; --brand-bright:#9A45DE;
+  --accent:#D91A54; --accent-bright:#FF4F70; --gold:#FFC233;
+  --logo:url("assets/logo-a.svg");
+}
+html[data-pal="b"]{
+  --ground:#FFFFFF; --ground-2:#F6F8FE; --ground-3:#E9EFFC;
+  --ink:#17203A; --ink-soft:#495271;
+  --brand:#C01B7A; --brand-deep:#9A1461; --brand-bright:#E82F96;
+  --accent:#1F5FE0; --accent-bright:#3B82F6; --gold:#FFB020;
+  --logo:url("assets/logo-b.svg");
+}
+:root{
+  --rule:color-mix(in srgb,var(--ink) 12%,transparent);
+  --rule-strong:color-mix(in srgb,var(--ink) 22%,transparent);
+  --sans:"Schibsted Grotesk",system-ui,sans-serif;
+  --num:"JetBrains Mono",ui-monospace,monospace; /* readings and numbers only */
+  --gut:clamp(1rem,4vw,3rem);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;overflow-x:clip;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:clamp(1.0625rem,1rem + .25vw,1.1875rem);line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,figure,blockquote,table,dl,dd{margin:0}
+img{max-width:100%;display:block}
+a{color:var(--brand);text-underline-offset:.2em}
+::selection{background:var(--brand);color:#fff}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gut)}
+.btn{display:inline-flex;align-items:center;gap:.6rem;font:600 1rem/1 var(--sans);text-decoration:none;
+  padding:1rem 1.4rem;border-radius:999px;background:var(--brand);color:#fff;transition:background .2s,transform .2s var(--ease-out)}
+.btn:hover{background:var(--brand-deep);transform:translateY(-1px)}
+.masthead{padding-block:1.1rem;position:relative;z-index:5}
+.masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.mark{display:block;width:clamp(112px,12vw,156px);aspect-ratio:767/334;background:var(--logo) left center/contain no-repeat}
+.masthead .btn{padding:.75rem 1.1rem;font-size:.9rem}
+footer{border-top:1px solid var(--rule);padding-block:2.5rem 5rem;color:var(--ink-soft);font-size:.92rem}
+footer p{max-width:62ch}
+footer p+p{margin-top:.8rem}
+[data-slot]:empty{display:none}
+/* Pause -> dials seam: one experience. The pause line already says the lede, so dials
+   drops it and its top padding; pause fades to dials' ground (GSAP on desktop, gradient on mobile). */
+main:has([data-slot="pause"]:not(:empty)) [data-slot="dials"]>section{padding-top:0}
+main:has([data-slot="pause"]:not(:empty)) [data-slot="dials"] :is(.s-d8-lede,.s-d7-lede){display:none}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="masthead"><div class="wrap">
+  <a href="#main" aria-label="Ready Set Retirement"><span class="mark" role="img" aria-label="Ready Set Retirement"></span></a>
+  <a class="btn" href="/contact">Book a consult</a>
+</div></header>
+
+<main id="main">
+  <div id="hero" data-slot="hero"></div>
+  <div id="monday" data-slot="monday"></div>
+  <div id="pause" data-slot="pause"></div>
+  <div id="dials" data-slot="dials"></div>
+  <div id="speech" data-slot="speech"></div>
+  <div id="cover" data-slot="cover"></div>
+  <div id="method" data-slot="method"></div>
+  <div id="audience" data-slot="audience"></div>
+  <div id="practitioner" data-slot="practitioner"></div>
+  <div id="consult" data-slot="consult"></div>
+</main>
+<div id="thread" data-slot="thread"></div>
+
+<footer><div class="wrap">
+  <p>Ready Set Retirement is psychosocial retirement education: training, workshops, seminars, coaching, consulting and speaking. Nothing on this page scores, diagnoses or treats anybody. The dials are a drawing of an argument, not a clinical measure.</p>
+  <p>human-centred retirement planning&trade; &middot; readysetretirement psychosocial planning&reg;</p>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+<script>
+/* Slot loader. URL is the state: ?hero=2&dials=4&cover=1&practitioner=1&consult=1
+   Each fragment slots/<slot>/<n>.html = markup + <style> + <script> that sets
+   window.slotInit["<slot>"] = function(root, reduced){...}. Init runs inside a
+   gsap.context scoped to the slot, so swapping reverts every tween/ScrollTrigger. */
+gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
+window.slotInit = {};
+var Vitals = window.Vitals = {
+  slots: ["hero","monday","pause","dials","speech","cover","method","audience","practitioner","consult","thread"],
+  optional: ["monday","speech","pause","method","audience","thread"], // default 0 = hidden
+  ctx: {}, manifest: null,
+  reduced: matchMedia("(prefers-reduced-motion: reduce)").matches,
+  state: function(){
+    var q = new URL(location.href).searchParams, s = {};
+    var o = this.optional;
+    this.slots.forEach(function(k){ s[k] = q.has(k) ? +q.get(k) : (o.indexOf(k) > -1 ? 0 : 1); });
+    return s;
+  },
+  load: async function(slot, n){
+    var el = document.querySelector('[data-slot="'+slot+'"]');
+    if (!n) { if (this.ctx[slot]) this.ctx[slot].revert(); el.innerHTML = ""; el.dataset.variant = 0; return; }
+    var res = await fetch("slots/"+slot+"/"+n+".html", {cache:"no-store"});
+    var html = res.ok ? await res.text() : '<div class="wrap" style="padding:3rem 0">Missing '+slot+'/'+n+'</div>';
+    if (this.ctx[slot]) this.ctx[slot].revert();
+    delete window.slotInit[slot];
+    el.innerHTML = html;
+    el.dataset.variant = n;
+    el.querySelectorAll("script").forEach(function(old){   // innerHTML scripts don't run
+      var s = document.createElement("script"); s.textContent = old.textContent; old.replaceWith(s);
+    });
+    var init = window.slotInit[slot], reduced = this.reduced;
+    this.ctx[slot] = gsap.context(function(){ if (init) init(el, reduced); }, el);
+  },
+  apply: async function(state, push){
+    var cur = this.state();
+    if (push) { var u = new URL(location.href); this.slots.forEach(function(k){ u.searchParams.set(k, state[k]); }); history.replaceState(null, "", u); }
+    await Promise.all(this.slots.map(function(k){
+      var el = document.querySelector('[data-slot="'+k+'"]');
+      return (el.dataset.variant == state[k]) ? null : Vitals.load(k, state[k]);
+    }));
+    document.fonts.ready.then(function(){ ScrollTrigger.sort(); ScrollTrigger.refresh(); }); // slots load async: sort triggers into page order or pins go stale
+    document.dispatchEvent(new CustomEvent("vitals:change", {detail: state}));
+  }
+};
+fetch("presets.json",{cache:"no-store"}).then(function(r){return r.json();}).then(function(m){
+  Vitals.manifest = m;
+  var q = new URL(location.href).searchParams, st = Vitals.state();
+  if (q.get("preset") && m.presets[q.get("preset")]) st = Object.assign(st, m.presets[q.get("preset")].slots);
+  var only = q.get("only"); // arena: render one slot alone (&only=dials&dials=3)
+  if (only) {
+    Vitals.slots.forEach(function(k){ if (k !== only) st[k] = 0; });
+    if (!st[only]) st[only] = 1;
+    document.querySelector(".masthead").hidden = true;
+  }
+  Vitals.apply(st, !only);
+  if (q.get("clean") === null) { var s = document.createElement("script"); s.src = "mixer.js"; document.body.appendChild(s); }
+});
+</script>
+<script src="../../version-nav.js"></script>
+</body>
+</html>

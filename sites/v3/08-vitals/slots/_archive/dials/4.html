@@ -1,0 +1,85 @@
+<section class="s-dials-4">
+  <div class="wrap s-d4-in">
+    <div class="s-d4-head">
+      <h2 class="s-d4-h">Four things leave on the same afternoon.</h2>
+      <p class="s-d4-lede">They were all attached to the job. Preparation is what puts them back.</p>
+    </div>
+
+    <div class="s-d4-strip">
+      <div class="s-d4-bar" data-off="24" data-on="82">
+        <div class="s-d4-top"><h3>Direction</h3><span class="s-d4-num" data-num>24</span></div>
+        <div class="s-d4-track"><div class="s-d4-fill-off"></div><div class="s-d4-fill-on"></div></div>
+        <p class="s-d4-copy" data-off-txt="Forty years of somewhere to be, finished on a Friday." data-on-txt="A weekday shape you chose, in place before the date.">Forty years of somewhere to be, finished on a Friday.</p>
+      </div>
+      <div class="s-d4-bar" data-off="19" data-on="78">
+        <div class="s-d4-top"><h3>Identity</h3><span class="s-d4-num" data-num>19</span></div>
+        <div class="s-d4-track"><div class="s-d4-fill-off"></div><div class="s-d4-fill-on"></div></div>
+        <p class="s-d4-copy" data-off-txt="Introduced by your job title for thirty years. Then not." data-on-txt="An answer to what you do that is yours, not the firm's.">Introduced by your job title for thirty years. Then not.</p>
+      </div>
+      <div class="s-d4-bar" data-off="28" data-on="85">
+        <div class="s-d4-top"><h3>Purpose</h3><span class="s-d4-num" data-num>28</span></div>
+        <div class="s-d4-track"><div class="s-d4-fill-off"></div><div class="s-d4-fill-on"></div></div>
+        <p class="s-d4-copy" data-off-txt="Work answered what you are for, daily. The question outlives it." data-on-txt="Work worth doing, practised while you still have colleagues.">Work answered what you are for, daily. The question outlives it.</p>
+      </div>
+      <div class="s-d4-bar" data-off="16" data-on="74">
+        <div class="s-d4-top"><h3>Connection</h3><span class="s-d4-num" data-num>16</span></div>
+        <div class="s-d4-track"><div class="s-d4-fill-off"></div><div class="s-d4-fill-on"></div></div>
+        <p class="s-d4-copy" data-off-txt="Most work friendships were structural. Remove the structure and you find out." data-on-txt="People who still ring in August, because you built that on purpose.">Most work friendships were structural. Remove the structure and you find out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-dials-4{padding-block:clamp(2rem,5vw,3.6rem);background:var(--ground)}
+.s-d4-head{margin-bottom:clamp(1.8rem,4vw,2.6rem);max-width:64ch}
+.s-d4-h{font:800 clamp(1.9rem,4.4vw,3.1rem)/1.08 var(--sans);letter-spacing:-.01em}
+.s-d4-lede{margin-top:.7rem;color:var(--ink-soft);font-size:1.1em}
+.s-d4-strip{display:flex;flex-direction:column;gap:clamp(2rem,4.5vw,2.6rem)}
+@media(min-width:900px){
+  .s-d4-in{display:grid;grid-template-columns:22rem 1fr;gap:clamp(2rem,4vw,3.4rem);align-items:start}
+  .s-d4-head{position:sticky;top:6rem;margin-bottom:0}
+  .s-d4-strip{gap:clamp(2.4rem,3.4vw,3rem)}
+}
+.s-d4-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:.6rem}
+.s-d4-top h3{font:800 clamp(1.2rem,2.6vw,1.5rem)/1 var(--sans)}
+.s-d4-num{font:700 clamp(2.5rem,4vw,3rem)/1 var(--num);color:var(--accent)}
+.s-d4-bar.is-on .s-d4-num{color:var(--brand)}
+.s-d4-track{position:relative;height:18px;border-radius:999px;background:color-mix(in srgb,var(--brand) 15%,var(--ground-3));overflow:hidden}
+.s-d4-fill-off,.s-d4-fill-on{position:absolute;inset:0 auto 0 0;height:100%;border-radius:999px;width:0}
+.s-d4-fill-off{background:var(--accent)}
+.s-d4-fill-on{background:var(--brand);opacity:0}
+.s-d4-copy{margin-top:.7rem;color:var(--ink-soft);font-size:1.05rem;max-width:52ch}
+</style>
+<script>
+window.slotInit["dials"] = function(root, reduced){
+  var bars = Array.prototype.slice.call(root.querySelectorAll(".s-d4-bar"));
+
+  function set(bar, p){
+    var off = +bar.dataset.off, on = +bar.dataset.on;
+    var v = off + (on-off)*p;
+    var num = bar.querySelector("[data-num]");
+    var fOff = bar.querySelector(".s-d4-fill-off");
+    var fOn = bar.querySelector(".s-d4-fill-on");
+    var copy = bar.querySelector(".s-d4-copy");
+    num.textContent = Math.round(v);
+    fOff.style.width = (off) + "%";
+    fOff.style.opacity = 1 - p;
+    fOn.style.width = v + "%";
+    fOn.style.opacity = p;
+    if(p > .5){ bar.classList.add("is-on"); copy.textContent = copy.dataset.onTxt; }
+    else { bar.classList.remove("is-on"); copy.textContent = copy.dataset.offTxt; }
+  }
+
+  if(reduced){ bars.forEach(function(b){ set(b, 1); }); return; }
+
+  bars.forEach(function(bar){
+    set(bar, 0);
+    var st = { p: 0 };
+    gsap.to(st, {
+      p: 1, ease: "none",
+      scrollTrigger: { trigger: bar, start: "top 78%", end: "top 30%", scrub: .5, invalidateOnRefresh: true },
+      onUpdate: function(){ set(bar, st.p); }
+    });
+  });
+};
+</script>

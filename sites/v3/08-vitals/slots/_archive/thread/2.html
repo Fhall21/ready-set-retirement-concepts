@@ -1,0 +1,80 @@
+<section class="s-thread-2" aria-hidden="true">
+  <div class="s-thread-2__ground"></div>
+</section>
+
+<style>
+/* Fixed full-viewport colour layer behind all content. z-index below the
+   masthead/sections (which sit on the default stacking context above the
+   white body background) but must render, so it needs a background-color
+   somewhere for it to show through — body's own background stays var(--ground)
+   and this layer sits just above it, below everything else. */
+.s-thread-2{position:fixed;inset:0;pointer-events:none;z-index:-1}
+.s-thread-2__ground{
+  position:absolute;inset:0;
+  background:var(--ground);
+  will-change:background-color;
+}
+</style>
+<script>
+window.slotInit["thread"] = function(root, reduced){
+  var ground = root.querySelector(".s-thread-2__ground");
+
+  // Never dark: white --ground -> ~8% --gold -> ~6% --brand tint by the
+  // consult section. Read the tokens as resolved colours so color-mix works
+  // reliably in a tween (gsap can't scrub CSS color-mix() strings directly).
+  var cs = getComputedStyle(document.documentElement);
+  var groundHex = cs.getPropertyValue("--ground").trim() || "#FFFFFF";
+  var goldHex   = cs.getPropertyValue("--gold").trim()   || "#FFC233";
+  var brandHex  = cs.getPropertyValue("--brand").trim()  || "#7B2FB5";
+
+  function mix(hex, pct){
+    return "color-mix(in srgb, " + hex + " " + pct + "%, var(--ground) " + (100 - pct) + "%)";
+  }
+
+  var state = { t: 0 };
+  function paint(){
+    var t = state.t;
+    var color;
+    if (t <= 0.6){
+      // ground -> pale gold, first 60% of scroll
+      var p = (t / 0.6) * 8; // up to 8%
+      color = mix(goldHex, p);
+    } else {
+      // pale gold -> pale brand tint, remaining 40%, through consult
+      var p2 = (t - 0.6) / 0.4;
+      var goldPct = 8 * (1 - p2);
+      var brandPct = 6 * p2;
+      color = "color-mix(in srgb, " + brandHex + " " + brandPct + "%, " +
+              "color-mix(in srgb, " + goldHex + " " + goldPct + "%, var(--ground) " + (100 - goldPct) + "%) " + (100 - brandPct) + "%)";
+    }
+    ground.style.backgroundColor = color;
+  }
+
+  paint();
+  if (reduced) return;
+
+  gsap.to(state, {
+    t: 1,
+    ease: "none",
+    onUpdate: paint,
+    scrollTrigger: {
+      trigger: document.documentElement,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 0.6,
+      invalidateOnRefresh: true
+    }
+  });
+
+  // Slot swaps change document height (ScrollTrigger start/end), not the
+  // colour math itself, so a plain refresh on vitals:change keeps the
+  // scrubbed range accurate. Cleaned up the same way as thread/1 — a
+  // nested gsap.context whose returned function is its revert hook, which
+  // fires when the outer per-slot context (created by the loader) reverts.
+  var onChange = function(){ ScrollTrigger.refresh(); };
+  document.addEventListener("vitals:change", onChange);
+  gsap.context(function(){
+    return function(){ document.removeEventListener("vitals:change", onChange); };
+  }, root);
+};
+</script>

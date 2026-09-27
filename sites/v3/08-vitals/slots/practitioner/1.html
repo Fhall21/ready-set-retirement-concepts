@@ -1,0 +1,75 @@
+<section class="s-practitioner-1">
+  <div class="wrap grid">
+    <figure class="plate">
+      <img src="assets/drsan.jpg" width="980" height="1470" loading="lazy" decoding="async"
+           alt="Dr Sandra Walden-Pearson, smiling, photographed in warm natural light.">
+    </figure>
+    <div class="bio">
+      <h2>Dr Sandra Walden-Pearson</h2>
+      <p class="role">Psychosocial retirement educator &nbsp;&middot;&nbsp; Far North Queensland</p>
+      <p class="lede">
+        Known as Dr San. She works with individuals who are three to ten years from a
+        retirement date, and with the HR and workforce planners who are about to lose thirty
+        years of institutional knowledge in a single quarter.
+      </p>
+      <p class="lede soft">
+        She is not a financial adviser and has no interest in becoming one. She teaches the
+        other half of the plan &mdash; the half that decides whether the first half was worth
+        doing.
+      </p>
+      <ul class="cred">
+        <li>PhD (Business)</li>
+        <li>MBA (HR)</li>
+        <li>BA Dip Ed</li>
+        <li>Certified Professional Retirement Coach</li>
+      </ul>
+      <details class="more">
+        <summary>Full credentials</summary>
+        <ul>
+          <li>Certified Associate Meta Coach</li>
+          <li>Certified Resilience Coach</li>
+          <li>HART Coach</li>
+          <li>Resilience First Aid Responder</li>
+          <li>Accredited Mental Health First Aider</li>
+          <li>Accredited Mental Health First Aider (Workplace)</li>
+          <li>Accredited Cinergy Conflict Coach</li>
+        </ul>
+      </details>
+      <p class="tm">
+        human-centred retirement planning&trade;<br>
+        readysetretirement psychosocial planning&reg;
+      </p>
+    </div>
+  </div>
+</section>
+<style>
+.s-practitioner-1{padding-block:clamp(3rem,8vw,6rem);background:var(--ground)}
+.s-practitioner-1 .grid{display:grid;gap:clamp(2rem,5vw,4rem);align-items:start}
+@media(min-width:900px){.s-practitioner-1 .grid{grid-template-columns:minmax(280px,42%) 1fr}}
+.s-practitioner-1 .plate{margin:0;border-radius:1.25rem;overflow:clip;background:var(--ground-2)}
+.s-practitioner-1 .plate img{width:100%;height:auto;object-fit:cover;object-position:50% 15%;aspect-ratio:980/1470;filter:saturate(1.05) brightness(1.03)}
+.s-practitioner-1 .bio h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;letter-spacing:-.01em}
+.s-practitioner-1 .role{margin-top:.5rem;color:var(--ink-soft);font-weight:600}
+.s-practitioner-1 .lede{margin-top:1.4rem;max-width:52ch}
+.s-practitioner-1 .lede.soft{color:var(--ink-soft)}
+.s-practitioner-1 .cred{list-style:none;margin:1.8rem 0 0;padding:0;display:grid;gap:.55rem}
+.s-practitioner-1 .cred li{padding-block:.55rem;border-top:1px solid var(--rule);font-weight:600}
+.s-practitioner-1 .cred li:first-child{border-top:none}
+.s-practitioner-1 .more{margin-top:1.2rem}
+.s-practitioner-1 .more summary{cursor:pointer;font-weight:600;color:var(--brand);list-style:none}
+.s-practitioner-1 .more summary::-webkit-details-marker{display:none}
+.s-practitioner-1 .more summary::after{content:" +";color:var(--brand)}
+.s-practitioner-1 .more[open] summary::after{content:" \2212"}
+.s-practitioner-1 .more ul{list-style:none;margin:.9rem 0 0;padding:0;display:grid;gap:.5rem;color:var(--ink-soft)}
+.s-practitioner-1 .tm{margin-top:1.8rem;font-size:.85rem;color:var(--ink-soft)}
+</style>
+<script>
+window.slotInit["practitioner"] = function(root, reduced){
+  var plate = root.querySelector(".plate");
+  if (reduced) { gsap.set(plate, {clipPath:"inset(0% 0% 0% 0%)"}); return; }
+  gsap.fromTo(plate, {clipPath:"inset(100% 0% 0% 0%)"}, {
+    clipPath:"inset(0% 0% 0% 0%)", duration:1.1, ease:"expo.out",
+    scrollTrigger:{trigger:plate, start:"top 85%"}
+  });
+};
+</script>

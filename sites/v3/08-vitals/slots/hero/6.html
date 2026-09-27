@@ -1,0 +1,65 @@
+<section class="s-hero-6">
+  <div class="wrap s-hero-6__grid">
+    <div class="s-hero-6__words">
+      <h1 class="s-hero-6__h1">Educated retirement decisions, <span>for psychological and social wellbeing.</span></h1>
+      <p class="s-hero-6__lede">Financial readiness is one vital sign. It is not the only one.</p>
+      <div class="s-hero-6__cta">
+        <a class="btn" href="/contact">Book a 30-minute consult</a>
+      </div>
+    </div>
+
+    <span class="s-hero-6__rule" aria-hidden="true"></span>
+
+    <figure class="s-hero-6__person">
+      <div class="s-hero-6__photo"><img src="assets/drsan.jpg" alt="Portrait of Dr San" width="980" height="1470"></div>
+      <figcaption>
+        <strong>Dr San</strong>
+        <span>Psychosocial Retirement Educator</span>
+        <em>Human-centred retirement planning&trade;</em>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+.s-hero-6{background:var(--ground);padding-block:clamp(3rem,8vw,7.5rem)}
+.s-hero-6__grid{display:grid;gap:clamp(2.75rem,6vw,4rem);align-items:center}
+.s-hero-6__h1{font:700 clamp(2.2rem,1.8vw + 1.5rem,3.5rem)/1.08 var(--sans);letter-spacing:-.025em;color:var(--ink);max-width:17ch;text-wrap:balance}
+.s-hero-6__h1 span{display:block;margin-top:.12em;font-weight:500;color:var(--brand)}
+.s-hero-6__lede{margin-top:clamp(1.25rem,2vw,1.75rem);max-width:40ch;text-wrap:balance;font:400 clamp(1.1rem,.4vw + 1rem,1.3rem)/1.5 var(--sans);color:var(--ink-soft)}
+.s-hero-6__cta{margin-top:clamp(2rem,3vw,2.5rem);display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1.4rem}
+.s-hero-6__cta .btn{min-height:48px}
+.s-hero-6__cta .btn:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+.s-hero-6__free{font:500 .95rem/1.3 var(--sans);color:var(--ink-soft)}
+.s-hero-6__rule{display:none}
+.s-hero-6__person{order:-1}
+.s-hero-6__person{margin:0;display:flex;align-items:center;gap:1.25rem}
+.s-hero-6__photo{flex:none;width:clamp(6.5rem,28vw,8rem);aspect-ratio:1;border-radius:50%;overflow:hidden;background:var(--ground-3);box-shadow:0 18px 40px -22px color-mix(in srgb,var(--brand-deep) 55%,transparent)}
+.s-hero-6__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+.s-hero-6__person figcaption{display:flex;flex-direction:column;gap:.3rem}
+.s-hero-6__person strong{font:700 1.5rem/1.1 var(--sans);color:var(--brand);letter-spacing:-.01em}
+.s-hero-6__person figcaption span{font:500 1rem/1.35 var(--sans);color:var(--ink)}
+.s-hero-6__person em{font:400 .9rem/1.35 var(--sans);font-style:normal;color:var(--ink-soft)}
+.s-hero-6 ::selection{background:var(--ground-3);color:var(--brand-deep)}
+
+@media (min-width:900px){
+  .s-hero-6{min-height:min(84svh,780px);display:flex;align-items:center}
+  .s-hero-6__grid{grid-template-columns:minmax(0,1.15fr) auto minmax(0,.85fr);gap:clamp(3rem,6vw,6.5rem)}
+  .s-hero-6__rule{display:block;width:1px;align-self:stretch;min-height:22rem;background:var(--rule-strong);transform-origin:50% 0}
+  .s-hero-6__person{order:0;flex-direction:column;text-align:center;gap:1.6rem}
+  .s-hero-6__person figcaption{align-items:center}
+  .s-hero-6__photo{width:clamp(16rem,22vw,20rem)}
+  .s-hero-6__person strong{font-size:2rem}
+  .s-hero-6__person figcaption span{font-size:1.1rem}
+}
+</style>
+
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  var rule = root.querySelector('.s-hero-6__rule');
+  if (rule && getComputedStyle(rule).display !== 'none') {
+    gsap.fromTo(rule, {scaleY:0}, {scaleY:1, duration:1.4, ease:'expo.out', delay:.2, immediateRender:true});
+  }
+};
+</script>

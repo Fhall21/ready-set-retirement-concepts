@@ -1,0 +1,87 @@
+<section class="s-practitioner-2">
+  <div class="wrap">
+    <div class="layout">
+      <div class="field" aria-hidden="true"></div>
+      <figure class="plate">
+        <img src="assets/drsan.jpg" width="980" height="1470" loading="lazy" decoding="async"
+             alt="Dr Sandra Walden-Pearson, smiling, photographed in warm natural light.">
+      </figure>
+      <div class="copy">
+        <h2 class="name">Dr Sandra<br>Walden&#8209;Pearson</h2>
+        <p class="role">Psychosocial retirement educator &nbsp;&middot;&nbsp; Far North Queensland</p>
+        <p class="lede">
+          Known as Dr San. She works with individuals who are three to ten years from a
+          retirement date, and with the HR and workforce planners who are about to lose thirty
+          years of institutional knowledge in a single quarter.
+        </p>
+        <p class="lede soft">
+          She is not a financial adviser and has no interest in becoming one. She teaches the
+          other half of the plan &mdash; the half that decides whether the first half was worth
+          doing.
+        </p>
+        <ul class="cred">
+          <li>PhD (Business)</li>
+          <li>MBA (HR)</li>
+          <li>BA Dip Ed</li>
+          <li>Certified Professional Retirement Coach</li>
+        </ul>
+        <details class="more">
+          <summary>Full credentials</summary>
+          <ul>
+            <li>Certified Associate Meta Coach</li>
+            <li>Certified Resilience Coach</li>
+            <li>HART Coach</li>
+            <li>Resilience First Aid Responder</li>
+            <li>Accredited Mental Health First Aider</li>
+            <li>Accredited Mental Health First Aider (Workplace)</li>
+            <li>Accredited Cinergy Conflict Coach</li>
+          </ul>
+        </details>
+        <p class="tm">
+          human-centred retirement planning&trade;<br>
+          readysetretirement psychosocial planning&reg;
+        </p>
+      </div>
+    </div>
+    <blockquote class="quote">
+      <p>&ldquo;In talking with Dr San I realised the critical need to plan for the human side of
+      retirement. With hand on heart, I can honestly say that engaging Dr San has been life
+      changing.&rdquo;</p>
+      <cite><b>Hon. Warren Entsch</b> &middot; Former Federal Member for Leichhardt</cite>
+    </blockquote>
+  </div>
+</section>
+<style>
+.s-practitioner-2{padding-block:clamp(3rem,8vw,6rem) clamp(3rem,7vw,5rem);position:relative;overflow:clip;background:var(--ground)}
+.s-practitioner-2 .layout{position:relative}
+.s-practitioner-2 .field{position:absolute;top:-1.5rem;left:calc(-1 * var(--gut));right:calc(-1 * var(--gut));height:min(240px,40vw);background:var(--brand);z-index:0}
+.s-practitioner-2 .wrap{position:relative;z-index:1}
+.s-practitioner-2 .name{font-size:clamp(2rem,5.6vw,3.4rem);font-weight:900;letter-spacing:-.02em;line-height:1.02;color:var(--ink)}
+.s-practitioner-2 .layout{display:grid;gap:clamp(1.5rem,4vw,3rem);align-items:end}
+@media(min-width:900px){.s-practitioner-2 .layout{grid-template-columns:minmax(240px,34%) 1fr}}
+@media(min-width:900px){.s-practitioner-2 .field{top:-3rem;bottom:-3rem;height:auto;right:auto;left:calc(-1 * (50vw - min(620px,50vw) + var(--gut)));width:calc(50vw - min(620px,50vw) + var(--gut) + 17%)}}
+.s-practitioner-2 .plate{margin:0;border-radius:.9rem;overflow:clip;box-shadow:0 24px 60px -20px rgba(0,0,0,.35);position:relative;z-index:1}
+.s-practitioner-2 .plate img{width:100%;height:auto;object-fit:cover;object-position:50% 15%;aspect-ratio:980/1470;filter:saturate(1.08) brightness(1.05)}
+.s-practitioner-2 .copy{padding:clamp(1.2rem,3vw,2rem) clamp(1.2rem,3vw,2rem) clamp(1.2rem,3vw,2rem) 0}
+.s-practitioner-2 .role{font-weight:700;color:var(--ink-soft);margin-top:1.2rem}
+.s-practitioner-2 .lede{margin-top:1.2rem;max-width:52ch}
+.s-practitioner-2 .lede.soft{color:var(--ink-soft)}
+.s-practitioner-2 .cred{list-style:none;margin:1.5rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;font-weight:600}
+.s-practitioner-2 .cred li+li{border-left:1px solid var(--rule);padding-left:1.2rem}
+.s-practitioner-2 .more{margin-top:1.1rem}
+.s-practitioner-2 .more summary{cursor:pointer;font-weight:600;color:var(--brand);list-style:none}
+.s-practitioner-2 .more summary::-webkit-details-marker{display:none}
+.s-practitioner-2 .more ul{list-style:none;margin:.9rem 0 0;padding:0;display:grid;gap:.5rem;color:var(--ink-soft)}
+.s-practitioner-2 .tm{margin-top:1.6rem;font-size:.85rem;color:var(--ink-soft)}
+.s-practitioner-2 .quote{margin-top:clamp(2.5rem,6vw,4rem);max-width:60ch;border-top:1px solid var(--rule);padding-top:1.6rem}
+.s-practitioner-2 .quote p{font-size:clamp(1.2rem,2.4vw,1.6rem);font-weight:600;letter-spacing:-.01em}
+.s-practitioner-2 .quote cite{display:block;margin-top:.8rem;font-style:normal;color:var(--ink-soft)}
+</style>
+<script>
+window.slotInit["practitioner"] = function(root, reduced){
+  var name = root.querySelector(".name");
+  if (reduced) return;
+  gsap.from(name, {y:24, opacity:0, duration:.9, ease:"power3.out",
+    scrollTrigger:{trigger:root, start:"top 80%"}});
+};
+</script>

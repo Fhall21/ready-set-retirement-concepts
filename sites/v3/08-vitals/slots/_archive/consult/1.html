@@ -1,0 +1,35 @@
+<section class="s-consult-1">
+  <div class="wrap">
+    <blockquote class="quote">
+      <p>&ldquo;In talking with Dr San I realised the critical need to plan for the human side of
+      retirement. With hand on heart, I can honestly say that engaging Dr San has been life
+      changing.&rdquo;</p>
+      <cite><b>Hon. Warren Entsch</b> &middot; Former Federal Member for Leichhardt</cite>
+    </blockquote>
+  </div>
+  <div class="band">
+    <div class="wrap">
+      <h2>Thirty minutes, at no cost, well before the date.</h2>
+      <a class="btn pill" href="/contact">Book the consult</a>
+    </div>
+  </div>
+</section>
+<style>
+.s-consult-1{background:var(--ground)}
+.s-consult-1 .quote{max-width:60ch;margin:0 auto;padding-block:clamp(2.5rem,6vw,4rem);text-align:center}
+.s-consult-1 .quote p{font-size:clamp(1.15rem,2.2vw,1.45rem);font-weight:600;letter-spacing:-.01em;color:var(--ink-soft)}
+.s-consult-1 .quote cite{display:block;margin-top:.9rem;font-style:normal;color:var(--ink-soft);font-size:.9rem}
+.s-consult-1 .band{background:var(--brand);padding-block:clamp(3.5rem,10vw,6.5rem)}
+.s-consult-1 .band .wrap{text-align:center;display:grid;gap:clamp(1.6rem,4vw,2.4rem);justify-items:center}
+.s-consult-1 .band h2{color:#fff;font-size:clamp(2rem,5.6vw,3.4rem);font-weight:800;letter-spacing:-.015em;line-height:1.08;max-width:20ch}
+.s-consult-1 .pill{background:#fff;color:var(--brand-deep);font-size:1.1rem;padding:1.2rem 2.2rem;box-shadow:0 16px 40px -14px rgba(0,0,0,.4)}
+.s-consult-1 .pill:hover{background:var(--gold);color:var(--ink);transform:translateY(-2px)}
+</style>
+<script>
+window.slotInit["consult"] = function(root, reduced){
+  var h2 = root.querySelector(".band h2"), pill = root.querySelector(".pill");
+  if (reduced) return;
+  gsap.from([h2, pill], {y:20, opacity:0, duration:.8, stagger:.1, ease:"power3.out",
+    scrollTrigger:{trigger:root.querySelector(".band"), start:"top 82%"}});
+};
+</script>

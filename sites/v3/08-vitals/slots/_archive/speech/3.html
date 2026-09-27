@@ -1,0 +1,83 @@
+<section class="s-speech-3">
+  <div class="wrap s-sp3-in">
+    <svg class="s-sp3-thread" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="sp3grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--brand)"/>
+          <stop offset="1" stop-color="var(--accent)"/>
+        </linearGradient>
+      </defs>
+      <path id="s-sp3-path" d="" fill="none" stroke="url(#sp3grad)" stroke-width=".6" stroke-linecap="round"/>
+    </svg>
+    <div class="s-sp3-lines">
+      <p class="s-sp3-l" data-l="0">We spend forty years planning for retirement financially and roughly ten minutes planning who we will be when it arrives.</p>
+      <p class="s-sp3-l" data-l="1">The money question gets a professional, a strategy, an annual review and a spreadsheet that runs to age ninety. The other question gets a good luck and a card.</p>
+      <p class="s-sp3-l s-sp3-final" data-l="2">Money funds a lifestyle. It cannot buy a quality of life, and it has never once told anyone what to do with <span class="s-sp3-wed">a Wednesday</span>.</p>
+    </div>
+  </div>
+</section>
+<style>
+.s-speech-3{padding-block:clamp(3rem,8vw,5.5rem);background:var(--ground);position:relative}
+.s-sp3-in{max-width:760px;position:relative}
+.s-sp3-thread{position:absolute;left:-2.4rem;top:0;width:2.4rem;height:100%;overflow:visible}
+@media (max-width:600px){.s-sp3-thread{left:-1.4rem;width:1.4rem}}
+.s-sp3-lines{font-size:1.15rem;line-height:1.75}
+.s-sp3-l+.s-sp3-l{margin-top:1.6em}
+.s-sp3-final{font-weight:700}
+.s-sp3-wed{position:relative;white-space:nowrap}
+.s-sp3-wed::after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:.09em;background:linear-gradient(90deg,var(--brand),var(--accent));transform:scaleX(0);transform-origin:left;border-radius:2px}
+</style>
+<script>
+window.slotInit["speech"] = function(root, reduced){
+  var svg = root.querySelector(".s-sp3-thread");
+  var path = root.querySelector("#s-sp3-path");
+  var lines = root.querySelectorAll(".s-sp3-l");
+
+  function build(){
+    var h = svg.getBoundingClientRect().height || 400;
+    var w = 24;
+    var pts = [];
+    var n = lines.length;
+    for(var i=0;i<=n;i++){
+      var y = (h/n)*i * (100/h);
+      var x = (i % 2 === 0) ? 30 : 70;
+      pts.push([x,y]);
+    }
+    var d = "M" + pts[0][0] + " " + pts[0][1];
+    for(var j=1;j<pts.length;j++){
+      var prev = pts[j-1], cur = pts[j];
+      var midY = (prev[1]+cur[1])/2;
+      d += " C " + prev[0] + " " + midY + " " + cur[0] + " " + midY + " " + cur[0] + " " + cur[1];
+    }
+    path.setAttribute("d", d);
+  }
+
+  build();
+  gsap.set(path, {drawSVG:"0%"});
+
+  if(reduced){
+    gsap.set(path, {drawSVG:"100%"});
+    var style = document.createElement("style");
+    style.textContent = ".s-sp3-wed::after{transform:scaleX(1)!important}";
+    root.appendChild(style);
+    return;
+  }
+
+  var tl = gsap.timeline({
+    scrollTrigger: { trigger: root, start: "top 75%", end: "bottom 40%", scrub: .9, invalidateOnRefresh:true }
+  });
+  tl.to(path, {drawSVG:"100%", ease:"none"}, 0);
+
+  ScrollTrigger.create({
+    trigger: root.querySelector(".s-sp3-wed"), start:"top 70%", end:"top 45%", scrub:.6,
+    onUpdate: function(self){
+      root.querySelector(".s-sp3-wed").style.setProperty("--u", self.progress);
+    }
+  });
+  var style2 = document.createElement("style");
+  style2.textContent = ".s-sp3-wed::after{transform:scaleX(var(--u,0))}";
+  root.appendChild(style2);
+
+  window.addEventListener("resize", build);
+};
+</script>

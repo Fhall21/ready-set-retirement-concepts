@@ -1,0 +1,41 @@
+<section class="s-cover-4">
+  <div class="wrap">
+    <h2 class="s-cover-4-h">A money plan is excellent at the things it covers.</h2>
+    <p class="s-cover-4-lede">Not one line in the lower half is a money problem. That is why the money plan was never going to reach it.</p>
+
+    <ul class="s-cover-4-list">
+      <li class="s-cover-4-row s-cover-4-yes"><svg class="s-cover-4-mark" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6"/></svg><span>Income, tax and drawdown &mdash; covered by the money plan.</span></li>
+      <li class="s-cover-4-row s-cover-4-yes"><svg class="s-cover-4-mark" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6"/></svg><span>Super, pension and health cover &mdash; covered by the money plan.</span></li>
+      <li class="s-cover-4-row s-cover-4-yes"><svg class="s-cover-4-mark" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6"/></svg><span>The house, and whether to move &mdash; covered by the money plan.</span></li>
+      <li class="s-cover-4-row s-cover-4-no"><svg class="s-cover-4-mark" viewBox="0 0 24 24"><path d="M5 12h14"/></svg><span>What a Tuesday looks like &mdash; not covered by the money plan.</span></li>
+      <li class="s-cover-4-row s-cover-4-no"><svg class="s-cover-4-mark" viewBox="0 0 24 24"><path d="M5 12h14"/></svg><span>Who you are without the title &mdash; not covered by the money plan.</span></li>
+      <li class="s-cover-4-row s-cover-4-no"><svg class="s-cover-4-mark" viewBox="0 0 24 24"><path d="M5 12h14"/></svg><span>Something to be useful for &mdash; not covered by the money plan.</span></li>
+      <li class="s-cover-4-row s-cover-4-no"><svg class="s-cover-4-mark" viewBox="0 0 24 24"><path d="M5 12h14"/></svg><span>People who still call &mdash; not covered by the money plan.</span></li>
+    </ul>
+
+    <p class="s-cover-4-close">One funds the lifestyle. The other decides whether there is a life in it.</p>
+  </div>
+</section>
+<style>
+.s-cover-4-h{font:800 clamp(1.9rem,1.2rem + 2.6vw,3rem)/1.15 var(--sans);max-width:24ch}
+.s-cover-4-lede{margin-top:1rem;margin-bottom:1.8rem;max-width:52ch;color:var(--ink-soft);font-size:1.02em}
+.s-cover-4-list{list-style:none;padding:0;display:flex;flex-direction:column}
+.s-cover-4-row{display:flex;align-items:flex-start;gap:.85rem;padding:1rem 0;border-top:1px solid var(--rule);font-size:1.08rem;line-height:1.5}
+.s-cover-4-row:last-child{border-bottom:1px solid var(--rule)}
+.s-cover-4-mark{flex:none;width:1.4rem;height:1.4rem;margin-top:.15em}
+.s-cover-4-mark path{fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.s-cover-4-yes .s-cover-4-mark path{stroke:var(--brand)}
+.s-cover-4-no .s-cover-4-mark path{stroke:var(--accent)}
+.s-cover-4-no{color:var(--ink-soft)}
+.s-cover-4-close{margin-top:2rem;max-width:46ch;font:600 1.1em/1.5 var(--sans)}
+</style>
+<script>
+window.slotInit["cover"] = function(root, reduced){
+  var rows = root.querySelectorAll(".s-cover-4-row");
+  if (reduced) return;
+  gsap.from(rows, {
+    autoAlpha: 0, y: 8, duration: .5, ease: "power2.out", stagger: 0.05,
+    scrollTrigger: { trigger: root.querySelector(".s-cover-4-list"), start: "top 88%" }
+  });
+};
+</script>

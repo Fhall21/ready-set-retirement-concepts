@@ -1,0 +1,53 @@
+<section class="s-hero-8">
+  <div class="wrap s-hero-8__grid">
+    <div class="s-hero-8__copy">
+      <h1 class="s-hero-8__h1">Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+      <p class="s-hero-8__lede">We spend forty years planning the money and about ten minutes planning the person.</p>
+      <div class="s-hero-8__cta">
+        <a class="btn" href="/contact">Book a 30-minute consult</a>
+        <a class="s-hero-8__ghost" href="#cover">See what is covered</a>
+      </div>
+    </div>
+
+    <figure class="s-hero-8__monday">
+      <div class="s-hero-8__page" aria-hidden="true">
+        <span class="s-hero-8__day">Monday</span>
+        <span class="s-hero-8__was" data-was>Standup</span>
+      </div>
+      <figcaption class="s-hero-8__caption">What catches people out is Monday.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+.s-hero-8{min-height:min(90svh,860px);display:flex;align-items:center;padding-block:clamp(2.5rem,6vw,4rem);background:var(--ground)}
+.s-hero-8 .wrap{width:100%}
+.s-hero-8__grid{display:grid;gap:clamp(2.2rem,5vw,4rem);align-items:center}
+.s-hero-8__h1{font:800 clamp(2.6rem,3.6vw + 1.6rem,5.2rem)/1.04 var(--sans);letter-spacing:-.015em;max-width:14ch;text-wrap:balance}
+.s-hero-8__h1 em{font-style:normal;color:var(--brand)}
+.s-hero-8__lede{margin-top:1.2rem;max-width:40ch;color:var(--ink-soft);font-size:clamp(1.08rem,.4vw + 1rem,1.25rem);line-height:1.5}
+.s-hero-8__cta{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.8rem 1.5rem;align-items:center}
+.s-hero-8__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.9rem 0}
+
+.s-hero-8__monday{margin:0}
+.s-hero-8__page{position:relative;aspect-ratio:4/3;border:2px dashed var(--accent);border-radius:14px;display:flex;align-items:flex-start;padding:1.1rem 1.3rem}
+.s-hero-8__day{font:700 1rem/1 var(--sans);color:var(--accent)}
+.s-hero-8__was{position:absolute;inset:0;display:grid;place-items:center;font:600 1.1rem/1 var(--sans);color:var(--ink-soft);opacity:0}
+.s-hero-8__caption{margin-top:1rem;font:700 clamp(1.15rem,.6vw + 1rem,1.4rem)/1.3 var(--sans);color:var(--ink)}
+
+@media (max-width:759px){
+  .s-hero-8__page{aspect-ratio:auto;min-height:9.5rem}
+}
+@media (min-width:960px){
+  .s-hero-8__grid{grid-template-columns:1.25fr 1fr}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  var was = root.querySelector('[data-was]');
+  if (reduced) return;
+  gsap.timeline({delay:.6})
+    .to(was, {opacity:1, duration:.5, ease:"power3.out"})
+    .to(was, {opacity:0, duration:1.4, ease:"power2.in"}, "+=.9");
+};
+</script>

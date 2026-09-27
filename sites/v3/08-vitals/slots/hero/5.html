@@ -1,0 +1,64 @@
+<section class="s-hero-5">
+  <div class="wrap">
+    <h1 class="s-hero-5__h1">Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+
+    <div class="s-hero-5__diary" role="img" aria-label="Diary week: Friday says Farewell drinks. The following Monday is blank.">
+      <div class="s-hero-5__diary-head"><span>Week 1</span></div>
+      <div class="s-hero-5__week">
+        <div class="s-hero-5__day"><span class="s-hero-5__dlabel">Mon</span><span class="s-hero-5__dbox">Team meeting</span></div>
+        <div class="s-hero-5__day"><span class="s-hero-5__dlabel">Tue</span><span class="s-hero-5__dbox">Reports due</span></div>
+        <div class="s-hero-5__day"><span class="s-hero-5__dlabel">Wed</span><span class="s-hero-5__dbox">Handover notes</span></div>
+        <div class="s-hero-5__day"><span class="s-hero-5__dlabel">Thu</span><span class="s-hero-5__dbox">Client calls</span></div>
+        <div class="s-hero-5__day s-hero-5__day--last"><span class="s-hero-5__dlabel">Fri</span><span class="s-hero-5__dbox s-hero-5__dbox--last">Farewell drinks</span></div>
+      </div>
+      <div class="s-hero-5__diary-head s-hero-5__diary-head--next"><span>Week 2</span></div>
+      <div class="s-hero-5__week s-hero-5__week--next">
+        <div class="s-hero-5__day s-hero-5__day--blank">
+          <span class="s-hero-5__dlabel">Mon</span>
+          <span class="s-hero-5__dbox s-hero-5__dbox--blank" data-blank></span>
+        </div>
+      </div>
+    </div>
+
+    <p class="s-hero-5__lede">We spend forty years planning the money and about ten minutes planning the person. The balance gets reviewed every year. The person gets worked out on the drive home from the farewell.</p>
+
+    <div class="s-hero-5__cta">
+      <a class="btn" href="/contact">Book a 30-minute consult</a>
+      <a class="s-hero-5__ghost" href="#cover">See what is covered</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-5{min-height:min(100svh,900px);display:flex;align-items:center;padding-block:clamp(2rem,5vw,3rem);background:var(--ground)}
+.s-hero-5 .wrap{width:100%}
+.s-hero-5__h1{font:800 clamp(2.6rem,3vw + 1.8rem,4.6rem)/1.06 var(--sans);letter-spacing:-.015em;max-width:20ch}
+.s-hero-5__h1 em{font-style:normal;color:var(--brand)}
+
+.s-hero-5__diary{margin-top:clamp(1.6rem,3.5vw,2.4rem);border:1px solid var(--rule-strong);border-radius:12px;background:#fff;padding:1.4rem 1.4rem 1.6rem;box-shadow:0 24px 60px -36px rgba(0,0,0,.2)}
+.s-hero-5__diary-head{font:700 .8rem/1 var(--num);color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;padding-bottom:.7rem;border-bottom:1px solid var(--rule)}
+.s-hero-5__diary-head--next{margin-top:1.1rem}
+.s-hero-5__week{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.6rem;margin-top:.9rem}
+.s-hero-5__week--next{grid-template-columns:repeat(5,minmax(0,1fr))}
+.s-hero-5__day{display:flex;flex-direction:column;gap:.45rem}
+.s-hero-5__dlabel{font:700 .78rem/1 var(--sans);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em}
+.s-hero-5__dbox{min-height:64px;border-radius:8px;border:1px solid var(--rule);background:var(--ground-2);
+  display:flex;align-items:center;justify-content:center;text-align:center;font:600 .78rem/1.2 var(--sans);color:var(--ink-soft);padding:.4rem}
+.s-hero-5__dbox--last{background:var(--ground-3);color:var(--ink);font-weight:700}
+.s-hero-5__dbox--blank{background:var(--ground);border:2px dashed var(--brand);color:transparent}
+
+@media (min-width:640px){
+  .s-hero-5__dbox{min-height:88px;font-size:.85rem}
+}
+.s-hero-5__lede{margin-top:1.6rem;max-width:56ch;color:var(--ink-soft);font-size:1.1rem}
+.s-hero-5__cta{margin-top:1.7rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center}
+.s-hero-5__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.6rem 0}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  var blank = root.querySelector("[data-blank]");
+  if (reduced) return;
+  gsap.from(blank, {opacity:0, scale:.9, duration:.6, ease:"power2.out", delay:.4});
+  gsap.to(blank, {boxShadow:"0 0 0 3px color-mix(in srgb, var(--brand) 20%, transparent)", duration:.9, repeat:1, yoyo:true, delay:1});
+};
+</script>

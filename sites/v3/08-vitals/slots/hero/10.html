@@ -1,0 +1,42 @@
+<section class="s-hero-10">
+  <div class="s-hero-10__grid">
+    <figure class="s-hero-10__photo">
+      <img src="assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling, looking toward the camera">
+    </figure>
+    <div class="s-hero-10__text">
+      <p class="s-hero-10__name">Dr San &middot; Psychosocial Retirement Educator</p>
+      <h1 class="s-hero-10__h1">Educated retirement decisions, <span>for psychological and social wellbeing.</span></h1>
+      <p class="s-hero-10__lede">Financial readiness is one vital sign. It is not the only one.</p>
+      <a class="btn s-hero-10__btn" href="/contact">Book a 30-minute consult</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-10{background:var(--ground);overflow:hidden}
+.s-hero-10__grid{display:grid;grid-template-columns:1fr}
+.s-hero-10__photo{margin:0;position:relative;height:clamp(240px,38svh,340px);overflow:hidden;background:var(--ground-2)}
+.s-hero-10__photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.s-hero-10__text{padding:1.5rem var(--gut) 2.5rem;max-width:36rem}
+.s-hero-10__name{margin:0 0 1.1rem;font:500 .95rem/1.4 var(--sans);color:var(--ink-soft)}
+.s-hero-10__h1{margin:0;font:700 clamp(2rem,2.2vw + 1.4rem,3.6rem)/1.08 var(--sans);letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
+.s-hero-10__h1 span{display:block;margin-top:.12em;font-weight:500;color:var(--brand)}
+.s-hero-10__lede{margin:1.2rem 0 0;font:400 clamp(1.1rem,.5vw + 1rem,1.3rem)/1.5 var(--sans);color:var(--ink-soft);max-width:34ch;text-wrap:pretty}
+.s-hero-10__btn{margin-top:1.8rem;min-height:48px}
+
+@media (min-width:860px){
+  .s-hero-10__grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:min(100svh,880px)}
+  .s-hero-10__photo{height:auto;min-height:100%}
+  .s-hero-10__photo img{position:absolute;inset:0;object-position:50% 25%}
+  .s-hero-10__text{align-self:center;padding:clamp(3rem,6vw,6rem) clamp(2rem,6vw,6rem);max-width:40rem}
+  .s-hero-10__name{margin-bottom:1.6rem}
+}
+</style>
+
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelector(".s-hero-10__photo img"),
+    {scale:1.06, opacity:.001}, {scale:1, opacity:1, duration:1.6, ease:"power3.out", immediateRender:true});
+};
+</script>

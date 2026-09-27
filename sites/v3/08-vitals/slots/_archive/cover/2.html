@@ -1,0 +1,90 @@
+<section class="s-cover-2">
+  <div class="wrap">
+    <h2 class="s-cover-2-h">A money plan is excellent at the things it covers.</h2>
+    <p class="s-cover-2-lede">Not one line in the lower half is a money problem. That is why the money plan was never going to reach it.</p>
+
+    <div class="s-cover-2-statement">
+      <div class="s-cover-2-title">Your cover summary</div>
+      <div class="s-cover-2-cols">
+        <div class="s-cover-2-col">
+          <h3>Money plan</h3>
+          <ul>
+            <li class="s-cover-2-yes">Income, tax and drawdown</li>
+            <li class="s-cover-2-yes">Super, pension and health cover</li>
+            <li class="s-cover-2-yes">The house, and whether to move</li>
+            <li class="s-cover-2-no">What a Tuesday looks like</li>
+            <li class="s-cover-2-no">Who you are without the title</li>
+            <li class="s-cover-2-no">Something to be useful for</li>
+            <li class="s-cover-2-no">People who still call</li>
+          </ul>
+          <div class="s-cover-2-sum" data-count="3"><span class="s-cover-2-num">3</span><span class="s-cover-2-of"> of 7 covered</span></div>
+        </div>
+        <div class="s-cover-2-col">
+          <h3>Psychosocial plan</h3>
+          <ul>
+            <li class="s-cover-2-no">Income, tax and drawdown</li>
+            <li class="s-cover-2-no">Super, pension and health cover</li>
+            <li class="s-cover-2-no">The house, and whether to move</li>
+            <li class="s-cover-2-yes">What a Tuesday looks like</li>
+            <li class="s-cover-2-yes">Who you are without the title</li>
+            <li class="s-cover-2-yes">Something to be useful for</li>
+            <li class="s-cover-2-yes">People who still call</li>
+          </ul>
+          <div class="s-cover-2-sum" data-count="4"><span class="s-cover-2-num">4</span><span class="s-cover-2-of"> of 7 covered</span></div>
+        </div>
+      </div>
+      <div class="s-cover-2-total">Together, 7 of 7 &mdash; with both.</div>
+    </div>
+
+    <p class="s-cover-2-close">One funds the lifestyle. The other decides whether there is a life in it.</p>
+  </div>
+</section>
+<style>
+.s-cover-2-h{font:800 clamp(1.8rem,1rem + 3.2vw,3.4rem)/1.12 var(--sans);max-width:22ch}
+.s-cover-2-lede{margin-top:1.1rem;margin-bottom:2.2rem;max-width:52ch;color:var(--ink-soft);font-size:1.05em}
+.s-cover-2-statement{background:var(--ground-2);border-radius:1.1rem;padding:clamp(1.3rem,3vw,2.2rem)}
+.s-cover-2-title{font:600 1.05rem/1 var(--sans);color:var(--ink-soft);margin-bottom:1.3rem}
+.s-cover-2-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.2rem,3vw,2.4rem)}
+.s-cover-2-col h3{font:700 1.05rem/1 var(--sans);margin-bottom:1rem}
+.s-cover-2-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:.7rem}
+.s-cover-2-col li{position:relative;padding-left:1.9rem;font-size:1.05rem;line-height:1.45}
+.s-cover-2-col li::before{content:"";position:absolute;left:0;top:.32em;width:1.15rem;height:1.15rem;border-radius:3px}
+.s-cover-2-yes::before{background:var(--brand)}
+.s-cover-2-no{color:var(--ink-soft)}
+.s-cover-2-no::before{background:transparent;border:2px solid var(--accent)}
+.s-cover-2-sum{margin-top:1.4rem;padding-top:1.1rem;border-top:1px solid var(--rule-strong);display:flex;align-items:baseline;gap:.5rem}
+.s-cover-2-num{font:900 clamp(2.4rem,1.6rem + 2.4vw,3.4rem)/1 var(--num);color:var(--brand-deep)}
+.s-cover-2-of{font:600 1.05rem/1 var(--sans);color:var(--ink-soft)}
+.s-cover-2-total{margin-top:1.8rem;text-align:center;font:800 clamp(1.4rem,1.1rem + 1.2vw,2rem)/1.2 var(--sans);color:var(--brand-deep)}
+.s-cover-2-close{margin-top:2.2rem;max-width:46ch;font:600 1.15em/1.5 var(--sans)}
+@media (max-width:640px){
+  .s-cover-2-cols{grid-template-columns:1fr;gap:1.6rem}
+  .s-cover-2-statement{border-radius:.9rem}
+}
+</style>
+<script>
+window.slotInit["cover"] = function(root, reduced){
+  var sums = root.querySelectorAll(".s-cover-2-sum");
+  var total = root.querySelector(".s-cover-2-total");
+  if (reduced) return;
+  gsap.from(root.querySelector(".s-cover-2-statement"), {
+    autoAlpha: 0, y: 24, duration: .7, ease: "power3.out",
+    scrollTrigger: { trigger: root.querySelector(".s-cover-2-statement"), start: "top 85%" }
+  });
+  sums.forEach(function(el, i){
+    var target = +el.dataset.count;
+    var numEl = el.querySelector(".s-cover-2-num");
+    var obj = { n: 0 };
+    gsap.to(obj, {
+      n: target, duration: 1, ease: "power2.out", delay: .3 + i*.15,
+      snap: { n: 1 },
+      onUpdate: function(){ numEl.textContent = obj.n; },
+      scrollTrigger: { trigger: el, start: "top 90%" }
+    });
+  });
+  gsap.from(total, {
+    autoAlpha: 0, y: 10, duration: .6, ease: "power3.out", delay: .8,
+    scrollTrigger: { trigger: total, start: "top 92%" }
+  });
+};
+</script>

@@ -1,0 +1,42 @@
+<section class="s-method-3">
+  <div class="wrap">
+    <p class="s-method-3-lead">This is the recognised dark side of retirement, and it arrives on schedule for the people who did everything else right. It is not a weakness. It is an unplanned transition, and unplanned transitions go badly whatever the balance says.</p>
+    <p class="s-method-3-sub">Five things education actually does.</p>
+  </div>
+
+  <div class="s-method-3-steps">
+    <div class="s-method-3-step"><span class="s-method-3-line">Rehearsal &mdash; practise the next identity while you still have the old one.</span></div>
+    <div class="s-method-3-step"><span class="s-method-3-line">Language &mdash; name the four losses before they arrive unannounced.</span></div>
+    <div class="s-method-3-step"><span class="s-method-3-line">Structure &mdash; a week with real shape, designed rather than improvised.</span></div>
+    <div class="s-method-3-step"><span class="s-method-3-line">People &mdash; a social base that does not depend on a payroll system.</span></div>
+    <div class="s-method-3-step"><span class="s-method-3-line">Evidence &mdash; a method with stages, so you can tell whether you are through one.</span></div>
+  </div>
+</section>
+<style>
+.s-method-3{padding-block:clamp(3rem,8vh,6rem)}
+.s-method-3-lead{max-width:62ch;font-size:1.05em;color:var(--ink-soft)}
+.s-method-3-sub{margin-top:.8rem;font-weight:700}
+.s-method-3-steps{margin-top:clamp(1.5rem,4vh,2.5rem)}
+.s-method-3-step{min-height:32vh;display:flex;align-items:center;padding-inline:var(--gut)}
+.s-method-3-line{display:inline-block;font:800 clamp(1.5rem,1rem + 2.4vw,4rem)/1.2 var(--sans);max-width:20ch;
+  padding:.15em .3em;color:var(--ink);background:transparent;transition:color .25s,background-color .25s}
+.s-method-3-step.is-active .s-method-3-line{color:#fff;background:var(--brand)}
+@media (max-width:640px){
+  .s-method-3-step{min-height:26vh}
+}
+</style>
+<script>
+window.slotInit["method"] = function(root, reduced){
+  var steps = root.querySelectorAll(".s-method-3-step");
+  if (reduced) { steps.forEach(function(s){ s.classList.add("is-active"); }); return; }
+
+  steps.forEach(function(step){
+    ScrollTrigger.create({
+      trigger: step,
+      start: "top center",
+      end: "bottom center",
+      onToggle: function(self){ step.classList.toggle("is-active", self.isActive); }
+    });
+  });
+};
+</script>

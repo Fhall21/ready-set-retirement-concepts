@@ -1,0 +1,71 @@
+<!-- Hero 11: hero 7 re-set. Smaller, tighter headline; the review row becomes a statement ledger where Financial stands apart and the four "Never"s read as one blank. -->
+<section class="s-hero-11">
+  <div class="wrap">
+    <div class="s-hero-11__top">
+      <h1 class="s-hero-11__h1">Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+      <p class="s-hero-11__lede">We spend forty years planning the money and about ten minutes planning the person. The balance gets reviewed every year. The person gets worked out on the drive home from the farewell.</p>
+    </div>
+
+    <table class="s-hero-11__tbl">
+      <caption>Last reviewed</caption>
+      <thead><tr><th scope="col">Vital sign</th><th scope="col">Last reviewed</th></tr></thead>
+      <tbody>
+        <tr class="s-hero-11__ok"><th scope="row">Financial</th><td>Every year</td></tr>
+        <tr><th scope="row">Direction</th><td>Never</td></tr>
+        <tr><th scope="row">Identity</th><td>Never</td></tr>
+        <tr><th scope="row">Purpose</th><td>Never</td></tr>
+        <tr><th scope="row">Connection</th><td>Never</td></tr>
+      </tbody>
+    </table>
+
+    <div class="s-hero-11__cta">
+      <a class="btn" href="/contact">Book a 30-minute consult</a>
+      <a class="s-hero-11__ghost" href="#cover">See what is covered</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-11{min-height:min(100svh,900px);display:flex;align-items:center;padding-block:clamp(2.5rem,6vw,4rem);background:var(--ground)}
+.s-hero-11 .wrap{width:100%}
+.s-hero-11__h1{font:800 clamp(2.4rem,2.6vw + 1.4rem,4.1rem)/1.04 var(--sans);letter-spacing:-.018em;max-width:17ch;text-wrap:balance}
+.s-hero-11__h1 em{font-style:normal;color:var(--brand)}
+.s-hero-11__lede{margin-top:1.1rem;max-width:50ch;color:var(--ink-soft);font-size:clamp(1.06rem,.3vw + 1rem,1.2rem);line-height:1.55;text-wrap:pretty}
+
+/* Statement ledger: labelled like a fund statement, not boxed like cards. */
+.s-hero-11__tbl{margin-top:clamp(1.8rem,3.5vw,2.8rem);width:100%;border-collapse:collapse;border-top:3px solid var(--ink);border-bottom:1px solid var(--rule-strong)}
+.s-hero-11__tbl caption{caption-side:top;text-align:left;font:700 .8rem/1 var(--num);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);padding-bottom:.7rem}
+.s-hero-11__tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.s-hero-11__tbl tbody th{font:700 1.15rem/1.2 var(--sans);color:var(--ink);text-align:left;padding:.8rem 0;border-bottom:1px solid var(--rule)}
+.s-hero-11__tbl td{font:800 1.3rem/1 var(--sans);color:var(--accent);padding:.8rem 0;border-bottom:1px solid var(--rule);text-align:right}
+.s-hero-11__tbl tr:last-child > *{border-bottom:0}
+.s-hero-11__ok th,.s-hero-11__ok td{color:var(--brand)}
+.s-hero-11__ok td{font-weight:700;font-size:1.1rem}
+
+.s-hero-11__cta{margin-top:clamp(1.6rem,3vw,2.2rem);display:flex;flex-wrap:wrap;gap:1rem 1.6rem;align-items:center}
+.s-hero-11__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.75rem 0}
+
+@media (min-width:760px){
+  .s-hero-11__top{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:2rem 4rem;align-items:end}
+  .s-hero-11__lede{margin-top:0;padding-bottom:.4rem}
+  .s-hero-11__h1 em{display:block}
+  /* One statement line: Financial takes the wider first column, the four blanks share a tinted run. */
+  .s-hero-11__tbl tbody{display:grid;grid-template-columns:1.3fr repeat(4,1fr)}
+  .s-hero-11__tbl tr{display:flex;flex-direction:column;justify-content:space-between;gap:1.4rem;padding:1.2rem 1.3rem 1.3rem;border-left:1px solid var(--rule);background:color-mix(in srgb,var(--accent) 6%,var(--ground))}
+  .s-hero-11__tbl tr.s-hero-11__ok{background:transparent;border-left:0;padding-left:0}
+  .s-hero-11__tbl tr.s-hero-11__ok + tr{border-left:2px solid var(--ink)}
+  .s-hero-11__tbl tbody th,.s-hero-11__tbl td{padding:0;border:0;text-align:left}
+  .s-hero-11__tbl tbody th{font-size:1rem;font-weight:600;color:var(--ink-soft)}
+  .s-hero-11__ok th{color:var(--brand)}
+  .s-hero-11__tbl td{font-size:clamp(1.7rem,1.2vw + 1rem,2.3rem);letter-spacing:-.01em}
+  .s-hero-11__ok td{font-size:clamp(1.7rem,1.2vw + 1rem,2.3rem)}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  var never = root.querySelectorAll("tbody tr:not(.s-hero-11__ok) td");
+  if (reduced) return;
+  // One moment: "Every year" is already there; the four "Never"s stamp in after it.
+  gsap.from(never, {opacity:0, y:8, duration:.45, stagger:.14, ease:"power3.out", delay:.6});
+};
+</script>

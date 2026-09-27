@@ -1,0 +1,57 @@
+<section class="s-hero-2">
+  <div class="wrap s-hero-2__grid">
+    <div>
+      <h1 class="s-hero-2__h1">Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+      <p class="s-hero-2__lede">We spend forty years planning the money and about ten minutes planning the person. The balance gets reviewed every year. The person gets worked out on the drive home from the farewell.</p>
+      <div class="s-hero-2__cta">
+        <a class="btn" href="/contact">Book a 30-minute consult</a>
+        <a class="s-hero-2__ghost" href="#cover">See what is covered</a>
+      </div>
+    </div>
+
+    <div class="s-hero-2__statement" role="img" aria-label="Cover summary: Financial is covered. Direction, Identity, Purpose and Connection are not reviewed.">
+      <div class="s-hero-2__statement-head">
+        <span>Cover summary</span>
+        <span>This period</span>
+      </div>
+      <div class="s-hero-2__row s-hero-2__row--covered">
+        <span>Financial</span>
+        <span class="s-hero-2__status s-hero-2__status--ok">Covered</span>
+      </div>
+      <div class="s-hero-2__row"><span>Direction</span><span class="s-hero-2__status">Not reviewed</span></div>
+      <div class="s-hero-2__row"><span>Identity</span><span class="s-hero-2__status">Not reviewed</span></div>
+      <div class="s-hero-2__row"><span>Purpose</span><span class="s-hero-2__status">Not reviewed</span></div>
+      <div class="s-hero-2__row"><span>Connection</span><span class="s-hero-2__status">Not reviewed</span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-2{min-height:min(88svh,820px);display:flex;align-items:center;padding-block:clamp(2rem,5vw,3rem);background:var(--ground)}
+.s-hero-2__grid{display:grid;gap:clamp(2rem,5vw,3rem);align-items:center;width:100%}
+.s-hero-2__h1{font:800 clamp(3.2rem,4vw + 2rem,5.5rem)/1.04 var(--sans);letter-spacing:-.015em;max-width:14ch}
+.s-hero-2__h1 em{font-style:normal;color:var(--brand)}
+.s-hero-2__lede{margin-top:1.3rem;max-width:44ch;color:var(--ink-soft);font-size:1.15rem}
+.s-hero-2__cta{margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center}
+.s-hero-2__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.6rem 0}
+
+.s-hero-2__statement{border:1px solid var(--rule-strong);border-radius:16px;padding:1.8rem 1.8rem 1.2rem;background:var(--ground-2)}
+.s-hero-2__statement-head{display:flex;justify-content:space-between;font:700 .85rem/1 var(--sans);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;padding-bottom:1.1rem;border-bottom:1px solid var(--rule-strong)}
+.s-hero-2__row{display:flex;justify-content:space-between;align-items:center;padding:1.15rem 0;border-bottom:1px solid var(--rule);font:700 1.35rem/1.2 var(--sans);color:var(--ink)}
+.s-hero-2__row:last-child{border-bottom:none}
+.s-hero-2__status{font:700 1.1rem/1 var(--sans);color:var(--accent)}
+.s-hero-2__status--ok{color:var(--brand)}
+.s-hero-2__row--covered{font-weight:800}
+
+@media (min-width:760px){
+  .s-hero-2__grid{grid-template-columns:1.1fr 1fr}
+  .s-hero-2__row{font-size:1.5rem}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  var rows = root.querySelectorAll(".s-hero-2__row");
+  if (reduced) return;
+  gsap.from(rows, {opacity:0, y:8, duration:.5, stagger:.08, ease:"power2.out", delay:.1});
+};
+</script>

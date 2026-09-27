@@ -1,0 +1,46 @@
+<section class="s-hero-18">
+  <div class="s-hero-18__grid">
+    <figure class="s-hero-18__photo">
+      <img src="assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling, looking toward the camera">
+    </figure>
+    <div class="s-hero-18__text">
+      <p class="s-hero-18__name">Dr San &middot; Psychosocial Retirement Educator</p>
+      <h1 class="s-hero-18__h1">Retiring soon, and not sure what comes next?</h1>
+      <p class="s-hero-18__lede">Human-centred retirement planning, for your psychological and social wellbeing.</p>
+      <a class="btn s-hero-18__btn" href="/contact">Book your free 30-minute consult</a>
+      <p class="s-hero-18__org"><a href="#audience">See workshops for organisations</a></p>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-18__org{margin:1.4rem 0 0;font:400 1rem/1.5 var(--sans);color:var(--ink-soft)}
+.s-hero-18__org a{color:var(--ink);text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.s-hero-18__org a:hover{color:var(--brand)}
+.s-hero-18{background:var(--ground);overflow:hidden}
+.s-hero-18__grid{display:grid;grid-template-columns:1fr}
+.s-hero-18__photo{margin:0;position:relative;height:clamp(240px,38svh,340px);overflow:hidden;background:var(--ground-2)}
+.s-hero-18__photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%}
+.s-hero-18__text{padding:1.5rem var(--gut) 2.5rem;max-width:36rem}
+.s-hero-18__name{margin:0 0 1.1rem;font:500 .95rem/1.4 var(--sans);color:var(--ink-soft)}
+.s-hero-18__h1{margin:0;font:700 clamp(2rem,2.2vw + 1.4rem,3.6rem)/1.08 var(--sans);letter-spacing:-.015em;color:var(--ink);text-wrap:balance}
+.s-hero-18__h1 span{display:block;margin-top:.12em;font-weight:500;color:var(--brand)}
+.s-hero-18__lede{margin:1.2rem 0 0;font:400 clamp(1.1rem,.5vw + 1rem,1.3rem)/1.5 var(--sans);color:var(--ink-soft);max-width:34ch;text-wrap:pretty}
+.s-hero-18__btn{margin-top:2rem;min-height:48px}
+
+@media (min-width:860px){
+  .s-hero-18__grid{grid-template-columns:minmax(0,5fr) minmax(0,6fr);min-height:min(100svh,880px)}
+  .s-hero-18__photo{height:auto;min-height:100%}
+  .s-hero-18__photo img{position:absolute;inset:0;object-position:50% 25%}
+  .s-hero-18__text{align-self:center;padding:clamp(3rem,6vw,6rem) clamp(2rem,6vw,6rem);max-width:40rem}
+  .s-hero-18__name{margin-bottom:1.6rem}
+}
+</style>
+
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelector(".s-hero-18__photo img"),
+    {scale:1.06, opacity:.001}, {scale:1, opacity:1, duration:1.6, ease:"power3.out", immediateRender:true});
+};
+</script>

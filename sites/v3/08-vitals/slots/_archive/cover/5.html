@@ -1,0 +1,109 @@
+<section class="s-cover-5">
+  <div class="wrap s-cover-5-intro">
+    <h2 class="s-cover-5-h">A money plan is excellent at the things it covers.</h2>
+    <p class="s-cover-5-lede">Not one line in the lower half is a money problem. That is why the money plan was never going to reach it.</p>
+  </div>
+
+  <div class="s-cover-5-stage">
+    <div class="wrap s-cover-5-inner">
+      <div class="s-cover-5-table">
+        <div class="s-cover-5-thead">
+          <span></span><span>Money plan</span><span>Psychosocial plan</span>
+        </div>
+        <div class="s-cover-5-rows">
+          <div class="s-cover-5-row"><span class="s-cover-5-label">Income, tax and drawdown</span><span class="s-cover-5-money s-cover-5-cell">Covered</span><span class="s-cover-5-psy s-cover-5-cell"></span></div>
+          <div class="s-cover-5-row"><span class="s-cover-5-label">Super, pension and health cover</span><span class="s-cover-5-money s-cover-5-cell">Covered</span><span class="s-cover-5-psy s-cover-5-cell"></span></div>
+          <div class="s-cover-5-row"><span class="s-cover-5-label">The house, and whether to move</span><span class="s-cover-5-money s-cover-5-cell">Covered</span><span class="s-cover-5-psy s-cover-5-cell"></span></div>
+          <div class="s-cover-5-row s-cover-5-gap"><span class="s-cover-5-label">What a Tuesday looks like</span><span class="s-cover-5-money s-cover-5-cell"><span class="s-cover-5-stamp">Not covered</span></span><span class="s-cover-5-psy s-cover-5-cell"><span class="s-cover-5-fill">Covered</span></span></div>
+          <div class="s-cover-5-row s-cover-5-gap"><span class="s-cover-5-label">Who you are without the title</span><span class="s-cover-5-money s-cover-5-cell"><span class="s-cover-5-stamp">Not covered</span></span><span class="s-cover-5-psy s-cover-5-cell"><span class="s-cover-5-fill">Covered</span></span></div>
+          <div class="s-cover-5-row s-cover-5-gap"><span class="s-cover-5-label">Something to be useful for</span><span class="s-cover-5-money s-cover-5-cell"><span class="s-cover-5-stamp">Not covered</span></span><span class="s-cover-5-psy s-cover-5-cell"><span class="s-cover-5-fill">Covered</span></span></div>
+          <div class="s-cover-5-row s-cover-5-gap"><span class="s-cover-5-label">People who still call</span><span class="s-cover-5-money s-cover-5-cell"><span class="s-cover-5-stamp">Not covered</span></span><span class="s-cover-5-psy s-cover-5-cell"><span class="s-cover-5-fill">Covered</span></span></div>
+        </div>
+        <div class="s-cover-5-beam" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <p class="s-cover-5-close">One funds the lifestyle. The other decides whether there is a life in it.</p>
+  </div>
+</section>
+<style>
+.s-cover-5-h{font:800 clamp(1.9rem,1rem + 3.4vw,3.4rem)/1.12 var(--sans);max-width:22ch}
+.s-cover-5-lede{margin-top:1.1rem;margin-bottom:0;max-width:52ch;color:var(--ink-soft);font-size:1.05em}
+.s-cover-5-stage{position:relative;padding-block:clamp(1.8rem,4vw,3rem)}
+.s-cover-5-table{position:relative}
+.s-cover-5-thead{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1rem;padding:.5rem 0;font:600 1rem/1.2 var(--sans);color:var(--ink-soft);border-bottom:1px solid var(--rule-strong)}
+.s-cover-5-rows{position:relative}
+.s-cover-5-row{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1rem;align-items:center;height:3.8rem;border-bottom:1px solid var(--rule)}
+.s-cover-5-label{font-weight:600;font-size:1.08rem}
+.s-cover-5-cell{position:relative;font:600 1.05rem/1 var(--sans);color:var(--brand-deep)}
+.s-cover-5-money{color:var(--brand-deep)}
+.s-cover-5-gap .s-cover-5-money{color:transparent}
+.s-cover-5-stamp{position:absolute;left:0;top:50%;transform:translateY(-50%) scale(.6) rotate(-4deg);opacity:0;display:inline-block;font:800 .92rem/1 var(--sans);color:var(--accent);border:2px solid var(--accent);border-radius:.3rem;padding:.4rem .65rem;background:color-mix(in srgb,var(--accent) 10%,var(--ground))}
+.s-cover-5-fill{opacity:0;transform:translateX(-6px);display:inline-block;color:var(--brand-deep);font-weight:700}
+.s-cover-5-beam{position:absolute;left:0;right:0;top:0;height:3.8rem;pointer-events:none;background:linear-gradient(90deg,color-mix(in srgb,var(--gold) 55%,transparent),transparent 62%);opacity:0;border-radius:.3rem}
+.s-cover-5-close{margin-top:2.4rem;max-width:46ch;font:600 1.15em/1.5 var(--sans)}
+@media (max-width:640px){
+  .s-cover-5-thead{display:none}
+  .s-cover-5-row{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;height:auto;gap:.4rem .8rem;padding:.9rem 0}
+  .s-cover-5-label{grid-column:1/-1}
+  .s-cover-5-beam{display:none}
+}
+</style>
+<script>
+window.slotInit["cover"] = function(root, reduced){
+  var stamps = root.querySelectorAll(".s-cover-5-stamp");
+  var fills = root.querySelectorAll(".s-cover-5-fill");
+  var beam = root.querySelector(".s-cover-5-beam");
+
+  if (reduced) {
+    gsap.set(stamps, { opacity: 1, scale: 1, rotate: -4 });
+    gsap.set(fills, { opacity: 1, x: 0 });
+    gsap.set(beam, { opacity: 0 });
+    return;
+  }
+
+  var mm = gsap.matchMedia();
+
+  mm.add("(min-width: 641px)", function(){
+    var rows = root.querySelectorAll(".s-cover-5-row");
+    var rowH = rows[0].offsetHeight;
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: root.querySelector(".s-cover-5-stage"),
+        start: "top top",
+        end: "+=90%",
+        scrub: 0.7,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
+    tl.set(beam, { opacity: 1 });
+    rows.forEach(function(row, i){
+      tl.to(beam, { y: rowH * i, duration: 0.5, ease: "none" }, i ? ">" : 0);
+      if (row.classList.contains("s-cover-5-gap")) {
+        var stamp = row.querySelector(".s-cover-5-stamp");
+        var fill = row.querySelector(".s-cover-5-fill");
+        tl.to(beam, { backgroundImage: "linear-gradient(90deg, color-mix(in srgb, var(--accent) 55%, transparent), transparent 62%)", duration: 0.15 }, ">-0.1");
+        tl.to(stamp, { opacity: 1, scale: 1, rotate: -4, duration: 0.35, ease: "back.out(1.6)" }, ">");
+        tl.to(fill, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, ">-0.1");
+        tl.to(beam, { backgroundImage: "linear-gradient(90deg, color-mix(in srgb, var(--gold) 55%, transparent), transparent 62%)", duration: 0.1 }, ">");
+      }
+    });
+    tl.to(beam, { opacity: 0, duration: 0.3 });
+    return function(){ tl.kill(); };
+  });
+
+  mm.add("(max-width: 640px)", function(){
+    gsap.set(beam, { opacity: 0 });
+    var tl = gsap.timeline({
+      scrollTrigger: { trigger: root.querySelector(".s-cover-5-rows"), start: "top 80%", end: "bottom 40%", scrub: 0.6 }
+    });
+    tl.to(stamps, { opacity: 1, scale: 1, rotate: -4, stagger: 0.15, ease: "none" }, 0)
+      .to(fills, { opacity: 1, x: 0, stagger: 0.15, ease: "none" }, 0.1);
+  });
+};
+</script>

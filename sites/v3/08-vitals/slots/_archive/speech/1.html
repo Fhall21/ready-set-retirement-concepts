@@ -1,0 +1,51 @@
+<section class="s-speech-1">
+  <div class="wrap s-sp1-in">
+    <h2 class="s-sp1-h">What nobody puts in the speech</h2>
+    <div class="s-sp1-grid">
+      <div class="s-sp1-card">
+        <p class="s-sp1-p">We spend forty years planning for retirement financially and roughly ten minutes planning who we will be when it arrives.</p>
+        <p class="s-sp1-p">The money question gets a professional, a strategy, an annual review and a spreadsheet that runs to age ninety. The other question gets a good luck and a card.</p>
+        <p class="s-sp1-p s-sp1-close">Money funds a lifestyle. It cannot buy a quality of life, and it has never once told anyone what to do with a Wednesday.</p>
+      </div>
+      <aside class="s-sp1-margin">
+        <p class="s-sp1-note" data-i="0">Loss of direction, identity, purpose and connection. Recognised in the research on retirement. Rarely mentioned at the farewell.</p>
+        <p class="s-sp1-note" data-i="1">One half of this problem has an entire industry attached to it. The other has almost nobody.</p>
+        <p class="s-sp1-note" data-i="2">This is the question psychosocial retirement education actually answers.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+<style>
+.s-speech-1{padding-block:clamp(3rem,8vw,5.5rem);background:var(--ground)}
+.s-sp1-in{max-width:1100px}
+.s-sp1-h{font:800 clamp(1.9rem,4.6vw,3rem)/1.1 var(--sans);letter-spacing:-.01em;margin-bottom:clamp(1.6rem,4vw,2.6rem);max-width:20ch}
+.s-sp1-grid{display:grid;grid-template-columns:1fr;gap:1.6rem}
+@media (min-width:900px){.s-sp1-grid{grid-template-columns:minmax(0,62ch) 1fr;gap:clamp(2rem,4vw,3.5rem)}}
+.s-sp1-card{background:var(--ground);border:1px solid var(--rule);border-radius:1rem;padding:clamp(1.6rem,4vw,2.6rem);font-size:1.12rem;line-height:1.7}
+.s-sp1-p+.s-sp1-p{margin-top:1.1em}
+.s-sp1-close{font-weight:700;color:var(--brand-deep)}
+.s-sp1-margin{display:none}
+@media (min-width:900px){
+  .s-sp1-margin{display:block;padding-top:.6rem}
+  .s-sp1-note{font-style:italic;font-size:.92rem;line-height:1.55;color:var(--accent);max-width:26ch;opacity:0;transform:translateY(10px)}
+  .s-sp1-note+.s-sp1-note{margin-top:clamp(2.2rem,7vw,4rem)}
+}
+@media (max-width:899px){
+  .s-sp1-note{font-style:italic;font-size:.92rem;color:var(--accent);margin:1rem 0 0;padding-left:.9rem;border-left:2px solid var(--accent)}
+}
+</style>
+<script>
+window.slotInit["speech"] = function(root, reduced){
+  var notes = root.querySelectorAll(".s-sp1-note");
+  if(reduced){ gsap.set(notes, {opacity:1, y:0}); return; }
+
+  gsap.matchMedia().add("(min-width: 900px)", function(){
+    notes.forEach(function(n, i){
+      gsap.to(n, {
+        opacity:1, y:0, ease:"power2.out", duration:.6,
+        scrollTrigger: { trigger: n, start:"top 82%", toggleActions:"play none none reverse" }
+      });
+    });
+  });
+};
+</script>

@@ -1,0 +1,132 @@
+<section class="s-consult-3">
+  <div class="wrap grid">
+    <div class="phone">
+      <div class="thread">
+        <div class="msg dr"><p>Hi, lovely to hear from you. What date are we working towards?</p></div>
+        <div class="msg you"><p>Retiring in March! Super's all sorted, the adviser's been great.</p></div>
+        <div class="msg dr"><p>Wonderful news. And what does an ordinary Tuesday look like after that?</p></div>
+        <div class="msg you"><p>Ha &mdash; hadn't thought that far. Probably just... home, I suppose.</p></div>
+        <div class="msg dr"><p>No rush to have it figured out. That's exactly what we'd chat about.</p></div>
+        <div class="msg dr"><p>Thirty minutes, no cost &mdash; just a chat. Does Thursday suit?</p></div>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>Thirty minutes, at no cost, well before the date.</h2>
+      <p class="lede">
+        A friendly conversation about what your weeks might look like &mdash; not a
+        clinical assessment.
+      </p>
+      <div class="cta">
+        <svg class="ring" aria-hidden="true">
+          <rect class="ring-track"></rect>
+          <rect class="ring-draw"></rect>
+        </svg>
+        <a class="btn pill" href="/contact">Book the consult</a>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-consult-3{min-height:100svh;background:var(--ground);display:flex;align-items:center}
+.s-consult-3 .wrap{width:100%;padding-block:clamp(3rem,8vw,5rem)}
+
+/* ---- phone (<900px): clean version, no thread ---- */
+.s-consult-3 .phone{display:none}
+.s-consult-3 .grid{max-width:680px;text-align:center;margin-inline:auto}
+.s-consult-3 .copy h2{font-size:clamp(2rem,5.2vw,3rem);font-weight:800;letter-spacing:-.015em;line-height:1.12}
+.s-consult-3 .copy h2 .stword{display:inline-block;will-change:transform,opacity}
+.s-consult-3 .copy .lede{margin-top:1.3rem;color:var(--ink-soft);max-width:48ch;margin-inline:auto}
+.s-consult-3 .cta{position:relative;display:inline-grid;place-items:center;margin-top:clamp(2.2rem,5vw,3rem)}
+.s-consult-3 .ring{position:absolute;inset:-14px;width:calc(100% + 28px);height:calc(100% + 28px);overflow:visible;pointer-events:none}
+.s-consult-3 .ring-track,.s-consult-3 .ring-draw{fill:none;stroke-width:3}
+.s-consult-3 .ring-track{stroke:var(--rule)}
+.s-consult-3 .ring-draw{stroke:var(--brand);stroke-linecap:round}
+.s-consult-3 .pill{font-size:1.05rem;padding:1.1rem 2rem;position:relative;transition:transform .15s var(--ease-out),background .2s}
+.s-consult-3 .pill:active{transform:scale(.96)}
+
+/* ---- desktop (>=900px): left/right split with thread ---- */
+@media(min-width:900px){
+  .s-consult-3{min-height:min(100svh,900px)}
+  .s-consult-3 .grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(2.5rem,5vw,4rem);
+    max-width:none;text-align:left;margin-inline:0}
+  .s-consult-3 .wrap{max-width:1180px;margin-inline:auto;padding-inline:var(--gut, 1.5rem)}
+  .s-consult-3 .phone{display:block;order:1;background:var(--ground);border:1px solid var(--rule-strong);
+    border-radius:1.4rem;padding:clamp(1.4rem,2.4vw,2rem) clamp(1rem,2vw,1.4rem);
+    box-shadow:0 24px 60px -30px rgba(0,0,0,.25)}
+  .s-consult-3 .thread{display:flex;flex-direction:column;gap:.7rem}
+  .s-consult-3 .msg{max-width:88%;padding:.75rem 1.05rem;border-radius:1.1rem;font-size:1rem;line-height:1.4;
+    opacity:0;transform:translateY(10px) scale(.97)}
+  .s-consult-3 .msg p{margin:0}
+  .s-consult-3 .you{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:.3rem}
+  .s-consult-3 .dr{align-self:flex-start;background:var(--ground-3);color:var(--ink);border-bottom-left-radius:.3rem}
+  .s-consult-3 .copy{order:2;text-align:left}
+  .s-consult-3 .copy h2{font-size:clamp(1.9rem,3.4vw,2.8rem)}
+  .s-consult-3 .copy .lede{margin-inline:0}
+  .s-consult-3 .cta{display:inline-flex}
+}
+</style>
+<script>
+window.slotInit["consult"] = function(root, reduced){
+  var mm = gsap.matchMedia();
+
+  mm.add({ isDesktop: "(min-width: 900px)", isPhone: "(max-width: 899px)" }, function(context){
+    var isDesktop = context.conditions.isDesktop;
+
+    if (isDesktop) {
+      var msgs = root.querySelectorAll(".msg");
+      var h2d = root.querySelector(".copy h2"), leded = root.querySelector(".copy .lede"),
+          ctad = root.querySelector(".copy .cta");
+
+      if (reduced) {
+        gsap.set(msgs, {opacity:1, y:0, scale:1});
+        return;
+      }
+
+      gsap.set(msgs, {opacity:0, y:10, scale:.97});
+      gsap.to(msgs, {
+        opacity:1, y:0, scale:1, duration:.5, stagger:.3, ease:"power3.out",
+        scrollTrigger:{trigger: root.querySelector(".phone"), start:"top 78%"}
+      });
+      gsap.from([h2d, leded, ctad], {
+        y:20, opacity:0, duration:.7, stagger:.1, ease:"power3.out",
+        scrollTrigger:{trigger: h2d, start:"top 85%"}
+      });
+      return;
+    }
+
+    // phone: clean version — H2 word-in + ring draw
+    var h2 = root.querySelector(".copy h2");
+    var pill = root.querySelector(".pill");
+    var svg = root.querySelector(".ring");
+    var track = root.querySelector(".ring-track");
+    var draw = root.querySelector(".ring-draw");
+
+    function sizeRing(){
+      var r = pill.getBoundingClientRect();
+      var pad = 14, w = r.width + pad*2, h = r.height + pad*2, rx = h/2;
+      svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+      [track, draw].forEach(function(rect){
+        rect.setAttribute("x", 1.5); rect.setAttribute("y", 1.5);
+        rect.setAttribute("width", w - 3); rect.setAttribute("height", h - 3);
+        rect.setAttribute("rx", rx - 1.5);
+      });
+      var perim = 2*(w-3) + 2*(h-3) - 8*(rx-1.5) + 2*Math.PI*(rx-1.5);
+      draw.dataset.perim = perim;
+      gsap.set(draw, {strokeDasharray: perim, strokeDashoffset: reduced ? 0 : perim});
+    }
+    sizeRing();
+    ScrollTrigger.addEventListener("refresh", sizeRing);
+
+    if (reduced) return;
+
+    var split = new SplitText(h2, {type:"words", wordsClass:"stword"});
+    gsap.set(split.words, {opacity:0, y:"1em"});
+
+    var tl = gsap.timeline({
+      scrollTrigger:{trigger:root, start:"top 78%", once:true, invalidateOnRefresh:true}
+    });
+    tl.to(split.words, {opacity:1, y:0, duration:.7, stagger:.05, ease:"expo.out"})
+      .to(draw, {strokeDashoffset:0, duration:1.1, ease:"power2.out"}, "-=.2");
+  }, root);
+};
+</script>

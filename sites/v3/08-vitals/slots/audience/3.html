@@ -1,0 +1,83 @@
+<section class="s-audience-3">
+  <div class="wrap">
+    <h2 class="s-audience-3-h">I work with people, and with the organisations they work for.</h2>
+    <div class="s-audience-3-svgwrap">
+      <svg class="s-audience-3-svg" viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <path class="s-audience-3-path s-audience-3-a" d="M160 70 C 340 70, 380 150, 470 150" />
+        <path class="s-audience-3-path s-audience-3-b" d="M160 230 C 340 230, 380 150, 470 150" />
+        <path class="s-audience-3-path s-audience-3-merged" d="M470 150 C 620 150, 700 150, 800 150" />
+        <circle class="s-audience-3-pin" cx="160" cy="70" r="7" />
+        <circle class="s-audience-3-pin" cx="160" cy="230" r="7" />
+      </svg>
+      <img class="s-audience-3-endphoto" src="assets/drsan.jpg" alt="Dr San" />
+      <span class="s-audience-3-endlabel">Dr San</span>
+      <div class="s-audience-3-tag s-audience-3-tag1">
+        <strong>Individuals, 3&ndash;10 years out</strong>
+        <span>Personal sessions on your own retirement.</span>
+      </div>
+      <div class="s-audience-3-tag s-audience-3-tag2">
+        <strong>HR and workforce planners</strong>
+        <span>Programs for staff who are approaching retirement.</span>
+      </div>
+    </div>
+    <p><a class="btn" href="/contact">Book a consult</a></p>
+  </div>
+</section>
+<style>
+.s-audience-3{padding-block:clamp(3rem,8vh,6rem)}
+.s-audience-3-h{font:800 clamp(1.7rem,1rem + 2.6vw,2.8rem)/1.2 var(--sans);max-width:22ch}
+.s-audience-3-svgwrap{position:relative;margin-top:clamp(2.4rem,7vh,4rem)}
+.s-audience-3-svg{width:100%;height:auto;display:block}
+.s-audience-3-path{fill:none;stroke-width:3;stroke-linecap:round}
+.s-audience-3-a{stroke:var(--brand)}
+.s-audience-3-b{stroke:var(--accent)}
+.s-audience-3-merged{stroke:var(--ink);stroke-width:4}
+.s-audience-3-pin{fill:var(--ink)}
+.s-audience-3-endphoto{position:absolute;left:88.9%;top:50%;width:clamp(2.6rem,5vw,3.6rem);height:clamp(2.6rem,5vw,3.6rem);
+  border-radius:50%;object-fit:cover;object-position:50% 15%;border:2px solid var(--brand);
+  transform:translate(-50%,-50%) scale(0);transform-origin:center}
+.s-audience-3-endlabel{position:absolute;left:88.9%;top:calc(50% + clamp(1.7rem,3vw,2.4rem));transform:translate(-50%,0);
+  font:700 .82rem/1.2 var(--sans);color:var(--ink);opacity:0;white-space:nowrap}
+.s-audience-3-tag{position:absolute;max-width:15ch;display:flex;flex-direction:column;gap:.2rem}
+.s-audience-3-tag strong{font:700 1rem/1.3 var(--sans);color:var(--ink)}
+.s-audience-3-tag span{font-size:.88rem;color:var(--ink-soft)}
+.s-audience-3-tag1{left:0;top:0%}
+.s-audience-3-tag2{left:0;top:74%}
+.s-audience-3-svgwrap p{margin:0}
+.wrap > p{margin-top:2rem}
+@media (max-width:640px){
+  .s-audience-3-tag{position:static;display:block;margin-top:.9rem;max-width:none}
+  .s-audience-3-tag span{display:block}
+}
+</style>
+<script>
+window.slotInit["audience"] = function(root, reduced){
+  var paths = root.querySelectorAll(".s-audience-3-path");
+  var pins = root.querySelectorAll(".s-audience-3-pin");
+  var endphoto = root.querySelector(".s-audience-3-endphoto");
+  var endlabel = root.querySelector(".s-audience-3-endlabel");
+  if (reduced) {
+    gsap.set(paths, {drawSVG:"100%"}); gsap.set(pins, {opacity:1, scale:1});
+    gsap.set(endphoto, {scale:1}); gsap.set(endlabel, {opacity:1});
+    return;
+  }
+
+  gsap.set(paths, {drawSVG:"0%"});
+  gsap.set(pins, {opacity:0, scale:0, transformOrigin:"center"});
+  gsap.set(pins[0], {opacity:1, scale:1});
+  gsap.set(pins[1], {opacity:1, scale:1});
+
+  var tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: root.querySelector(".s-audience-3-svgwrap"),
+      start: "top 75%",
+      end: "bottom 55%",
+      scrub: 0.7
+    }
+  });
+  tl.to([root.querySelector(".s-audience-3-a"), root.querySelector(".s-audience-3-b")], {drawSVG:"100%", ease:"none"})
+    .to(root.querySelector(".s-audience-3-merged"), {drawSVG:"100%", ease:"none"}, ">-0.1")
+    .to(endphoto, {scale:1, ease:"back.out(2)"}, "<")
+    .to(endlabel, {opacity:1, ease:"none"}, "<");
+};
+</script>

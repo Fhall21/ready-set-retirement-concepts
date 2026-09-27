@@ -1,0 +1,98 @@
+<section class="s-method-1">
+  <div class="wrap">
+    <p class="s-method-1-lead">The farewell cake gets eaten on a Friday. On Monday there is no reason to be anywhere by eight. The people you saw five days a week were structural rather than chosen, and most of them do not ring. Someone asks what you do and the sentence you have used for thirty years no longer applies. This is the recognised dark side of retirement, and it arrives on schedule for people who did everything else right. It is not a weakness. It is an unplanned transition, and unplanned transitions go badly whatever the balance says.</p>
+
+    <h2 class="s-method-1-h">What education<br>actually does</h2>
+    <p class="s-method-1-sub">Five things, in order. None of them are encouragement.</p>
+
+    <div class="s-method-1-track">
+      <div class="s-method-1-line" aria-hidden="true"><span class="s-method-1-fill"></span></div>
+      <ol class="s-method-1-list">
+        <li class="s-method-1-item">
+          <span class="s-method-1-num" aria-hidden="true">01</span>
+          <div class="s-method-1-body">
+            <strong>Rehearsal</strong>
+            <p>You practise the next identity while you still have the old one to stand on. Three to ten years out is the working window. After the farewell it becomes repair work, and repair costs more.</p>
+          </div>
+        </li>
+        <li class="s-method-1-item">
+          <span class="s-method-1-num" aria-hidden="true">02</span>
+          <div class="s-method-1-body">
+            <strong>Language</strong>
+            <p>Naming the four losses in advance makes them survivable. Most people reach their last week without ever being given the words, so when it lands they assume it is a private failure.</p>
+          </div>
+        </li>
+        <li class="s-method-1-item">
+          <span class="s-method-1-num" aria-hidden="true">03</span>
+          <div class="s-method-1-body">
+            <strong>Structure</strong>
+            <p>Purpose, not hobbies. A week with real shape in it, designed before the last day of work rather than improvised in the third month, when the days have already started to run together.</p>
+          </div>
+        </li>
+        <li class="s-method-1-item">
+          <span class="s-method-1-num" aria-hidden="true">04</span>
+          <div class="s-method-1-body">
+            <strong>People</strong>
+            <p>Rebuilding a social base that does not depend on a payroll system. Colleagues are proximity. Friendship is chosen. Very few people have counted how much of theirs was the former.</p>
+          </div>
+        </li>
+        <li class="s-method-1-item">
+          <span class="s-method-1-num" aria-hidden="true">05</span>
+          <div class="s-method-1-body">
+            <strong>Evidence</strong>
+            <p>readysetretirement psychosocial planning&reg; is a method with stages, delivered as training, workshops, seminars, one-to-one and group coaching, consulting and speaking. You can tell whether you are through a stage.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+<style>
+.s-method-1{padding-block:clamp(3rem,8vh,6rem)}
+.s-method-1-lead{max-width:62ch;font-size:1.05em;color:var(--ink-soft);padding-bottom:clamp(2rem,6vh,3.5rem);border-bottom:1px solid var(--rule)}
+.s-method-1-h{margin-top:clamp(2rem,6vh,3.5rem);font:800 clamp(1.8rem,1rem + 3.2vw,3.2rem)/1.12 var(--sans)}
+.s-method-1-sub{margin-top:.8rem;color:var(--ink-soft);font-size:1.05em}
+.s-method-1-track{position:relative;margin-top:clamp(2.5rem,6vh,4rem);padding-left:3rem}
+.s-method-1-line{position:absolute;left:.55rem;top:.4rem;bottom:.4rem;width:3px;background:var(--rule-strong);border-radius:2px}
+.s-method-1-fill{position:absolute;left:0;top:0;width:100%;height:0%;background:var(--brand);border-radius:2px;transform-origin:top}
+.s-method-1-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:clamp(2.2rem,6vh,3.5rem)}
+.s-method-1-item{position:relative;display:flex;gap:1.4rem;align-items:flex-start}
+.s-method-1-num{position:absolute;left:-3rem;top:-.15rem;width:2.2rem;height:2.2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font:700 .95rem/1 var(--num);color:var(--ink-soft);background:var(--ground-2);border:2px solid var(--rule-strong);transition:color .3s,background .3s,border-color .3s}
+.s-method-1-item.is-active .s-method-1-num{color:#fff;background:var(--brand);border-color:var(--brand)}
+.s-method-1-body strong{display:block;font:700 1.3rem/1.2 var(--sans);margin-bottom:.4rem}
+.s-method-1-body p{max-width:56ch;color:var(--ink-soft)}
+@media (max-width:640px){
+  .s-method-1-track{padding-left:2.4rem}
+  .s-method-1-line{left:.4rem}
+  .s-method-1-num{left:-2.4rem;width:1.9rem;height:1.9rem;font-size:.82rem}
+}
+</style>
+<script>
+window.slotInit["method"] = function(root, reduced){
+  var items = root.querySelectorAll(".s-method-1-item");
+  var fill = root.querySelector(".s-method-1-fill");
+  if (reduced) { items.forEach(function(el){ el.classList.add("is-active"); }); gsap.set(fill, {height:"100%"}); return; }
+
+  gsap.to(fill, {
+    height: "100%",
+    ease: "none",
+    scrollTrigger: {
+      trigger: root.querySelector(".s-method-1-track"),
+      start: "top 60%",
+      end: "bottom 60%",
+      scrub: 0.6,
+      invalidateOnRefresh: true
+    }
+  });
+
+  items.forEach(function(item){
+    ScrollTrigger.create({
+      trigger: item,
+      start: "top center",
+      end: "bottom center",
+      onToggle: function(self){ item.classList.toggle("is-active", self.isActive); }
+    });
+  });
+};
+</script>

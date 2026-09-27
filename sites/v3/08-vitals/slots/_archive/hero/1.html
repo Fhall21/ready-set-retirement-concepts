@@ -1,0 +1,70 @@
+<section class="s-hero-1">
+  <div class="wrap s-hero-1__grid">
+    <div class="s-hero-1__copy">
+      <h1 class="s-hero-1__h1">Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+      <p class="s-hero-1__lede">We spend forty years planning the money and about ten minutes planning the person. The balance gets reviewed every year. The person gets worked out on the drive home from the farewell.</p>
+      <div class="s-hero-1__cta">
+        <a class="btn" href="/contact">Book a 30-minute consult</a>
+        <a class="s-hero-1__ghost" href="#cover">See what is covered</a>
+      </div>
+    </div>
+
+    <div class="s-hero-1__panel">
+      <div class="s-hero-1__ch s-hero-1__ch--live">
+        <svg viewBox="0 0 120 76" class="s-hero-1__gauge">
+          <path d="M10 66 A50 50 0 0 1 110 66" class="s-hero-1__track"/>
+          <path d="M10 66 A50 50 0 0 1 110 66" class="s-hero-1__fill s-hero-1__fill--full"/>
+          <line x1="60" y1="66" x2="60" y2="22" class="s-hero-1__needle" data-needle/>
+          <circle cx="60" cy="66" r="3.4" class="s-hero-1__hub"/>
+        </svg>
+        <span class="s-hero-1__lab">Financial</span>
+      </div>
+      <div class="s-hero-1__empties">
+        <div class="s-hero-1__ch s-hero-1__ch--empty"><svg viewBox="0 0 120 76" class="s-hero-1__gauge s-hero-1__gauge--sm"><path d="M10 66 A50 50 0 0 1 110 66" class="s-hero-1__track"/></svg><span class="s-hero-1__lab">Direction</span><span class="s-hero-1__reading">&mdash;</span></div>
+        <div class="s-hero-1__ch s-hero-1__ch--empty"><svg viewBox="0 0 120 76" class="s-hero-1__gauge s-hero-1__gauge--sm"><path d="M10 66 A50 50 0 0 1 110 66" class="s-hero-1__track"/></svg><span class="s-hero-1__lab">Identity</span><span class="s-hero-1__reading">&mdash;</span></div>
+        <div class="s-hero-1__ch s-hero-1__ch--empty"><svg viewBox="0 0 120 76" class="s-hero-1__gauge s-hero-1__gauge--sm"><path d="M10 66 A50 50 0 0 1 110 66" class="s-hero-1__track"/></svg><span class="s-hero-1__lab">Purpose</span><span class="s-hero-1__reading">&mdash;</span></div>
+        <div class="s-hero-1__ch s-hero-1__ch--empty"><svg viewBox="0 0 120 76" class="s-hero-1__gauge s-hero-1__gauge--sm"><path d="M10 66 A50 50 0 0 1 110 66" class="s-hero-1__track"/></svg><span class="s-hero-1__lab">Connection</span><span class="s-hero-1__reading">&mdash;</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-1{min-height:min(88svh,820px);display:flex;align-items:center;padding-block:clamp(2rem,5vw,3rem);background:var(--ground)}
+.s-hero-1__grid{display:grid;gap:clamp(2rem,5vw,3rem);align-items:center;width:100%}
+.s-hero-1__h1{font:800 clamp(3.2rem,4vw + 2rem,5.5rem)/1.04 var(--sans);letter-spacing:-.015em;max-width:13ch}
+.s-hero-1__h1 em{font-style:normal;color:var(--brand)}
+.s-hero-1__lede{margin-top:1.3rem;max-width:44ch;color:var(--ink-soft);font-size:1.15rem}
+.s-hero-1__cta{margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center}
+.s-hero-1__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.6rem 0}
+
+.s-hero-1__panel{display:flex;align-items:flex-end;gap:clamp(1rem,2.4vw,1.8rem);justify-content:flex-start;flex-wrap:wrap;padding-block:.5rem;width:100%}
+.s-hero-1__ch{display:flex;flex-direction:column;align-items:center;gap:.5rem;min-width:0}
+.s-hero-1__ch--live{flex:0 0 auto}
+.s-hero-1__gauge{width:min(46vw,190px);height:auto;overflow:visible}
+.s-hero-1__gauge--sm{width:min(15vw,84px);min-width:60px}
+.s-hero-1__track{fill:none;stroke:var(--rule-strong);stroke-width:8;stroke-linecap:round}
+.s-hero-1__fill{fill:none;stroke:var(--brand);stroke-width:8;stroke-linecap:round;stroke-dasharray:157;stroke-dashoffset:157}
+.s-hero-1__fill--full{stroke-dashoffset:0}
+.s-hero-1__needle{stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;transform-origin:60px 66px}
+.s-hero-1__hub{fill:var(--ink)}
+.s-hero-1__lab{display:block;font:600 .78rem/1.2 var(--sans);letter-spacing:.01em;color:var(--ink-soft);text-align:center}
+.s-hero-1__ch--live .s-hero-1__lab{font-size:.95rem;font-weight:700;color:var(--ink)}
+.s-hero-1__reading{display:block;margin-top:.15rem;font:600 .85rem/1 var(--num);color:var(--ink-soft)}
+.s-hero-1__empties{display:flex;gap:clamp(.6rem,2vw,1.2rem);align-self:flex-end;padding-bottom:.6rem;flex-wrap:wrap;min-width:0}
+
+@media (min-width:760px){
+  .s-hero-1__grid{grid-template-columns:1.1fr 1fr}
+  .s-hero-1__panel{justify-content:flex-end}
+  .s-hero-1__gauge{width:220px}
+  .s-hero-1__gauge--sm{width:96px}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  var needle = root.querySelector("[data-needle]");
+  if (reduced){ gsap.set(needle, {rotation:38}); return; }
+  gsap.fromTo(needle, {rotation:-38}, {rotation:38, duration:1.1, ease:"power3.out", delay:.15, svgOrigin:"60px 66px"});
+  gsap.fromTo(root.querySelector(".s-hero-1__fill--full"), {strokeDashoffset:157}, {strokeDashoffset:0, duration:1.1, ease:"power2.out"});
+};
+</script>

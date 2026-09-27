@@ -1,0 +1,70 @@
+<section class="s-hero-3">
+  <div class="wrap">
+    <h1 class="s-hero-3__h1">Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+    <p class="s-hero-3__lede">We spend forty years planning the money and about ten minutes planning the person. The balance gets reviewed every year. The person gets worked out on the drive home from the farewell.</p>
+
+    <div class="s-hero-3__week" aria-hidden="true">
+      <div class="s-hero-3__day">
+        <span class="s-hero-3__dlabel">Mon</span>
+        <span class="s-hero-3__dbox s-hero-3__dbox--empty" data-day="mon"></span>
+      </div>
+      <div class="s-hero-3__day">
+        <span class="s-hero-3__dlabel">Tue</span>
+        <span class="s-hero-3__dbox" data-day="tue">Meetings</span>
+      </div>
+      <div class="s-hero-3__day">
+        <span class="s-hero-3__dlabel">Wed</span>
+        <span class="s-hero-3__dbox" data-day="wed">Reports</span>
+      </div>
+      <div class="s-hero-3__day">
+        <span class="s-hero-3__dlabel">Thu</span>
+        <span class="s-hero-3__dbox" data-day="thu">Team</span>
+      </div>
+      <div class="s-hero-3__day">
+        <span class="s-hero-3__dlabel">Fri</span>
+        <span class="s-hero-3__dbox" data-day="fri">Wrap-up</span>
+      </div>
+    </div>
+    <p class="s-hero-3__caption">What catches people out is Monday.</p>
+
+    <div class="s-hero-3__cta">
+      <a class="btn" href="/contact">Book a 30-minute consult</a>
+      <a class="s-hero-3__ghost" href="#cover">See what is covered</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-3{min-height:min(88svh,820px);display:flex;align-items:center;padding-block:clamp(2rem,5vw,3rem);background:var(--ground)}
+.s-hero-3 .wrap{width:100%}
+.s-hero-3__h1{font:800 clamp(3.2rem,4vw + 2rem,5.5rem)/1.04 var(--sans);letter-spacing:-.015em;max-width:16ch}
+.s-hero-3__h1 em{font-style:normal;color:var(--brand)}
+.s-hero-3__lede{margin-top:1.3rem;max-width:52ch;color:var(--ink-soft);font-size:1.15rem}
+
+.s-hero-3__week{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;margin-top:2.6rem;width:100%}
+.s-hero-3__day{display:flex;flex-direction:column;align-items:stretch;gap:.6rem}
+.s-hero-3__dlabel{font:700 .85rem/1 var(--sans);color:var(--ink-soft);text-transform:uppercase;letter-spacing:.03em;text-align:center}
+.s-hero-3__dbox{width:100%;min-height:96px;border-radius:12px;border:1px solid var(--rule-strong);background:var(--ground-3);
+  display:flex;align-items:center;justify-content:center;font:600 .82rem/1.2 var(--sans);color:var(--ink-soft);padding:.5rem;text-align:center}
+.s-hero-3__dbox--empty{background:transparent;border-style:dashed;border-width:2px;border-color:var(--accent)}
+
+.s-hero-3__caption{margin-top:1.2rem;font:700 1.15rem/1.3 var(--sans);color:var(--accent)}
+.s-hero-3__cta{margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center}
+.s-hero-3__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.6rem 0}
+
+@media (min-width:760px){
+  .s-hero-3__dbox{min-height:132px;font-size:.95rem}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  var mon = root.querySelector('[data-day="mon"]');
+  if (reduced){ mon.textContent = ""; return; }
+  gsap.set(mon, {});
+  var tl = gsap.timeline({delay:.3});
+  tl.to(mon, {duration:.5, ease:"power2.inOut", onStart:function(){ mon.textContent = "Standup"; }})
+    .to(mon, {opacity:.3, duration:.35, ease:"power2.in"}, "+=.5")
+    .call(function(){ mon.textContent = ""; })
+    .to(mon, {opacity:1, duration:.35, ease:"power2.out"});
+};
+</script>

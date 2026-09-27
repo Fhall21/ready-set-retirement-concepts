@@ -1,0 +1,69 @@
+<section class="s-speech-2">
+  <div class="s-sp2-stage" id="s-sp2-stage">
+    <div class="wrap s-sp2-in">
+      <p class="s-sp2-ask">So why does nobody make one?</p>
+      <p class="s-sp2-lede">We spend forty years planning for retirement financially and roughly ten minutes planning who we will be when it arrives.</p>
+
+      <div class="s-sp2-scale">
+        <div class="s-sp2-row">
+          <div class="s-sp2-track"><i class="s-sp2-fill s-sp2-fill-money"></i></div>
+          <div class="s-sp2-label"><b class="s-sp2-num" data-num>0</b> years — the money question</div>
+        </div>
+        <div class="s-sp2-row">
+          <div class="s-sp2-track"><i class="s-sp2-fill s-sp2-fill-self"></i></div>
+          <div class="s-sp2-label"><b class="s-sp2-num2" data-num2>0</b> minutes — who you'll be</div>
+        </div>
+      </div>
+
+      <p class="s-sp2-close">Money funds a lifestyle. It has never once told anyone what to do with a <span>Wednesday.</span></p>
+    </div>
+  </div>
+</section>
+<style>
+.s-speech-2{background:var(--ground)}
+.s-sp2-stage{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(2.5rem,6vw,4rem)}
+.s-sp2-in{max-width:900px}
+.s-sp2-ask{font:600 clamp(1rem,2vw,1.15rem)/1.3 var(--sans);color:var(--brand-deep);margin-bottom:.8rem}
+.s-sp2-lede{font:700 clamp(1.3rem,3vw,1.7rem)/1.4 var(--sans);max-width:28ch;margin-bottom:clamp(2rem,5vw,3rem)}
+.s-sp2-scale{display:flex;flex-direction:column;gap:1.4rem}
+.s-sp2-row{display:flex;flex-direction:column;gap:.5rem}
+.s-sp2-track{height:clamp(1.6rem,4vw,2.4rem);border-radius:.4rem;background:var(--ground-3);overflow:hidden;position:relative}
+.s-sp2-fill{position:absolute;left:0;top:0;bottom:0;width:0%;border-radius:.4rem}
+.s-sp2-fill-money{background:var(--brand)}
+.s-sp2-fill-self{background:var(--accent)}
+.s-sp2-label{font:600 .95rem/1.3 var(--sans);color:var(--ink-soft)}
+.s-sp2-label b{font:700 1rem/1 var(--num);color:var(--ink);margin-right:.35em}
+.s-sp2-close{margin-top:clamp(2.4rem,6vw,3.6rem);font:800 clamp(1.6rem,4.4vw,2.6rem)/1.2 var(--sans);letter-spacing:-.01em;max-width:22ch;opacity:0}
+.s-sp2-close span{color:var(--accent)}
+</style>
+<script>
+window.slotInit["speech"] = function(root, reduced){
+  var moneyFill = root.querySelector(".s-sp2-fill-money");
+  var selfFill = root.querySelector(".s-sp2-fill-self");
+  var num = root.querySelector("[data-num]");
+  var num2 = root.querySelector("[data-num2]");
+  var close = root.querySelector(".s-sp2-close");
+  var counters = {y:0, m:0};
+
+  function paint(){
+    num.textContent = Math.round(counters.y);
+    num2.textContent = Math.round(counters.m);
+  }
+
+  if(reduced){
+    gsap.set(moneyFill, {width:"100%"}); gsap.set(selfFill, {width:"2%"});
+    counters.y = 40; counters.m = 10; paint();
+    gsap.set(close, {opacity:1});
+    return;
+  }
+
+  var tl = gsap.timeline({
+    scrollTrigger: { trigger: root, start: "top top", end: "+=120%", scrub: .8, pin: true, invalidateOnRefresh:true }
+  });
+  tl.to(moneyFill, {width:"100%", ease:"none"}, 0);
+  tl.to(counters, {y:40, ease:"none", onUpdate:paint}, 0);
+  tl.to(selfFill, {width:"2%", ease:"none"}, .55);
+  tl.to(counters, {m:10, ease:"none", onUpdate:paint}, .55);
+  tl.to(close, {opacity:1, ease:"none"}, .78);
+};
+</script>

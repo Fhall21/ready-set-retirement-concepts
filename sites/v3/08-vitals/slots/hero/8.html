@@ -1,0 +1,39 @@
+<section class="s-hero-8" aria-labelledby="s-hero-8-h">
+  <div class="wrap">
+    <article class="s-hero-8__note">
+      <p class="s-hero-8__mark">human-centred retirement planning&trade;</p>
+      <h1 id="s-hero-8-h" class="s-hero-8__h1">Educated retirement decisions, for <span class="s-hero-8__u">psychological and social wellbeing</span>.</h1>
+
+      <div class="s-hero-8__body">
+        <p>I work with people, and with the organisations they work for.</p>
+        <p>Ready Set Retirement is psychosocial retirement education: training, workshops, seminars, coaching, consulting and speaking.</p>
+      </div>
+
+      <div class="s-hero-8__sign">
+        <img class="s-hero-8__portrait" src="assets/drsan.jpg" alt="Portrait of Dr San" width="72" height="72">
+        <p class="s-hero-8__who"><strong>Dr San</strong><span>Psychosocial Retirement Educator</span><span>Far North Queensland</span></p>
+      </div>
+
+      <a class="btn s-hero-8__cta" href="/contact">Book a 30-minute consult</a>
+    </article>
+  </div>
+</section>
+
+<style>
+.s-hero-8{background:var(--ground);padding-block:clamp(4rem,10vh,7.5rem) clamp(3.5rem,8vh,6rem);min-height:min(100svh,900px);display:flex;align-items:center}
+.s-hero-8 .wrap{width:100%}
+.s-hero-8__note{max-width:40rem;margin-inline:auto}
+.s-hero-8__mark{font:600 1rem/1.4 var(--sans);color:var(--brand-deep);margin:0 0 1.1rem}
+.s-hero-8__h1{font:700 clamp(2.1rem,1.4rem + 2.6vw,3.4rem)/1.12 var(--sans);letter-spacing:-.018em;color:var(--ink);margin:0;text-wrap:balance}
+.s-hero-8__u{background:linear-gradient(color-mix(in srgb,var(--brand) 22%,transparent),color-mix(in srgb,var(--brand) 22%,transparent)) no-repeat 0 88%/100% .28em;animation:s-hero-8-ink 1.1s var(--ease-out) .35s both}
+@keyframes s-hero-8-ink{from{background-size:0% .28em}}
+.s-hero-8__body{margin-top:clamp(1.5rem,3vw,2rem);font:400 clamp(1.08rem,1rem + .3vw,1.22rem)/1.62 var(--sans);color:var(--ink-soft);max-width:34rem}
+.s-hero-8__body p{margin:0 0 .9rem}
+.s-hero-8__sign{display:flex;align-items:center;gap:1rem;margin-top:clamp(1.6rem,3vw,2.2rem);padding-top:1.4rem;border-top:1px solid var(--rule)}
+.s-hero-8__portrait{width:72px;height:72px;border-radius:50%;object-fit:cover;flex:none}
+.s-hero-8__who{margin:0;display:flex;flex-direction:column;gap:.2rem;font:400 .95rem/1.35 var(--sans);color:var(--ink-soft)}
+.s-hero-8__who strong{font-weight:700;font-size:1.12rem;color:var(--ink)}
+.s-hero-8__cta{margin-top:clamp(1.6rem,3vw,2.2rem)}
+.s-hero-8 ::selection{background:color-mix(in srgb,var(--brand) 25%,transparent)}
+@media (prefers-reduced-motion:reduce){.s-hero-8__u{animation:none}}
+</style>

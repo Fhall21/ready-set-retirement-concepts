@@ -1,0 +1,64 @@
+<section class="s-audience-2">
+  <div class="wrap">
+    <h2 class="s-audience-2-h">Planning your own retirement, or your team's?</h2>
+    <div class="s-audience-2-svgwrap">
+      <svg class="s-audience-2-svg" viewBox="0 0 900 340" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <path class="s-audience-2-path s-audience-2-a" d="M180 70 C 340 70, 380 180, 480 180" />
+        <path class="s-audience-2-path s-audience-2-b" d="M180 270 C 340 270, 380 180, 480 180" />
+        <path class="s-audience-2-path s-audience-2-merged" d="M480 180 C 620 180, 700 180, 820 180" />
+        <circle class="s-audience-2-pin" cx="180" cy="70" r="7" />
+        <circle class="s-audience-2-pin" cx="180" cy="270" r="7" />
+        <circle class="s-audience-2-pin s-audience-2-end" cx="820" cy="180" r="8" />
+      </svg>
+      <span class="s-audience-2-label s-audience-2-l1">You, 3&ndash;10 years out</span>
+      <span class="s-audience-2-label s-audience-2-l2">HR and workforce planners</span>
+      <span class="s-audience-2-label s-audience-2-l3">Ready Set Retirement</span>
+    </div>
+    <p class="s-audience-2-copy">Two different starting points. Same person on the other end of the call.</p>
+    <p><a class="btn" href="/contact">Book a consult</a></p>
+  </div>
+</section>
+<style>
+.s-audience-2{padding-block:clamp(3rem,8vh,6rem)}
+.s-audience-2-h{font:800 clamp(1.8rem,1rem + 3.2vw,3.2rem)/1.15 var(--sans);max-width:20ch}
+.s-audience-2-svgwrap{position:relative;margin-top:clamp(2rem,6vh,3.5rem)}
+.s-audience-2-svg{width:100%;height:auto;display:block}
+.s-audience-2-path{fill:none;stroke-width:3;stroke-linecap:round}
+.s-audience-2-a{stroke:var(--brand)}
+.s-audience-2-b{stroke:var(--accent)}
+.s-audience-2-merged{stroke:var(--ink);stroke-width:4}
+.s-audience-2-pin{fill:var(--ink)}
+.s-audience-2-pin.s-audience-2-end{fill:var(--brand)}
+.s-audience-2-label{position:absolute;font:700 .95rem/1.2 var(--sans);color:var(--ink-soft);max-width:12ch}
+.s-audience-2-l1{left:0;top:0%}
+.s-audience-2-l2{left:0;top:86%}
+.s-audience-2-l3{right:0;top:44%;text-align:right;color:var(--ink)}
+.s-audience-2-copy{margin-top:1.6rem;max-width:44ch;color:var(--ink-soft)}
+@media (max-width:640px){
+  .s-audience-2-label{position:static;display:block;margin-top:.4rem;max-width:none}
+}
+</style>
+<script>
+window.slotInit["audience"] = function(root, reduced){
+  var paths = root.querySelectorAll(".s-audience-2-path");
+  var pins = root.querySelectorAll(".s-audience-2-pin");
+  if (reduced) { gsap.set(paths, {drawSVG:"100%"}); gsap.set(pins, {opacity:1}); return; }
+
+  gsap.set(paths, {drawSVG:"0%"});
+  gsap.set(pins, {opacity:0, scale:0, transformOrigin:"center"});
+  gsap.set(pins[0], {opacity:1, scale:1});
+  gsap.set(pins[1], {opacity:1, scale:1});
+
+  var tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: root.querySelector(".s-audience-2-svgwrap"),
+      start: "top 75%",
+      end: "bottom 55%",
+      scrub: 0.7
+    }
+  });
+  tl.to([root.querySelector(".s-audience-2-a"), root.querySelector(".s-audience-2-b")], {drawSVG:"100%", ease:"none"})
+    .to(root.querySelector(".s-audience-2-merged"), {drawSVG:"100%", ease:"none"}, ">-0.1")
+    .to(root.querySelector(".s-audience-2-end"), {opacity:1, scale:1, ease:"back.out(2)"}, "<");
+};
+</script>

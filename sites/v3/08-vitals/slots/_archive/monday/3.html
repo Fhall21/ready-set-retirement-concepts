@@ -1,0 +1,59 @@
+<section class="s-monday-3">
+  <div class="s-m3-stage" id="s-m3-stage">
+    <div class="wrap s-m3-in">
+      <div class="s-m3-panel s-m3-p1">
+        <span class="s-m3-tag">Friday</span>
+        <h3 class="s-m3-h">Cake in the kitchen. A card everyone signed.</h3>
+      </div>
+      <div class="s-m3-panel s-m3-p2">
+        <span class="s-m3-tag">The weekend</span>
+        <h3 class="s-m3-h">Two days of nothing feels like a holiday.</h3>
+      </div>
+      <div class="s-m3-panel s-m3-p3">
+        <span class="s-m3-tag s-m3-tag-accent">Monday</span>
+        <h3 class="s-m3-h">Then what?</h3>
+      </div>
+    </div>
+    <div class="s-m3-bar"><i class="s-m3-fill"></i></div>
+  </div>
+</section>
+<style>
+.s-monday-3{background:var(--ground)}
+.s-m3-stage{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(2rem,6vw,4rem);overflow:clip}
+.s-m3-in{position:relative;width:100%;height:clamp(320px,40vw,420px)}
+.s-m3-panel{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:.8rem;overflow:hidden}
+.s-m3-tag{font:700 .82rem/1 var(--num);text-transform:uppercase;letter-spacing:.06em;color:var(--brand);width:fit-content;padding:.4rem .8rem;border-radius:999px;background:var(--ground-3)}
+.s-m3-tag-accent{color:var(--accent);background:color-mix(in srgb, var(--accent) 12%, var(--ground-3))}
+.s-m3-h{font:800 clamp(1.7rem,4.6vw,3.2rem)/1.12 var(--sans);letter-spacing:-.015em;max-width:20ch;color:var(--ink)}
+.s-m3-p2,.s-m3-p3{opacity:0}
+.s-m3-bar{margin-top:clamp(1.6rem,4vw,2.4rem);margin-inline:var(--gut);height:4px;border-radius:999px;background:var(--rule);position:relative}
+.s-m3-fill{position:absolute;left:0;top:0;bottom:0;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--brand),var(--accent))}
+@media (max-width:700px){
+  .s-m3-stage{min-height:auto}
+  .s-m3-panel{position:static;opacity:1!important;margin-bottom:2.2rem}
+  .s-m3-in{height:auto}
+  .s-m3-bar{display:none}
+}
+</style>
+<script>
+window.slotInit["monday"] = function(root, reduced){
+  var p1 = root.querySelector(".s-m3-p1"), p2 = root.querySelector(".s-m3-p2"), p3 = root.querySelector(".s-m3-p3");
+  var fill = root.querySelector(".s-m3-fill");
+
+  if(reduced){ gsap.set([p1,p2,p3], {opacity:0}); gsap.set(p3, {opacity:1}); gsap.set(fill,{width:"100%"}); return; }
+
+  gsap.matchMedia().add("(min-width: 701px)", function(){
+    gsap.set([p2,p3], {y:24});
+    var tl = gsap.timeline({
+      scrollTrigger: { trigger: root, start: "top top", end: "+=140%", scrub: .8, pin: true, invalidateOnRefresh:true }
+    });
+    tl.to(fill, {width:"33%", ease:"none"}, 0);
+    tl.to(p1, {opacity:0, y:-24, ease:"none"}, .22);
+    tl.to(p2, {opacity:1, y:0, ease:"none"}, .28);
+    tl.to(fill, {width:"66%", ease:"none"}, .33);
+    tl.to(p2, {opacity:0, y:-24, ease:"none"}, .62);
+    tl.to(p3, {opacity:1, y:0, ease:"none"}, .68);
+    tl.to(fill, {width:"100%", ease:"none"}, .7);
+  });
+};
+</script>

@@ -1,0 +1,93 @@
+<section class="s-plancheck-2">
+  <div class="wrap">
+    <h2 class="s-plancheck-2-h">A quick self-check.</h2>
+    <p class="s-plancheck-2-lede">No score kept, nothing sent anywhere. Just read down the list, or tap through it.</p>
+
+    <ul class="s-plancheck-2-list" role="list">
+      <li class="s-plancheck-2-item" data-state="yes">
+        <button type="button" class="s-plancheck-2-toggle" aria-pressed="true">
+          <svg class="s-plancheck-2-icon" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6"/></svg>
+          <span>I know what a Tuesday will look like</span>
+        </button>
+      </li>
+      <li class="s-plancheck-2-item" data-state="yes">
+        <button type="button" class="s-plancheck-2-toggle" aria-pressed="true">
+          <svg class="s-plancheck-2-icon" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6"/></svg>
+          <span>I know what the first Monday looks like</span>
+        </button>
+      </li>
+      <li class="s-plancheck-2-item" data-state="yes">
+        <button type="button" class="s-plancheck-2-toggle" aria-pressed="true">
+          <svg class="s-plancheck-2-icon" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6"/></svg>
+          <span>I know who I&rsquo;ll see most weeks</span>
+        </button>
+      </li>
+      <li class="s-plancheck-2-item" data-state="no">
+        <button type="button" class="s-plancheck-2-toggle" aria-pressed="false">
+          <svg class="s-plancheck-2-icon" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>
+          <span>I know what I&rsquo;ll be useful for</span>
+        </button>
+      </li>
+      <li class="s-plancheck-2-item" data-state="yes">
+        <button type="button" class="s-plancheck-2-toggle" aria-pressed="true">
+          <svg class="s-plancheck-2-icon" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6"/></svg>
+          <span>My partner and I have discussed all of this</span>
+        </button>
+      </li>
+    </ul>
+
+    <p class="s-plancheck-2-result"><strong class="s-plancheck-2-count">3</strong> of <strong>5</strong> planned &mdash; that&rsquo;s what the consult is for.</p>
+  </div>
+</section>
+<style>
+.s-plancheck-2{padding-block:clamp(3.5rem,9vw,6rem);background:var(--ground-2)}
+.s-plancheck-2-h{font:800 clamp(1.8rem,1rem + 3.2vw,3.2rem)/1.12 var(--sans);max-width:20ch}
+.s-plancheck-2-lede{margin-top:1.1rem;margin-bottom:clamp(2rem,5vw,2.6rem);max-width:52ch;color:var(--ink-soft);font-size:1.05em}
+
+.s-plancheck-2-list{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.s-plancheck-2-toggle{width:100%;display:flex;align-items:center;gap:1rem;text-align:left;
+  background:var(--ground);border:1px solid var(--rule-strong);border-radius:.7rem;
+  padding:1.05rem 1.2rem;min-height:44px;font:600 1.02rem/1.35 var(--sans);color:var(--ink);
+  cursor:pointer;transition:background .18s,border-color .18s}
+.s-plancheck-2-toggle:hover{border-color:var(--ink-soft)}
+.s-plancheck-2-icon{width:1.5rem;height:1.5rem;flex:none}
+.s-plancheck-2-icon path{fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+.s-plancheck-2-item[data-state="yes"] .s-plancheck-2-icon path{stroke:var(--brand)}
+.s-plancheck-2-item[data-state="no"] .s-plancheck-2-icon path{stroke:var(--accent)}
+.s-plancheck-2-item[data-state="no"] .s-plancheck-2-toggle{background:color-mix(in srgb, var(--accent) 7%, var(--ground))}
+
+.s-plancheck-2-result{margin-top:clamp(1.8rem,4vw,2.4rem);font:600 1.2em/1.5 var(--sans)}
+.s-plancheck-2-count{font-family:var(--num);color:var(--brand-deep)}
+</style>
+<script>
+window.slotInit["plancheck"] = function(root, reduced){
+  var items = root.querySelectorAll(".s-plancheck-2-item");
+  var countEl = root.querySelector(".s-plancheck-2-count");
+
+  function recount(){
+    var yes = 0;
+    items.forEach(function(li){ if (li.dataset.state === "yes") yes++; });
+    countEl.textContent = yes;
+  }
+
+  items.forEach(function(li){
+    var btn = li.querySelector(".s-plancheck-2-toggle");
+    var icon = li.querySelector(".s-plancheck-2-icon path");
+    btn.addEventListener("click", function(){
+      var isYes = li.dataset.state === "yes";
+      li.dataset.state = isYes ? "no" : "yes";
+      btn.setAttribute("aria-pressed", String(!isYes));
+      icon.setAttribute("d", isYes ? "M5 12h14" : "M4 12.5l5 5L20 6");
+      recount();
+      if (!reduced) gsap.fromTo(btn, {scale:.98}, {scale:1, duration:.3, ease:"power2.out"});
+    });
+  });
+
+  if (reduced) return;
+  gsap.from(root.querySelectorAll(".s-plancheck-2-item"), {
+    opacity:0, y:14, duration:.6, stagger:.08, ease:"power3.out",
+    scrollTrigger:{trigger: root.querySelector(".s-plancheck-2-list"), start:"top 82%"}
+  });
+};
+</script>

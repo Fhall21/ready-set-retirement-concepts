@@ -1,0 +1,65 @@
+<section class="s-pause-1">
+  <div class="s-pa1-stage">
+    <div class="wrap s-pa1-in">
+      <p class="s-pa1-line" aria-label="Money funds a lifestyle. It cannot buy a quality of life, and it has never once told anyone what to do with a Wednesday.">
+        <span class="s-pa1-w">Money</span> <span class="s-pa1-w">funds</span> <span class="s-pa1-w">a</span> <span class="s-pa1-w">lifestyle.</span>
+        <span class="s-pa1-w">It</span> <span class="s-pa1-w">cannot</span> <span class="s-pa1-w">buy</span> <span class="s-pa1-w">a</span> <span class="s-pa1-w">quality</span> <span class="s-pa1-w">of</span> <span class="s-pa1-w">life,</span>
+        <span class="s-pa1-w">and</span> <span class="s-pa1-w">it</span> <span class="s-pa1-w">has</span> <span class="s-pa1-w">never</span> <span class="s-pa1-w">once</span> <span class="s-pa1-w">told</span> <span class="s-pa1-w">anyone</span> <span class="s-pa1-w">what</span> <span class="s-pa1-w">to</span> <span class="s-pa1-w">do</span> <span class="s-pa1-w">with</span>
+      </p>
+      <p class="s-pa1-last" aria-hidden="true"><span>a</span> <span>Wednesday.</span></p>
+    </div>
+  </div>
+</section>
+<style>
+.s-pause-1{background:var(--ground)}
+.s-pa1-stage{min-height:100vh;display:flex;align-items:center;padding-block:clamp(2.5rem,6vw,4rem)}
+.s-pa1-in{max-width:760px}
+.s-pa1-line{font:700 clamp(1.4rem,4vw,2.1rem)/1.5 var(--sans);letter-spacing:-.01em}
+.s-pa1-line .s-pa1-w{opacity:.16;transition:none}
+.s-pa1-last{position:fixed;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font:800 clamp(2.4rem,8vw,5rem)/1 var(--sans);letter-spacing:-.02em;opacity:0;pointer-events:none;z-index:2}
+.s-pa1-last span:first-child{color:var(--ink-soft);font-weight:600;margin-right:.35ch}
+.s-pa1-last span:last-child{color:var(--accent)}
+@media (max-width:640px){
+  .s-pa1-stage{min-height:auto;padding-block:3.5rem}
+  .s-pa1-last{position:static;transform:none;margin-top:2rem;text-align:left;font-size:clamp(2rem,10vw,3rem)}
+}
+</style>
+<script>
+window.slotInit["pause"] = function(root, reduced){
+  var words = root.querySelectorAll(".s-pa1-w");
+  var last = root.querySelector(".s-pa1-last");
+  var line = root.querySelector(".s-pa1-line");
+
+  if(reduced){
+    gsap.set(words, {opacity:1});
+    gsap.set(line, {opacity:.16});
+    gsap.set(last, {opacity:1, position:"static", transform:"none", marginTop:"2rem"});
+    return;
+  }
+
+  var mm = gsap.matchMedia();
+
+  mm.add("(min-width: 641px)", function(){
+    var tl = gsap.timeline({
+      scrollTrigger: { trigger: root, start:"top top", end:"+=120%", scrub:.7, pin:true, invalidateOnRefresh:true }
+    });
+    // words build in, one by one, across the first 55% of scroll
+    tl.to(words, {opacity:1, stagger:{each:1, from:"start"}, ease:"none"}, 0);
+    // 0.55–0.72: deliberate empty beat — nothing changes
+    // 0.72–1: sentence recedes, "a Wednesday" arrives alone and sits
+    tl.to(line, {opacity:.14, ease:"none"}, .74);
+    tl.to(last, {opacity:1, ease:"none"}, .8);
+    return function(){};
+  });
+
+  mm.add("(max-width: 640px)", function(){
+    gsap.set(last, {position:"static", transform:"none", marginTop:"2rem"});
+    var tl = gsap.timeline({
+      scrollTrigger: { trigger: root, start:"top 75%", end:"bottom 40%", scrub:.6 }
+    });
+    tl.to(words, {opacity:1, stagger:{each:1, from:"start"}, ease:"none"}, 0);
+    tl.to(last, {opacity:1, ease:"none"}, .82);
+    return function(){};
+  });
+};
+</script>

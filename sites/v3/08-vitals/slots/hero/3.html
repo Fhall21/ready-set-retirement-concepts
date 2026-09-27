@@ -1,0 +1,38 @@
+<section class="s-hero-4">
+  <div class="wrap s-hero-4__wrap">
+    <h1 class="s-hero-4__h1">
+      <span class="s-hero-4__line">Financial readiness</span>
+      <span class="s-hero-4__line">is one vital sign.</span>
+      <span class="s-hero-4__line s-hero-4__line--accent">It is not the only one.</span>
+    </h1>
+    <p class="s-hero-4__lede">We spend forty years planning the money and about ten minutes planning the person. The balance gets reviewed every year. The person gets worked out on the drive home from the farewell.</p>
+    <div class="s-hero-4__cta">
+      <a class="btn" href="/contact">Book a 30-minute consult</a>
+      <a class="s-hero-4__ghost" href="#cover">See what is covered</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-4{min-height:min(88svh,820px);display:flex;align-items:center;padding-block:clamp(2rem,5vw,3rem);background:var(--ground)}
+.s-hero-4__wrap{max-width:1000px}
+.s-hero-4__h1{font:800 clamp(3.2rem,4vw + 2rem,5.5rem)/1.04 var(--sans);letter-spacing:-.015em;margin:0}
+.s-hero-4__line{display:block}
+.s-hero-4__line--accent{color:var(--brand)}
+.s-hero-4__lede{margin-top:1.5rem;max-width:48ch;color:var(--ink-soft);font-size:1.12em;line-height:1.6}
+.s-hero-4__cta{margin-top:2rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center}
+.s-hero-4__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.6rem 0}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  var lines = root.querySelectorAll(".s-hero-4__line");
+  var lede = root.querySelector(".s-hero-4__lede");
+  var cta = root.querySelector(".s-hero-4__cta");
+  if (reduced) return;
+  gsap.set(lines, {overflow:"hidden"});
+  var tl = gsap.timeline({defaults:{ease:"expo.out"}});
+  tl.from(lines, {yPercent:112, duration:.85, stagger:.09})
+    .from(lede, {opacity:0, y:12, duration:.5}, "-=.35")
+    .from(cta, {opacity:0, y:10, duration:.45}, "-=.3");
+};
+</script>

@@ -1,0 +1,166 @@
+<section class="s-practitioner-4">
+  <div class="wrap grid">
+    <figure class="plate">
+      <img src="assets/drsan.jpg" width="980" height="1470" loading="lazy" decoding="async"
+           alt="Dr Sandra Walden-Pearson, smiling, photographed in warm natural light.">
+    </figure>
+    <div class="bio">
+      <h2>Dr Sandra Walden-Pearson</h2>
+      <p class="role">Psychosocial retirement educator &nbsp;&middot;&nbsp; Far North Queensland</p>
+      <p class="lede">
+        Known as Dr San. She works with individuals who are three to ten years from a
+        retirement date, and with the HR and workforce planners who are about to lose thirty
+        years of institutional knowledge in a single quarter.
+      </p>
+      <p class="lede soft">
+        She is not a financial adviser and has no interest in becoming one. She teaches the
+        other half of the plan &mdash; the half that decides whether the first half was worth
+        doing.
+      </p>
+      <ul class="cred">
+        <li>PhD (Business)</li>
+        <li>MBA (HR)</li>
+        <li>BA Dip Ed</li>
+        <li>Certified Professional Retirement Coach</li>
+      </ul>
+      <details class="more">
+        <summary>Full credentials</summary>
+        <ul>
+          <li>Certified Associate Meta Coach</li>
+          <li>Certified Resilience Coach</li>
+          <li>HART Coach</li>
+          <li>Resilience First Aid Responder</li>
+          <li>Accredited Mental Health First Aider</li>
+          <li>Accredited Mental Health First Aider (Workplace)</li>
+          <li>Accredited Cinergy Conflict Coach</li>
+        </ul>
+      </details>
+      <p class="tm">
+        human-centred retirement planning&trade;<br>
+        readysetretirement psychosocial planning&reg;
+      </p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="carousel" role="region" aria-roledescription="carousel" aria-label="What clients say">
+      <div class="track" aria-live="polite">
+        <figure class="slide" aria-hidden="false">
+          <blockquote>
+            <p>&ldquo;Financial planning for retirement is well known. I hadn&rsquo;t heard about
+            psychosocial education focused on human-centred retirement planning &mdash; in 30 years
+            of politics. In talking with Dr San I realised the critical need to plan for the human
+            side of retirement. With hand on heart, I can honestly say that engaging Dr San has been
+            life changing.&rdquo;</p>
+          </blockquote>
+          <figcaption><strong>Hon. Warren Entsch</strong> &nbsp;&middot;&nbsp; Former Federal Member for Leichhardt</figcaption>
+        </figure>
+      </div>
+      <div class="controls">
+        <button type="button" class="nav prev" aria-label="Previous testimonial">&larr;</button>
+        <div class="dots" role="tablist" aria-label="Choose testimonial"></div>
+        <button type="button" class="nav next" aria-label="Next testimonial">&rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-practitioner-4{padding-block:clamp(3rem,8vw,6rem);background:var(--ground)}
+.s-practitioner-4 .grid{display:grid;gap:clamp(2rem,5vw,4rem);align-items:start}
+@media(min-width:900px){.s-practitioner-4 .grid{grid-template-columns:minmax(280px,42%) 1fr}}
+.s-practitioner-4 .plate{margin:0;border-radius:1.25rem;overflow:clip;background:var(--ground-2)}
+.s-practitioner-4 .plate img{width:100%;height:auto;object-fit:cover;object-position:50% 15%;aspect-ratio:980/1470;filter:saturate(1.05) brightness(1.03)}
+.s-practitioner-4 .bio h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;letter-spacing:-.01em}
+.s-practitioner-4 .role{margin-top:.5rem;color:var(--ink-soft);font-weight:600}
+.s-practitioner-4 .lede{margin-top:1.4rem;max-width:52ch}
+.s-practitioner-4 .lede.soft{color:var(--ink-soft)}
+.s-practitioner-4 .cred{list-style:none;margin:1.8rem 0 0;padding:0;display:grid;gap:.55rem}
+.s-practitioner-4 .cred li{padding-block:.55rem;border-top:1px solid var(--rule);font-weight:600}
+.s-practitioner-4 .cred li:first-child{border-top:none}
+.s-practitioner-4 .more{margin-top:1.2rem}
+.s-practitioner-4 .more summary{cursor:pointer;font-weight:600;color:var(--brand);list-style:none}
+.s-practitioner-4 .more summary::-webkit-details-marker{display:none}
+.s-practitioner-4 .more summary::after{content:" +";color:var(--brand)}
+.s-practitioner-4 .more[open] summary::after{content:" \2212"}
+.s-practitioner-4 .more ul{list-style:none;margin:.9rem 0 0;padding:0;display:grid;gap:.5rem;color:var(--ink-soft)}
+.s-practitioner-4 .tm{margin-top:1.8rem;font-size:.85rem;color:var(--ink-soft)}
+
+/* Carousel */
+.s-practitioner-4 .carousel{margin-top:clamp(2.6rem,6vw,4rem);padding-top:clamp(2.4rem,5vw,3.4rem);border-top:1px solid var(--rule)}
+.s-practitioner-4 .track{position:relative;overflow:hidden;touch-action:pan-y}
+.s-practitioner-4 .slide{margin:0;max-width:64ch;transition:opacity .35s var(--ease-out)}
+.s-practitioner-4 .slide[hidden]{display:none}
+.s-practitioner-4 .slide blockquote{margin:0}
+.s-practitioner-4 .slide p{font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.42;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.s-practitioner-4 .slide figcaption{margin-top:1.2rem;color:var(--ink-soft);font-weight:600}
+.s-practitioner-4 .controls{display:flex;align-items:center;gap:1rem;margin-top:1.8rem}
+.s-practitioner-4 .nav{width:48px;height:48px;min-width:44px;min-height:44px;border-radius:999px;border:1px solid var(--rule-strong);
+  background:var(--ground);color:var(--ink);font-size:1.15rem;display:grid;place-items:center;cursor:pointer;
+  transition:background .2s,transform .15s var(--ease-out)}
+.s-practitioner-4 .nav:hover{background:var(--ground-3)}
+.s-practitioner-4 .nav:active{transform:scale(.94)}
+.s-practitioner-4 .nav[disabled]{opacity:.35;cursor:default}
+.s-practitioner-4 .dots{display:flex;gap:.55rem;flex:1;justify-content:center}
+.s-practitioner-4 .dot{width:11px;height:11px;border-radius:999px;border:none;background:var(--rule-strong);cursor:pointer;padding:0}
+.s-practitioner-4 .dot[aria-selected="true"]{background:var(--brand)}
+.s-practitioner-4 .carousel[data-count="1"] .controls{display:none}
+</style>
+<script>
+window.slotInit["practitioner"] = function(root, reduced){
+  var plate = root.querySelector(".plate");
+  if (reduced) { gsap.set(plate, {clipPath:"inset(0% 0% 0% 0%)"}); }
+  else {
+    gsap.fromTo(plate, {clipPath:"inset(100% 0% 0% 0%)"}, {
+      clipPath:"inset(0% 0% 0% 0%)", duration:1.1, ease:"expo.out",
+      scrollTrigger:{trigger:plate, start:"top 85%"}
+    });
+  }
+
+  /* Carousel: built to handle N slides. Only one real testimonial is on
+     file today (Hon. Warren Entsch, from previous_resources); the dots
+     and prev/next hide themselves via [data-count="1"] until more are added. */
+  var carousel = root.querySelector(".carousel");
+  var slides = Array.prototype.slice.call(root.querySelectorAll(".slide"));
+  var track = root.querySelector(".track");
+  var dotsWrap = root.querySelector(".dots");
+  var prev = root.querySelector(".prev"), next = root.querySelector(".next");
+  var count = slides.length, i = 0;
+  carousel.dataset.count = count;
+
+  slides.forEach(function(s, idx){
+    s.hidden = idx !== 0;
+    var dot = document.createElement("button");
+    dot.type = "button"; dot.className = "dot"; dot.setAttribute("role","tab");
+    dot.setAttribute("aria-label","Testimonial " + (idx+1) + " of " + count);
+    dot.setAttribute("aria-selected", idx === 0 ? "true" : "false");
+    dot.addEventListener("click", function(){ go(idx); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function go(n){
+    if (n === i || count < 2) return;
+    slides[i].hidden = true; dots[i].setAttribute("aria-selected","false");
+    i = (n + count) % count;
+    slides[i].hidden = false; dots[i].setAttribute("aria-selected","true");
+  }
+  if (prev) prev.addEventListener("click", function(){ go(i - 1); });
+  if (next) next.addEventListener("click", function(){ go(i + 1); });
+
+  /* swipe */
+  var startX = null;
+  track.addEventListener("touchstart", function(e){ startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener("touchend", function(e){
+    if (startX === null) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1));
+    startX = null;
+  }, {passive:true});
+
+  /* keyboard */
+  carousel.addEventListener("keydown", function(e){
+    if (e.key === "ArrowRight") go(i + 1);
+    if (e.key === "ArrowLeft") go(i - 1);
+  });
+};
+</script>

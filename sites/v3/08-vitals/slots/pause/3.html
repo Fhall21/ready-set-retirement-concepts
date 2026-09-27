@@ -1,0 +1,74 @@
+<section class="s-pause-3">
+  <div class="s-pa3-stage">
+    <div class="s-pa3-mark" aria-hidden="true"></div>
+    <div class="s-pa3-track">
+      <div class="s-pa3-day"><b>Fri</b><i></i></div>
+      <div class="s-pa3-day"><b>Sat</b><i></i></div>
+      <div class="s-pa3-day"><b>Sun</b><i></i></div>
+      <div class="s-pa3-day s-pa3-empty"><b>Monday</b></div>
+      <div class="s-pa3-day"><b>Tue</b><i></i></div>
+      <div class="s-pa3-day"><b>Wed</b><i></i></div>
+      <div class="s-pa3-day"><b>Thu</b><i></i></div>
+    </div>
+    <div class="wrap s-pa3-in">
+      <p class="s-pa3-line">What catches people out is Monday. <span>The calendar with nothing in it.</span></p>
+    </div>
+  </div>
+</section>
+<style>
+.s-pause-3{background:var(--ground)}
+.s-pa3-stage{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding-block:clamp(2.5rem,6vw,4rem)}
+.s-pa3-mark{position:absolute;top:calc(50% - 7rem);bottom:calc(50% + 3.6rem);left:50%;width:2px;background:var(--rule-strong);z-index:1}
+.s-pa3-track{display:flex;gap:clamp(1rem,3vw,2rem);position:relative;will-change:transform}
+.s-pa3-day{flex:0 0 auto;width:clamp(5rem,14vw,7.5rem);aspect-ratio:1;border-radius:1rem;background:var(--ground-2);
+  border:1px solid var(--rule);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+.s-pa3-day b{font:700 .85rem/1 var(--sans);color:var(--ink-soft)}
+.s-pa3-day i{width:.5rem;height:.5rem;border-radius:50%;background:var(--brand);display:block}
+.s-pa3-empty{background:var(--ground);border:1.5px dashed var(--rule-strong)}
+.s-pa3-empty b{color:var(--ink);font-weight:800}
+.s-pa3-in{margin-top:clamp(3rem,7vw,4.5rem);max-width:640px;text-align:center}
+.s-pa3-line{font:700 clamp(1.25rem,3.4vw,1.8rem)/1.5 var(--sans);letter-spacing:-.01em;opacity:0}
+.s-pa3-line span{color:var(--accent)}
+@media (max-width:640px){
+  .s-pa3-stage{min-height:auto;padding-block:3.5rem}
+  .s-pa3-mark{top:calc(50% - 5.5rem);bottom:calc(50% + 2.6rem)}
+}
+</style>
+<script>
+window.slotInit["pause"] = function(root, reduced){
+  var track = root.querySelector(".s-pa3-track");
+  var line = root.querySelector(".s-pa3-line");
+  var days = root.querySelectorAll(".s-pa3-day");
+  var monday = root.querySelector(".s-pa3-empty");
+
+  // the track is centered by the stage's flex layout, and Monday sits fourth
+  // of seven — its natural rest position (x:0) is already under the mark.
+
+  if(reduced){
+    gsap.set(track, {x:0});
+    gsap.set(line, {opacity:1});
+    return;
+  }
+
+  var mm = gsap.matchMedia();
+
+  mm.add("(min-width: 641px)", function(){
+    var tl = gsap.timeline({
+      scrollTrigger: { trigger: root, start:"top top", end:"+=110%", scrub:.7, pin:true, invalidateOnRefresh:true }
+    });
+    // the week slides sideways, then stops dead the instant Monday hits the mark
+    tl.fromTo(track, {x:function(){return window.innerWidth*0.35;}}, {x:0, ease:"none", duration:.6}, 0);
+    tl.to(line, {opacity:1, ease:"none"}, .68);
+    return function(){};
+  });
+
+  mm.add("(max-width: 640px)", function(){
+    var tl = gsap.timeline({
+      scrollTrigger: { trigger: root, start:"top 75%", end:"bottom 40%", scrub:.6 }
+    });
+    tl.fromTo(track, {x:function(){return window.innerWidth*0.5;}}, {x:0, ease:"none", duration:.6}, 0);
+    tl.to(line, {opacity:1, ease:"none"}, .7);
+    return function(){};
+  });
+};
+</script>

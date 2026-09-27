@@ -1,0 +1,99 @@
+<section class="s-dials-7">
+  <div class="wrap s-d7-in">
+    <div class="s-d7-head">
+      <h2 class="s-d7-h">Same four monitors. Two afternoons.</h2>
+      <p class="s-d7-lede">They were all attached to the job. Preparation is what puts them back.</p>
+    </div>
+
+    <div class="s-d7-panel" id="s-d7-panel">
+      <div class="s-d7-state" data-state>Without a plan</div>
+      <div class="s-d7-tiles">
+        <div class="s-d7-tile" data-off="24" data-on="82" data-status-off="Low" data-status-on="Healthy" data-copy-off="Forty years of somewhere to be, finished on a Friday." data-copy-on="A weekday shape you chose, in place before the date.">
+          <h3>Direction</h3>
+          <span class="s-d7-num" data-num>24</span>
+          <span class="s-d7-status" data-status>Low</span>
+          <p class="s-d7-copy" data-copy>Forty years of somewhere to be, finished on a Friday.</p>
+        </div>
+        <div class="s-d7-tile" data-off="19" data-on="78" data-status-off="Low" data-status-on="Healthy" data-copy-off="Introduced by your job title for thirty years. Then not." data-copy-on="An answer to what you do that is yours, not the firm's.">
+          <h3>Identity</h3>
+          <span class="s-d7-num" data-num>19</span>
+          <span class="s-d7-status" data-status>Low</span>
+          <p class="s-d7-copy" data-copy>Introduced by your job title for thirty years. Then not.</p>
+        </div>
+        <div class="s-d7-tile" data-off="28" data-on="85" data-status-off="Low" data-status-on="Healthy" data-copy-off="Work answered what you are for, daily. The question outlives it." data-copy-on="Work worth doing, practised while you still have colleagues.">
+          <h3>Purpose</h3>
+          <span class="s-d7-num" data-num>28</span>
+          <span class="s-d7-status" data-status>Low</span>
+          <p class="s-d7-copy" data-copy>Work answered what you are for, daily. The question outlives it.</p>
+        </div>
+        <div class="s-d7-tile" data-off="16" data-on="74" data-status-off="Low" data-status-on="Healthy" data-copy-off="Most work friendships were structural. Remove the structure and you find out." data-copy-on="People who still ring in August, because you built that on purpose.">
+          <h3>Connection</h3>
+          <span class="s-d7-num" data-num>16</span>
+          <span class="s-d7-status" data-status>Low</span>
+          <p class="s-d7-copy" data-copy>Most work friendships were structural. Remove the structure and you find out.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-dials-7{padding-block:clamp(2.4rem,6vw,4.4rem);background:var(--ground)}
+.s-d7-head{max-width:64ch;margin-bottom:clamp(1.6rem,4vw,2.4rem)}
+.s-d7-h{font:800 clamp(1.9rem,4.4vw,3.1rem)/1.08 var(--sans);letter-spacing:-.01em}
+.s-d7-lede{margin-top:.7rem;color:var(--ink-soft);font-size:1.1em}
+
+.s-d7-panel{background:var(--ground-2);border:1px solid var(--rule-strong);border-radius:.9rem;padding:clamp(1.2rem,3vw,2rem)}
+.s-d7-state{font:800 clamp(1.05rem,2.4vw,1.4rem)/1 var(--sans);color:var(--accent);margin-bottom:1.2rem;transition:color .3s}
+.s-d7-panel.is-on .s-d7-state{color:var(--brand)}
+.s-d7-tiles{display:grid;grid-template-columns:1fr;gap:1.1rem}
+@media(min-width:700px){.s-d7-tiles{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.s-d7-tiles{grid-template-columns:repeat(4,1fr)}}
+.s-d7-tile{background:var(--ground);border:1px solid var(--rule);border-radius:.6rem;padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.35rem}
+.s-d7-tile h3{font:800 1rem/1 var(--sans)}
+.s-d7-num{font:700 clamp(2.2rem,4vw,2.6rem)/1 var(--num);color:var(--accent);transition:color .3s}
+.s-d7-panel.is-on .s-d7-num{color:var(--brand)}
+.s-d7-status{align-self:flex-start;font:700 .74rem/1 var(--num);letter-spacing:.03em;text-transform:uppercase;padding:.3rem .6rem;border-radius:.3rem;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);transition:color .3s,background .3s}
+.s-d7-panel.is-on .s-d7-status{color:var(--brand);background:color-mix(in srgb,var(--brand) 14%,transparent)}
+.s-d7-copy{margin-top:.3rem;color:var(--ink-soft);font-size:.95rem}
+</style>
+<script>
+window.slotInit["dials"] = function(root, reduced){
+  var panel = root.querySelector("#s-d7-panel");
+  var tiles = Array.prototype.slice.call(root.querySelectorAll(".s-d7-tile"));
+  var stateLabel = root.querySelector("[data-state]");
+
+  function apply(tile, on){
+    var num = tile.querySelector("[data-num]");
+    var status = tile.querySelector("[data-status]");
+    var copy = tile.querySelector("[data-copy]");
+    num.textContent = on ? tile.dataset.on : tile.dataset.off;
+    status.textContent = on ? tile.dataset.statusOn : tile.dataset.statusOff;
+    copy.textContent = on ? tile.dataset.copyOn : tile.dataset.copyOff;
+  }
+
+  function setOn(on){
+    panel.classList.toggle("is-on", on);
+    stateLabel.textContent = on ? "With Dr San's help" : "Without a plan";
+    tiles.forEach(function(t){ apply(t, on); });
+  }
+
+  if(reduced){ setOn(true); return; }
+
+  setOn(false);
+
+  var mm = gsap.matchMedia();
+  mm.add("(min-width: 900px)", function(){
+    ScrollTrigger.create({
+      trigger: root, start: "top 60%", end: "top 20%", scrub: .5,
+      invalidateOnRefresh: true,
+      onUpdate: function(self){ setOn(self.progress > .5); }
+    });
+  });
+  mm.add("(max-width: 899px)", function(){
+    ScrollTrigger.create({
+      trigger: panel, start: "top 65%", once: true,
+      onEnter: function(){ setOn(true); }
+    });
+  });
+};
+</script>

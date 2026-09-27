@@ -1,0 +1,64 @@
+<section class="s-card-2">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap');</style>
+  <div class="wrap s-c2-in">
+    <div class="s-c2-head">
+      <h2 class="s-c2-h">The card, rewritten.</h2>
+      <p class="s-c2-lede">Same shape. Different four lines.</p>
+    </div>
+
+    <div class="s-c2-stage">
+      <div class="s-c2-card">
+        <p class="s-c2-line" data-a="Enjoy the golf!" data-b="A plan for Tuesday">Enjoy the golf!</p>
+        <p class="s-c2-line" data-a="Don&rsquo;t be a stranger" data-b="An answer to &ldquo;what do you do now?&rdquo;">Don&rsquo;t be a stranger</p>
+        <p class="s-c2-line" data-a="Lucky thing!" data-b="Something you&rsquo;re useful for">Lucky thing!</p>
+        <p class="s-c2-line" data-a="You&rsquo;ve earned it" data-b="People who still call in August">You&rsquo;ve earned it</p>
+      </div>
+    </div>
+
+    <p class="s-c2-close">Same card. This time it&rsquo;s a plan.</p>
+  </div>
+</section>
+<style>
+.s-card-2{padding-block:clamp(2.4rem,6vw,4.4rem);background:var(--ground-3)}
+.s-c2-in{max-width:1000px}
+.s-c2-head{max-width:64ch;margin-bottom:clamp(1.6rem,4vw,2.4rem)}
+.s-c2-h{font:800 clamp(1.9rem,4.4vw,3.1rem)/1.08 var(--sans);letter-spacing:-.01em}
+.s-c2-lede{margin-top:.7rem;color:var(--ink-soft);font-size:1.1em}
+
+.s-c2-stage{max-width:460px;margin-inline:auto}
+.s-c2-card{position:relative;min-height:clamp(300px,50vw,340px);background:var(--ground);border:1px solid var(--rule-strong);border-radius:.7rem;
+  box-shadow:0 18px 40px -20px color-mix(in srgb,var(--ink) 30%,transparent);
+  display:grid;grid-template-columns:1fr 1fr;align-content:center;justify-items:start;gap:1.1rem 1.6rem;padding:2rem 1.8rem}
+.s-c2-line{position:relative;font:700 clamp(1.35rem,4vw,1.8rem)/1.15 "Caveat",cursive;color:var(--accent)}
+.s-c2-line:nth-child(1){transform:rotate(-2deg)}
+.s-c2-line:nth-child(2){transform:rotate(1.5deg)}
+.s-c2-line:nth-child(3){transform:rotate(-1deg)}
+.s-c2-line:nth-child(4){transform:rotate(2deg)}
+
+.s-c2-close{margin-top:clamp(1.8rem,4vw,2.6rem);max-width:56ch;margin-inline:auto;text-align:center;font:700 clamp(1.05rem,2.4vw,1.3rem)/1.4 var(--sans)}
+
+@media(max-width:520px){
+  .s-c2-card{grid-template-columns:1fr;padding:1.6rem;gap:.9rem}
+}
+</style>
+<script>
+window.slotInit["card"] = function(root, reduced){
+  var lines = Array.prototype.slice.call(root.querySelectorAll(".s-c2-line"));
+
+  if(reduced){
+    lines.forEach(function(el){ el.textContent = el.dataset.b; el.style.color = "var(--brand)"; });
+    return;
+  }
+
+  var tl = gsap.timeline({
+    scrollTrigger: { trigger: root, start: "top 65%", end: "bottom 55%", scrub: .6, invalidateOnRefresh: true }
+  });
+
+  lines.forEach(function(el, i){
+    var t = i * .9;
+    tl.to(el, {opacity:0, y:-8, ease:"none", duration:.35}, t)
+      .call(function(){ el.textContent = el.dataset.b; el.style.color = "var(--brand)"; }, null, t+.35)
+      .to(el, {opacity:1, y:0, ease:"none", duration:.35}, t+.35);
+  });
+};
+</script>

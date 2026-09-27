@@ -1,0 +1,57 @@
+<!-- c1 × c2: hero 4's split + report, but the report is the working week from hero 2. Monday's row is the blank one. -->
+<section class="s-hero-6">
+  <div class="wrap s-hero-6__grid">
+    <div>
+      <h1 class="s-hero-6__h1">Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+      <p class="s-hero-6__lede">We spend forty years planning the money and about ten minutes planning the person. The balance gets reviewed every year. The person gets worked out on the drive home from the farewell.</p>
+      <div class="s-hero-6__cta">
+        <a class="btn" href="/contact">Book a 30-minute consult</a>
+        <a class="s-hero-6__ghost" href="#cover">See what is covered</a>
+      </div>
+    </div>
+
+    <div class="s-hero-6__doc" role="img" aria-label="A working week: Tuesday meetings, Wednesday reports, Thursday team, Friday wrap-up. The Monday after you retire is blank.">
+      <div class="s-hero-6__head"><span>Your week</span><span>After the farewell</span></div>
+      <div class="s-hero-6__row s-hero-6__row--mon"><span class="s-hero-6__day">Mon</span><span class="s-hero-6__what" data-mon>Standup</span></div>
+      <div class="s-hero-6__row"><span class="s-hero-6__day">Tue</span><span class="s-hero-6__what">Meetings</span></div>
+      <div class="s-hero-6__row"><span class="s-hero-6__day">Wed</span><span class="s-hero-6__what">Reports</span></div>
+      <div class="s-hero-6__row"><span class="s-hero-6__day">Thu</span><span class="s-hero-6__what">Team</span></div>
+      <div class="s-hero-6__row"><span class="s-hero-6__day">Fri</span><span class="s-hero-6__what">Wrap-up</span></div>
+      <p class="s-hero-6__note">What catches people out is Monday.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-6{min-height:min(100svh,900px);display:flex;align-items:center;padding-block:clamp(2rem,5vw,3rem);background:var(--ground)}
+.s-hero-6__grid{display:grid;gap:clamp(2rem,5vw,3rem);align-items:center;width:100%}
+.s-hero-6__h1{font:800 clamp(3.2rem,4vw + 2rem,5.5rem)/1.04 var(--sans);letter-spacing:-.015em;max-width:14ch}
+.s-hero-6__h1 em{font-style:normal;color:var(--brand)}
+.s-hero-6__lede{margin-top:1.3rem;max-width:44ch;color:var(--ink-soft);font-size:1.15rem}
+.s-hero-6__cta{margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center}
+.s-hero-6__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.6rem 0}
+
+.s-hero-6__doc{border:1px solid var(--rule-strong);border-radius:4px;padding:1.8rem 1.8rem 1.4rem;background:var(--ground-2)}
+.s-hero-6__head{display:flex;justify-content:space-between;font:700 .85rem/1 var(--num);color:var(--ink-soft);letter-spacing:.03em;padding-bottom:1.1rem;border-bottom:2px solid var(--ink)}
+.s-hero-6__row{display:grid;grid-template-columns:4.5rem 1fr;align-items:baseline;padding:1.05rem 0;border-bottom:1px solid var(--rule)}
+.s-hero-6__day{font:600 1rem/1 var(--num);color:var(--ink-soft)}
+.s-hero-6__what{font:700 1.3rem/1.2 var(--sans);color:var(--ink);min-height:1.2em}
+.s-hero-6__row--mon .s-hero-6__day{color:var(--accent)}
+.s-hero-6__row--mon .s-hero-6__what{color:var(--accent)}
+.s-hero-6__note{margin-top:1.1rem;font:700 1.1rem/1.3 var(--sans);color:var(--accent)}
+@media (min-width:760px){
+  .s-hero-6__grid{grid-template-columns:1.1fr 1fr}
+  .s-hero-6__what{font-size:1.45rem}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  var mon = root.querySelector("[data-mon]"), note = root.querySelector(".s-hero-6__note");
+  if (reduced){ mon.textContent = ""; return; }
+  // One moment: Monday's entry is struck out and cleared, then the note lands.
+  gsap.timeline({delay:.9})
+    .to(mon, {opacity:0, x:-8, duration:.4, ease:"power2.in"})
+    .call(function(){ mon.textContent = ""; gsap.set(mon, {x:0, opacity:1}); })
+    .from(note, {opacity:0, y:8, duration:.45, ease:"power3.out", immediateRender:false});
+};
+</script>

@@ -1,0 +1,58 @@
+<section class="s-hero-4">
+  <div class="wrap s-hero-4__grid">
+    <div>
+      <h1 class="s-hero-4__h1">Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+      <p class="s-hero-4__lede">We spend forty years planning the money and about ten minutes planning the person. The balance gets reviewed every year. The person gets worked out on the drive home from the farewell.</p>
+      <div class="s-hero-4__cta">
+        <a class="btn" href="/contact">Book a 30-minute consult</a>
+        <a class="s-hero-4__ghost" href="#cover">See what is covered</a>
+      </div>
+    </div>
+
+    <div class="s-hero-4__doc" role="img" aria-label="Annual review: Financial is reviewed every year. Direction, Identity, Purpose and Connection are never reviewed.">
+      <div class="s-hero-4__doc-head">
+        <span>Annual review</span>
+        <span>This year</span>
+      </div>
+      <div class="s-hero-4__row s-hero-4__row--done">
+        <span>Financial</span>
+        <span class="s-hero-4__status s-hero-4__status--ok">Reviewed every year</span>
+      </div>
+      <div class="s-hero-4__row"><span>Direction</span><span class="s-hero-4__status">Never reviewed</span></div>
+      <div class="s-hero-4__row"><span>Identity</span><span class="s-hero-4__status">Never reviewed</span></div>
+      <div class="s-hero-4__row"><span>Purpose</span><span class="s-hero-4__status">Never reviewed</span></div>
+      <div class="s-hero-4__row"><span>Connection</span><span class="s-hero-4__status">Never reviewed</span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-4{min-height:min(100svh,900px);display:flex;align-items:center;padding-block:clamp(2rem,5vw,3rem);background:var(--ground)}
+.s-hero-4__grid{display:grid;gap:clamp(2rem,5vw,3rem);align-items:center;width:100%}
+.s-hero-4__h1{font:800 clamp(3.2rem,4vw + 2rem,5.5rem)/1.04 var(--sans);letter-spacing:-.015em;max-width:14ch}
+.s-hero-4__h1 em{font-style:normal;color:var(--brand)}
+.s-hero-4__lede{margin-top:1.3rem;max-width:44ch;color:var(--ink-soft);font-size:1.15rem}
+.s-hero-4__cta{margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:1rem 1.4rem;align-items:center}
+.s-hero-4__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.6rem 0}
+
+.s-hero-4__doc{border:1px solid var(--rule-strong);border-radius:4px;padding:1.8rem 1.8rem 1.2rem;background:var(--ground-2)}
+.s-hero-4__doc-head{display:flex;justify-content:space-between;font:700 .85rem/1 var(--num);color:var(--ink-soft);letter-spacing:.03em;padding-bottom:1.1rem;border-bottom:2px solid var(--ink)}
+.s-hero-4__row{display:flex;justify-content:space-between;align-items:baseline;padding:1.15rem 0;border-bottom:1px solid var(--rule);font:700 1.3rem/1.2 var(--sans);color:var(--ink)}
+.s-hero-4__row:last-child{border-bottom:none}
+.s-hero-4__status{font:600 1.02rem/1 var(--num);color:var(--accent)}
+.s-hero-4__status--ok{color:var(--brand)}
+.s-hero-4__row--done{font-weight:800}
+
+@media (min-width:760px){
+  .s-hero-4__grid{grid-template-columns:1.1fr 1fr}
+  .s-hero-4__row{font-size:1.45rem}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  var rows = root.querySelectorAll(".s-hero-4__row");
+  if (reduced) return;
+  gsap.set(rows, {opacity:0, y:6});
+  gsap.to(rows, {opacity:1, y:0, duration:.45, stagger:.09, ease:"power2.out", delay:.15});
+};
+</script>

@@ -1,0 +1,64 @@
+<section class="s-hero-5">
+  <div class="s-hero-5__stage">
+    <svg viewBox="0 0 300 300" class="s-hero-5__dial" data-dial>
+      <circle cx="150" cy="150" r="128" class="s-hero-5__ring"/>
+      <path d="M86 260.9 A128 128 0 1 1 214 260.9" class="s-hero-5__arc" data-arc/>
+      <line x1="150" y1="150" x2="150" y2="40" class="s-hero-5__needle" data-needle/>
+      <circle cx="150" cy="150" r="9" class="s-hero-5__hub"/>
+    </svg>
+    <div class="s-hero-5__copy">
+      <h1 class="s-hero-5__h1">Financial readiness is one vital sign. <em>It is not the only one.</em></h1>
+      <p class="s-hero-5__lede">We spend forty years planning the money and about ten minutes planning the person. The balance gets reviewed every year. The person gets worked out on the drive home from the farewell.</p>
+      <div class="s-hero-5__cta">
+        <a class="btn" href="/contact">Book a 30-minute consult</a>
+        <a class="s-hero-5__ghost" href="#cover">See what is covered</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.s-hero-5{position:relative;background:var(--ground);min-height:min(88svh,820px);display:flex;align-items:center}
+.s-hero-5__stage{width:100%;display:flex;flex-direction:column-reverse;align-items:center;justify-content:center;gap:1.6rem;
+  padding-block:clamp(2rem,5vw,3rem);position:relative;margin-inline:auto;max-width:1240px;padding-inline:var(--gut)}
+.s-hero-5__dial{width:min(84vw,340px);height:auto;flex-shrink:0}
+.s-hero-5__ring{fill:none;stroke:var(--rule);stroke-width:2}
+.s-hero-5__arc{fill:none;stroke:var(--brand);stroke-width:16;stroke-linecap:round;stroke-dasharray:670.2;stroke-dashoffset:670.2}
+.s-hero-5__needle{stroke:var(--ink);stroke-width:5;stroke-linecap:round;transform-origin:150px 150px;transform:rotate(-150deg)}
+.s-hero-5__hub{fill:var(--ink)}
+.s-hero-5__copy{text-align:center;max-width:36ch}
+.s-hero-5__h1{font:800 clamp(2.4rem,3.2vw + 1.6rem,4rem)/1.06 var(--sans);letter-spacing:-.015em}
+.s-hero-5__h1 em{font-style:normal;color:var(--brand)}
+.s-hero-5__lede{margin-top:1.1rem;color:var(--ink-soft);font-size:1.08rem}
+.s-hero-5__cta{margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:1rem 1.2rem;align-items:center;justify-content:center}
+.s-hero-5__ghost{font:600 1rem/1 var(--sans);color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule-strong);text-underline-offset:.3em;padding:.6rem 0}
+
+@media (min-width:900px){
+  .s-hero-5__stage{flex-direction:row;justify-content:center;gap:4rem;text-align:left}
+  .s-hero-5__dial{width:min(38vw,520px)}
+  .s-hero-5__copy{text-align:left;max-width:38ch}
+  .s-hero-5__cta{justify-content:flex-start}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  var dial = root.querySelector("[data-dial]");
+  var needle = root.querySelector("[data-needle]");
+  var arc = root.querySelector("[data-arc]");
+
+  if (reduced){
+    gsap.set(needle, {rotation:110, svgOrigin:"150px 150px"});
+    gsap.set(arc, {strokeDashoffset:30});
+    return;
+  }
+
+  var tl = gsap.timeline({delay:.2, defaults:{ease:"expo.out"}});
+  tl.to(needle, {rotation:110, svgOrigin:"150px 150px", duration:1.3})
+    .to(arc, {strokeDashoffset:30, duration:1.3, ease:"power2.out"}, 0);
+
+  gsap.timeline({
+    scrollTrigger:{trigger:root, start:"bottom bottom", end:"+=35%", scrub:.7, invalidateOnRefresh:true}
+  })
+  .to(dial, {scale:.86, y:"-3vh", transformOrigin:"50% 50%", ease:"none"});
+};
+</script>

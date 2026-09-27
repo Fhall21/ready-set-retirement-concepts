@@ -1,0 +1,67 @@
+<section class="s-consult-3">
+  <div class="wrap">
+    <h2>Thirty minutes, at no cost, well before the date.</h2>
+    <p class="lede">
+      You describe the date and what you have planned for it. Dr San tells you plainly
+      which parts are covered and which are not.
+    </p>
+    <div class="cta">
+      <svg class="ring" aria-hidden="true">
+        <rect class="ring-track"></rect>
+        <rect class="ring-draw"></rect>
+      </svg>
+      <a class="btn pill" href="/contact">Book the consult</a>
+    </div>
+  </div>
+</section>
+<style>
+.s-consult-3{min-height:100svh;background:var(--ground);display:flex;align-items:center}
+@media(min-width:900px){.s-consult-3{min-height:min(100svh,900px)}}
+.s-consult-3 .wrap{max-width:680px;text-align:center;margin-inline:auto;padding-block:clamp(3.5rem,9vw,6.5rem)}
+.s-consult-3 h2{font-size:clamp(2rem,5.2vw,3rem);font-weight:800;letter-spacing:-.015em;line-height:1.12}
+.s-consult-3 h2 .stword{display:inline-block;will-change:transform,opacity}
+.s-consult-3 .lede{margin-top:1.3rem;color:var(--ink-soft);max-width:48ch;margin-inline:auto}
+.s-consult-3 .cta{position:relative;display:inline-grid;place-items:center;margin-top:clamp(2.2rem,5vw,3rem)}
+.s-consult-3 .ring{position:absolute;inset:-14px;width:calc(100% + 28px);height:calc(100% + 28px);overflow:visible;pointer-events:none}
+.s-consult-3 .ring-track,.s-consult-3 .ring-draw{fill:none;stroke-width:3}
+.s-consult-3 .ring-track{stroke:var(--rule)}
+.s-consult-3 .ring-draw{stroke:var(--brand);stroke-linecap:round}
+.s-consult-3 .pill{font-size:1.05rem;padding:1.1rem 2rem;position:relative;transition:transform .15s var(--ease-out),background .2s}
+.s-consult-3 .pill:active{transform:scale(.96)}
+</style>
+<script>
+window.slotInit["consult"] = function(root, reduced){
+  var h2 = root.querySelector("h2");
+  var pill = root.querySelector(".pill");
+  var svg = root.querySelector(".ring");
+  var track = root.querySelector(".ring-track");
+  var draw = root.querySelector(".ring-draw");
+
+  function sizeRing(){
+    var r = pill.getBoundingClientRect();
+    var pad = 14, w = r.width + pad*2, h = r.height + pad*2, rx = h/2;
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    [track, draw].forEach(function(rect){
+      rect.setAttribute("x", 1.5); rect.setAttribute("y", 1.5);
+      rect.setAttribute("width", w - 3); rect.setAttribute("height", h - 3);
+      rect.setAttribute("rx", rx - 1.5);
+    });
+    var perim = 2*(w-3) + 2*(h-3) - 8*(rx-1.5) + 2*Math.PI*(rx-1.5);
+    draw.dataset.perim = perim;
+    gsap.set(draw, {strokeDasharray: perim, strokeDashoffset: reduced ? 0 : perim});
+  }
+  sizeRing();
+  ScrollTrigger.addEventListener("refresh", sizeRing);
+
+  if (reduced) return;
+
+  var split = new SplitText(h2, {type:"words", wordsClass:"stword"});
+  gsap.set(split.words, {opacity:0, y:"1em"});
+
+  var tl = gsap.timeline({
+    scrollTrigger:{trigger:root, start:"top 78%", once:true, invalidateOnRefresh:true}
+  });
+  tl.to(split.words, {opacity:1, y:0, duration:.7, stagger:.05, ease:"expo.out"})
+    .to(draw, {strokeDashoffset:0, duration:1.1, ease:"power2.out"}, "-=.2");
+};
+</script>

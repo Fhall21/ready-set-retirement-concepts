@@ -1,0 +1,94 @@
+<section class="s-payslip-2">
+  <div class="wrap s-p2-in">
+    <div class="s-p2-head">
+      <h2 class="s-p2-h">Two payslips, one Friday apart.</h2>
+      <p class="s-p2-lede">The cash line gets replaced by plan. The other four just stop.</p>
+    </div>
+
+    <div class="s-p2-pair">
+      <div class="s-p2-card">
+        <div class="s-p2-bar">Last pay</div>
+        <table class="s-p2-table">
+          <tbody>
+            <tr class="s-p2-money"><td>Salary</td><td class="s-p2-num">&mdash;</td></tr>
+            <tr><td>Structure</td><td class="s-p2-num s-p2-swap" data-a="Paid" data-b="Not paid">Paid</td></tr>
+            <tr><td>Identity</td><td class="s-p2-num s-p2-swap" data-a="Paid" data-b="Not paid">Paid</td></tr>
+            <tr><td>Purpose</td><td class="s-p2-num s-p2-swap" data-a="Paid" data-b="Not paid">Paid</td></tr>
+            <tr><td>Connection</td><td class="s-p2-num s-p2-swap" data-a="Paid" data-b="Not paid">Paid</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="s-p2-arrow" aria-hidden="true">&rarr;</div>
+
+      <div class="s-p2-card s-p2-second">
+        <div class="s-p2-bar">First month retired</div>
+        <table class="s-p2-table">
+          <tbody>
+            <tr class="s-p2-money"><td>Superannuation</td><td class="s-p2-num">Covered</td></tr>
+            <tr><td>Structure</td><td class="s-p2-num s-p2-not">Not paid</td></tr>
+            <tr><td>Identity</td><td class="s-p2-num s-p2-not">Not paid</td></tr>
+            <tr><td>Purpose</td><td class="s-p2-num s-p2-not">Not paid</td></tr>
+            <tr><td>Connection</td><td class="s-p2-num s-p2-not">Not paid</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="s-p2-close">The pension plan carried over. Nothing else did &mdash; unless it was planned to.</p>
+  </div>
+</section>
+<style>
+.s-payslip-2{padding-block:clamp(2.4rem,6vw,4.4rem);background:var(--ground-2)}
+.s-p2-in{max-width:1100px}
+.s-p2-head{max-width:64ch;margin-bottom:clamp(1.6rem,4vw,2.4rem)}
+.s-p2-h{font:800 clamp(1.9rem,4.4vw,3.1rem)/1.08 var(--sans);letter-spacing:-.01em}
+.s-p2-lede{margin-top:.7rem;color:var(--ink-soft);font-size:1.1em}
+
+.s-p2-pair{display:grid;grid-template-columns:1fr;gap:1rem;align-items:center;max-width:760px;margin-inline:auto}
+@media(min-width:760px){.s-p2-pair{grid-template-columns:1fr auto 1fr}}
+.s-p2-arrow{text-align:center;font:800 1.6rem/1 var(--sans);color:var(--ink-soft);transform:rotate(90deg)}
+@media(min-width:760px){.s-p2-arrow{transform:none}}
+
+.s-p2-card{background:var(--ground);border:1px solid var(--rule-strong);border-radius:.6rem;overflow:hidden}
+.s-p2-bar{padding:.85rem 1.1rem;border-bottom:1px solid var(--rule);font:700 .82rem/1 var(--num);letter-spacing:.02em;color:var(--ink-soft);text-transform:uppercase}
+.s-p2-second .s-p2-bar{color:var(--brand)}
+.s-p2-table{width:100%;border-collapse:collapse;font-size:.96rem}
+.s-p2-table td{padding:.8rem 1.1rem;border-bottom:1px solid var(--rule)}
+.s-p2-table tr:last-child td{border-bottom:none}
+.s-p2-table td:first-child{font-weight:600}
+.s-p2-num{text-align:right;font-family:var(--num);font-weight:700;white-space:nowrap}
+.s-p2-money .s-p2-num{color:var(--brand)}
+.s-p2-money td:first-child{font-weight:800}
+.s-p2-swap{color:var(--brand)}
+.s-p2-not{color:var(--accent)}
+
+.s-p2-close{margin-top:clamp(1.8rem,4vw,2.6rem);max-width:56ch;margin-inline:auto;text-align:center;font:700 clamp(1.05rem,2.4vw,1.3rem)/1.4 var(--sans)}
+
+@media(max-width:520px){
+  .s-p2-table{font-size:.88rem}
+  .s-p2-table td{padding:.65rem .8rem}
+}
+</style>
+<script>
+window.slotInit["dials"] = function(root, reduced){
+  var swaps = Array.prototype.slice.call(root.querySelectorAll(".s-p2-swap"));
+  var second = root.querySelector(".s-p2-second");
+
+  if(reduced){
+    swaps.forEach(function(el){ el.textContent = el.dataset.b; el.classList.add("s-p2-not"); });
+    gsap.set(second, {opacity:1, x:0});
+    return;
+  }
+
+  gsap.set(second, {opacity:.4, x:10});
+
+  var tl = gsap.timeline({
+    scrollTrigger: { trigger: root, start: "top 65%", end: "bottom 55%", scrub: .6, invalidateOnRefresh: true }
+  });
+  tl.to(second, {opacity:1, x:0, ease:"none", duration:1});
+  swaps.forEach(function(el, i){
+    tl.call(function(){ el.textContent = el.dataset.b; el.classList.add("s-p2-not"); }, null, .3 + i*.15);
+  });
+};
+</script>

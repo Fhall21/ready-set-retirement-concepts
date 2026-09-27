@@ -1,0 +1,118 @@
+<section class="s-dials-8">
+  <div class="wrap s-d8b-in">
+    <div class="s-d8b-head">
+      <h2 class="s-d8b-h">Before and after.</h2>
+      <p class="s-d8b-lede">Same four readings. Scroll to watch preparation change them.</p>
+    </div>
+
+    <div class="s-d8b-card" id="s-d8b-card">
+      <div class="s-d8b-statebar">
+        <div class="s-d8b-labels">
+          <span class="s-d8b-lab s-d8b-lab-before is-active" data-lab-before>Before &middot; Without a plan</span>
+          <span class="s-d8b-lab s-d8b-lab-after" data-lab-after>After &middot; With Dr San&rsquo;s help</span>
+        </div>
+        <div class="s-d8b-track"><div class="s-d8b-fill" data-progress></div></div>
+      </div>
+
+      <div class="s-d8b-rows">
+        <div class="s-d8b-row" data-off="24" data-on="82">
+          <div class="s-d8b-name">Direction</div>
+          <div class="s-d8b-bartrack"><div class="s-d8b-barfill" data-fill></div></div>
+          <span class="s-d8b-num" data-num>24</span>
+          <span class="s-d8b-flag" data-flag>Low</span>
+        </div>
+        <div class="s-d8b-row" data-off="19" data-on="78">
+          <div class="s-d8b-name">Identity</div>
+          <div class="s-d8b-bartrack"><div class="s-d8b-barfill" data-fill></div></div>
+          <span class="s-d8b-num" data-num>19</span>
+          <span class="s-d8b-flag" data-flag>Low</span>
+        </div>
+        <div class="s-d8b-row" data-off="28" data-on="85">
+          <div class="s-d8b-name">Purpose</div>
+          <div class="s-d8b-bartrack"><div class="s-d8b-barfill" data-fill></div></div>
+          <span class="s-d8b-num" data-num>28</span>
+          <span class="s-d8b-flag" data-flag>Low</span>
+        </div>
+        <div class="s-d8b-row" data-off="16" data-on="74">
+          <div class="s-d8b-name">Connection</div>
+          <div class="s-d8b-bartrack"><div class="s-d8b-barfill" data-fill></div></div>
+          <span class="s-d8b-num" data-num>16</span>
+          <span class="s-d8b-flag" data-flag>Low</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-dials-8{padding-block:clamp(2.4rem,6vw,4.4rem);background:var(--ground)}
+.s-d8b-head{max-width:64ch;margin-bottom:clamp(1.6rem,4vw,2.4rem)}
+.s-d8b-h{font:800 clamp(1.9rem,4.4vw,3.1rem)/1.08 var(--sans);letter-spacing:-.01em}
+.s-d8b-lede{margin-top:.7rem;color:var(--ink-soft);font-size:1.1em}
+
+.s-d8b-card{background:var(--ground-2);border:1px solid var(--rule-strong);border-radius:.9rem;padding:clamp(1.2rem,3vw,2rem);max-width:820px;margin-inline:auto}
+.s-d8b-statebar{margin-bottom:clamp(1.2rem,3vw,1.8rem)}
+.s-d8b-labels{display:flex;flex-wrap:wrap;gap:.4rem 1rem;justify-content:space-between}
+.s-d8b-lab{font:700 clamp(.95rem,2vw,1.15rem)/1.2 var(--sans);color:var(--ink-soft);opacity:.4;transition:opacity .25s,color .25s}
+.s-d8b-lab-before.is-active{opacity:1;color:var(--accent)}
+.s-d8b-lab-after.is-active{opacity:1;color:var(--brand)}
+.s-d8b-track{margin-top:.6rem;height:6px;border-radius:999px;background:var(--ground-3);overflow:hidden}
+.s-d8b-fill{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--accent),var(--brand))}
+
+.s-d8b-rows{display:flex;flex-direction:column;gap:1rem}
+.s-d8b-row{display:grid;grid-template-columns:auto 1fr auto auto;gap:.8rem;align-items:center}
+.s-d8b-name{font:800 1rem/1.2 var(--sans);min-width:6.5em}
+.s-d8b-bartrack{position:relative;height:12px;border-radius:999px;background:var(--ground-3);overflow:hidden}
+.s-d8b-barfill{position:absolute;inset:0 auto 0 0;height:100%;width:24%;border-radius:999px;background:var(--accent)}
+.s-d8b-num{font:700 1.4rem/1 var(--num);color:var(--accent);min-width:2.2em;text-align:right}
+.s-d8b-flag{font:700 .7rem/1 var(--num);letter-spacing:.02em;text-transform:uppercase;padding:.26rem .5rem;border-radius:.3rem;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);min-width:4.6em;text-align:center}
+
+@media(max-width:560px){
+  .s-d8b-row{grid-template-columns:1fr auto;grid-template-areas:"name flag" "bar bar" "num num"}
+  .s-d8b-name{grid-area:name}
+  .s-d8b-flag{grid-area:flag;justify-self:end}
+  .s-d8b-bartrack{grid-area:bar}
+  .s-d8b-num{grid-area:num;text-align:left}
+}
+</style>
+<script>
+window.slotInit["dials"] = function(root, reduced){
+  var rows = Array.prototype.slice.call(root.querySelectorAll(".s-d8b-row"));
+  var card = root.querySelector("#s-d8b-card");
+  var labBefore = root.querySelector("[data-lab-before]");
+  var labAfter = root.querySelector("[data-lab-after]");
+  var progressFill = root.querySelector("[data-progress]");
+
+  function paint(p){
+    progressFill.style.width = (p * 100).toFixed(1) + "%";
+    labBefore.classList.toggle("is-active", p < .5);
+    labAfter.classList.toggle("is-active", p >= .5);
+    rows.forEach(function(row){
+      var off = +row.dataset.off, on = +row.dataset.on;
+      var v = Math.round(off + (on - off) * p);
+      var fill = row.querySelector("[data-fill]");
+      var num = row.querySelector("[data-num]");
+      var flag = row.querySelector("[data-flag]");
+      fill.style.width = v + "%";
+      num.textContent = v;
+      var healthy = p >= .5;
+      fill.style.background = healthy ? "var(--brand)" : "var(--accent)";
+      num.style.color = healthy ? "var(--brand)" : "var(--accent)";
+      flag.textContent = healthy ? "Healthy" : "Low";
+      flag.style.color = healthy ? "var(--brand)" : "var(--accent)";
+      flag.style.background = healthy
+        ? "color-mix(in srgb, var(--brand) 14%, transparent)"
+        : "color-mix(in srgb, var(--accent) 14%, transparent)";
+    });
+  }
+
+  if(reduced){ paint(1); return; }
+
+  paint(0);
+
+  ScrollTrigger.create({
+    trigger: card, start: "top 20%", end: "+=70%", scrub: .7,
+    invalidateOnRefresh: true,
+    onUpdate: function(self){ paint(self.progress); }
+  });
+};
+</script>

@@ -1,0 +1,64 @@
+<section class="s-consult-5">
+  <div class="wrap grid">
+    <div class="phone">
+      <div class="thread">
+        <div class="msg you"><p>We&rsquo;ve booked the trip. Everything else feels sorted too.</p></div>
+        <div class="msg dr"><p>Good. Tell me what you&rsquo;ve planned for the Tuesday after you get back.</p></div>
+        <div class="msg you"><p>Nothing, really &mdash; that&rsquo;s just an ordinary day.</p></div>
+        <div class="msg dr"><p>That&rsquo;s the day I&rsquo;d want to talk about.</p></div>
+        <div class="msg you"><p>Is this a financial thing?</p></div>
+        <div class="msg dr"><p>No. It&rsquo;s a conversation, not an assessment. Bring the date and the plan &mdash; I&rsquo;ll tell you plainly what&rsquo;s covered and what isn&rsquo;t.</p></div>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>Thirty minutes, at no cost, well before the date.</h2>
+      <p class="lede">
+        It is a conversation, not a clinical assessment. You describe the date and what you
+        have planned for it. Dr San tells you plainly which parts are covered and which
+        parts are not, and what the second plan would need to contain.
+      </p>
+      <a class="btn" href="/contact">Book the consult</a>
+    </div>
+  </div>
+</section>
+<style>
+.s-consult-5{padding-block:clamp(3.5rem,9vw,6.5rem);background:var(--ground-2)}
+.s-consult-5 .grid{display:grid;gap:clamp(2rem,5vw,3.5rem);align-items:center}
+@media(min-width:900px){.s-consult-5 .grid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.s-consult-5 .phone{order:1}.s-consult-5 .copy{order:2}}
+
+.s-consult-5 .phone{background:var(--ground);border:1px solid var(--rule-strong);border-radius:1.4rem;
+  padding:clamp(1.4rem,4vw,2rem) clamp(1rem,3vw,1.4rem);
+  box-shadow:0 24px 60px -30px rgba(0,0,0,.25)}
+.s-consult-5 .thread{display:flex;flex-direction:column;gap:.7rem}
+.s-consult-5 .msg{max-width:88%;padding:.75rem 1.05rem;border-radius:1.1rem;font-size:1rem;line-height:1.4;
+  opacity:0;transform:translateY(10px) scale(.97)}
+.s-consult-5 .msg p{margin:0}
+.s-consult-5 .you{align-self:flex-end;background:var(--brand);color:#fff;border-bottom-right-radius:.3rem}
+.s-consult-5 .dr{align-self:flex-start;background:var(--ground-3);color:var(--ink);border-bottom-left-radius:.3rem}
+
+.s-consult-5 .copy h2{font-size:clamp(1.9rem,4.2vw,2.8rem);font-weight:800;letter-spacing:-.015em;line-height:1.12}
+.s-consult-5 .copy .lede{margin-top:1.3rem;color:var(--ink-soft);max-width:46ch}
+.s-consult-5 .copy .btn{margin-top:1.8rem;font-size:1.05rem;padding:1.1rem 2rem}
+</style>
+<script>
+window.slotInit["consult"] = function(root, reduced){
+  var msgs = root.querySelectorAll(".msg");
+  var h2 = root.querySelector(".copy h2"), lede = root.querySelector(".copy .lede"), btn = root.querySelector(".copy .btn");
+
+  if (reduced) {
+    gsap.set(msgs, {opacity:1, y:0, scale:1});
+    return;
+  }
+
+  gsap.set(msgs, {opacity:0, y:10, scale:.97});
+  gsap.to(msgs, {
+    opacity:1, y:0, scale:1, duration:.5, stagger:.35, ease:"power3.out",
+    scrollTrigger:{trigger: root.querySelector(".phone"), start:"top 78%"}
+  });
+  gsap.from([h2, lede, btn], {
+    y:20, opacity:0, duration:.7, stagger:.1, ease:"power3.out",
+    scrollTrigger:{trigger: h2, start:"top 85%"}
+  });
+};
+</script>

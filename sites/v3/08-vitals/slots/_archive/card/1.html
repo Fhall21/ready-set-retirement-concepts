@@ -1,0 +1,80 @@
+<section class="s-card-1">
+  <style>@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap');</style>
+  <div class="wrap s-c1-in">
+    <div class="s-c1-head">
+      <h2 class="s-c1-h">The other question gets a good luck and a card.</h2>
+      <p class="s-c1-lede">Open it.</p>
+    </div>
+
+    <div class="s-c1-stage">
+      <div class="s-c1-card" id="s-c1-card">
+        <div class="s-c1-cover">
+          <span class="s-c1-covertxt">Good luck!</span>
+        </div>
+        <div class="s-c1-inside">
+          <p class="s-c1-sig s-c1-sig1">Enjoy the golf!</p>
+          <p class="s-c1-sig s-c1-sig2">Don&rsquo;t be a stranger</p>
+          <p class="s-c1-sig s-c1-sig3">Lucky thing!</p>
+          <p class="s-c1-sig s-c1-sig4">You&rsquo;ve earned it</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="s-c1-close">Thirty years of colleagues. Four lines of advice. None of it about Monday.</p>
+  </div>
+</section>
+<style>
+.s-card-1{padding-block:clamp(2.4rem,6vw,4.4rem);background:var(--ground-3)}
+.s-c1-in{max-width:1000px}
+.s-c1-head{max-width:64ch;margin-bottom:clamp(1.6rem,4vw,2.4rem)}
+.s-c1-h{font:800 clamp(1.9rem,4.4vw,3.1rem)/1.08 var(--sans);letter-spacing:-.01em}
+.s-c1-lede{margin-top:.7rem;color:var(--ink-soft);font-size:1.1em}
+
+.s-c1-stage{max-width:460px;margin-inline:auto;perspective:1600px}
+.s-c1-card{position:relative;aspect-ratio:4/3;background:var(--ground);border:1px solid var(--rule-strong);border-radius:.7rem;box-shadow:0 18px 40px -20px color-mix(in srgb,var(--ink) 30%,transparent)}
+.s-c1-inside{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;align-content:center;justify-items:start;gap:1.1rem 1.6rem;padding:2rem 1.8rem}
+.s-c1-sig{font:700 clamp(1.5rem,4.5vw,2rem)/1 "Caveat",cursive;color:var(--brand);transform:rotate(-2deg)}
+.s-c1-sig2{color:var(--accent);transform:rotate(1.5deg)}
+.s-c1-sig3{color:var(--gold);transform:rotate(-1deg)}
+.s-c1-sig4{color:var(--brand-bright);transform:rotate(2deg)}
+
+.s-c1-cover{position:absolute;inset:0;background:var(--brand);border-radius:.7rem;display:flex;align-items:center;justify-content:center;
+  transform-origin:left center;backface-visibility:hidden;box-shadow:0 8px 24px -10px color-mix(in srgb,var(--ink) 40%,transparent)}
+.s-c1-covertxt{font:900 clamp(1.8rem,5vw,2.6rem)/1 var(--sans);color:#fff}
+
+.s-c1-close{margin-top:clamp(1.8rem,4vw,2.6rem);max-width:56ch;margin-inline:auto;text-align:center;font:700 clamp(1.05rem,2.4vw,1.3rem)/1.4 var(--sans);opacity:0}
+
+@media(max-width:520px){
+  .s-c1-inside{grid-template-columns:1fr;padding:1.6rem 1.6rem;gap:.8rem}
+}
+</style>
+<script>
+window.slotInit["card"] = function(root, reduced){
+  var cover = root.querySelector(".s-c1-cover");
+  var sigs = Array.prototype.slice.call(root.querySelectorAll(".s-c1-sig"));
+  var close = root.querySelector(".s-c1-close");
+  var mm = matchMedia("(max-width: 640px)");
+
+  if(reduced){
+    gsap.set(cover, {rotationY:-160, opacity:0});
+    gsap.set(sigs, {opacity:1, y:0});
+    gsap.set(close, {opacity:1});
+    return;
+  }
+
+  gsap.set(sigs, {opacity:0, y:14});
+
+  var tl = gsap.timeline({
+    scrollTrigger: { trigger: root, start: "top 65%", end: "bottom 55%", scrub: .7, invalidateOnRefresh: true }
+  });
+
+  if(mm.matches){
+    tl.to(cover, {y:"-100%", opacity:0, ease:"none", duration:1});
+  } else {
+    tl.to(cover, {rotationY:-160, ease:"none", duration:1}, 0)
+      .to(cover, {opacity:0, duration:.001}, .95);
+  }
+  tl.to(sigs, {opacity:1, y:0, ease:"none", stagger:.25, duration:.8}, .5)
+    .to(close, {opacity:1, ease:"none", duration:.5}, 1.9);
+};
+</script>

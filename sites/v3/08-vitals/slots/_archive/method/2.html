@@ -1,0 +1,87 @@
+<section class="s-method-2">
+  <div class="s-method-2-bg" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="s-method-2-kicker">Forty years of planning for a date. About ten minutes planning for a life.</p>
+    <h2 class="s-method-2-h">Education is what moves it.</h2>
+
+    <div class="s-method-2-steps">
+      <p class="s-method-2-step" data-step="1">Ready Set Retirement is psychosocial retirement education. It is not financial advice.</p>
+      <p class="s-method-2-step" data-step="2">It is the yin to financial planning's yang, and it decides whether the money you saved buys a life you recognise.</p>
+      <p class="s-method-2-step" data-step="3">The work starts three to ten years out, while you still have leverage: time, colleagues, energy, and a title that still opens doors.</p>
+      <p class="s-method-2-step" data-step="4">Preparation is cheap at that stage. Afterwards it becomes repair, and repair costs more.</p>
+      <p class="s-method-2-step" data-step="5">readysetretirement psychosocial planning&reg; is a structured program &mdash; that is human-centred retirement planning&trade;, and it is teachable.</p>
+    </div>
+
+    <h3 class="s-method-2-h2">What that looks like in practice</h3>
+    <div class="s-method-2-rows">
+      <div class="s-method-2-row">
+        <strong>Workshops</strong>
+        <span>Half a day or a series, run in-house or open to the public.</span>
+      </div>
+      <div class="s-method-2-row">
+        <strong>Coaching</strong>
+        <span>One-to-one or group, for the person who cannot say this out loud at work yet.</span>
+      </div>
+      <div class="s-method-2-row">
+        <strong>Consulting</strong>
+        <span>For organisations putting retirement into workforce planning rather than payroll.</span>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-method-2{position:relative;padding-block:clamp(3rem,8vh,6rem);overflow:clip}
+.s-method-2-bg{position:absolute;inset:0;background:var(--ground);z-index:-1}
+.s-method-2-kicker{max-width:46ch;font-size:1.05em;color:var(--ink-soft)}
+.s-method-2-h{margin-top:.6rem;font:800 clamp(1.8rem,1rem + 3.2vw,3.2rem)/1.15 var(--sans);max-width:16ch}
+.s-method-2-steps{margin-top:clamp(2.5rem,7vh,4.5rem);min-height:60vh;display:flex;flex-direction:column;justify-content:center;gap:1.6rem}
+.s-method-2-step{max-width:52ch;font-size:1.15em;color:var(--ink-soft);opacity:.25;transition:opacity .3s}
+.s-method-2-step.is-active{opacity:1;color:var(--ink)}
+.s-method-2-h2{margin-top:clamp(2.5rem,7vh,4rem);font:700 1.5rem/1.3 var(--sans)}
+.s-method-2-rows{margin-top:1.4rem;border-top:1px solid var(--rule-strong)}
+.s-method-2-row{display:grid;grid-template-columns:12rem 1fr;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--rule)}
+.s-method-2-row strong{font-weight:700}
+.s-method-2-row span{color:var(--ink-soft)}
+@media (max-width:640px){
+  .s-method-2-row{grid-template-columns:1fr;gap:.3rem}
+}
+</style>
+<script>
+window.slotInit["method"] = function(root, reduced){
+  var bg = root.querySelector(".s-method-2-bg");
+  var heading = root.querySelector(".s-method-2-h");
+  var steps = root.querySelectorAll(".s-method-2-step");
+  var warm = getComputedStyle(root).getPropertyValue("--gold") || "#FFC233";
+
+  if (reduced) {
+    steps.forEach(function(s){ s.classList.add("is-active"); });
+    gsap.set(bg, {backgroundColor: "color-mix(in srgb, " + warm + " 22%, white)"});
+    return;
+  }
+
+  gsap.from(heading, {
+    y: 24, opacity: 0, duration: 0.9, ease: "expo.out", immediateRender:false,
+    scrollTrigger: { trigger: heading, start: "top 85%" }
+  });
+
+  ScrollTrigger.create({
+    trigger: root.querySelector(".s-method-2-steps"),
+    start: "top bottom",
+    end: "bottom top",
+    scrub: 0.7,
+    onUpdate: function(self){
+      var pct = Math.round(self.progress * 24);
+      bg.style.backgroundColor = "color-mix(in srgb, " + warm + " " + pct + "%, white)";
+    }
+  });
+
+  steps.forEach(function(step){
+    ScrollTrigger.create({
+      trigger: step,
+      start: "top center",
+      end: "bottom center",
+      onToggle: function(self){ step.classList.toggle("is-active", self.isActive); }
+    });
+  });
+};
+</script>

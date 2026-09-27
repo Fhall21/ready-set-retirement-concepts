@@ -1,0 +1,145 @@
+{
+  "counts": {
+    "hero": 18,
+    "monday": 1,
+    "dials": 8,
+    "speech": 1,
+    "cover": 3,
+    "pause": 3,
+    "method": 1,
+    "audience": 4,
+    "practitioner": 2,
+    "consult": 3,
+    "thread": 2
+  },
+  "presets": {
+    "c1": {
+      "name": "Compiled A \u2014 from the winning v5",
+      "slots": {
+        "hero": 18,
+        "monday": 1,
+        "dials": 4,
+        "speech": 1,
+        "cover": 3,
+        "pause": 2,
+        "method": 0,
+        "audience": 4,
+        "practitioner": 2,
+        "consult": 3,
+        "thread": 0
+      }
+    },
+    "c2": {
+      "name": "Compiled B \u2014 report-forward",
+      "slots": {
+        "hero": 18,
+        "monday": 1,
+        "dials": 7,
+        "speech": 1,
+        "cover": 3,
+        "pause": 2,
+        "method": 0,
+        "audience": 4,
+        "practitioner": 1,
+        "consult": 3,
+        "thread": 0
+      }
+    },
+    "v1": {
+      "name": "Pathology report",
+      "slots": {
+        "hero": 4,
+        "monday": 1,
+        "dials": 7,
+        "speech": 1,
+        "cover": 3,
+        "pause": 1,
+        "method": 0,
+        "audience": 1,
+        "practitioner": 1,
+        "consult": 2,
+        "thread": 0
+      }
+    },
+    "v2": {
+      "name": "Benefits statement",
+      "slots": {
+        "hero": 1,
+        "monday": 0,
+        "dials": 2,
+        "speech": 1,
+        "cover": 2,
+        "pause": 2,
+        "method": 0,
+        "audience": 1,
+        "practitioner": 2,
+        "consult": 2,
+        "thread": 0
+      }
+    },
+    "v3": {
+      "name": "The Monday story",
+      "slots": {
+        "hero": 18,
+        "monday": 1,
+        "dials": 8,
+        "speech": 1,
+        "cover": 2,
+        "pause": 3,
+        "method": 0,
+        "audience": 1,
+        "practitioner": 1,
+        "consult": 2,
+        "thread": 2
+      }
+    },
+    "v4": {
+      "name": "Calm, phone-first",
+      "slots": {
+        "hero": 3,
+        "monday": 0,
+        "dials": 1,
+        "speech": 1,
+        "cover": 1,
+        "pause": 1,
+        "method": 0,
+        "audience": 1,
+        "practitioner": 1,
+        "consult": 2,
+        "thread": 0
+      }
+    },
+    "v5": {
+      "name": "Lab letter",
+      "slots": {
+        "hero": 2,
+        "monday": 1,
+        "dials": 4,
+        "speech": 1,
+        "cover": 3,
+        "pause": 2,
+        "method": 0,
+        "audience": 2,
+        "practitioner": 2,
+        "consult": 2,
+        "thread": 0
+      }
+    },
+    "c3": {
+      "name": "Compiled C \u2014 c1 with the person-led hero (18)",
+      "slots": {
+        "hero": 18,
+        "monday": 1,
+        "dials": 4,
+        "speech": 1,
+        "cover": 3,
+        "pause": 2,
+        "method": 0,
+        "audience": 4,
+        "practitioner": 2,
+        "consult": 3,
+        "thread": 0
+      }
+    }
+  }
+}

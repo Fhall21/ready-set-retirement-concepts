@@ -1,0 +1,132 @@
+<section class="s-cover-3">
+  <div class="wrap">
+    <h2 class="s-cover-3-h">A money plan is excellent at the things it covers.</h2>
+    <p class="s-cover-3-lede">Not one line in the lower half is a money problem. That is why the money plan was never going to reach it.</p>
+
+    <div class="s-cover-3-plan" aria-hidden="true">
+      <span class="s-cover-3-dot s-cover-3-dot-money"></span> Money plan
+      <span class="s-cover-3-dot s-cover-3-dot-psy"></span> Psychosocial plan
+    </div>
+
+    <ul class="s-cover-3-list">
+      <li class="s-cover-3-row" data-covered="money">
+        <span class="s-cover-3-label">Income, tax and drawdown</span>
+        <span class="s-cover-3-track"><span class="s-cover-3-bar s-cover-3-bar-money"></span></span>
+        <span class="s-cover-3-status s-cover-3-status-covered">Covered &mdash; money plan</span>
+      </li>
+      <li class="s-cover-3-row" data-covered="money">
+        <span class="s-cover-3-label">Super, pension and health cover</span>
+        <span class="s-cover-3-track"><span class="s-cover-3-bar s-cover-3-bar-money"></span></span>
+        <span class="s-cover-3-status s-cover-3-status-covered">Covered &mdash; money plan</span>
+      </li>
+      <li class="s-cover-3-row" data-covered="money">
+        <span class="s-cover-3-label">The house, and whether to move</span>
+        <span class="s-cover-3-track"><span class="s-cover-3-bar s-cover-3-bar-money"></span></span>
+        <span class="s-cover-3-status s-cover-3-status-covered">Covered &mdash; money plan</span>
+      </li>
+      <li class="s-cover-3-row s-cover-3-gap" data-covered="psy">
+        <span class="s-cover-3-label">What a Tuesday looks like</span>
+        <span class="s-cover-3-track"><span class="s-cover-3-bar s-cover-3-bar-psy"></span></span>
+        <span class="s-cover-3-status">
+          <span class="s-cover-3-status-gap">Gap in the money plan</span>
+          <span class="s-cover-3-status-covered">Covered &mdash; psychosocial plan</span>
+        </span>
+      </li>
+      <li class="s-cover-3-row s-cover-3-gap" data-covered="psy">
+        <span class="s-cover-3-label">Who you are without the title</span>
+        <span class="s-cover-3-track"><span class="s-cover-3-bar s-cover-3-bar-psy"></span></span>
+        <span class="s-cover-3-status">
+          <span class="s-cover-3-status-gap">Gap in the money plan</span>
+          <span class="s-cover-3-status-covered">Covered &mdash; psychosocial plan</span>
+        </span>
+      </li>
+      <li class="s-cover-3-row s-cover-3-gap" data-covered="psy">
+        <span class="s-cover-3-label">Something to be useful for</span>
+        <span class="s-cover-3-track"><span class="s-cover-3-bar s-cover-3-bar-psy"></span></span>
+        <span class="s-cover-3-status">
+          <span class="s-cover-3-status-gap">Gap in the money plan</span>
+          <span class="s-cover-3-status-covered">Covered &mdash; psychosocial plan</span>
+        </span>
+      </li>
+      <li class="s-cover-3-row s-cover-3-gap" data-covered="psy">
+        <span class="s-cover-3-label">People who still call</span>
+        <span class="s-cover-3-track"><span class="s-cover-3-bar s-cover-3-bar-psy"></span></span>
+        <span class="s-cover-3-status">
+          <span class="s-cover-3-status-gap">Gap in the money plan</span>
+          <span class="s-cover-3-status-covered">Covered &mdash; psychosocial plan</span>
+        </span>
+      </li>
+    </ul>
+
+    <p class="s-cover-3-close">One funds the lifestyle. The other decides whether there is a life in it.</p>
+  </div>
+</section>
+<style>
+.s-cover-3-h{font:800 clamp(1.8rem,1rem + 3.2vw,3.4rem)/1.12 var(--sans);max-width:22ch}
+.s-cover-3-lede{margin-top:1.1rem;margin-bottom:1.6rem;max-width:52ch;color:var(--ink-soft);font-size:1.05em}
+.s-cover-3-plan{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;align-items:center;font:600 1rem/1 var(--sans);color:var(--ink-soft);margin-bottom:1.4rem}
+.s-cover-3-dot{display:inline-block;width:.7rem;height:.7rem;border-radius:50%;margin-right:.4rem}
+.s-cover-3-dot-money{background:var(--accent)}
+.s-cover-3-dot-psy{background:var(--brand)}
+.s-cover-3-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:1.1rem}
+.s-cover-3-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,180px) minmax(150px,220px);gap:1rem;align-items:center}
+.s-cover-3-label{font-weight:600;font-size:1.08rem}
+.s-cover-3-track{position:relative;height:.7rem;border-radius:999px;background:color-mix(in srgb,var(--accent) 14%,var(--ground-2))}
+.s-cover-3-bar{position:absolute;inset:0;border-radius:999px;transform-origin:left center}
+.s-cover-3-bar-money{background:var(--accent);transform:scaleX(1)}
+.s-cover-3-row[data-covered="money"] .s-cover-3-track{background:color-mix(in srgb,var(--brand) 16%,var(--ground-2))}
+.s-cover-3-row[data-covered="money"] .s-cover-3-bar-money{background:var(--brand)}
+.s-cover-3-gap .s-cover-3-track{background:color-mix(in srgb,var(--accent) 16%,var(--ground-2))}
+.s-cover-3-bar-psy{background:var(--brand);transform:scaleX(0)}
+.s-cover-3-status{position:relative;display:block;font:600 .95rem/1.3 var(--sans);min-height:1.3em}
+.s-cover-3-status-covered{color:var(--brand-deep)}
+.s-cover-3-gap .s-cover-3-status-covered{position:absolute;inset:0;opacity:0}
+.s-cover-3-status-gap{color:var(--accent);display:block}
+.s-cover-3-close{margin-top:2.2rem;max-width:46ch;font:600 1.15em/1.5 var(--sans)}
+@media (max-width:640px){
+  .s-cover-3-row{grid-template-columns:1fr;gap:.45rem}
+  .s-cover-3-track{height:.55rem}
+}
+</style>
+<script>
+window.slotInit["cover"] = function(root, reduced){
+  var gapRows = root.querySelectorAll(".s-cover-3-gap");
+  var bars = root.querySelectorAll(".s-cover-3-bar-psy");
+  var covered = root.querySelectorAll(".s-cover-3-gap .s-cover-3-status-covered");
+  var gapText = root.querySelectorAll(".s-cover-3-gap .s-cover-3-status-gap");
+  if (reduced) { gsap.set(bars, {scaleX:1}); gsap.set(covered, {opacity:1}); gsap.set(gapText, {opacity:0}); return; }
+  gsap.to(bars, {
+    scaleX: 1,
+    stagger: 0.15,
+    ease: "none",
+    scrollTrigger: {
+      trigger: root.querySelector(".s-cover-3-list"),
+      start: "top 75%",
+      end: "bottom 50%",
+      scrub: 0.7
+    }
+  });
+  gsap.to(covered, {
+    opacity: 1,
+    stagger: 0.15,
+    ease: "none",
+    scrollTrigger: {
+      trigger: root.querySelector(".s-cover-3-list"),
+      start: "top 75%",
+      end: "bottom 50%",
+      scrub: 0.7
+    }
+  });
+  gsap.to(gapText, {
+    opacity: 0,
+    stagger: 0.15,
+    ease: "none",
+    scrollTrigger: {
+      trigger: root.querySelector(".s-cover-3-list"),
+      start: "top 75%",
+      end: "bottom 50%",
+      scrub: 0.7
+    }
+  });
+};
+</script>

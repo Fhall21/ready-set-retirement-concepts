@@ -1,0 +1,46 @@
+<section class="s-monday-1">
+  <div class="wrap s-m1-in">
+    <p class="s-m1-line">What catches people out is <span class="s-m1-accent">Monday.</span></p>
+    <p class="s-m1-sub">The calendar with nothing in it.</p>
+    <div class="s-m1-cal" aria-hidden="true">
+      <div class="s-m1-day">Mon</div><div class="s-m1-day">Tue</div><div class="s-m1-day">Wed</div>
+      <div class="s-m1-day">Thu</div><div class="s-m1-day">Fri</div><div class="s-m1-day">Sat</div><div class="s-m1-day">Sun</div>
+    </div>
+  </div>
+</section>
+<style>
+.s-monday-1{padding-block:clamp(3rem,9vw,6.5rem);background:var(--ground);overflow:clip}
+.s-m1-in{max-width:1100px}
+.s-m1-line{font:800 clamp(2.1rem,7.2vw,5.2rem)/1.06 var(--sans);letter-spacing:-.015em}
+.s-m1-line .word{display:inline-block;will-change:transform,opacity}
+.s-m1-accent{color:var(--accent)}
+.s-m1-sub{margin-top:1.1rem;font-size:1.15rem;color:var(--ink-soft);max-width:34ch}
+.s-m1-cal{margin-top:clamp(2rem,5vw,3rem);display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+.s-m1-day{border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);height:clamp(2.6rem,6vw,4rem);display:flex;align-items:flex-start;justify-content:center;padding-top:.5rem;font:600 .8rem/1 var(--num);color:var(--ink-soft);background:var(--ground-2)}
+.s-m1-day:first-child{background:var(--ground-3);color:var(--accent);position:relative}
+</style>
+<script>
+window.slotInit["monday"] = function(root, reduced){
+  var line = root.querySelector(".s-m1-line");
+  var days = root.querySelectorAll(".s-m1-day");
+  gsap.set(days, {transformOrigin:"top center"});
+
+  if(reduced){ return; }
+
+  var split = new SplitText(line, {type:"words"});
+  gsap.set(days, {scaleY:0});
+  gsap.set(split.words, {yPercent:110, opacity:0});
+
+  var tl = gsap.timeline({
+    scrollTrigger: { trigger: root, start: "top 78%", end: "top 20%", scrub: .8 }
+  });
+  tl.to(split.words, {yPercent:0, opacity:1, stagger:.09, ease:"none"}, 0);
+  tl.to(days, {scaleY:1, stagger:.05, ease:"none"}, .1);
+
+  // the week empties, leaving only Monday
+  gsap.to(Array.prototype.slice.call(days).slice(1), {
+    clipPath: "inset(0 0 100% 0)", stagger: .12, ease: "none",
+    scrollTrigger: { trigger: root, start: "top 20%", end: "bottom 55%", scrub: .8, invalidateOnRefresh:true }
+  });
+};
+</script>
