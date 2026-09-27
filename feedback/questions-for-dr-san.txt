@@ -3,85 +3,36 @@ Compiled from the Ready Set Retirement site v3 (09-felix)
 27 September 2026
 
 
-CONTACT & BOOKING
-================
+1. What's your real email address, phone number and ABN, what booking tool should we link to (Cal.com, Calendly, etc), and where should enquiry form submissions go? (Site currently uses placeholders: hello@readysetretirement.au, 0400 000 000, ABN 00 000 000 000, and a mock booking widget.)
 
-1. What are your email address, phone number, and ABN? (Currently the site uses placeholders: hello@readysetretirement.au, 0400 000 000, and 00 000 000 000.)
+2. What was the real turning point that led you to focus on retirement education and coaching / what is your story? (Site currently tells a story about farewells and a shift in focus - that was jus a guess guess, not your story.)
 
-2. What booking tool would you like to use - Cal.com, Calendly, or something else? (Currently the site has a placeholder mock-up.)
+3. How do you spell your name - Walden-Pearson (with a hyphen) or Walden Pearson?
 
-3. What's your preferred way for people to contact you with enquiries? (Currently the form is a placeholder that doesn't send anywhere.)
+4. For individuals and couples: what does your standard package actually include - number and length of sessions, written plan, check-in frequency, fees - and how do you deliver it (phone/video for the first chat, then in person around Cairns, video, or a mix)?
 
-4. Can the first consultation be by video call or phone, or both?
+5. When you refer someone on to counselling or other support, what do you actually say, and do you provide a letter or document afterwards - are you happy with how we've described and worded it?
 
-5. Are partners and spouses welcome to join the first chat together?
+6. In "What I won't do" we say: "I'm not a financial adviser, and I don't do clinical assessment." Is that the right way to frame what's outside your scope?
 
+7. Is "schools, community organisations and business" a fair everyday way to describe the "educational, social and commercial sectors" you've worked across?
 
-ABOUT YOU & YOUR STORY
-======================
+8. For organisations: what are the real programme options (session length, group size, delivery - in-person/online/hybrid), what are the names of the main steps/phases, and how do you price this work? (Site currently says pricing is "Dr San will quote after a first chat" and has placeholder programme details.)
 
-6. What was the turning point that led you to focus on retirement education and coaching? (The site currently includes a story about farewells and a shift in focus, but this is a guess at what moved you - what's the real story?)
+9. For the "About the practitioner" section aimed at organisations, is it right to lead with "MBA (HR)" and "Mental Health First Aider (Workplace)"?
 
-7. Is "schools, community organisations and business" a fair way to describe the "educational, social and commercial sectors" you've worked across?
-
-8. How would you prefer your name to be spelled - Walden-Pearson (with a hyphen) or Walden Pearson?
-
-9. The Warren Entsch quote on the About page is shortened with "..." - would you prefer the full quote or is the shortened version fine?
-
-10. In the "What I won't do" section, we say: "I'm not a financial adviser, and I don't do clinical assessment." Is this the right way to frame what's outside your scope?
-
-11. On one of the About pages, the closing reads "Talk soon, San" - would you sign your name that way?
+10. The footer disclaimer reads: "This is not financial, legal, medical or counselling advice" and mentions Lifeline 13 11 14 - is that the right tone and scope?
 
 
-HOW YOU WORK WITH INDIVIDUALS AND COUPLES
-==========================================
+Decided without asking (we'll use our best guess)
 
-12. Do you work with couples at all stages of your four-stage method - from the initial chat through to the final session?
-
-13. What's your standard package? How many sessions, how long are they, do you provide a written plan, how often do you check in, and what are your fees?
-
-14. For the first chat, do you offer phone, video, or both? And for follow-up sessions, do you work in person around Cairns, or by video, or a mix of both?
-
-15. In the Services page, we mention diary entries like "Handover with Jo" and "the Esplanade" - are these real examples you'd be comfortable with people seeing, or are they just for illustration?
-
-16. When you refer someone to counselling or other support, what's the exact wording you use? (The site currently says "I'll point you to the right support" - is that your language?)
-
-17. On the Individual Services page, we mention a letter or document you provide. Are you happy with how it's described and willing to sign the version we've written?
-
-
-WORKING WITH ORGANISATIONS
-============================
-
-18. Do you have any organisations or clients you'd be willing to name as case studies or testimonials? If so, would you be happy if we approached them for a quote?
-
-19. For the "About the practitioner" section on the Organisation page, are these credentials right to lead for that audience: "MBA (HR)" and "Mental Health First Aider (Workplace)"?
-
-20. Do you have a workshop testimonial or quote from a past client that you have permission to use on the site?
-
-21. The Organisation page says people "tend to" struggle with retirement transitions - do you have your own data, research, or a published source you'd like to cite instead?
-
-22. Would you be interested in linking the retirement wellbeing framing to workplace psychosocial hazards and duty of care? (For example, Queensland's Psychosocial Hazards Code of Practice?) This is optional - only if you want that angle.
-
-23. What are the actual programme options? We have placeholders for session lengths, group sizes, and delivery methods (in-person, online, hybrid) - what do you actually offer?
-
-24. What are the names and sequence of the three main steps or phases in your organisation programme? (Currently we have placeholders for things like timing and content.)
-
-25. When you run a workshop or programme for an organisation, do you provide a de-identified summary or report back to them afterwards?
-
-26. Do you have a standard email template you send to organisations when confirming a workshop or programme? If so, would you like us to use it instead of the placeholder we've created?
-
-
-WORDING & SIGN-OFF TO CHECK
-============================
-
-27. The footer includes this disclaimer: "This is not financial, legal, medical or counselling advice." Is that the right tone and scope? (It also mentions Lifeline 13 11 14.)
-
-28. On the Home page, the footer says you work with "individuals and couples" under one section and "organisations" under another. Is this split accurate, or should the services be positioned differently?
-
-
-ANYTHING ELSE
-==============
-
-29. Is there anything else about the website, the way your services are described, or the booking process that you'd like to check before it goes live?
-
-30. For organisations, how do you price your work? (Currently the site says: "Dr San will quote after a first chat.")
+- Partners/spouses are welcome to join the first chat together.
+- The Warren Entsch quote stays shortened with "..." on the About page.
+- Sign-off style ("Talk soon, San") - we'll pick something warm and simple.
+- The Services page diary entries ("Handover with Jo", "the Esplanade") are illustrative only, not real examples.
+- Organisation case studies/testimonials and workshop quotes - we'll leave a generic placeholder until you have one to share, rather than chasing named clients now.
+- The "tend to struggle with retirement transitions" line stays as general framing rather than citing specific data.
+- Linking retirement wellbeing to workplace psychosocial hazards/duty of care (e.g. the Qld Code of Practice) - skipped for now as an optional angle.
+- Whether you provide a de-identified summary back to organisations after a workshop, not a launch blocker.
+- Organisation confirmation emails - we'll use our own placeholder template rather than asking for yours upfront.
+- The Home page footer split between "individuals and couples" and "organisations" stays as is.
