@@ -47,3 +47,13 @@ The scratchpad path is session-specific, so recreate these if they're missing. E
 - **Consult 3** closes with "Does Thursday suit?". Confirm this matches how Dr San actually takes bookings.
 - **Method** is parked as a possible separate page. Felix liked horizontal-scroll storytelling (Monday 1) for reuse elsewhere.
 - **Project `CLAUDE.md`:** its context-mode rules reference `ctx_*` tools that subagents often don't have. That config is legitimate, so don't flag it as an injection.
+
+## Copy variants (added 27 Sep 2026)
+- `copy.json` holds copy variants per slot; tagged elements carry `data-copy="<slot>.<key>"` (contract in BRIEF.md). Variant `a` is the original text in the fragment.
+- URL `?c_<slot>=b`. The mixer has **Layout | Copy** tabs; ←/→ cycle whichever tab is open. Picking a preset also sets copy (unnamed slots go back to `a`).
+- Directions: `b` plain and few, `c` in her words (first person). Story presets: `plain-c1`, `plain-c2`, `words-c1`, `words-c2`.
+- Tagged so far: hero 18, monday 1, pause 2, dials 4 and 7, speech 1, cover 3, audience 4, practitioner 1 and 2, consult 3 (the layouts used by c1/c2). Other layouts ignore copy variants until tagged.
+
+## Graduated: 09-felix
+
+The `felix` preset now ships as a standalone page in `../09-felix/`, which has its own HANDOFF.md. This folder stays as the lab.

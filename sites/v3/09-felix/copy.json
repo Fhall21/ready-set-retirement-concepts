@@ -1,0 +1,175 @@
+{
+  "_directions": {
+    "a": "Felix's picks (27 Sep 2026), written straight into each fragment. The default.",
+    "plain": "Plain and few: the reader’s present uncertainty, one short line per block, quiet org nudge.",
+    "words": "In her words: Dr San speaks in the first person; the person carries the trust.",
+    "built": "As first built in 08-vitals (hero 18 wording), before the copy rounds."
+  },
+  "hero": {
+    "plain": {
+      "name": "Dr San · Psychosocial Retirement Educator",
+      "h1": "Not sure what retirement will actually feel like?",
+      "lede": "",
+      "btn": "Book your free 30-minute consult",
+      "org": "See workshops for organisations"
+    },
+    "built": {
+      "name": "Dr San · Psychosocial Retirement Educator",
+      "h1": "Retiring soon, and not sure what comes next?",
+      "lede": "Human-centred retirement planning, for your psychological and social wellbeing.",
+      "btn": "Book your free 30-minute consult",
+      "org": "See workshops for organisations"
+    }
+  },
+  "monday": {
+    "words": {
+      "h": "Most people plan the last Friday. Very few plan the Monday after.",
+      "sub": "The calendar with nothing in it.",
+      "line": "Only Monday is left. Nothing in it."
+    },
+    "built": {
+      "h": "What catches people out is Monday.",
+      "sub": "The calendar with nothing in it.",
+      "line": "Only Monday is left. Nothing in it."
+    }
+  },
+  "pause": {
+    "words": {
+      "line": "Your work quietly holds four things. All four leave on your last afternoon."
+    },
+    "built": {
+      "line": "Four things are attached to your work, and all four leave on the same afternoon."
+    }
+  },
+  "dials": {
+    "plain": {
+      "h": "What changes that afternoon.",
+      "lede": "Four things leave with the job. Preparation puts them back.",
+      "d1": "Somewhere to be, every weekday. Then nowhere.",
+      "d2": "An easy answer to &ldquo;what do you do?&rdquo;",
+      "d3": "A reason to get going, handed to you each day.",
+      "d4": "Friends who were there because the work was.",
+      "close": "Each of these can be put back, with a plan."
+    },
+    "words": {
+      "h": "Your afternoon.",
+      "lede": "Four things leave on the same afternoon. Preparation is what puts them back.",
+      "d1": "Forty years of somewhere to be. Then a Friday, and nowhere.",
+      "d2": "Thirty years of an easy answer to “what do you do?”",
+      "d3": "Work answered “what am I for?” every day. The question doesn’t retire.",
+      "d4": "Most work friends were there because the work was.",
+      "close": "Every one of these can be put back. That is the part of the plan I help with."
+    },
+    "built": {
+      "h": "Your afternoon.",
+      "lede": "Four things leave on the same afternoon. Preparation is what puts them back.",
+      "d1": "Forty years of somewhere to be. Then a Friday, and nowhere.",
+      "d2": "Thirty years of an easy answer to “what do you do?”",
+      "d3": "Work answered “what am I for?” every day. The question doesn’t retire.",
+      "d4": "Most work friends were there because the work was.",
+      "close": "Every one of these can be put back. It takes a plan, the same as the money did."
+    }
+  },
+  "speech": {
+    "words": {
+      "ask": "So why does nobody make one?",
+      "lede": "Most of us spend forty years planning retirement financially, and roughly ten minutes on who we&rsquo;ll be when it arrives.",
+      "close": "Money funds a lifestyle. It has never once told anyone what to do with a <span>Wednesday.</span>"
+    },
+    "built": {
+      "ask": "So why does nobody make one?",
+      "lede": "We spend forty years planning for retirement financially and roughly ten minutes planning who we will be when it arrives.",
+      "close": "Money funds a lifestyle. It has never once told anyone what to do with a <span>Wednesday.</span>"
+    }
+  },
+  "audience": {
+    "words": {
+      "h": "I work with people, and with the organisations they work for.",
+      "tag1": "For you",
+      "title1": "3–10 years out",
+      "p1": "Three to ten years out is the easiest time to start. You still have time, colleagues and energy.",
+      "cta1": "Book a consult with me &rarr;",
+      "tag2": "For HR and workforce planners",
+      "title2": "Staff close to retirement",
+      "p2": "I run workshops, seminars and training for staff getting close to retirement.",
+      "cta2": "Ask me about workshops &rarr;"
+    },
+    "built": {
+      "h": "I work with people, and with the organisations they work for.",
+      "tag1": "For you",
+      "title1": "3–10 years out",
+      "p1": "You still have time, colleagues, energy and a title that opens doors. That is the cheap end — the work gets more expensive the longer you wait.",
+      "cta1": "Book a consult →",
+      "tag2": "For HR and workforce planners",
+      "title2": "Losing institutional knowledge",
+      "p2": "Australians are retiring faster than at any point in the nation's history, and thirty years of institutional knowledge can leave in a single quarter.",
+      "cta2": "Ask about the program →"
+    }
+  },
+  "practitioner": {
+    "plain": {
+      "h": "Dr Sandra Walden-Pearson",
+      "role": "Psychosocial retirement educator &nbsp;·&nbsp; Far North Queensland",
+      "lede1": "Known as Dr San. She works with people three to ten years from retirement, and with the organisations they work for.",
+      "lede2": "She isn&rsquo;t a financial adviser. She helps with the rest of the plan: your days, your sense of self, your people."
+    },
+    "built": {
+      "h": "Dr Sandra Walden-Pearson",
+      "role": "Psychosocial retirement educator &nbsp;·&nbsp; Far North Queensland",
+      "lede1": "\n        Known as Dr San. She works with individuals who are three to ten years from a\n        retirement date, and with the HR and workforce planners who are about to lose thirty\n        years of institutional knowledge in a single quarter.\n      ",
+      "lede2": "\n        She is not a financial adviser and has no interest in becoming one. She teaches the\n        other half of the plan — the half that decides whether the first half was worth\n        doing.\n      "
+    }
+  },
+  "consult": {
+    "plain": {
+      "m1": "Hi, lovely to hear from you. What date are we working towards?",
+      "m2": "Retiring in March! Super's all sorted, the adviser's been great.",
+      "m3": "Wonderful news. And what does an ordinary Tuesday look like after that?",
+      "m4": "Ha — hadn't thought that far. Probably just... home, I suppose.",
+      "m5": "No rush to have it figured out. That's exactly what we'd chat about.",
+      "m6": "Thirty minutes, no cost &mdash; just a chat. Would you like to find a time?",
+      "h": "A free 30-minute chat, well before the date.",
+      "lede": "About what your weeks might look like. Not an assessment.",
+      "btn": "Book a time"
+    },
+    "words": {
+      "m1": "Hi, lovely to hear from you. What date are we working towards?",
+      "m2": "Retiring in March! Super's all sorted, the adviser's been great.",
+      "m3": "Wonderful news. And what does an ordinary Tuesday look like after that?",
+      "m4": "Ha — hadn't thought that far. Probably just... home, I suppose.",
+      "m5": "No rush to have it figured out. That's exactly what we'd chat about.",
+      "m6": "Thirty minutes, no cost &mdash; just a chat. Would you like to find a time?",
+      "h": "Let&rsquo;s talk, well before the date.",
+      "lede": "Thirty minutes, at no cost. A friendly conversation about your weeks, not a clinical assessment.",
+      "btn": "Book the consult"
+    },
+    "built": {
+      "m1": "Hi, lovely to hear from you. What date are we working towards?",
+      "m2": "Retiring in March! Super's all sorted, the adviser's been great.",
+      "m3": "Wonderful news. And what does an ordinary Tuesday look like after that?",
+      "m4": "Ha — hadn't thought that far. Probably just... home, I suppose.",
+      "m5": "No rush to have it figured out. That's exactly what we'd chat about.",
+      "m6": "Thirty minutes, no cost — just a chat. Does Thursday suit?",
+      "h": "Thirty minutes, at no cost, well before the date.",
+      "lede": "\n        A friendly conversation about what your weeks might look like — not a\n        clinical assessment.\n      ",
+      "btn": "Book the consult"
+    }
+  },
+  "cover": {
+    "plain": {
+      "h": "A money plan covers the money.",
+      "lede": "The lower half isn&rsquo;t a money problem, so it was never going to reach it.",
+      "comment": "One pays for the life. The other helps you live it."
+    },
+    "words": {
+      "h": "Your money plan is doing its job.",
+      "lede": "The lower half is the part it was never built for. It&rsquo;s the part I help with.",
+      "comment": "One funds the lifestyle. The other decides whether there is a life in it."
+    },
+    "built": {
+      "h": "A money plan is excellent at the things it covers.",
+      "lede": "Not one line in the lower half is a money problem. That is why the money plan was never going to reach it.",
+      "comment": "One funds the lifestyle. The other decides whether there is a life in it."
+    }
+  }
+}

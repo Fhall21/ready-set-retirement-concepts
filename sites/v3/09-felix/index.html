@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vitals &mdash; Ready Set Retirement</title>
+<title>Ready Set Retirement &mdash; Dr San, psychosocial retirement education</title>
 <meta name="description" content="Financial readiness is one vital sign. Four more stop arriving on the day you retire. Psychosocial retirement education with Dr San, Far North Queensland.">
 <script>
 (function(){try{
@@ -59,7 +59,8 @@ a{color:var(--brand);text-underline-offset:.2em}
 /* Site footer */
 .site-foot{background:var(--ground-3);color:var(--ink-soft);font-size:.95rem;padding-block:clamp(3rem,7vw,5rem) clamp(5rem,10vw,6rem)}
 .site-foot .top{display:grid;gap:2.5rem}
-@media(min-width:860px){.site-foot .top{grid-template-columns:1.4fr 1fr 1.1fr;gap:3rem}}
+@media(min-width:620px){.site-foot .top{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.site-foot .top{grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:3rem}}
 .site-foot .mark{width:150px}
 .site-foot .about{margin-top:1.1rem;max-width:40ch;color:var(--ink)}
 .site-foot .tm{margin-top:.8rem;font-size:.85rem}
@@ -71,7 +72,7 @@ a{color:var(--brand);text-underline-offset:.2em}
 .site-foot .cta .btn{margin-top:1.1rem}
 .site-foot .org{display:inline-block;margin-top:1rem;padding-block:.5rem;font-weight:600}
 .site-foot .base{margin-top:clamp(2.5rem,6vw,4rem);padding-top:1.4rem;border-top:1px solid var(--rule-strong);display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between;font-size:.85rem}
-.site-foot .base p{max-width:70ch}
+.site-foot .base p{max-width:80ch}
 /* Version bar (sites/version-nav.js) sits top-centre over the logo; on this page move it bottom-right, clear of the mixer (bottom-left). */
 #rsr-version-bar{top:auto!important;bottom:12px;left:auto!important;right:12px;transform:none!important;max-width:calc(100vw - 24px)}
 @media(max-width:760px){body:has(#rsr-version-bar) .mx{bottom:64px}}
@@ -96,41 +97,45 @@ main:has([data-slot="pause"]:not(:empty)) [data-slot="dials"] :is(.s-d8-lede,.s-
   <div id="dials" data-slot="dials"></div>
   <div id="speech" data-slot="speech"></div>
   <div id="cover" data-slot="cover"></div>
-  <div id="method" data-slot="method"></div>
   <div id="audience" data-slot="audience"></div>
   <div id="practitioner" data-slot="practitioner"></div>
   <div id="consult" data-slot="consult"></div>
 </main>
-<div id="thread" data-slot="thread"></div>
 
 <footer class="site-foot"><div class="wrap">
-  <!-- TODO(Felix): Dr San's email / phone / ABN not in reference material. -->
+  <!-- TODO(Felix): add Dr San's real email, phone, ABN and booking link (point the Book buttons at /contact or the booking tool). None are in the reference material, so none are shown. -->
   <div class="top">
     <div>
       <a href="#main" aria-label="Ready Set Retirement, back to top"><span class="mark" role="img" aria-label="Ready Set Retirement"></span></a>
-      <p class="about">Dr San (Dr Sandra Walden-Pearson), psychosocial retirement educator in Far North Queensland. Training, workshops, seminars, coaching, consulting and speaking.</p>
+      <p class="about">Psychosocial retirement education with Dr San (Dr Sandra Walden-Pearson), Far North Queensland. Helping people plan the life after work, not just the money for it.</p>
       <p class="tm">human-centred retirement planning&trade; &middot; readysetretirement psychosocial planning&reg;</p>
     </div>
     <nav aria-label="Footer">
-      <h2>On this page</h2>
+      <h2>Explore</h2>
       <ul>
         <li><a href="#dials">What changes when you retire</a></li>
-        <li><a href="#cover">What a money plan covers</a></li>
-        <li><a href="#audience">Who it&rsquo;s for</a></li>
+        <li><a href="#cover">Beyond the money plan</a></li>
         <li><a href="#practitioner">About Dr San</a></li>
-        <li><a href="#consult">Book a consult</a></li>
+        <li><a href="#consult">Book a chat</a></li>
       </ul>
     </nav>
+    <div>
+      <h2>Services</h2>
+      <ul>
+        <li><a href="#audience">For individuals and couples</a></li>
+        <li><a href="#audience">Workshops for organisations</a></li>
+        <li><a href="#practitioner">Seminars and speaking</a></li>
+      </ul>
+    </div>
     <div class="cta">
       <h2>Talk to Dr San</h2>
-      <p>A free 30-minute chat about what your weeks might look like.</p>
-      <a class="btn" href="#consult">Book your free consult</a><br>
-      <a class="org" href="#audience">Workshops for organisations &rarr;</a>
+      <p>A free 30-minute chat about what your weeks might look like after work.</p>
+      <a class="btn" href="#consult">Book your free chat</a>
     </div>
   </div>
   <div class="base">
-    <p>&copy; 2026 Ready Set Retirement.</p>
-    <p>Psychosocial retirement education. This is education, not financial, medical or counselling advice.</p>
+    <p>&copy; 2026 Ready Set Retirement. All rights reserved.</p>
+    <p>Ready Set Retirement offers education and coaching about the personal and social side of retiring. It is not financial, legal or medical advice, and it is not a counselling or mental health service. For money decisions, speak with a licensed financial adviser. If you are struggling, talk to your GP or call Lifeline on 13 11 14.</p>
   </div>
 </div></footer>
 
@@ -139,18 +144,18 @@ main:has([data-slot="pause"]:not(:empty)) [data-slot="dials"] :is(.s-d8-lede,.s-
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
 <script>
-/* Slot loader. URL is the state: ?hero=2&dials=4&cover=1&practitioner=1&consult=1
+/* Slot loader. No URL params = Felix's page. Each slot has one layout (1) or off (0): ?monday=0
+   Copy alternates: ?c_<slot>=plain|words|built (copy.json). Presets: ?preset=plain. ?clean hides the mixer.
    Each fragment slots/<slot>/<n>.html = markup + <style> + <script> that sets
    window.slotInit["<slot>"] = function(root, reduced){...}. Init runs inside a
    gsap.context scoped to the slot, so swapping reverts every tween/ScrollTrigger. */
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
 window.slotInit = {};
 var Vitals = window.Vitals = {
-  slots: ["hero","monday","pause","dials","speech","cover","method","audience","practitioner","consult","thread"],
-  optional: ["monday","speech","pause","method","audience","thread"], // default 0 = hidden
+  slots: ["hero","monday","pause","dials","speech","cover","audience","practitioner","consult"],
   ctx: {}, manifest: null, copy: {},
-  /* Copy variants: copy.json {slot:{variant:{key:text}}}. URL ?c_<slot>=<variant>; "a" (or absent) = the text
-     already in the fragment. Elements opt in with data-copy="<slot>.<key>"; "" hides the element. */
+  /* Copy variants: copy.json {slot:{variant:{key:text}}}. URL ?c_<slot>=<variant>; "a" (or absent) = Felix's pick,
+     already written into the fragment. Elements opt in with data-copy="<slot>.<key>"; "" hides the element. */
   copyState: function(){
     var q = new URL(location.href).searchParams, c = {};
     this.slots.forEach(function(k){ c[k] = q.get("c_"+k) || "a"; });
@@ -163,14 +168,13 @@ var Vitals = window.Vitals = {
     el.querySelectorAll('[data-copy^="'+slot+'."]').forEach(function(n){
       var t = set[n.getAttribute("data-copy").slice(slot.length+1)];
       if (t == null) return;
-      if (t === "") n.hidden = true; else n.innerHTML = t;
+      n.hidden = (t === ""); if (t !== "") n.innerHTML = t;
     });
   },
   reduced: matchMedia("(prefers-reduced-motion: reduce)").matches,
   state: function(){
     var q = new URL(location.href).searchParams, s = {};
-    var o = this.optional;
-    this.slots.forEach(function(k){ s[k] = q.has(k) ? +q.get(k) : (o.indexOf(k) > -1 ? 0 : 1); });
+    this.slots.forEach(function(k){ s[k] = q.has(k) ? +q.get(k) : 1; });
     return s;
   },
   load: async function(slot, n, cv){
@@ -192,9 +196,9 @@ var Vitals = window.Vitals = {
   apply: async function(state, push, copy){
     copy = Object.assign(this.copyState(), copy || {});
     if (push) { var u = new URL(location.href); this.slots.forEach(function(k){
-      u.searchParams.set(k, state[k]);
+      if (state[k] !== 1) u.searchParams.set(k, state[k]); else u.searchParams.delete(k); // defaults stay out of the URL
       if (copy[k] && copy[k] !== "a") u.searchParams.set("c_"+k, copy[k]); else u.searchParams.delete("c_"+k);
-    }); history.replaceState(null, "", u); }
+    }); u.searchParams.delete("preset"); history.replaceState(null, "", u); }
     await Promise.all(this.slots.map(function(k){
       var el = document.querySelector('[data-slot="'+k+'"]');
       return (el.dataset.variant == state[k] && (!state[k] || el.dataset.copy === copy[k])) ? null : Vitals.load(k, state[k], copy[k]);
@@ -210,13 +214,7 @@ Promise.all(["presets.json","copy.json"].map(function(f){
   var m = res[0]; Vitals.manifest = m; Vitals.copy = res[1];
   var q = new URL(location.href).searchParams, st = Vitals.state(), cp = {};
   if (q.get("preset") && m.presets[q.get("preset")]) { st = Object.assign(st, m.presets[q.get("preset")].slots); cp = m.presets[q.get("preset")].copy || {}; }
-  var only = q.get("only"); // arena: render one slot alone (&only=dials&dials=3)
-  if (only) {
-    Vitals.slots.forEach(function(k){ if (k !== only) st[k] = 0; });
-    if (!st[only]) st[only] = 1;
-    document.querySelector(".masthead").hidden = true;
-  }
-  Vitals.apply(st, !only, cp);
+  Vitals.apply(st, true, cp);
   if (q.get("clean") === null) { var s = document.createElement("script"); s.src = "mixer.js"; document.body.appendChild(s); }
 });
 </script>

@@ -8,11 +8,38 @@
     "pause": 3,
     "method": 1,
     "audience": 4,
-    "practitioner": 2,
+    "practitioner": 3,
     "consult": 3,
     "thread": 2
   },
   "presets": {
+    "felix": {
+      "name": "Felix's picks",
+      "slots": {
+        "hero": 18,
+        "monday": 1,
+        "dials": 4,
+        "speech": 1,
+        "cover": 3,
+        "pause": 2,
+        "method": 0,
+        "audience": 4,
+        "practitioner": 3,
+        "consult": 3,
+        "thread": 0
+      },
+      "copy": {
+        "hero": "c",
+        "monday": "b",
+        "pause": "b",
+        "dials": "d",
+        "speech": "b",
+        "audience": "b",
+        "practitioner": "c",
+        "consult": "d",
+        "cover": "d"
+      }
+    },
     "c1": {
       "name": "Compiled A \u2014 from the winning v5",
       "slots": {
@@ -139,6 +166,114 @@
         "practitioner": 2,
         "consult": 3,
         "thread": 0
+      }
+    },
+    "plain-c1": {
+      "name": "Story: plain and few (c1 layout)",
+      "slots": {
+        "hero": 18,
+        "monday": 1,
+        "dials": 4,
+        "speech": 1,
+        "cover": 3,
+        "pause": 2,
+        "method": 0,
+        "audience": 4,
+        "practitioner": 2,
+        "consult": 3,
+        "thread": 0
+      },
+      "copy": {
+        "hero": "b",
+        "monday": "b",
+        "dials": "b",
+        "speech": "b",
+        "cover": "b",
+        "pause": "b",
+        "audience": "b",
+        "practitioner": "b",
+        "consult": "b"
+      }
+    },
+    "plain-c2": {
+      "name": "Story: plain and few (c2 layout)",
+      "slots": {
+        "hero": 18,
+        "monday": 1,
+        "dials": 7,
+        "speech": 1,
+        "cover": 3,
+        "pause": 2,
+        "method": 0,
+        "audience": 4,
+        "practitioner": 1,
+        "consult": 3,
+        "thread": 0
+      },
+      "copy": {
+        "hero": "b",
+        "monday": "b",
+        "dials": "b",
+        "speech": "b",
+        "cover": "b",
+        "pause": "b",
+        "audience": "b",
+        "practitioner": "b",
+        "consult": "b"
+      }
+    },
+    "words-c1": {
+      "name": "Story: in her words (c1 layout)",
+      "slots": {
+        "hero": 18,
+        "monday": 1,
+        "dials": 4,
+        "speech": 1,
+        "cover": 3,
+        "pause": 2,
+        "method": 0,
+        "audience": 4,
+        "practitioner": 2,
+        "consult": 3,
+        "thread": 0
+      },
+      "copy": {
+        "hero": "c",
+        "monday": "c",
+        "dials": "c",
+        "speech": "c",
+        "cover": "c",
+        "pause": "c",
+        "audience": "c",
+        "practitioner": "c",
+        "consult": "c"
+      }
+    },
+    "words-c2": {
+      "name": "Story: in her words (c2 layout)",
+      "slots": {
+        "hero": 18,
+        "monday": 1,
+        "dials": 7,
+        "speech": 1,
+        "cover": 3,
+        "pause": 2,
+        "method": 0,
+        "audience": 4,
+        "practitioner": 1,
+        "consult": 3,
+        "thread": 0
+      },
+      "copy": {
+        "hero": "c",
+        "monday": "c",
+        "dials": "c",
+        "speech": "c",
+        "cover": "c",
+        "pause": "c",
+        "audience": "c",
+        "practitioner": "c",
+        "consult": "c"
       }
     }
   }

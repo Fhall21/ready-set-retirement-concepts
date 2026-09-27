@@ -1,7 +1,10 @@
-/* Mixer: floating panel to cycle each slot's variants and load presets.
-   Keys: 1–9 focus a slot, ←/→ cycle it (layout or copy, per the open tab), P cycles presets, M hides the panel. */
+/* Mixer: floating panel over Felix's page. Every row is one section.
+   Layout tab: each section is on (1) or off. Copy tab: "a" = Felix's pick (baked into the fragment),
+   then the alternates in copy.json (plain / words / built).
+   Keys: 1–9 focus a row (1 hero, 2 monday, 3 pause, 4 dials, 5 speech, 6 cover, 7 audience, 8 practitioner, 9 consult),
+   ←/→ cycle it (layout or copy, per the open tab), P cycles presets, M hides the panel. */
 (function(){
-  var V = window.Vitals, m = V.manifest, focus = "dials", tab = "layout";
+  var V = window.Vitals, m = V.manifest, focus = "hero", tab = "layout";
   function cvars(k){ return ["a"].concat(Object.keys(V.copy[k] || {})); } // copy variants for a slot
   var css = document.createElement("style");
   css.textContent = [

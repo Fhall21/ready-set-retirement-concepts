@@ -6,6 +6,24 @@ Arena votes and comments (from round 3 on) are logged per vote in `sites/arena/v
 
 ---
 
+## Round 5 — Felix, 27 Sep 2026 (copy variants on c1) — **preset `felix`**
+
+### Verdicts (binding)
+- Picks on c1 layouts: hero **c**, monday **b**, pause **b**, dials **b**, speech **b**, audience **b**, practitioner **c**. Saved as preset `felix` ("Felix's picks"), first in the mixer.
+- **Dials:** keep b, but the title becomes "So here's what that first Monday afternoon looks like" (typo fixed, Australian English) → copy variant `dials.d`.
+- **Cover:** the current cover copy "feels quite weak". New `cover.d`: "Psychosocial planning is the yin to your financial plan." plus b's line "One pays for the life. The other helps you live it."
+- **Practitioner:** copy c, but the Warren Entsch testimonial (the only real one) must get its weight and space → layout `practitioner/3` (large pull-quote, full-width band, clear attribution, no carousel chrome).
+- **Consult:** remove "well before the date". New `consult.d`: "Ready to chat?" / "Book in a 30-minute friendly chat to learn what your weeks might look like." No specific booking days.
+- Footer: replace the raw disclaimer footer with a real site footer. Masthead "Book a consult" now points to `#consult`.
+- Bug: the version bar covered the logo on v3; moved bottom-right on this page only.
+
+### Learnings
+20. **Frame the psychosocial plan as the complement to finance, not a critique of it.** "A money plan covers the money" was weak; the yin/yang pairing is stronger.
+21. **Testimonials deserve space.** A real endorsement shouldn't sit in a carousel under the bio; give it a pull-quote with room around it.
+22. **No deadline pressure.** Phrases like "well before the date" read as urgency; invitations should be plain and friendly ("Ready to chat?").
+
+---
+
 ## Round 4 — Felix, 27 Sep 2026 (hero arena, from c1/c2)
 
 ### Verdict

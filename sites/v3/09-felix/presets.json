@@ -1,0 +1,73 @@
+{
+  "counts": {
+    "hero": 1,
+    "monday": 1,
+    "pause": 1,
+    "dials": 1,
+    "speech": 1,
+    "cover": 1,
+    "audience": 1,
+    "practitioner": 1,
+    "consult": 1
+  },
+  "presets": {
+    "default": {
+      "name": "Felix's picks",
+      "slots": {
+        "hero": 1,
+        "monday": 1,
+        "pause": 1,
+        "dials": 1,
+        "speech": 1,
+        "cover": 1,
+        "audience": 1,
+        "practitioner": 1,
+        "consult": 1
+      }
+    },
+    "plain": {
+      "name": "Story: plain and few",
+      "slots": {
+        "hero": 1,
+        "monday": 1,
+        "pause": 1,
+        "dials": 1,
+        "speech": 1,
+        "cover": 1,
+        "audience": 1,
+        "practitioner": 1,
+        "consult": 1
+      },
+      "copy": {
+        "hero": "plain",
+        "dials": "plain",
+        "cover": "plain",
+        "practitioner": "plain",
+        "consult": "plain"
+      }
+    },
+    "words": {
+      "name": "Story: in her words",
+      "slots": {
+        "hero": 1,
+        "monday": 1,
+        "pause": 1,
+        "dials": 1,
+        "speech": 1,
+        "cover": 1,
+        "audience": 1,
+        "practitioner": 1,
+        "consult": 1
+      },
+      "copy": {
+        "monday": "words",
+        "pause": "words",
+        "dials": "words",
+        "speech": "words",
+        "cover": "words",
+        "audience": "words",
+        "consult": "words"
+      }
+    }
+  }
+}

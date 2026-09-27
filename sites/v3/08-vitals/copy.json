@@ -1,0 +1,130 @@
+{
+  "_directions": {
+    "a": "As built: the copy already in each fragment (hero 18 wording).",
+    "b": "Plain and few: the reader's present uncertainty, one short line per block, no money comparison, quiet org nudge.",
+    "c": "In her words: Dr San speaks in the first person, leaning on her own tagline lines; the person carries the trust.",
+    "d": "Felix's picks (27 Sep 2026): single-slot fixes chosen by Felix; used by the felix preset."
+  },
+  "hero": {
+    "b": {
+      "h1": "Not sure what retirement will actually feel like?",
+      "lede": ""
+    },
+    "c": {
+      "h1": "Retiring soon? Let&rsquo;s work out what comes next.",
+      "lede": "Human-centred retirement planning&trade;, for your psychological and social wellbeing."
+    }
+  },
+  "monday": {
+    "b": {
+      "h": "The first Monday is the one nobody plans.",
+      "sub": ""
+    },
+    "c": {
+      "h": "Most people plan the last Friday. Very few plan the Monday after."
+    }
+  },
+  "pause": {
+    "b": {
+      "line": "Direction, identity, purpose and connection come with your work. They leave with it too."
+    },
+    "c": {
+      "line": "Your work quietly holds four things. All four leave on your last afternoon."
+    }
+  },
+  "dials": {
+    "b": {
+      "h": "What changes that afternoon.",
+      "lede": "Four things leave with the job. Preparation puts them back.",
+      "d1": "Somewhere to be, every weekday. Then nowhere.",
+      "d2": "An easy answer to &ldquo;what do you do?&rdquo;",
+      "d3": "A reason to get going, handed to you each day.",
+      "d4": "Friends who were there because the work was.",
+      "close": "Each of these can be put back, with a plan."
+    },
+    "c": {
+      "lede": "Four things leave on the same afternoon. Preparation is what puts them back.",
+      "close": "Every one of these can be put back. That is the part of the plan I help with."
+    },
+    "d": {
+      "h": "So here&rsquo;s what that first Monday afternoon looks like.",
+      "lede": "Four things leave with the job. Preparation puts them back.",
+      "d1": "Somewhere to be, every weekday. Then nowhere.",
+      "d2": "An easy answer to &ldquo;what do you do?&rdquo;",
+      "d3": "A reason to get going, handed to you each day.",
+      "d4": "Friends who were there because the work was.",
+      "close": "Each of these can be put back, with a plan."
+    }
+  },
+  "speech": {
+    "b": {
+      "ask": "So why does nobody plan for it?",
+      "lede": "Forty years planning the money. About ten minutes planning the rest.",
+      "close": "Money pays for the days. It doesn&rsquo;t fill a <span>Wednesday.</span>"
+    },
+    "c": {
+      "lede": "Most of us spend forty years planning retirement financially, and roughly ten minutes on who we&rsquo;ll be when it arrives."
+    }
+  },
+  "cover": {
+    "b": {
+      "h": "A money plan covers the money.",
+      "lede": "The lower half isn&rsquo;t a money problem, so it was never going to reach it.",
+      "comment": "One pays for the life. The other helps you live it."
+    },
+    "c": {
+      "h": "Your money plan is doing its job.",
+      "lede": "The lower half is the part it was never built for. It&rsquo;s the part I help with."
+    },
+    "d": {
+      "h": "Psychosocial planning is the yin to your financial plan.",
+      "lede": "The two work together. The lower half was never a money problem, so it needs a plan of its own.",
+      "comment": "One pays for the life. The other helps you live it."
+    }
+  },
+  "audience": {
+    "b": {
+      "h": "Planning your own retirement, or your team&rsquo;s?",
+      "p1": "You still have time, colleagues and energy. It&rsquo;s easier to start now than later.",
+      "title2": "Staff close to retirement",
+      "p2": "Workshops and training for people approaching retirement, run in your workplace.",
+      "cta2": "See workshops for organisations &rarr;"
+    },
+    "c": {
+      "p1": "Three to ten years out is the easiest time to start. You still have time, colleagues and energy.",
+      "cta1": "Book a consult with me &rarr;",
+      "title2": "Staff close to retirement",
+      "p2": "I run workshops, seminars and training for staff getting close to retirement.",
+      "cta2": "Ask me about workshops &rarr;"
+    }
+  },
+  "practitioner": {
+    "b": {
+      "lede1": "Known as Dr San. She works with people three to ten years from retirement, and with the organisations they work for.",
+      "lede2": "She isn&rsquo;t a financial adviser. She helps with the rest of the plan: your days, your sense of self, your people."
+    },
+    "c": {
+      "lede1": "I&rsquo;m Dr San. I work with people three to ten years from retirement, and with the HR teams who support them.",
+      "lede2": "I&rsquo;m not a financial adviser. I help with the other half of the plan: educated retirement decisions, for your psychological and social wellbeing."
+    }
+  },
+  "consult": {
+    "b": {
+      "h": "A free 30-minute chat, well before the date.",
+      "lede": "About what your weeks might look like. Not an assessment.",
+      "btn": "Book a time",
+      "m6": "Thirty minutes, no cost &mdash; just a chat. Would you like to find a time?"
+    },
+    "c": {
+      "h": "Let&rsquo;s talk, well before the date.",
+      "lede": "Thirty minutes, at no cost. A friendly conversation about your weeks, not a clinical assessment.",
+      "m6": "Thirty minutes, no cost &mdash; just a chat. Would you like to find a time?"
+    },
+    "d": {
+      "h": "Ready to chat?",
+      "lede": "Book in a 30-minute friendly chat to learn what your weeks might look like.",
+      "btn": "Book a time",
+      "m6": "Thirty minutes, no cost &mdash; just a chat. Would you like to find a time?"
+    }
+  }
+}

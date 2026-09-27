@@ -62,3 +62,10 @@ Think: a beautiful medical-device UI meets an Australian health-fund statement, 
 
 ## Deliverable
 Write the variant files. Then self-check by serving `sites/` (`python3 -m http.server 8765` from `sites/`, already may be running) and loading `http://localhost:8765/v3/08-vitals/?<slot>=<n>` — use the `/browse` skill for screenshots at 390 and 1440 if available. Fix what you see once. Report: file paths + one line per variant describing its concept. Under 200 words.
+
+## Copy variants (data-copy contract)
+- Tag swappable text with `data-copy="<slot>.<key>"` (e.g. `hero.h1`). The text in the fragment is copy variant `a`, the fallback.
+- Other variants live in `copy.json`: `{ "<slot>": { "<variant>": { "<key>": "text or small inline html" } } }`. Missing keys keep the fragment text; `""` hides the element. Directions are described under `_directions`.
+- Layout variants of a slot that share structure use the same keys, so one copy variant fits all of them.
+- URL: `?c_<slot>=<variant>` (e.g. `?c_hero=b`). Presets may carry a `copy` map next to `slots`.
+- Copy is applied after injection and before `slotInit`, so SplitText and friends see the new words. Don't put bare `data-copy` attributes to other uses (dials 3's bare `data-copy` is ignored because it has no dot).

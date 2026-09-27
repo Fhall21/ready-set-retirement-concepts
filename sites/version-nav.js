@@ -22,6 +22,7 @@
       '05-the-quiet-room': '05 The Quiet Room',
       '07-third-act': '07 Third Act',
       '08-vitals': '08 Vitals',
+      '09-felix': '09 Felix (Vitals final)',
       '09-the-map': '09 The Map',
       'index': 'Gallery Hub'
     }
@@ -101,7 +102,7 @@
   let state = parseLocation();
 
   function getVersionUrl(targetVer) {
-    if (targetVer === 'v3') return state.relativeSitesRoot + 'v3/08-vitals/';
+    if (targetVer === 'v3') return state.relativeSitesRoot + 'v3/09-felix/'; // headline v3; the 08-vitals lab stays linked from the gallery
     if (state.siteSlug === 'index') {
       return state.relativeSitesRoot + targetVer + '/index.html';
     }

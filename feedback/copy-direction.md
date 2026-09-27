@@ -86,3 +86,25 @@ For agents writing copy variants of any section (slot). Distilled from Felix's a
 | Support | Human-centred retirement planning, for your psychological and social wellbeing. |
 | Button | Book your free 30-minute consult |
 | Quiet link | See workshops for organisations |
+
+## Round 5: section-by-section picks (27 Sep 2026)
+
+Felix picked copy for each section from the a/b/c variants:
+- hero: c
+- monday: b
+- pause: b
+- dials: b, retitled
+- speech: b
+- cover: new
+- audience: b
+- practitioner: c
+- consult: new
+
+**What those picks teach:**
+
+1. **Plain and few (b) wins most sections.** Default to short, plain lines. Use Dr San's first-person voice (c) only where a person is naturally speaking: the hero and her practitioner section.
+2. **Titles should lead the reader into a lived moment.** Dials works better as "So here's what that first Monday afternoon looks like" than as an abstract label.
+3. **Pair psychosocial planning with financial planning. Never pit them against each other.** Cover was weak. Direction: "Psychosocial planning is the yin to your existing financial plan", then "One pays for the life. The other helps you live it." (the line Felix liked).
+4. **No deadline pressure.** Felix rejected "well before the date". The consult close should feel warm and low-stakes: "Ready to chat?" and "Book in a 30-minute friendly chat to learn what your weeks might look like."
+5. **Give real proof its space.** The Warren Entsch testimonial is powerful, so design it as a proper pull-quote, not a footnote. Never invent more quotes.
+6. **Friendly beats formal in CTAs.** "friendly chat" is better than "consultation"; say "30-minute", not "30min".
