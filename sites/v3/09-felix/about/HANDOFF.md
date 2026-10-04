@@ -28,3 +28,23 @@ Backstory, turning point, mission, values, credentials, then a close. Built on t
 - cta/4 signs off "San". Confirm she'd sign that way.
 - Name spelling: home uses "Walden-Pearson" (hyphen) and her site uses "Walden Pearson". I kept the home spelling.
 - Warren Entsch quote is abridged with "…" in drsan/1 and drsan/2.
+
+## Wave 2 (one continuous story)
+
+Motif carried through the middle of the page: the home page's week calendar (slots/monday). Same lead / big-line / close type scale in turning, mission and values.
+
+| Slot | New | What it does |
+|---|---|---|
+| turning | 5 | turning/1's pinned word-by-word sentence (150vh) + a small Mon–Fri–Mon calendar; the week greys out as you read, the empty Monday lights in accent |
+| mission | 5 | continues turning/5: same pin + calendar, opens with the empty Monday, which fills (A walk / Friends / Yours) as the mission is read. No service list |
+| mission | 6 | lighter, no pin: same reveal beside one tall Monday page that fills |
+| values | 5 | values/4's paragraph, words revealed like turning; each value fills in like a calendar entry (replaces the highlighter) |
+| values | 6 | four quiet lines with the calendar-entry edge, words revealed as read |
+
+Edited in place: drsan/1 (Warren Entsch quote band removed), cta/4 (full-height close).
+Retired via skip: values 1, 2, 3; mission 4 (offer table).
+Default preset: opening 1, backstory 1, turning 5, mission 5, values 5, drsan 1, cta 4.
+Mission copy: a = "Your financial plan looks after the money. I help you plan for the person living it." b/c/d rewrite `big` and add `lead`/`close` (this also changes mission/1's b–d big line).
+
+Known: the bare URL loads every slot at 1 (shared/engine.js `state()` ignores presets.default). Use `?preset=default` until the engine is changed.
+TODO(Felix): Monday entries ("A walk", "Friends", "Yours") are illustrative; confirm the tone.

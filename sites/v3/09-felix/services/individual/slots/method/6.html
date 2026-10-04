@@ -1,0 +1,79 @@
+<!-- Method 6 — four appointments, zig-zagging down the page. Each stage gets its own screen: a huge stage word on one side,
+     an appointment slip on the other (session, what we do, what you leave with). Sides alternate, so the eye walks left, right, left, right. No pin. -->
+<section class="s-im6">
+  <div class="wrap s-im6__head">
+    <h2 data-copy="method.h" class="s-im6__h">So what do we actually do together?</h2>
+    <p data-copy="method.lede" class="s-im6__lede">It’s a structured programme in four stages. You’ll always know which one you’re in.</p>
+  </div>
+  <ol class="wrap s-im6__list">
+    <li class="s-im6__row">
+      <h3 data-copy="method.s1t" class="s-im6__word">Map</h3>
+      <div class="s-im6__slip">
+        <p class="s-im6__when"><span>Stage 1 of 4</span></p>
+        <p data-copy="method.s1p">We look at what work is quietly doing for you: your routine, your sense of who you are, your purpose, your people.</p>
+        <p class="s-im6__out"><span>You leave with</span><b data-copy="method.s1o">A clear picture of what leaves with the job.</b></p>
+      </div>
+    </li>
+    <li class="s-im6__row">
+      <h3 data-copy="method.s2t" class="s-im6__word">Test</h3>
+      <div class="s-im6__slip">
+        <p class="s-im6__when"><span>Stage 2 of 4</span></p>
+        <p data-copy="method.s2p">We try out an ordinary week without work, on paper and then for real, and notice what goes missing.</p>
+        <p class="s-im6__out"><span>You leave with</span><b data-copy="method.s2o">The gaps, named, before you meet them.</b></p>
+      </div>
+    </li>
+    <li class="s-im6__row">
+      <h3 data-copy="method.s3t" class="s-im6__word">Build</h3>
+      <div class="s-im6__slip">
+        <p class="s-im6__when"><span>Stage 3 of 4</span></p>
+        <p data-copy="method.s3p">We plan what will fill those gaps. Real things, close to home, with people you choose.</p>
+        <p class="s-im6__out"><span>You leave with</span><b data-copy="method.s3o">A plan for your weeks, in plain words.</b></p>
+      </div>
+    </li>
+    <li class="s-im6__row">
+      <h3 data-copy="method.s4t" class="s-im6__word">Practise</h3>
+      <div class="s-im6__slip">
+        <p class="s-im6__when"><span>Stage 4 of 4</span></p>
+        <p data-copy="method.s4p">You try the new pieces while you still have somewhere to be on Monday, and we adjust as we go.</p>
+        <p class="s-im6__out"><span>You leave with</span><b data-copy="method.s4o">Habits that already work on the day you finish.</b></p>
+      </div>
+    </li>
+  </ol>
+  <!-- TODO(Felix): confirm with Dr San that couples can do every stage together. -->
+  <p data-copy="method.note" class="wrap s-im6__note">Bring your partner if you like. Retirement changes the whole household, not just one diary.</p>
+</section>
+<style>
+.s-im6{background:var(--ground);padding-block:clamp(4rem,11vw,8rem);overflow:hidden}
+.s-im6__h{font:800 clamp(2rem,1rem + 3.4vw,3.4rem)/1.06 var(--sans);letter-spacing:-.02em;max-width:18ch;text-wrap:balance}
+.s-im6__lede{margin-top:1rem;color:var(--ink-soft);max-width:40ch}
+.s-im6__list{list-style:none;margin-top:clamp(3rem,9vw,5rem);padding-block:0;display:grid;gap:clamp(4rem,14vw,6rem)}
+.s-im6__word{font:800 clamp(3.4rem,2rem + 8vw,9rem)/.9 var(--sans);letter-spacing:-.04em;color:var(--brand-deep)}
+.s-im6__slip{margin-top:1.4rem;background:var(--ground-2);border-left:4px solid var(--brand);border-radius:.2rem .6rem .6rem .2rem;padding:1.4rem 1.5rem 1.5rem;max-width:34rem}
+.s-im6__when{font:500 .85rem/1 var(--num);color:var(--ink-soft);margin-bottom:.9rem!important;text-transform:uppercase;letter-spacing:.06em}
+.s-im6__slip > p{margin:0;color:var(--ink-soft);font-size:clamp(1.05rem,.3vw + 1rem,1.2rem);line-height:1.5}
+.s-im6__out{margin-top:1.2rem!important;padding-top:.9rem;border-top:1px solid var(--rule-strong);color:var(--ink)!important}
+.s-im6__out span{display:block;font-size:.88rem;color:var(--ink-soft);margin-bottom:.2rem}
+.s-im6__out b{font-weight:700}
+.s-im6__note{margin-top:clamp(3rem,8vw,5rem);font-weight:600;font-size:1.1rem}
+@media (min-width:900px){
+  .s-im6__list{gap:0}
+  .s-im6__row{min-height:70svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(3rem,8vw,8rem)}
+  .s-im6__slip{margin-top:0}
+  .s-im6__row:nth-child(even) .s-im6__word{order:2;text-align:left}
+  .s-im6__row:nth-child(odd) .s-im6__word{text-align:right}
+  .s-im6__row:nth-child(even) .s-im6__slip{justify-self:end}
+}
+</style>
+<script>
+window.slotInit["method"] = function(root, reduced){
+  if (reduced) return;
+  var desk = window.matchMedia("(min-width:900px)").matches;
+  root.querySelectorAll(".s-im6__row").forEach(function(r, i){
+    var w = r.querySelector(".s-im6__word"), s = r.querySelector(".s-im6__slip");
+    var dir = (i % 2 ? 1 : -1) * (desk ? 60 : 0);
+    var tl = gsap.timeline({scrollTrigger:{trigger:r, start:"top 72%", once:true}});
+    tl.fromTo(w, {opacity:0, x:dir, y:desk ? 0 : 20}, {opacity:1, x:0, y:0, duration:1.1, ease:"power3.out", immediateRender:true})
+      .fromTo(s, {opacity:0, y:24}, {opacity:1, y:0, duration:.9, ease:"power3.out", immediateRender:true}, .25);
+  });
+};
+</script>

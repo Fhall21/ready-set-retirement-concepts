@@ -36,3 +36,14 @@ Palette: each preset has a `"pal"` field. The engine ignores it, so a small scri
 
 ## Verified
 Playwright at 1440 and 390: every preset and every layout variant, with 0 console errors, 0 4xx and no horizontal scroll. Every preset-to-preset switch (24 pairs) works with no errors. The default preset also passes with reduced motion on. Screenshots are in the session scratchpad at `shots/11-organisation/`.
+
+## Wave 2 (5 Oct 2026, port 8772)
+Defaults: hero 2 (copy b; d/c via mixer Copy tab), problem 5, programmes 5, format 5, proof 4, cta 4. Skip map: programmes 4 retired.
+| Slot | New | What it is |
+|---|---|---|
+| problem 5 | pinned exit checklist | Problem 1's report, pinned ~200vh on desktop (>=900px wide, >=640 tall), scrubbed. Arranged rows land and dim; each "Not arranged" row pauses, lands with a mark, and is held. Phones: simple staggered fade, no pin. Reduced motion: static. |
+| programmes 5 | refined editorial list | Programmes 2 with five clearly separate bands, brand-colour rule starts, "Who/Length" labels, more air, warmer ground, lede says each stands alone. |
+| format 5 | calendar day view, polished | Format 2 with more space, slightly larger calendar, notes arrive after the day is drawn. |
+| proof 4 | edited in place | Toggle removed; full Warren Entsch quote shown plainly (wording copied from the existing fragment), "life changing" highlighted. |
+| cta 4 | full-height portrait CTA | CTA 3 as a viewport-height closing section, larger portrait, line "No pressure. It's a conversation, not a sales call." (TODO(Felix): confirm wording). |
+Interpretations: "Programmes 2 refined" delivered as new variant 5 (2 kept). Other presets updated to use 5/5/4 for programmes/format/cta; felt keeps problem 3; hr uses problem 2. Problem/proof copy keys unchanged.

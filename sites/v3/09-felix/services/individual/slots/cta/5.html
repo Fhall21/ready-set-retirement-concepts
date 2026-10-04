@@ -1,0 +1,42 @@
+<!-- CTA 5 — CTA 2 made full page: Dr San's photo fills the left half edge to edge at full viewport height, the invitation sits on the right with room around it.
+     The photo eases in slightly as you arrive; the words settle in once. -->
+<section class="s-ic5">
+  <div class="s-ic5__grid">
+    <figure class="s-ic5__photo"><img src="../../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling" loading="lazy"></figure>
+    <div class="s-ic5__text">
+      <h2 data-copy="cta.h" class="s-ic5__h">Ready to chat?</h2>
+      <p data-copy="cta.lede" class="s-ic5__lede">Book in a friendly 30-minute chat about what your weeks might look like.</p>
+      <a data-copy="cta.btn" class="btn s-ic5__btn" href="../../contact/#book">Book a time</a>
+      <p class="s-ic5__org"><a data-copy="cta.org" href="../organisation/">See workshops for organisations</a></p>
+    </div>
+  </div>
+</section>
+<style>
+.s-ic5{background:var(--ground-2);overflow:hidden}
+.s-ic5__grid{display:grid}
+.s-ic5__photo{margin:0;height:min(62svh,520px);overflow:hidden}
+.s-ic5__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.s-ic5__text{padding:clamp(3rem,10vw,4rem) var(--gut) clamp(4rem,12vw,5rem)}
+.s-ic5__h{font:800 clamp(2.4rem,1rem + 5vw,4.6rem)/1.04 var(--sans);letter-spacing:-.025em;max-width:12ch;text-wrap:balance}
+.s-ic5__lede{margin-top:1.2rem;font-size:clamp(1.1rem,.5vw + 1rem,1.35rem);color:var(--ink-soft);max-width:32ch;text-wrap:pretty}
+.s-ic5__btn{margin-top:2.4rem;min-height:56px;font-size:1.1rem;padding:1.15rem 2.2rem}
+.s-ic5__org{margin-top:1.8rem;font-size:1rem}
+.s-ic5__org a{color:var(--ink);text-decoration-thickness:1px}
+.s-ic5__org a:hover{color:var(--brand)}
+@media (min-width:860px){
+  .s-ic5__grid{grid-template-columns:1fr 1fr;min-height:100svh}
+  .s-ic5__photo{height:auto;position:relative}
+  .s-ic5__photo img{position:absolute;inset:0}
+  .s-ic5__text{align-self:center;padding:clamp(4rem,8vw,8rem)}
+}
+</style>
+<script>
+window.slotInit["cta"] = function(root, reduced){
+  if (reduced) return;
+  var img = root.querySelector(".s-ic5__photo img");
+  gsap.fromTo(img, {scale:1.12}, {scale:1, ease:"none", immediateRender:true,
+    scrollTrigger:{trigger:root, start:"top bottom", end:"top top", scrub:.6}});
+  gsap.fromTo(root.querySelector(".s-ic5__text").children, {opacity:0, y:20}, {opacity:1, y:0, duration:.9, stagger:.1, ease:"power3.out", immediateRender:true,
+    scrollTrigger:{trigger:root.querySelector(".s-ic5__text"), start:"top 75%", once:true}});
+};
+</script>

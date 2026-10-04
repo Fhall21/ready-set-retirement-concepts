@@ -1,0 +1,63 @@
+<!-- Why 5 — Why 1, slowed down. Pinned ~220vh on desktop: each day gets the whole screen to itself, arrives, holds, then leaves before the next.
+     The close lands alone at the end. Phones and reduced motion: simply stacked with lots of air. -->
+<section class="s-iw5">
+  <div class="s-iw5__stage">
+    <div class="wrap s-iw5__in">
+      <h2 data-copy="why.h" class="s-iw5__h">Here’s how the first week often goes.</h2>
+      <div class="s-iw5__beats">
+        <div class="s-iw5__beat"><b data-copy="why.d1">Friday</b><p data-copy="why.l1">A cake, a card, a speech. Everyone says “enjoy it”.</p></div>
+        <div class="s-iw5__beat"><b data-copy="why.d2">Monday</b><p data-copy="why.l2">No alarm. The coffee’s nice. The house is very quiet.</p></div>
+        <div class="s-iw5__beat"><b data-copy="why.d3">Wednesday</b><p data-copy="why.l3">Nobody needs you anywhere. Nobody’s rung.</p></div>
+        <div class="s-iw5__beat s-iw5__beat--close"><p data-copy="why.close" class="s-iw5__close">Nothing went wrong. It just wasn’t planned.</p></div>
+      </div>
+      <div class="s-iw5__ticks" aria-hidden="true"><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+<style>
+.s-iw5{background:var(--ground-2)}
+.s-iw5__stage{padding-block:clamp(4rem,12vw,7rem)}
+.s-iw5__in{max-width:1040px}
+.s-iw5__h{font:600 clamp(1rem,2vw,1.15rem)/1.3 var(--sans);color:var(--brand-deep)}
+.s-iw5__beats{display:grid;gap:clamp(4rem,14vw,7rem);margin-top:clamp(2.5rem,8vw,4rem)}
+.s-iw5__beat b{display:block;font:600 1rem/1 var(--sans);color:var(--ink-soft);margin-bottom:.9rem;letter-spacing:.01em}
+.s-iw5__beat p{font:700 clamp(1.8rem,1rem + 3.4vw,3.6rem)/1.14 var(--sans);letter-spacing:-.015em;max-width:22ch;text-wrap:balance}
+.s-iw5__beat p.s-iw5__close{font-weight:800;color:var(--brand);max-width:18ch}
+.s-iw5__ticks{display:none}
+@media (min-width:900px){
+  .s-iw5__stage{min-height:100svh;display:flex;align-items:center;padding-block:4rem}
+  .s-iw5__in{width:100%;position:relative}
+  .s-iw5.is-pinned .s-iw5__beats{display:grid;grid-template-areas:"b";gap:0;min-height:40svh;align-items:center}
+  .s-iw5.is-pinned .s-iw5__beat{grid-area:b}
+  .s-iw5.is-pinned .s-iw5__ticks{display:flex;gap:.6rem;margin-top:3rem}
+  .s-iw5__ticks i{width:2.4rem;height:3px;border-radius:2px;background:var(--brand);opacity:.2}
+}
+</style>
+<script>
+window.slotInit["why"] = function(root, reduced){
+  if (reduced) return;
+  var sec = root.querySelector(".s-iw5");
+  var beats = root.querySelectorAll(".s-iw5__beat");
+  var ticks = root.querySelectorAll(".s-iw5__ticks i");
+  var mm = gsap.matchMedia();
+  mm.add("(min-width:900px)", function(){
+    sec.classList.add("is-pinned");
+    gsap.set(beats, {autoAlpha:0, y:24});
+    var tl = gsap.timeline({scrollTrigger:{trigger:root.querySelector(".s-iw5__stage"), start:"top top", end:"+=220%", scrub:1, pin:true, invalidateOnRefresh:true}});
+    beats.forEach(function(b, i){
+      var t = i * 3;
+      tl.to(b, {autoAlpha:1, y:0, duration:1, ease:"power1.out"}, t);
+      if (ticks[i]) tl.to(ticks[i], {opacity:1, duration:.6, ease:"none"}, t);
+      if (i < beats.length - 1) tl.to(b, {autoAlpha:0, y:-24, duration:.8, ease:"power1.in"}, t + 2.2);
+    });
+    tl.to({}, {duration:1.2});
+    return function(){ sec.classList.remove("is-pinned"); gsap.set(beats, {clearProps:"all"}); gsap.set(ticks, {clearProps:"all"}); };
+  });
+  mm.add("(max-width:899px)", function(){
+    beats.forEach(function(b){
+      gsap.fromTo(b, {opacity:0, y:20}, {opacity:1, y:0, duration:.9, ease:"power3.out", immediateRender:true,
+        scrollTrigger:{trigger:b, start:"top 85%", once:true}});
+    });
+  });
+};
+</script>

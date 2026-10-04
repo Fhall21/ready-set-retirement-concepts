@@ -1,0 +1,66 @@
+<!-- mission/5: continues turning/5. Same type scale, same pinned word-by-word read, same week calendar.
+     It opens where turning left off (week greyed, empty Monday lit) and, as the mission is read, Monday quietly fills.
+     No service list on purpose (Felix). Monday entries are illustrative, not claims. -->
+<section class="ab-mi5">
+  <div class="wrap ab-mi5-in">
+    <p data-copy="mission.lead" class="ab-mi5-lead">So this is my work now.</p>
+    <h2 data-copy="mission.big" class="ab-mi5-big">Your financial plan looks after the money. I help you plan for <span class="ab-mi5-acc">the person living it.</span></h2>
+    <div class="ab-mi5-cal" aria-hidden="true">
+      <div class="ab-mi5-col"><b>Mon</b><i style="top:30%;height:22%"></i><i class="g" style="top:62%;height:18%"></i></div>
+      <div class="ab-mi5-col"><b>Tue</b><i class="l" style="top:26%;height:16%"></i><i style="top:50%;height:26%"></i></div>
+      <div class="ab-mi5-col"><b>Wed</b><i style="top:34%;height:20%"></i><i class="l" style="top:62%;height:14%"></i></div>
+      <div class="ab-mi5-col"><b>Thu</b><i class="g" style="top:28%;height:18%"></i><i style="top:54%;height:20%"></i></div>
+      <div class="ab-mi5-col"><b>Fri</b><i class="l" style="top:30%;height:14%"></i><i class="fw" style="top:52%;height:28%"></i></div>
+      <div class="ab-mi5-col ab-mi5-mon"><b>Mon</b>
+        <i class="n" style="top:24%;height:20%"><em>A walk</em></i>
+        <i class="n" style="top:48%;height:20%"><em>Friends</em></i>
+        <i class="n" style="top:72%;height:20%"><em>Yours</em></i>
+      </div>
+    </div>
+    <p data-copy="mission.close" class="ab-mi5-close">That’s the other half of retirement planning. It sits alongside your adviser’s work, never in place of it.</p>
+  </div>
+</section>
+<style>
+.ab-mi5{background:var(--ground)}
+.ab-mi5-in{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(3.5rem,9vw,6rem);max-width:1100px}
+.ab-mi5-lead{font:600 clamp(1.05rem,1.2vw + .8rem,1.3rem)/1.3 var(--sans);color:var(--brand-deep);margin-bottom:1.2rem}
+.ab-mi5-big{font:800 clamp(2rem,3.6vw + .6rem,4rem)/1.08 var(--sans);letter-spacing:-.025em;text-wrap:balance;max-width:24ch}
+.ab-mi5-big>span,.ab-mi5-acc{color:var(--brand)}
+.ab-mi5-cal{margin-top:clamp(2rem,5vh,3rem);display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);height:clamp(130px,20vh,190px);width:100%;border-radius:.5rem;overflow:hidden}
+.ab-mi5-col{position:relative;background:var(--ground-2)}
+.ab-mi5-col:not(.ab-mi5-mon){opacity:.28}
+.ab-mi5-col b{position:absolute;inset:0 0 auto;text-align:center;padding:.4rem 0;font:700 .72rem/1 var(--num);color:var(--ink-soft);border-bottom:1px solid var(--rule);background:var(--ground)}
+.ab-mi5-col i{position:absolute;left:10%;right:10%;border-radius:.3rem;background:var(--brand);opacity:.85}
+.ab-mi5-col i.l{background:var(--brand-bright)}
+.ab-mi5-col i.g{background:var(--gold)}
+.ab-mi5-col i.fw{background:var(--accent)}
+.ab-mi5-col i.n{background:var(--brand);opacity:1;height:auto}
+.ab-mi5-col em{display:block;padding:.15rem .35rem;font:600 .64rem/1.2 var(--sans);font-style:normal;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ab-mi5-mon{background:var(--ground-3);box-shadow:inset 0 0 0 2px var(--brand)}
+.ab-mi5-mon b{color:var(--brand)}
+.ab-mi5-close{margin-top:clamp(1.6rem,4vh,2.4rem);font:500 clamp(1.15rem,1vw + .95rem,1.5rem)/1.4 var(--sans);color:var(--ink-soft);max-width:40ch}
+@media (max-width:600px){.ab-mi5-col em{display:none}}
+</style>
+<script>
+window.slotInit["mission"] = function(root, reduced){
+  if (reduced) return;
+  var sec = root.querySelector(".ab-mi5"), big = root.querySelector(".ab-mi5-big"), close = root.querySelector(".ab-mi5-close"),
+      mon = root.querySelector(".ab-mi5-mon"), fill = root.querySelectorAll(".ab-mi5-mon i");
+  var split = new SplitText(big, {type:"words"});
+  function build(tl){
+    // starts where turning ended: empty Monday in accent. As the mission is read, Monday gets a life in it.
+    tl.fromTo(mon, {boxShadow:"inset 0 0 0 2px var(--accent)"}, {boxShadow:"inset 0 0 0 2px var(--brand)", ease:"none", duration:.3}, 0)
+      .fromTo(split.words, {opacity:.14}, {opacity:1, stagger:.1, ease:"none", duration:.4}, 0)
+      .fromTo(fill, {opacity:0, scaleY:.4, transformOrigin:"50% 0%"}, {opacity:1, scaleY:1, stagger:.25, ease:"none", duration:.3}, ">-.4")
+      .fromTo(close, {opacity:0, y:12}, {opacity:1, y:0, ease:"none", duration:.3}, ">");
+    return tl;
+  }
+  var mm = gsap.matchMedia();
+  mm.add("(min-width: 900px)", function(){
+    build(gsap.timeline({scrollTrigger:{trigger:sec, start:"top top", end:"+=150%", scrub:.8, pin:true, invalidateOnRefresh:true}})).to({}, {duration:.5});
+  });
+  mm.add("(max-width: 899px)", function(){
+    build(gsap.timeline({scrollTrigger:{trigger:big, start:"top 80%", end:"bottom+=180 45%", scrub:.6}}));
+  });
+};
+</script>

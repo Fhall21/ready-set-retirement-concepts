@@ -1,0 +1,67 @@
+<!-- Programmes 5: Programmes 2 refined. Five separate offerings, each on its own band with its own rule, plenty of air
+     and a warmer ground, so it reads as "choose what suits", not one bundle. TODO(Felix): lengths and group sizes are placeholders. Confirm with Dr San. -->
+<section class="s-oprog-5">
+  <div class="wrap">
+    <div class="s-oprog-5-top">
+      <h2 data-copy="programmes.h" class="s-oprog-5-h">What Dr San runs</h2>
+      <p data-copy="programmes.lede" class="s-oprog-5-lede">Each one stands on its own. Choose what suits your people, and each is shaped around the work they do.</p>
+    </div>
+    <ul class="s-oprog-5-list">
+      <li class="s-oprog-5-item"><i class="s-oprog-5-rule"></i>
+        <h3>Preparing for retirement</h3>
+        <div class="s-oprog-5-body"><p>The core workshop. People look at the parts of retirement money doesn’t cover, and leave with a first plan of their own.</p>
+        <dl class="s-oprog-5-meta"><div><dt>Who</dt><dd>Staff three to ten years from retiring</dd></div><div><dt>Length</dt><dd>Half or full day · up to 20 people</dd></div></dl></div>
+      </li>
+      <li class="s-oprog-5-item"><i class="s-oprog-5-rule"></i>
+        <h3>Lunchtime seminar</h3>
+        <div class="s-oprog-5-body"><p>A friendly introduction to the human side of retirement. A gentle way to see who’s interested.</p>
+        <dl class="s-oprog-5-meta"><div><dt>Who</dt><dd>Anyone, at any stage</dd></div><div><dt>Length</dt><dd>60 minutes · any size</dd></div></dl></div>
+      </li>
+      <li class="s-oprog-5-item"><i class="s-oprog-5-rule"></i>
+        <h3>Talks and keynotes</h3>
+        <div class="s-oprog-5-body"><p>Dr San speaking on why a good retirement needs more than a financial plan.</p>
+        <dl class="s-oprog-5-meta"><div><dt>Where</dt><dd>Conferences, leadership days, member events</dd></div><div><dt>Length</dt><dd>20–45 minutes</dd></div></dl></div>
+      </li>
+      <li class="s-oprog-5-item"><i class="s-oprog-5-rule"></i>
+        <h3>Training for managers</h3>
+        <div class="s-oprog-5-body"><p>How to talk with someone about retiring, kindly and without assumptions.</p>
+        <dl class="s-oprog-5-meta"><div><dt>Who</dt><dd>People leaders and HR</dd></div><div><dt>Length</dt><dd>Half day · up to 15 people</dd></div></dl></div>
+      </li>
+      <li class="s-oprog-5-item"><i class="s-oprog-5-rule"></i>
+        <h3>One-to-one sessions</h3>
+        <div class="s-oprog-5-body"><p>Private follow-up for staff who want to go further after a workshop.</p>
+        <dl class="s-oprog-5-meta"><div><dt>Who</dt><dd>Individual staff, or a couple</dd></div><div><dt>Length</dt><dd>60 minutes</dd></div></dl></div>
+      </li>
+    </ul>
+    <p class="s-oprog-5-note" data-copy="programmes.note">Not sure which would suit? That’s what the first chat is for.</p>
+  </div>
+</section>
+<style>
+.s-oprog-5{padding-block:clamp(4.5rem,11vw,9rem);background:var(--ground-2)}
+.s-oprog-5-top{display:grid;gap:1.2rem;margin-bottom:clamp(2.5rem,6vw,5rem)}
+.s-oprog-5-h{font:800 clamp(2rem,1rem + 3.4vw,3.6rem)/1.08 var(--sans);letter-spacing:-.02em;max-width:18ch}
+.s-oprog-5-lede{color:var(--ink-soft);max-width:40ch;font-size:1.1em}
+.s-oprog-5-list{list-style:none;margin:0;padding:0}
+.s-oprog-5-item{position:relative;display:grid;gap:1rem;padding-block:clamp(2.2rem,5vw,3.8rem)}
+.s-oprog-5-rule{position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--brand) 0 3.5rem,var(--rule-strong) 3.5rem);transform-origin:left center}
+.s-oprog-5-item h3{font:700 clamp(1.6rem,1rem + 1.8vw,2.5rem)/1.12 var(--sans);letter-spacing:-.015em;color:var(--brand-deep)}
+.s-oprog-5-body p{max-width:44ch;font-size:clamp(1.05rem,.4vw + 1rem,1.2rem);line-height:1.55}
+.s-oprog-5-meta{margin:1.3rem 0 0;display:grid;gap:.6rem}
+.s-oprog-5-meta div{display:flex;gap:.9rem;align-items:baseline}
+.s-oprog-5-meta dt{flex:0 0 3.6rem;font:700 .75rem/1.2 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft)}
+.s-oprog-5-meta dd{margin:0;color:var(--ink-soft);font-weight:500;font-size:.98rem}
+.s-oprog-5-note{margin-top:clamp(1.5rem,4vw,3rem);padding-top:1.6rem;border-top:1px solid var(--rule-strong);font:600 1.15em/1.5 var(--sans)}
+@media (min-width:860px){
+  .s-oprog-5-item{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:4rem;align-items:start}
+}
+</style>
+<script>
+window.slotInit["programmes"] = function(root, reduced){
+  if (reduced) return;
+  root.querySelectorAll(".s-oprog-5-item").forEach(function(li){
+    var tl = gsap.timeline({scrollTrigger:{trigger:li, start:"top 82%", toggleActions:"play none none none"}});
+    tl.fromTo(li.querySelector(".s-oprog-5-rule"), {scaleX:0}, {scaleX:1, duration:1.3, ease:"expo.out"})
+      .fromTo(li.querySelectorAll("h3, .s-oprog-5-body"), {opacity:0, y:14}, {opacity:1, y:0, duration:.8, stagger:.15, ease:"power2.out"}, "<.25");
+  });
+};
+</script>

@@ -1,0 +1,100 @@
+<!-- Problem 5: Problem 1's exit checklist, slowed down. On desktop the section pins (~200vh) and the report fills in one line at a time:
+     the arranged items settle quickly and quietly, then each "Not arranged" gap is held long enough to be felt.
+     Phones and reduced-motion get the whole report, static. -->
+<section class="s-oprob-5">
+  <div class="s-oprob-5-stage">
+    <div class="wrap s-oprob-5-in">
+      <div class="s-oprob-5-intro">
+        <h2 data-copy="problem.h" class="s-oprob-5-h">When someone retires, the paperwork gets done. The rest is left to them.</h2>
+        <p data-copy="problem.lede" class="s-oprob-5-lede">Routine, purpose and daily company all leave with the job, on the same day.</p>
+        <p class="s-oprob-5-close" data-copy="problem.close">It’s easier to prepare while they’re still at work, with colleagues around them.</p>
+      </div>
+
+      <div class="s-oprob-5-report">
+        <div class="s-oprob-5-head">
+          <span class="s-oprob-5-title">Staff exit checklist — retirement</span>
+          <span class="s-oprob-5-meta">Last day: Friday · Status as at: the Monday after</span>
+        </div>
+        <div class="s-oprob-5-table" role="table" aria-label="What a typical retirement exit arranges">
+          <div class="s-oprob-5-thead" role="row"><span role="columnheader">Item</span><span role="columnheader">Status</span></div>
+          <div class="s-oprob-5-row" role="row"><span class="s-oprob-5-label" role="rowheader">Final pay and leave paid out</span><span class="s-oprob-5-cell" role="cell"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>Arranged</span></div>
+          <div class="s-oprob-5-row" role="row"><span class="s-oprob-5-label" role="rowheader">Super paperwork signed</span><span class="s-oprob-5-cell" role="cell"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>Arranged</span></div>
+          <div class="s-oprob-5-row" role="row"><span class="s-oprob-5-label" role="rowheader">Handover notes for the next person</span><span class="s-oprob-5-cell" role="cell"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>Arranged</span></div>
+          <div class="s-oprob-5-row" role="row"><span class="s-oprob-5-label" role="rowheader">Farewell morning tea and a card</span><span class="s-oprob-5-cell" role="cell"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>Arranged</span></div>
+          <div class="s-oprob-5-row is-flag" role="row"><span class="s-oprob-5-label" role="rowheader">Something to get up for on Monday</span><span class="s-oprob-5-cell s-oprob-5-flag" role="cell"><span class="s-oprob-5-mark">!</span>Not arranged</span></div>
+          <div class="s-oprob-5-row is-flag" role="row"><span class="s-oprob-5-label" role="rowheader">People to talk to most days</span><span class="s-oprob-5-cell s-oprob-5-flag" role="cell"><span class="s-oprob-5-mark">!</span>Not arranged</span></div>
+          <div class="s-oprob-5-row is-flag" role="row"><span class="s-oprob-5-label" role="rowheader">An answer to “so what do you do now?”</span><span class="s-oprob-5-cell s-oprob-5-flag" role="cell"><span class="s-oprob-5-mark">!</span>Not arranged</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-oprob-5{background:var(--ground)}
+.s-oprob-5-stage{min-height:100svh;display:flex;align-items:center;padding-block:clamp(3.5rem,9vw,6rem)}
+.s-oprob-5-in{width:100%;display:grid;gap:clamp(2rem,5vw,3rem)}
+.s-oprob-5-h{font:800 clamp(1.7rem,1rem + 1.5vw,2.3rem)/1.14 var(--sans);letter-spacing:-.015em;text-wrap:balance;max-width:none}
+.s-oprob-5-lede{margin-top:1.1rem;max-width:36ch;color:var(--ink-soft);font-size:1.1em}
+.s-oprob-5-close{margin-top:clamp(1.6rem,3vw,2.4rem);padding-top:1.2rem;border-top:2px solid var(--rule-strong);font:600 1.15em/1.5 var(--sans);max-width:32ch}
+.s-oprob-5-report{border:1px solid var(--rule-strong);background:var(--ground-2);border-radius:.5rem;overflow:hidden;width:100%}
+.s-oprob-5-head{display:flex;flex-wrap:wrap;gap:.4rem 1rem;justify-content:space-between;align-items:baseline;padding:1rem 1.3rem;border-bottom:2px solid var(--rule-strong)}
+.s-oprob-5-title{font:700 1.05rem/1.3 var(--sans)}
+.s-oprob-5-meta{font:400 .8rem/1.3 var(--num);color:var(--ink-soft)}
+.s-oprob-5-table{padding:.2rem 1.3rem .4rem}
+.s-oprob-5-thead,.s-oprob-5-row{display:grid;grid-template-columns:1fr minmax(9.5rem,auto);gap:1rem;align-items:center}
+.s-oprob-5-thead{padding:.7rem 0;font:700 .78rem/1.2 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule-strong)}
+.s-oprob-5-row{padding:1rem 0;border-bottom:1px solid var(--rule)}
+.s-oprob-5-row:last-child{border-bottom:0}
+.s-oprob-5-label{font-weight:600;font-size:1rem}
+.s-oprob-5-cell{display:inline-flex;align-items:center;gap:.5rem;font:500 .95rem/1 var(--sans);color:var(--ink-soft)}
+.s-oprob-5-cell svg{width:1rem;height:1rem;fill:none;stroke:var(--brand);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.s-oprob-5-flag{color:var(--accent);font-weight:700;background:color-mix(in srgb,var(--accent) 9%,transparent);padding:.4rem .65rem;border-radius:.3rem;margin:-.4rem -.65rem;justify-self:start}
+.s-oprob-5-mark{display:inline-flex;align-items:center;justify-content:center;width:1.15rem;height:1.15rem;border-radius:50%;background:var(--accent);color:#fff;font:800 .75rem/1 var(--num)}
+@media (min-width:900px){
+  .s-oprob-5-in{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(3rem,6vw,6rem);align-items:center}
+  .s-oprob-5-row{padding:1.1rem 0}
+}
+@media (max-width:640px){
+  .s-oprob-5-thead{display:none}
+  .s-oprob-5-row{grid-template-columns:1fr;gap:.45rem}
+  .s-oprob-5-flag{margin:0;padding:.3rem .5rem}
+}
+</style>
+<script>
+window.slotInit["problem"] = function(root, reduced){
+  if (reduced) return;
+  var rows = root.querySelectorAll(".s-oprob-5-row");
+  var close = root.querySelector(".s-oprob-5-close");
+  var desk = matchMedia("(min-width:900px) and (min-height:640px)").matches; // static check, see HANDOFF
+  if (!desk) {
+    gsap.fromTo(rows, {opacity:0, y:10}, {opacity:1, y:0, duration:.5, stagger:.18, ease:"power2.out",
+      scrollTrigger:{trigger:root.querySelector(".s-oprob-5-table"), start:"top 80%", toggleActions:"play none none none"}});
+    return;
+  }
+  var tl = gsap.timeline({defaults:{ease:"none"}, scrollTrigger:{trigger:root, start:"top top", end:"+=200%", scrub:.7, pin:true, anticipatePin:1, invalidateOnRefresh:true}});
+  gsap.set(close, {opacity:0});
+  rows.forEach(function(row, i){
+    var flag = row.classList.contains("is-flag");
+    var label = row.querySelector(".s-oprob-5-label"), cell = row.querySelector(".s-oprob-5-cell");
+    gsap.set(label, {opacity:0, y:10});
+    gsap.set(cell, {opacity:0});
+    tl.to(label, {opacity:1, y:0, duration:.5}, ">");
+    if (!flag) {
+      var tick = row.querySelector("path");
+      gsap.set(tick, {drawSVG:"0%"});
+      tl.to(cell, {opacity:1, duration:.2}, ">-.1").to(tick, {drawSVG:"100%", duration:.35}, "<");
+      tl.to(row, {opacity:.55, duration:.4}, ">+.15");          // settled, quiet
+    } else {
+      var mark = row.querySelector(".s-oprob-5-mark");
+      gsap.set(cell, {scale:.92, transformOrigin:"left center"});
+      tl.addLabel("gap"+i, ">+.35")                              // a pause before the gap appears
+        .to(cell, {opacity:1, scale:1, duration:.5}, "gap"+i)
+        .fromTo(mark, {scale:0}, {scale:1, duration:.3, ease:"back.out(2.5)"}, "gap"+i)
+        .to({}, {duration:.9});                                  // hold: let it be felt
+    }
+  });
+  tl.to(rows, {opacity:1, duration:.5}, ">+.1")
+    .to(close, {opacity:1, duration:.7}, ">")
+    .to({}, {duration:.6});
+};
+</script>

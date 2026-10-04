@@ -1,0 +1,35 @@
+<!-- values/5: values/4's one-paragraph idea, re-expressed in the page's own motif. The paragraph is read word by word
+     (same reveal as turning/mission) and each value fills in behind like a soft entry in the Monday calendar,
+     instead of a highlighter pen. No pin: this is where the passage starts to relax. -->
+<section class="ab-va5">
+  <div class="wrap ab-va5-in">
+    <p data-copy="values.h" class="ab-va5-h">What sitting down with me is like</p>
+    <p class="ab-va5-p">
+      <mark data-copy="values.v1h">Plain talk.</mark> <span data-copy="values.v1p">I’ll tell you plainly what your plans cover, and what they don’t.</span>
+      <mark data-copy="values.v2h">A conversation, not an assessment.</mark> <span data-copy="values.v2p">You talk, I listen, and we work it out together.</span>
+      <mark data-copy="values.v3h">Alongside your adviser.</mark> <span data-copy="values.v3p">I’m not a financial adviser. My work sits next to theirs.</span>
+      <mark data-copy="values.v4h">No rush.</mark> <span data-copy="values.v4p">Ten years out or three, we start from where you are.</span>
+    </p>
+  </div>
+</section>
+<style>
+.ab-va5{background:var(--ground)}
+.ab-va5-in{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(4rem,10vw,7rem);max-width:1100px}
+.ab-va5-h{font:600 clamp(1.05rem,1.2vw + .8rem,1.3rem)/1.3 var(--sans);color:var(--brand-deep);margin-bottom:1.4rem}
+.ab-va5-p{font:500 clamp(1.5rem,2vw + .9rem,2.5rem)/1.45 var(--sans);letter-spacing:-.015em;color:var(--ink-soft);text-wrap:pretty;max-width:34ch}
+.ab-va5-p mark{color:var(--ink);font-weight:800;padding:.02em .18em;border-radius:.3rem;-webkit-box-decoration-break:clone;box-decoration-break:clone;
+  background:linear-gradient(var(--ground-3),var(--ground-3)) left center / var(--m,100%) 100% no-repeat}
+</style>
+<script>
+window.slotInit["values"] = function(root, reduced){
+  if (reduced) return;
+  var p = root.querySelector(".ab-va5-p"), marks = p.querySelectorAll("mark");
+  var split = new SplitText(p.querySelectorAll("span"), {type:"words"});
+  gsap.fromTo(split.words, {opacity:.18}, {opacity:1, stagger:.1, ease:"none",
+    scrollTrigger:{trigger:p, start:"top 75%", end:"bottom 55%", scrub:.7}});
+  // each value fills in like a calendar entry being written in, in reading order
+  marks.forEach(function(m){
+    gsap.fromTo(m, {"--m":"0%"}, {"--m":"100%", ease:"none", scrollTrigger:{trigger:m, start:"top 78%", end:"top 62%", scrub:.5}});
+  });
+};
+</script>

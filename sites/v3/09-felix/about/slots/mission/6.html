@@ -1,0 +1,42 @@
+<!-- mission/6: lighter sibling of mission/5. No pin: the words come up as you scroll past (same reveal as turning),
+     beside a single tall Monday page from the same calendar that fills as you read. Use if two pins in a row feel slow.
+     No service list on purpose (Felix). Monday entries are illustrative, not claims. -->
+<section class="ab-mi6">
+  <div class="wrap ab-mi6-in">
+    <div class="ab-mi6-txt">
+      <p data-copy="mission.lead" class="ab-mi6-lead">So this is my work now.</p>
+      <h2 data-copy="mission.big" class="ab-mi6-big">Your financial plan looks after the money. I help you plan for <span class="ab-mi6-acc">the person living it.</span></h2>
+      <p data-copy="mission.close" class="ab-mi6-close">That’s the other half of retirement planning. It sits alongside your adviser’s work, never in place of it.</p>
+    </div>
+    <div class="ab-mi6-day" aria-hidden="true">
+      <b>Mon</b>
+      <i style="top:18%"><em>A walk</em></i>
+      <i style="top:42%"><em>Lunch with friends</em></i>
+      <i style="top:66%"><em>Something that’s yours</em></i>
+    </div>
+  </div>
+</section>
+<style>
+.ab-mi6{background:var(--ground)}
+.ab-mi6-in{min-height:100svh;display:grid;align-items:center;gap:clamp(2rem,5vw,5rem);padding-block:clamp(4rem,10vw,7rem);max-width:1180px}
+@media (min-width:900px){.ab-mi6-in{grid-template-columns:1fr 240px}}
+.ab-mi6-lead{font:600 clamp(1.05rem,1.2vw + .8rem,1.3rem)/1.3 var(--sans);color:var(--brand-deep);margin-bottom:1.2rem}
+.ab-mi6-big{font:800 clamp(2rem,3.6vw + .6rem,4rem)/1.08 var(--sans);letter-spacing:-.025em;text-wrap:balance;max-width:22ch}
+.ab-mi6-big>span,.ab-mi6-acc{color:var(--brand)}
+.ab-mi6-close{margin-top:clamp(1.6rem,4vh,2.4rem);font:500 clamp(1.15rem,1vw + .95rem,1.5rem)/1.4 var(--sans);color:var(--ink-soft);max-width:40ch}
+.ab-mi6-day{position:relative;height:clamp(240px,48vh,400px);max-width:240px;width:100%;border:1px solid var(--rule);border-radius:.5rem;overflow:hidden;background:var(--ground-3)}
+.ab-mi6-day b{position:absolute;inset:0 0 auto;text-align:center;padding:.6rem 0;font:700 .85rem/1 var(--num);color:var(--brand);border-bottom:1px solid var(--rule);background:var(--ground)}
+.ab-mi6-day i{position:absolute;left:8%;right:8%;height:18%;border-radius:.4rem;background:var(--brand)}
+.ab-mi6-day em{display:block;padding:.5rem .6rem;font:600 .85rem/1.25 var(--sans);font-style:normal;color:#fff}
+</style>
+<script>
+window.slotInit["mission"] = function(root, reduced){
+  if (reduced) return;
+  var big = root.querySelector(".ab-mi6-big"), close = root.querySelector(".ab-mi6-close"), fill = root.querySelectorAll(".ab-mi6-day i");
+  var split = new SplitText(big, {type:"words"});
+  gsap.timeline({scrollTrigger:{trigger:root.querySelector(".ab-mi6-in"), start:"top 70%", end:"bottom 75%", scrub:.7}})
+    .fromTo(split.words, {opacity:.14}, {opacity:1, stagger:.1, ease:"none"}, 0)
+    .fromTo(fill, {opacity:0, scaleY:.4, transformOrigin:"50% 0%"}, {opacity:1, scaleY:1, stagger:.3, ease:"none"}, .3)
+    .fromTo(close, {opacity:0, y:12}, {opacity:1, y:0, ease:"none"}, ">-.2");
+};
+</script>

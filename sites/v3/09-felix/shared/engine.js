@@ -108,7 +108,9 @@
     var res = all[1];
     var m = res[0]; Vitals.manifest = m; Vitals.copy = res[1];
     var q = new URL(location.href).searchParams, st = Vitals.state(), cp = {};
-    if (q.get("preset") && m.presets && m.presets[q.get("preset")]) { st = Object.assign(st, m.presets[q.get("preset")].slots); cp = m.presets[q.get("preset")].copy || {}; }
+    var pn = q.get("preset"); // bare URL (no preset, no slot or copy params) loads presets.default
+    if (!pn && !Vitals.slots.some(function(k){ return q.has(k) || q.has("c_"+k); })) pn = "default";
+    if (pn && m.presets && m.presets[pn]) { st = Object.assign(st, m.presets[pn].slots); cp = m.presets[pn].copy || {}; }
     Vitals.apply(st, true, cp);
     if (q.get("clean") === null) { var s = document.createElement("script"); s.src = ROOT+"shared/mixer.js"; document.body.appendChild(s); }
   });
