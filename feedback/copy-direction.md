@@ -108,3 +108,5 @@ Felix picked copy for each section from the a/b/c variants:
 4. **No deadline pressure.** Felix rejected "well before the date". The consult close should feel warm and low-stakes: "Ready to chat?" and "Book in a 30-minute friendly chat to learn what your weeks might look like."
 5. **Give real proof its space.** The Warren Entsch testimonial is powerful, so design it as a proper pull-quote, not a footnote. Never invent more quotes.
 6. **Friendly beats formal in CTAs.** "friendly chat" is better than "consultation"; say "30-minute", not "30min".
+
+See also `feedback/dr-san-feeling-direction.md` for the feeling Dr San wants customers to have (relief, "I want to talk to her", no hype).

@@ -10,6 +10,13 @@
 - The mixer has one row per section. The Layout tab switches each row between 1 and off, and the Copy tab starts at `a`. Keys: 1–9 pick a row, ←/→ cycle it, P cycles presets, M hides the panel. `?clean` hides the mixer.
 - The footer is written for the live site: brand, practice line, Explore links, Services, a booking call to action, a plain disclaimer (not financial, legal, medical or counselling advice; Lifeline 13 11 14), and the copyright line.
 
+**Home changes from Dr San's meeting (Oct 2026, `feedback/dr-san-meeting-notes.txt`).**
+- Pause and dials now use her five factors, in her order: Structure, Identity, Purpose, Sense of direction, Connection. Pause shows five pills on a pentagon round "Work". They drift outward, blur and fade together, using the same pinned scrub as before. Dials has five rows in the same medical-report table.
+- The dials header now reads "Without a plan / With Dr San" (`dials.th2`: plain "With a plan", words "With my help", built "With preparation"). The table fills in two beats: the low readings first, then a pause, then the "with" column. Every copy alternate now has all five rows plus the `th2` key.
+- Type: page-level override in `index.html` drops the home headings from weight 800/700 to 600, with tracking −.005em and leading 1.15. Same family and sizes. `shared/` is untouched.
+- The meta description no longer says "four more".
+- Monday, the hero and the "Book your free 30-minute consult" button are unchanged.
+
 **TODO before launch.**
 - Contact details: Dr San's email, phone and ABN. None were in the reference material, so none are shown. There is one `TODO(Felix)` HTML comment at the top of the footer.
 - Booking link: all "Book" buttons point to `#consult`. Point them to `/contact` or the booking tool once it exists, including the consult section's button.

@@ -5,7 +5,7 @@
 <link rel="icon" href="data:,">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ready Set Retirement &mdash; Dr San, psychosocial retirement education</title>
-<meta name="description" content="Financial readiness is one vital sign. Four more stop arriving on the day you retire. Psychosocial retirement education with Dr San, Far North Queensland.">
+<meta name="description" content="Structure, identity, purpose, a sense of direction and connection all come with your work. Human-centred retirement planning with Dr San, Far North Queensland.">
 <script>window.RSR_ROOT = "";</script>
 <script>
 (function(){try{
@@ -25,6 +25,14 @@
    drops it and its top padding; pause fades to dials' ground (GSAP on desktop, gradient on mobile). */
 main:has([data-slot="pause"]:not(:empty)) [data-slot="dials"]>section{padding-top:0}
 main:has([data-slot="pause"]:not(:empty)) [data-slot="dials"] :is(.s-d8-lede,.s-d7-lede){display:none}
+
+/* Calmer, human type (Dr San, Oct 2026: against avant-garde type that pulls focus).
+   Same family and sizes; the 800 display weight and tight tracking come down to 600 with a
+   little more leading, so headings read like a person talking, not a poster. Home only. */
+main [data-slot] :is(.s-hero-18__h1,.s-m2-h,.s-d8-h,.s-cover-7-h,.s-audience-4-h,.s-sp2-close,
+  .s-consult-3 .copy h2,.s-practitioner-5 .bio h2){font-weight:600;letter-spacing:-.005em;line-height:1.15}
+main [data-slot] :is(.s-sp2-lede,.s-d-close){font-weight:600}
+main [data-slot] .s-practitioner-5 .pq .hl{font-weight:700}
 </style>
 </head>
 <body>

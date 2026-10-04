@@ -35,38 +35,44 @@
   },
   "pause": {
     "words": {
-      "line": "Your work quietly holds four things. All four leave on your last afternoon."
+      "line": "Your work quietly gives you five things. All five leave on your last afternoon."
     },
     "built": {
-      "line": "Four things are attached to your work, and all four leave on the same afternoon."
+      "line": "Five things are attached to your work, and all five leave on the same afternoon."
     }
   },
   "dials": {
     "plain": {
       "h": "What changes that afternoon.",
-      "lede": "Four things leave with the job. Preparation puts them back.",
+      "lede": "Five things leave with the job. Preparation puts them back.",
+      "th2": "With a plan",
       "d1": "Somewhere to be, every weekday. Then nowhere.",
       "d2": "An easy answer to &ldquo;what do you do?&rdquo;",
       "d3": "A reason to get going, handed to you each day.",
-      "d4": "Friends who were there because the work was.",
+      "d4": "Something to work towards, then the next thing.",
+      "d5": "Friends who were there because the work was.",
       "close": "Each of these can be put back, with a plan."
     },
     "words": {
       "h": "Your afternoon.",
-      "lede": "Four things leave on the same afternoon. Preparation is what puts them back.",
+      "lede": "Five things leave on the same afternoon. Preparation is what puts them back.",
+      "th2": "With my help",
       "d1": "Forty years of somewhere to be. Then a Friday, and nowhere.",
       "d2": "Thirty years of an easy answer to “what do you do?”",
       "d3": "Work answered “what am I for?” every day. The question doesn’t retire.",
-      "d4": "Most work friends were there because the work was.",
+      "d4": "There was always a next project to aim for. Then the list runs out.",
+      "d5": "Most work friends were there because the work was.",
       "close": "Every one of these can be put back. That is the part of the plan I help with."
     },
     "built": {
       "h": "Your afternoon.",
-      "lede": "Four things leave on the same afternoon. Preparation is what puts them back.",
+      "lede": "Five things leave on the same afternoon. Preparation is what puts them back.",
+      "th2": "With preparation",
       "d1": "Forty years of somewhere to be. Then a Friday, and nowhere.",
       "d2": "Thirty years of an easy answer to “what do you do?”",
       "d3": "Work answered “what am I for?” every day. The question doesn’t retire.",
-      "d4": "Most work friends were there because the work was.",
+      "d4": "There was always a next project to aim for. Then the list runs out.",
+      "d5": "Most work friends were there because the work was.",
       "close": "Every one of these can be put back. It takes a plan, the same as the money did."
     }
   },

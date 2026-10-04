@@ -2,7 +2,7 @@
   <div class="wrap s-d8-in">
     <div class="s-d8-head">
       <h2 data-copy="dials.h" class="s-d8-h">So here’s what that first Monday afternoon looks like.</h2>
-      <p data-copy="dials.lede" class="s-d8-lede">Four things leave with the job. Preparation puts them back.</p>
+      <p data-copy="dials.lede" class="s-d8-lede">Five things leave with the job. Preparation puts them back.</p>
     </div>
 
     <div class="s-d8-card" id="s-d8-card">
@@ -11,11 +11,11 @@
       </div>
       <table class="s-d8-table">
         <thead>
-          <tr><th>Measure</th><th>Without a plan</th><th>With preparation</th></tr>
+          <tr><th>Measure</th><th>Without a plan</th><th data-copy="dials.th2">With Dr San</th></tr>
         </thead>
         <tbody>
-          <tr class="s-d8-row s-d8-flag" data-pct-off="24" data-pct-on="82">
-            <td class="s-d8-name">Direction<span data-copy="dials.d1">Somewhere to be, every weekday. Then nowhere.</span></td>
+          <tr class="s-d8-row s-d8-flag" data-pct-off="22" data-pct-on="80">
+            <td class="s-d8-name">Structure<span data-copy="dials.d1">Somewhere to be, every weekday. Then nowhere.</span></td>
             <td class="s-d8-cell">
               <div class="s-d8-bartrack"><div class="s-d8-fill s-d8-fill-off" data-fill-off=""></div></div>
               <span class="s-d8-word s-d8-word-low">Low</span>
@@ -47,8 +47,19 @@
               <span class="s-d8-word s-d8-word-ok">Healthy</span>
             </td>
           </tr>
+          <tr class="s-d8-row s-d8-flag" data-pct-off="24" data-pct-on="82">
+            <td class="s-d8-name">Sense of direction<span data-copy="dials.d4">Something to work towards, then the next thing.</span></td>
+            <td class="s-d8-cell">
+              <div class="s-d8-bartrack"><div class="s-d8-fill s-d8-fill-off" data-fill-off=""></div></div>
+              <span class="s-d8-word s-d8-word-low">Low</span>
+            </td>
+            <td class="s-d8-cell">
+              <div class="s-d8-bartrack"><div class="s-d8-fill s-d8-fill-on" data-fill-on=""></div></div>
+              <span class="s-d8-word s-d8-word-ok">Healthy</span>
+            </td>
+          </tr>
           <tr class="s-d8-row s-d8-flag" data-pct-off="16" data-pct-on="74">
-            <td class="s-d8-name">Connection<span data-copy="dials.d4">Friends who were there because the work was.</span></td>
+            <td class="s-d8-name">Connection<span data-copy="dials.d5">Friends who were there because the work was.</span></td>
             <td class="s-d8-cell">
               <div class="s-d8-bartrack"><div class="s-d8-fill s-d8-fill-off" data-fill-off=""></div></div>
               <span class="s-d8-word s-d8-word-low">Low</span>
@@ -90,6 +101,7 @@
 .s-d8-word-ok{color:var(--brand)}
 
 @media(max-width:640px){
+  .s-d8-bar{flex-direction:column;gap:.3rem}
   .s-d8-table thead{display:none}
   .s-d8-row{display:flex;flex-direction:column}
   .s-d8-row td{border-bottom:none;padding:.4rem 1.1rem}
@@ -101,12 +113,11 @@
 <script>
 window.slotInit["dials"] = function(root, reduced){
   var rows = Array.prototype.slice.call(root.querySelectorAll(".s-d8-row"));
-  var cellsOff = root.querySelectorAll('[data-th="off"]');
 
-  var mobileCells = root.querySelectorAll(".s-d8-cell");
-  mobileCells.forEach ? null : (mobileCells = Array.prototype.slice.call(mobileCells));
+  // mobile column labels come from the real headers, so copy variants (dials.th2) carry through
+  var th = root.querySelectorAll(".s-d8-table thead th");
   Array.prototype.forEach.call(root.querySelectorAll(".s-d8-cell"), function(cell, i){
-    cell.setAttribute("data-th", i % 2 === 0 ? "Without a plan" : "With preparation");
+    cell.setAttribute("data-th", (th[i % 2 + 1] || {}).textContent || "");
   });
 
   rows.forEach(function(row){
@@ -116,11 +127,21 @@ window.slotInit["dials"] = function(root, reduced){
 
   if(reduced){ return; }
 
-  var fills = root.querySelectorAll(".s-d8-fill");
-  gsap.set(fills, {scaleX:0, transformOrigin:"left center"});
-  gsap.to(fills, {
-    scaleX:1, duration:.8, ease:"power2.out", stagger:.06,
-    scrollTrigger: { trigger: root.querySelector("#s-d8-card"), start: "top 78%", toggleActions: "play none none none" }
+  // One reading, two beats: the "without" column registers first, then a pause,
+  // then the "with" column fills in, so the relief arrives after the low readings sink in.
+  var offFills = root.querySelectorAll(".s-d8-fill-off"),
+      onFills  = root.querySelectorAll(".s-d8-fill-on"),
+      onWords  = root.querySelectorAll(".s-d8-word-ok"),
+      close    = root.querySelector(".s-d-close");
+  var tl = gsap.timeline({
+    defaults: { ease:"power2.out" },
+    scrollTrigger: { trigger: root.querySelector("#s-d8-card"), start: "top 75%", toggleActions: "play none none none" }
   });
+  tl.addLabel("without")
+    .fromTo(offFills, {scaleX:0, transformOrigin:"left center"}, {scaleX:1, duration:.7, stagger:.07}, "without")
+    .addLabel("with", "+=.45")
+    .fromTo(onFills, {scaleX:0, transformOrigin:"left center"}, {scaleX:1, duration:.9, ease:"power3.out", stagger:.08}, "with")
+    .fromTo(onWords, {opacity:0}, {opacity:1, duration:.4, stagger:.08}, "with+=.25")
+    .fromTo(close, {opacity:0, y:8}, {opacity:1, y:0, duration:.6}, "-=.2");
 };
 </script>
