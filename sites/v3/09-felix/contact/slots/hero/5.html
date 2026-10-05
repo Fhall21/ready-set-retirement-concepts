@@ -1,0 +1,70 @@
+<section class="s-chero-5">
+  <div class="s-chero-5__grid">
+    <div class="s-chero-5__text">
+      <h1 data-copy="hero.h" class="s-chero-5__h1">Ready to chat?</h1>
+      <p data-copy="hero.lede" class="s-chero-5__lede">A free 30-minute chat about what your weeks might look like after work.</p>
+      <a data-copy="hero.btn" class="btn s-chero-5__btn" href="#book">Find a time</a>
+      <p class="s-chero-5__alt"><a data-copy="hero.alt" href="#message">Or send Dr San a message</a></p>
+    </div>
+    <div class="s-chero-5__desk">
+      <!-- TODO(Felix): email, phone and ABN on this card are placeholders. Replace with Dr San's real details. -->
+      <div class="s-chero-5__card">
+        <div class="s-chero-5__top">
+          <span class="s-chero-5__mark" role="img" aria-label="Ready Set Retirement"></span>
+        </div>
+        <p class="s-chero-5__name">Dr Sandra Walden-Pearson</p>
+        <p class="s-chero-5__role">Dr San · Psychosocial Retirement Educator</p>
+        <ul class="s-chero-5__lines">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg><a href="mailto:hello@readysetretirement.au">hello@readysetretirement.au</a></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><a class="s-chero-5__num" href="tel:+61400000000">0400 000 000</a></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Far North Queensland, and online</li>
+        </ul>
+        <p class="s-chero-5__abn">ABN <span class="s-chero-5__num">00 000 000 000</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-chero-5{background:var(--ground);overflow:hidden}
+.s-chero-5__grid{display:grid}
+.s-chero-5__text{padding:clamp(2rem,7vw,3rem) var(--gut) clamp(2rem,6vw,2.75rem);max-width:36rem}
+.s-chero-5__h1{font:800 clamp(2.4rem,2.6vw + 1.6rem,4.2rem)/1.05 var(--sans);letter-spacing:-.02em;text-wrap:balance}
+.s-chero-5__lede{margin-top:1.1rem;font-size:clamp(1.1rem,.5vw + 1rem,1.3rem);color:var(--ink-soft);max-width:34ch;text-wrap:pretty}
+.s-chero-5__btn{margin-top:1.9rem;min-height:48px}
+.s-chero-5__alt{margin-top:1.2rem;font-size:1rem}
+.s-chero-5__alt a{color:var(--ink);text-decoration-thickness:1px}
+.s-chero-5__alt a:hover{color:var(--brand)}
+
+.s-chero-5__desk{background:var(--ground-3);padding:clamp(1.8rem,6vw,2.5rem) var(--gut) clamp(2.2rem,7vw,3rem);display:grid;place-items:center}
+.s-chero-5__card{background:var(--ground);border:1px solid var(--rule-strong);border-radius:.8rem;
+  padding:clamp(1.4rem,3.4vw,2.4rem);width:100%;max-width:520px}
+.s-chero-5__top{padding-bottom:1.1rem;margin-bottom:1.3rem;border-bottom:2px solid var(--brand)}
+.s-chero-5__mark{display:block;width:140px;aspect-ratio:767/334;background:var(--logo) left center/contain no-repeat}
+.s-chero-5__name{font:800 1.35rem/1.2 var(--sans);letter-spacing:-.01em}
+.s-chero-5__role{margin-top:.25rem;color:var(--ink-soft);font-size:.98rem}
+.s-chero-5__lines{list-style:none;margin:1.3rem 0 0;padding:0;display:grid;gap:.7rem}
+.s-chero-5__lines li{display:flex;align-items:center;gap:.75rem;font-weight:600;overflow-wrap:anywhere;min-width:0}
+.s-chero-5__lines svg{width:20px;height:20px;flex:none;fill:none;stroke:var(--brand);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.s-chero-5__lines a{color:var(--ink);text-decoration-thickness:1px;min-width:0}
+.s-chero-5__lines a:hover{color:var(--brand)}
+.s-chero-5__num{font-family:var(--num);font-weight:500}
+.s-chero-5__abn{margin-top:1.4rem;font-size:.85rem;color:var(--ink-soft)}
+
+@media(min-width:860px){
+  .s-chero-5__grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:min(72svh,640px)}
+  /* the card sits on the left, the words on the right; DOM keeps the words first so phones and readers get them first */
+  .s-chero-5__desk{grid-column:1;grid-row:1;padding:clamp(2.5rem,5vw,4.5rem) clamp(2rem,5vw,5rem)}
+  .s-chero-5__text{grid-column:2;grid-row:1;align-self:center;padding:clamp(3rem,5vw,5rem) clamp(2rem,6vw,6rem) clamp(3rem,5vw,5rem) clamp(2rem,4vw,4rem);max-width:42rem}
+  .s-chero-5__card{justify-self:center}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  var card = root.querySelector(".s-chero-5__card");
+  /* one moment: the card is set down on the desk, then its lines settle in */
+  var tl = gsap.timeline({defaults:{ease:"power3.out"}});
+  tl.fromTo(card, {y:22, opacity:.001}, {y:0, opacity:1, duration:1.1, immediateRender:true})
+    .fromTo(root.querySelectorAll(".s-chero-5__lines li, .s-chero-5__abn"), {y:8, opacity:.001}, {y:0, opacity:1, duration:.7, stagger:.1, immediateRender:true, clearProps:"transform,opacity"}, "-=.55");
+};
+</script>
