@@ -26,7 +26,18 @@
 <script>
 window.slotInit["cta"] = function(root, reduced){
   if (reduced) return;
-  gsap.fromTo(root.querySelector(".ab-ct4-sign path"), {drawSVG:"0%"}, {drawSVG:"100%", duration:1, ease:"power2.inOut", immediateRender:true,
-    scrollTrigger:{trigger:root.querySelector(".ab-ct4-sign"), start:"top 88%", once:true}});
+  var DESK = "(min-width:900px) and (min-height:600px)";
+  var sign = root.querySelector(".ab-ct4-sign");
+  // she signs off as the section settles at the top: that is the beat the hold gives you time to take in
+  gsap.fromTo(root.querySelectorAll(".ab-ct4-h, .ab-ct4-lede"), {opacity:0, y:16}, {opacity:1, y:0, duration:.8, stagger:.1, ease:"power3.out", immediateRender:true,
+    scrollTrigger:{trigger:root, start:"top 55%", once:true}});
+  gsap.fromTo(root.querySelector(".ab-ct4-sign path"), {drawSVG:"0%"}, {drawSVG:"100%", duration:1.1, delay:.35, ease:"power2.inOut", immediateRender:true,
+    scrollTrigger:{trigger:root, start:"top 30%", once:true}});
+  gsap.from(root.querySelector(".ab-ct4-btn"), {opacity:0, y:12, duration:.7, delay:.9, ease:"power3.out",
+    scrollTrigger:{trigger:root, start:"top 30%", once:true}});
+  // pause: a short pin hold (~40vh); static desktop check, with an end function that collapses it if resized narrow
+  if (!matchMedia(DESK).matches || root.offsetHeight > innerHeight + 2) return;
+  ScrollTrigger.create({trigger:root, pin:true, anticipatePin:1, invalidateOnRefresh:true, start:"top top",
+    end:function(){ return "+=" + (matchMedia(DESK).matches ? Math.round(innerHeight*.4) : 1); }});
 };
 </script>

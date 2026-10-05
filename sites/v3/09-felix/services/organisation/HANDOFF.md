@@ -47,3 +47,14 @@ Defaults: hero 2 (copy b; d/c via mixer Copy tab), problem 5, programmes 5, form
 | proof 4 | edited in place | Toggle removed; full Warren Entsch quote shown plainly (wording copied from the existing fragment), "life changing" highlighted. |
 | cta 4 | full-height portrait CTA | CTA 3 as a viewport-height closing section, larger portrait, line "No pressure. It's a conversation, not a sales call." (TODO(Felix): confirm wording). |
 Interpretations: "Programmes 2 refined" delivered as new variant 5 (2 kept). Other presets updated to use 5/5/4 for programmes/format/cta; felt keeps problem 3; hr uses problem 2. Problem/proof copy keys unchanged.
+
+## Programmes 6 and 7 (5 Oct 2026, port 8794)
+Felix's verdict: programmes 5 "doesn't properly feel like a list of programmes to choose from". Two menu-style variants added; 5 stays live. `counts.programmes` is now 7.
+| Slot | What it is |
+|---|---|
+| programmes 6 | **Menu of equal choices** (page default). One ruled grid, 3 across on desktop, 2 on tablet, stacked on phones. Five identical options (name, what it is, Who/Where, Length, "Best if…", calm "Ask about this one" link to `contact/#book`), nothing featured. The sixth cell holds the "not sure?" note (`programmes.note`). Light batch reveal on scroll. |
+| programmes 7 | **Pick a need first**. "Which of these sounds like your team?" Each row pairs a situation (left, with an empty choice circle that fills on hover) with the one programme that fits (right: who/length and the ask link). All five visible, no click needed to understand. Rule draws, then need, then answer arrive. |
+Why 6 is the default: it is the most literal "menu", scans in one look on desktop, and makes every option the same size. 7 is warmer and more conversational but longer, and its left column depends on situation lines that are my restatements.
+Presets: default and her use 6, hr uses 7 (the HR brief suits "which sounds like your team"), felt keeps 5.
+TODO(Felix) in both fragments: lengths/group sizes are still placeholders; the "Best if" lines (6) and situation lines (7) are plain restatements of each programme's purpose, not claims from Dr San. Copy a-d: shared keys `programmes.h/lede/note`; the question in 7 and the "Best if" lines are not copy-swappable.
+Verified at 1440 and 390: 0 console errors, 0 4xx, no horizontal scroll; hr preset (copy d) on 7 checked. Shots in scratchpad `shots/prog/`.

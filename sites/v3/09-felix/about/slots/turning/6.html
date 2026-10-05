@@ -1,0 +1,208 @@
+<!-- turning/6: turning + mission as ONE scene on ONE calendar (replaces turning/5 + mission/5).
+     The calendar is the home page's week (slots/monday/1.html): same six columns, same mono day bar, same
+     labelled entries, same clip-away "evaporate". It stays put while the words change around it:
+       1. the turning sentence is read, and the working week slips away entry by entry, leaving the empty Monday;
+       2. that text fades out and the mission line fades in;
+       3. the empty Monday fills in.
+     Desktop (900px+) pins for 250vh. Below 900px nothing pins: the same pieces stack in reading order and scrub as
+     they pass. Under 600px the calendar turns on its side (one row per day) so every day fits on a phone.
+     Reduced motion: stacked, the old week shown faint, Monday already filled.
+     Copy: turning.* follows the Copy tab's "turning" row; mission.* follows its "mission" row (mission slot is off in
+     the default preset because this scene carries the mission).
+     TODO(Felix): the work-week entries mirror the home calendar; the new Monday entries ("Morning walk",
+     "Coffee, Marg", "Volunteering") are illustrative, not claims. Confirm the tone with Dr San.
+     TODO(Felix): the turning point is a pattern she describes, not a sourced event. -->
+<section class="ab-tp6">
+  <div class="wrap ab-tp6-in">
+    <div class="ab-tp6-beat ab-tp6-b1">
+      <p data-copy="turning.lead" class="ab-tp6-lead">Here’s what I kept seeing.</p>
+      <h2 data-copy="turning.big" class="ab-tp6-big">The super was sorted. The date was set. The farewell was lovely. Then came <span>Monday.</span></h2>
+    </div>
+
+    <div class="ab-tp6-cal" aria-hidden="true">
+      <div class="ab-tp6-day ab-tp6-wk"><b class="ab-tp6-dl">Mon</b>
+        <span class="ab-tp6-ev a" style="--s:14;--l:16">Team standup</span>
+        <span class="ab-tp6-ev b" style="--s:38;--l:22">Client review</span>
+      </div>
+      <div class="ab-tp6-day ab-tp6-wk"><b class="ab-tp6-dl">Tue</b>
+        <span class="ab-tp6-ev a" style="--s:10;--l:14">1:1s</span>
+        <span class="ab-tp6-ev c" style="--s:30;--l:18">Board prep</span>
+        <span class="ab-tp6-ev b" style="--s:58;--l:14">Site visit</span>
+      </div>
+      <div class="ab-tp6-day ab-tp6-wk"><b class="ab-tp6-dl">Wed</b>
+        <span class="ab-tp6-ev b" style="--s:20;--l:20">Planning</span>
+        <span class="ab-tp6-ev a" style="--s:52;--l:16">Coffee, Marg</span>
+      </div>
+      <div class="ab-tp6-day ab-tp6-wk"><b class="ab-tp6-dl">Thu</b>
+        <span class="ab-tp6-ev c" style="--s:16;--l:18">Ops meeting</span>
+        <span class="ab-tp6-ev a" style="--s:44;--l:14">Handover</span>
+      </div>
+      <div class="ab-tp6-day ab-tp6-wk"><b class="ab-tp6-dl">Fri</b>
+        <span class="ab-tp6-ev b" style="--s:12;--l:16">Wrap-up</span>
+        <span class="ab-tp6-ev a" style="--s:40;--l:20">Farewell drinks</span>
+      </div>
+      <div class="ab-tp6-day ab-tp6-mon"><b class="ab-tp6-dl">Mon</b>
+        <span class="ab-tp6-ring"></span>
+        <span class="ab-tp6-ev ab-tp6-new c" style="--s:12;--l:16">Morning walk</span>
+        <span class="ab-tp6-ev ab-tp6-new a" style="--s:36;--l:16">Coffee, Marg</span>
+        <span class="ab-tp6-ev ab-tp6-new b" style="--s:58;--l:20">Volunteering</span>
+      </div>
+    </div>
+
+    <p data-copy="turning.close" class="ab-tp6-line ab-tp6-l1">It happens to people who did everything else right.</p>
+
+    <div class="ab-tp6-beat ab-tp6-b2">
+      <p data-copy="mission.lead" class="ab-tp6-lead">So this is my work now.</p>
+      <h2 data-copy="mission.big" class="ab-tp6-big">Your financial plan looks after the money. I help you plan for <span>the person living it.</span></h2>
+    </div>
+
+    <p data-copy="mission.close" class="ab-tp6-line ab-tp6-l2">That’s the other half of retirement planning. It sits alongside your adviser’s work, never in place of it.</p>
+  </div>
+</section>
+<style>
+/* Stacked reading order is the default (no JS, phones, reduced motion). The pinned scene is opt-in via .is-scene. */
+.ab-tp6{background:var(--ground);overflow-x:clip}
+.ab-tp6-in{max-width:1200px;display:flex;flex-direction:column;padding-block:clamp(3.5rem,9vw,6rem)}
+.ab-tp6-lead{font:600 clamp(1rem,2vw,1.15rem)/1.3 var(--sans);color:var(--brand-deep);margin-bottom:.8rem}
+.ab-tp6-big{font:800 clamp(1.9rem,4.6vw,3.2rem)/1.1 var(--sans);letter-spacing:-.015em;max-width:23ch;text-wrap:balance}
+.ab-tp6-b1 .ab-tp6-big span{color:var(--accent)}
+.ab-tp6-b2 .ab-tp6-big span{color:var(--brand)}
+.ab-tp6-b2{margin-top:clamp(3.5rem,10vw,6rem)}
+.ab-tp6-line{margin-top:clamp(1.4rem,3vw,2rem);font:700 clamp(1.1rem,1.6vw,1.2rem)/1.35 var(--sans);max-width:56ch;text-wrap:pretty}
+.ab-tp6-l1{color:var(--accent)}
+.ab-tp6-l2{color:var(--ink)}
+
+/* the calendar: the home page's week, same proportions and hairlines */
+.ab-tp6-cal{margin-top:clamp(2rem,5vw,3rem);display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);height:clamp(280px,42vw,420px)}
+.ab-tp6-day{position:relative;background:var(--ground-2)}
+.ab-tp6-dl{position:absolute;top:0;left:0;right:0;z-index:1;text-align:center;padding:.5rem 0;font:700 .78rem/1 var(--num);
+  color:var(--ink-soft);border-bottom:1px solid var(--rule);background:var(--ground)}
+.ab-tp6-mon{background:var(--ground-3)}
+.ab-tp6-mon .ab-tp6-dl{color:var(--accent)}
+.ab-tp6-ring{position:absolute;inset:0;box-shadow:inset 0 0 0 2px var(--accent);opacity:0;pointer-events:none}
+.ab-tp6-ev{position:absolute;left:6%;right:6%;top:calc(var(--s) * 1%);height:calc(var(--l) * 1%);border-radius:.4rem;
+  padding:.4rem .5rem;font:600 .74rem/1.25 var(--sans);color:#fff;overflow:hidden}
+.ab-tp6-ev.a{background:var(--brand)}
+.ab-tp6-ev.b{background:var(--brand-bright)}
+.ab-tp6-ev.c{background:var(--gold);color:var(--ink)}
+
+/* desktop scene: one stage, text beats share a cell above the calendar, closing lines share a cell below it */
+.ab-tp6.is-scene .ab-tp6-in{min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"text" "cal" "line";
+  align-content:center;padding-block:clamp(1.5rem,4vh,3rem)}
+.ab-tp6.is-scene .ab-tp6-beat{grid-area:text;align-self:end;margin-top:0}
+.ab-tp6.is-scene .ab-tp6-cal{grid-area:cal;height:clamp(260px,min(42vw,44vh),420px);margin-top:clamp(1.6rem,4vh,2.6rem)}
+.ab-tp6.is-scene .ab-tp6-line{grid-area:line;align-self:start;margin-top:clamp(1.2rem,3vh,1.8rem)}
+
+/* still (reduced motion): the old week is a faint memory, Monday is already lived in */
+.ab-tp6.is-still .ab-tp6-wk .ab-tp6-ev{opacity:.22}
+.ab-tp6.is-still .ab-tp6-ring{opacity:1;box-shadow:inset 0 0 0 2px var(--brand)}
+.ab-tp6.is-still .ab-tp6-mon .ab-tp6-dl{color:var(--brand)}
+
+/* phones: the week turns on its side, one row per day, so all six days fit without sideways scrolling */
+@media (max-width:599px){
+  .ab-tp6-cal{grid-template-columns:1fr;grid-auto-rows:3.4rem;height:auto}
+  .ab-tp6-dl{right:auto;bottom:0;width:3rem;display:flex;align-items:center;justify-content:center;padding:0;
+    border-bottom:0;border-right:1px solid var(--rule)}
+  .ab-tp6-ev{top:14%;bottom:14%;height:auto;right:auto;padding:.2rem .4rem;font-size:.68rem;line-height:1.15;display:flex;align-items:center;
+    left:calc(3.3rem + (100% - 3.6rem) * (var(--s) - 8) * .012);width:calc((100% - 3.6rem) * var(--l) * .0135)}
+}
+</style>
+<script>
+window.slotInit["turning"] = function(root, reduced){
+  var V = window.Vitals, sec = root.querySelector(".ab-tp6");
+  if (!sec) return;
+
+  /* This scene carries the mission line, so its mission.* text follows the Copy tab's "mission" row
+     (the engine only swaps turning.* keys inside the turning slot). */
+  var mv = (V && V.copyState) ? (V.copyState().mission || "a") : "a";
+  var mset = ((V && V.copy && V.copy.mission) || {})[mv];
+  if (mset) root.querySelectorAll('[data-copy^="mission."]').forEach(function(n){
+    var t = mset[n.getAttribute("data-copy").slice(8)];
+    if (t == null) return;
+    n.hidden = (t === ""); if (t !== "") n.innerHTML = t;
+  });
+  sec.dataset.mission = mv;
+  if (V && V.load) {
+    if (window.__abTp6Copy) document.removeEventListener("vitals:change", window.__abTp6Copy);
+    window.__abTp6Copy = function(){
+      if (!sec.isConnected) { document.removeEventListener("vitals:change", window.__abTp6Copy); return; }
+      var now = V.copyState();
+      if ((now.mission || "a") !== sec.dataset.mission)
+        V.load("turning", +root.dataset.variant, now.turning).then(function(){ ScrollTrigger.sort(); ScrollTrigger.refresh(); });
+    };
+    document.addEventListener("vitals:change", window.__abTp6Copy);
+  }
+
+  if (reduced) { sec.classList.add("is-still"); return; }
+
+  var b1 = root.querySelector(".ab-tp6-b1"), b2 = root.querySelector(".ab-tp6-b2"),
+      l1 = root.querySelector(".ab-tp6-l1"), l2 = root.querySelector(".ab-tp6-l2"),
+      cal = root.querySelector(".ab-tp6-cal"), ring = root.querySelector(".ab-tp6-ring"),
+      monLabel = root.querySelector(".ab-tp6-mon .ab-tp6-dl"),
+      days = gsap.utils.toArray(".ab-tp6-wk", root),
+      fresh = gsap.utils.toArray(".ab-tp6-new", root);
+  var w1 = new SplitText(b1.querySelector(".ab-tp6-big"), {type:"words"}).words,
+      w2 = new SplitText(b2.querySelector(".ab-tp6-big"), {type:"words"}).words;
+  var brand = getComputedStyle(document.documentElement).getPropertyValue("--brand").trim();
+
+  /* the week slipping away, day by day, the way the home calendar does it: each entry is clipped up and out */
+  function evaporate(tl, at, gone){
+    days.forEach(function(d, i){
+      var t = at + i * .38;
+      tl.to(d.querySelectorAll(".ab-tp6-ev"), {clipPath:gone, opacity:.35, stagger:.14, duration:.42, ease:"power2.in"}, t)
+        .to(d.querySelector(".ab-tp6-dl"), {opacity:.45, duration:.3, ease:"none"}, t + .3);
+    });
+    return at + days.length * .38 + .3;
+  }
+  /* Monday being written in: the reverse motion, entries grow down into the empty day */
+  function fill(tl, at, gone){
+    tl.to(ring, {boxShadow:"inset 0 0 0 2px " + brand, duration:.4, ease:"none"}, at)
+      .to(monLabel, {color:brand, duration:.4, ease:"none"}, at)
+      .fromTo(fresh, {clipPath:gone, opacity:.4}, {clipPath:"inset(0% 0% 0% 0%)", opacity:1, stagger:.42, duration:.55, ease:"power2.out", immediateRender:true}, at + .2);
+    return at + .2 + (fresh.length - 1) * .42 + .55;
+  }
+
+  var mm = gsap.matchMedia();
+
+  /* desktop: one pinned scene, ~250vh. Calendar never moves; the words around it change. */
+  mm.add("(min-width: 900px)", function(){
+    sec.classList.add("is-scene");
+    var up = "inset(0% 0% 100% 0%)";
+    var tl = gsap.timeline({defaults:{ease:"none"},
+      scrollTrigger:{trigger:sec, start:"top top", end:"+=250%", scrub:.8, pin:true, invalidateOnRefresh:true}});
+    gsap.set([b2, l1, l2], {autoAlpha:0});
+    gsap.set(fresh, {clipPath:up});
+
+    tl.addLabel("read")
+      .fromTo(w1, {opacity:.15}, {opacity:1, stagger:.09, duration:.5}, "read");
+    var empty = evaporate(tl, 1.5, up);                         // the week holds long enough to register, then goes
+    tl.fromTo(ring, {opacity:0}, {opacity:1, duration:.4}, empty - .2)
+      .fromTo(l1, {autoAlpha:0, y:12}, {autoAlpha:1, y:0, duration:.45, immediateRender:false}, empty)
+      .addLabel("turn", empty + 1)                              // a held beat on the empty Monday
+      .to([b1, l1], {autoAlpha:0, y:-14, filter:"blur(4px)", duration:.45}, "turn")
+      .fromTo(b2, {autoAlpha:0, y:16}, {autoAlpha:1, y:0, duration:.5, immediateRender:false}, "turn+=.4")
+      .fromTo(w2, {opacity:.15}, {opacity:1, stagger:.09, duration:.5, immediateRender:false}, "turn+=.5");
+    var lived = fill(tl, tl.labels.turn + 2.1, up);             // the mission line is read first, then Monday fills
+    tl.fromTo(l2, {autoAlpha:0, y:12}, {autoAlpha:1, y:0, duration:.5, immediateRender:false}, lived)
+      .to({}, {duration:1.1});                                  // rest on the finished week before releasing the pin
+    return function(){ sec.classList.remove("is-scene"); };
+  });
+
+  /* below 900px: no pin. The same pieces stack in reading order and scrub as they pass. */
+  mm.add({mid:"(min-width: 600px) and (max-width: 899px)", phone:"(max-width: 599px)"}, function(ctx){
+    if (!ctx.conditions.mid && !ctx.conditions.phone) return;
+    var gone = ctx.conditions.phone ? "inset(0% 100% 0% 0%)" : "inset(0% 0% 100% 0%)";   // rows retract left, columns up
+    gsap.fromTo(w1, {opacity:.15}, {opacity:1, stagger:.09, ease:"none",
+      scrollTrigger:{trigger:b1, start:"top 85%", end:"bottom 50%", scrub:.6}});
+    var a = gsap.timeline({defaults:{ease:"none"}, scrollTrigger:{trigger:cal, start:"top 75%", end:"bottom 50%", scrub:.6}});
+    var empty = evaporate(a, 0, gone);
+    a.fromTo(ring, {opacity:0}, {opacity:1, duration:.4}, empty - .2)
+     .fromTo(l1, {opacity:0, y:10}, {opacity:1, y:0, duration:.4}, empty);
+    var b = gsap.timeline({defaults:{ease:"none"}, scrollTrigger:{trigger:b2, start:"top 62%", end:"top 20%", scrub:.6}});
+    var lived = fill(b, 0, gone);
+    b.fromTo(w2, {opacity:.15}, {opacity:1, stagger:.09, duration:.5}, .3)
+     .fromTo(l2, {opacity:0, y:10}, {opacity:1, y:0, duration:.4}, Math.max(lived, 1.4));
+  });
+};
+</script>

@@ -46,5 +46,17 @@ Retired via skip: values 1, 2, 3; mission 4 (offer table).
 Default preset: opening 1, backstory 1, turning 5, mission 5, values 5, drsan 1, cta 4.
 Mission copy: a = "Your financial plan looks after the money. I help you plan for the person living it." b/c/d rewrite `big` and add `lead`/`close` (this also changes mission/1's b–d big line).
 
-Known: the bare URL loads every slot at 1 (shared/engine.js `state()` ignores presets.default). Use `?preset=default` until the engine is changed.
 TODO(Felix): Monday entries ("A walk", "Friends", "Yours") are illustrative; confirm the tone.
+
+## Wave 3: one calendar, one scene (turning/6)
+
+Felix's verdict: the home calendar (slots/monday/1) works; the about calendar felt half baked, and two calendars in a row was one too many. **turning/6** now holds turning + mission as ONE pinned scene on ONE calendar.
+
+- **Calendar:** rebuilt from the home page's week: six columns, mono day bar, the same labelled entries (Team standup … Farewell drinks), the same height (up to 420px) and the same clip-away evaporate.
+- **Sequence (desktop, 900px+, pinned 250vh):** the turning sentence is read word by word → the week slips away day by day, leaving only the empty Monday (accent ring) → "It happens to people who did everything else right." → a held beat → the turning text fades out and the mission line fades in, word by word → Monday is written in (Morning walk, Coffee, Marg, Volunteering), the ring turns from accent to brand → the mission close line. The calendar never moves.
+- **Below 900px:** no pin. It stacks in reading order (sentence, calendar, close, mission, mission close) and scrubs as it passes. Under 600px the calendar turns on its side (one row per day) so all six days fit with no sideways scroll.
+- **Reduced motion:** stacked, the old week faint, Monday already filled. Everything is visible in CSS without JS.
+- **Copy:** `turning.*` follows the Copy tab's turning row. `mission.*` (lead / big / close) follows the **mission** row even though the mission slot is off: turning/6 applies mission copy itself and reloads when the mission row changes.
+- **Presets:** default = turning 6, mission 0 (off), values 5 follows straight on. sideways / plain keep turning 5 + mission 6; profile keeps turning 1 + mission 5.
+- The bare URL now loads `presets.default` (engine fixed), so the old "use ?preset=default" note is gone.
+- TODO(Felix): the new Monday entries are illustrative. "Coffee, Marg" deliberately echoes the work-week entry that evaporated (connection coming back). Confirm with Dr San.

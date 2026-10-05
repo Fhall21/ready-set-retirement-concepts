@@ -22,8 +22,18 @@
 <script>
 window.slotInit["cta"] = function(root, reduced){
   if (reduced) return;
-  var plate = root.querySelector(".s-octa-4-plate");
+  var plate = root.querySelector(".s-octa-4-plate"), img = plate.querySelector("img"), text = root.querySelector(".s-octa-4-text");
+  var DESK = "(min-width:900px) and (min-height:600px)";
+  // her portrait wipes in as the section nears the top, so it lands as the hold begins
   gsap.fromTo(plate, {clipPath:"inset(0% 0% 100% 0% round 1rem)"}, {clipPath:"inset(0% 0% 0% 0% round 1rem)", duration:1.1, ease:"expo.out",
-    scrollTrigger:{trigger:plate, start:"top 85%", toggleActions:"play none none none"}});
+    scrollTrigger:{trigger:matchMedia(DESK).matches ? root : plate, start:matchMedia(DESK).matches ? "top 55%" : "top 85%", toggleActions:"play none none none"}});
+  gsap.from(text.children, {opacity:0, y:18, duration:.8, stagger:.1, ease:"power3.out",
+    scrollTrigger:{trigger:matchMedia(DESK).matches ? root : text, start:matchMedia(DESK).matches ? "top 45%" : "top 75%", once:true}});
+  // pause: a short pin hold (~40vh) with the portrait easing down to rest. Static desktop check; the end function
+  // collapses the hold if the window is later resized narrow.
+  if (!matchMedia(DESK).matches || root.offsetHeight > innerHeight + 2) return;
+  gsap.timeline({defaults:{ease:"none"}, scrollTrigger:{trigger:root, pin:true, anticipatePin:1, scrub:.6, invalidateOnRefresh:true,
+    start:"top top", end:function(){ return "+=" + (matchMedia(DESK).matches ? Math.round(innerHeight*.4) : 1); }}})
+    .fromTo(img, {scale:1.08}, {scale:1});
 };
 </script>

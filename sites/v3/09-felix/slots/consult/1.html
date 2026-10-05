@@ -64,66 +64,75 @@
 </style>
 <script>
 window.slotInit["consult"] = function(root, reduced){
-  var mm = gsap.matchMedia();
+  // Static breakpoint check (not gsap.matchMedia), same pattern as the organisation page: a nested matchMedia inside
+  // the slot context left stale triggers. The pin's end function collapses the hold if the window is later resized narrow.
+  var DESK = "(min-width:900px) and (min-height:600px)";
+  var desk = matchMedia("(min-width:900px)").matches;
 
-  mm.add({ isDesktop: "(min-width: 900px)", isPhone: "(max-width: 899px)" }, function(context){
-    var isDesktop = context.conditions.isDesktop;
+  if (desk) {
+    var msgs = root.querySelectorAll(".msg");
+    var copyEls = root.querySelectorAll(".copy h2, .copy .lede, .copy .cta");
 
-    if (isDesktop) {
-      var msgs = root.querySelectorAll(".msg");
-      var h2d = root.querySelector(".copy h2"), leded = root.querySelector(".copy .lede"),
-          ctad = root.querySelector(".copy .cta");
-
-      if (reduced) {
-        gsap.set(msgs, {opacity:1, y:0, scale:1});
-        return;
-      }
-
-      gsap.set(msgs, {opacity:0, y:10, scale:.97});
-      gsap.to(msgs, {
-        opacity:1, y:0, scale:1, duration:.5, stagger:.3, ease:"power3.out",
-        scrollTrigger:{trigger: root.querySelector(".phone"), start:"top 78%"}
-      });
-      gsap.from([h2d, leded, ctad], {
-        y:20, opacity:0, duration:.7, stagger:.1, ease:"power3.out",
-        scrollTrigger:{trigger: h2d, start:"top 85%"}
-      });
+    if (reduced) {
+      gsap.set(msgs, {opacity:1, y:0, scale:1});
       return;
     }
 
-    // phone: clean version — H2 word-in + ring draw
-    var h2 = root.querySelector(".copy h2");
-    var pill = root.querySelector(".pill");
-    var svg = root.querySelector(".ring");
-    var track = root.querySelector(".ring-track");
-    var draw = root.querySelector(".ring-draw");
-
-    function sizeRing(){
-      var r = pill.getBoundingClientRect();
-      var pad = 14, w = r.width + pad*2, h = r.height + pad*2, rx = h/2;
-      svg.setAttribute("viewBox", "0 0 " + w + " " + h);
-      [track, draw].forEach(function(rect){
-        rect.setAttribute("x", 1.5); rect.setAttribute("y", 1.5);
-        rect.setAttribute("width", w - 3); rect.setAttribute("height", h - 3);
-        rect.setAttribute("rx", rx - 1.5);
-      });
-      var perim = 2*(w-3) + 2*(h-3) - 8*(rx-1.5) + 2*Math.PI*(rx-1.5);
-      draw.dataset.perim = perim;
-      gsap.set(draw, {strokeDasharray: perim, strokeDashoffset: reduced ? 0 : perim});
-    }
-    sizeRing();
-    ScrollTrigger.addEventListener("refresh", sizeRing);
-
-    if (reduced) return;
-
-    var split = new SplitText(h2, {type:"words", wordsClass:"stword"});
-    gsap.set(split.words, {opacity:0, y:"1em"});
-
-    var tl = gsap.timeline({
-      scrollTrigger:{trigger:root, start:"top 78%", toggleActions:"play none none none", invalidateOnRefresh:true}
+    // the chat and the invitation play in as the section settles at the top: the pause is for taking it in
+    gsap.set(msgs, {opacity:0, y:10, scale:.97});
+    gsap.to(msgs, {
+      opacity:1, y:0, scale:1, duration:.5, stagger:.3, ease:"power3.out",
+      scrollTrigger:{trigger:root, start:"top 40%", once:true}
     });
-    tl.to(split.words, {opacity:1, y:0, duration:.7, stagger:.05, ease:"expo.out"})
-      .to(draw, {strokeDashoffset:0, duration:1.1, ease:"power2.out"}, "-=.2");
-  }, root);
+    gsap.from(copyEls, {
+      y:20, opacity:0, duration:.7, stagger:.1, ease:"power3.out",
+      scrollTrigger:{trigger:root, start:"top 55%", once:true}
+    });
+
+    // pause: a short pin hold (~45vh). A section shorter than the window pins when it is centred.
+    if (matchMedia(DESK).matches && root.offsetHeight <= innerHeight + 2) {
+      ScrollTrigger.create({trigger:root, pin:true, anticipatePin:1, invalidateOnRefresh:true,
+        start: root.offsetHeight < innerHeight - 2 ? "center center" : "top top",
+        end: function(){ return "+=" + (matchMedia(DESK).matches ? Math.round(innerHeight*.45) : 1); }});
+    }
+    return;
+  }
+
+  // phone: clean version, H2 word-in + ring draw (no pin)
+  var h2 = root.querySelector(".copy h2");
+  var pill = root.querySelector(".pill");
+  var svg = root.querySelector(".ring");
+  var track = root.querySelector(".ring-track");
+  var draw = root.querySelector(".ring-draw");
+
+  var played = false;
+  function sizeRing(){
+    var r = pill.getBoundingClientRect();
+    var pad = 14, w = r.width + pad*2, h = r.height + pad*2, rx = h/2;
+    svg.setAttribute("viewBox", "0 0 " + w + " " + h);
+    [track, draw].forEach(function(rect){
+      rect.setAttribute("x", 1.5); rect.setAttribute("y", 1.5);
+      rect.setAttribute("width", w - 3); rect.setAttribute("height", h - 3);
+      rect.setAttribute("rx", rx - 1.5);
+    });
+    var perim = 2*(w-3) + 2*(h-3) - 8*(rx-1.5) + 2*Math.PI*(rx-1.5);
+    draw.dataset.perim = perim;
+    gsap.set(draw, {strokeDasharray: perim, strokeDashoffset: (reduced || played) ? 0 : perim}); // a refresh after the draw must not undraw it
+  }
+  sizeRing();
+  // listener lives on a ScrollTrigger so the engine's context.revert() removes it with the slot
+  ScrollTrigger.create({trigger:root, start:"top bottom", onRefresh:sizeRing});
+
+  if (reduced) return;
+
+  var split = new SplitText(h2, {type:"words", wordsClass:"stword"});
+  gsap.set(split.words, {opacity:0, y:"1em"});
+
+  var tl = gsap.timeline({
+    onStart:function(){ played = true; },
+    scrollTrigger:{trigger:root, start:"top 78%", toggleActions:"play none none none", invalidateOnRefresh:true}
+  });
+  tl.to(split.words, {opacity:1, y:0, duration:.7, stagger:.05, ease:"expo.out"})
+    .to(draw, {strokeDashoffset:0, duration:1.1, ease:"power2.out"}, "-=.2");
 };
 </script>

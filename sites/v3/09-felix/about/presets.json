@@ -2,7 +2,7 @@
   "counts": {
     "opening": 4,
     "backstory": 4,
-    "turning": 5,
+    "turning": 6,
     "mission": 6,
     "values": 6,
     "drsan": 4,
@@ -14,8 +14,8 @@
       "slots": {
         "opening": 1,
         "backstory": 1,
-        "turning": 5,
-        "mission": 5,
+        "turning": 6,
+        "mission": 0,
         "values": 5,
         "drsan": 1,
         "cta": 4

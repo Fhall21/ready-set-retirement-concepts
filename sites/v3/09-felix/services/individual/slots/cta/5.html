@@ -33,10 +33,18 @@
 <script>
 window.slotInit["cta"] = function(root, reduced){
   if (reduced) return;
-  var img = root.querySelector(".s-ic5__photo img");
-  gsap.fromTo(img, {scale:1.12}, {scale:1, ease:"none", immediateRender:true,
+  var img = root.querySelector(".s-ic5__photo img"), text = root.querySelector(".s-ic5__text");
+  var DESK = "(min-width:900px) and (min-height:600px)";
+  // approach: the portrait is a touch large and eases down as the section arrives
+  gsap.fromTo(img, {scale:1.12}, {scale:1.05, ease:"none", immediateRender:true,
     scrollTrigger:{trigger:root, start:"top bottom", end:"top top", scrub:.6}});
-  gsap.fromTo(root.querySelector(".s-ic5__text").children, {opacity:0, y:20}, {opacity:1, y:0, duration:.9, stagger:.1, ease:"power3.out", immediateRender:true,
-    scrollTrigger:{trigger:root.querySelector(".s-ic5__text"), start:"top 75%", once:true}});
+  // the invitation settles in as the section nears the top, so it lands at the start of the hold
+  gsap.fromTo(text.children, {opacity:0, y:20}, {opacity:1, y:0, duration:.9, stagger:.1, ease:"power3.out", immediateRender:true,
+    scrollTrigger:{trigger:matchMedia(DESK).matches ? root : text, start:matchMedia(DESK).matches ? "top 45%" : "top 75%", once:true}});
+  // pause: a short pin hold (~45vh, static desktop check; the end function collapses it if the window is later resized narrow)
+  if (!matchMedia(DESK).matches || root.offsetHeight > innerHeight + 2) return;
+  gsap.timeline({defaults:{ease:"none"}, scrollTrigger:{trigger:root, pin:true, anticipatePin:1, scrub:.6, invalidateOnRefresh:true,
+    start:"top top", end:function(){ return "+=" + (matchMedia(DESK).matches ? Math.round(innerHeight*.45) : 1); }}})
+    .fromTo(img, {scale:1.05}, {scale:1, immediateRender:false});
 };
 </script>

@@ -21,3 +21,9 @@
 - Contact details: Dr San's email, phone and ABN. None were in the reference material, so none are shown. There is one `TODO(Felix)` HTML comment at the top of the footer.
 - Booking link: all "Book" buttons point to `#consult`. Point them to `/contact` or the booking tool once it exists, including the consult section's button.
 - The GSAP scripts are loaded from the jsDelivr CDN, and the dev version bar is `/site-nav.js`, injected by `shared/engine.js` (versions listed in `sites/site-versions.json`). Remove that line and the mixer script for production.
+
+**Scroll pauses (Oct 2026).** Short pin holds so a full-height section keeps its spot for a moment. Desktop only (>=900px wide and >=600px tall, static `matchMedia` check, no pin below that or under reduced motion). Content is visible by default; the holds are `pin:true, anticipatePin:1`, and each end function collapses to 1px if the window is later resized narrow.
+- Home consult (~45vh, chat bubbles and invitation play in as it settles; converted from `gsap.matchMedia` to the static check). Home audience (~35vh, doors ease in). Home practitioner quote band only (~30vh, pinned centred while the quote settles in).
+- Individual cta/5 (~45vh, portrait eases 1.05 to 1). Organisation cta/4 (~40vh, portrait eases down inside its frame). About cta/4 (~40vh, "San" signs off during the hold).
+- Contact `next` not pinned: it is not a full-viewport close. Phones get no pins, only the existing reveals.
+- Home audience (`slots/audience/1.html`) is now a section of its own: full viewport, tinted ground, larger heading, taller doors with white fill. Content unchanged.
