@@ -27,3 +27,4 @@
 - Individual cta/5 (~45vh, portrait eases 1.05 to 1). Organisation cta/4 (~40vh, portrait eases down inside its frame). About cta/4 (~40vh, "San" signs off during the hold).
 - Contact `next` not pinned: it is not a full-viewport close. Phones get no pins, only the existing reveals.
 - Home audience (`slots/audience/1.html`) is now a section of its own: full viewport, tinted ground, larger heading, taller doors with white fill. Content unchanged.
+- Home dials (`slots/dials/1.html`): pinned hold (~80vh, `pin:true, anticipatePin:1`) with one scrubbed timeline (scrub .6). The "without a plan" bars fill row by row, a beat, then the "With Dr San" column fills row by row, then the close line. It reverses on scroll back. The section fills the window on desktop so the pin leaves no bands; it pins only when the section fits the window height, otherwise (and on phones) the same scrub runs across the card unpinned. Reduced motion shows the final state.

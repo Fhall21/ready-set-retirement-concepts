@@ -85,7 +85,7 @@ window.slotInit["practitioner"] = function(root, reduced){
       scrollTrigger:{trigger:plate, start:"top 85%"}
     });
 
-    // the one real testimonial gets a short pause: the band holds centred (~30vh) while the quote settles in.
+    // the one real testimonial settles in on scroll (no pin, per Felix).
     var pq = root.querySelector(".pq"), DESK = "(min-width:900px) and (min-height:600px)";
     var desk = matchMedia(DESK).matches;
     var q = gsap.timeline({defaults:{ease:"power3.out"},
@@ -93,10 +93,6 @@ window.slotInit["practitioner"] = function(root, reduced){
     q.from(pq.querySelector(".pq-mark"), {scale:.8, opacity:0, transformOrigin:"left center", duration:.7})
      .from(pq.querySelector("blockquote"), {y:18, opacity:0, duration:.9}, "<.15")
      .from(pq.querySelector(".pq figcaption"), {opacity:0, y:10, duration:.7}, "-=.4");
-    if (desk && pq.offsetHeight <= innerHeight + 2) {
-      ScrollTrigger.create({trigger:pq, pin:true, anticipatePin:1, invalidateOnRefresh:true, start:"center center",
-        end:function(){ return "+=" + (matchMedia(DESK).matches ? Math.round(innerHeight*.3) : 1); }});
-    }
   }
 };
 </script>

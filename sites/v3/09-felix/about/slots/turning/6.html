@@ -144,6 +144,12 @@ window.slotInit["turning"] = function(root, reduced){
       fresh = gsap.utils.toArray(".ab-tp6-new", root);
   var w1 = new SplitText(b1.querySelector(".ab-tp6-big"), {type:"words"}).words,
       w2 = new SplitText(b2.querySelector(".ab-tp6-big"), {type:"words"}).words;
+  var PALE = .15, STAG = .09, DUR = .5;
+  /* THE word reveal, shared by the turning sentence and the mission line: pale words fill to ink in sequence */
+  function revealWords(tl, words, at){
+    tl.fromTo(words, {opacity:PALE}, {opacity:1, stagger:STAG, duration:DUR, ease:"none"}, at);
+    return tl.recent().endTime();
+  }
   var brand = getComputedStyle(document.documentElement).getPropertyValue("--brand").trim();
 
   /* the week slipping away, day by day, the way the home calendar does it: each entry is clipped up and out */
@@ -165,27 +171,29 @@ window.slotInit["turning"] = function(root, reduced){
 
   var mm = gsap.matchMedia();
 
-  /* desktop: one pinned scene, ~250vh. Calendar never moves; the words around it change. */
+  /* desktop: one pinned scene, ~270vh. Calendar never moves; the words around it change.
+     Both sentences use ONE word reveal (revealWords): words start pale (.15) and fill to ink in sequence. */
   mm.add("(min-width: 900px)", function(){
     sec.classList.add("is-scene");
     var up = "inset(0% 0% 100% 0%)";
     var tl = gsap.timeline({defaults:{ease:"none"},
-      scrollTrigger:{trigger:sec, start:"top top", end:"+=250%", scrub:.8, pin:true, invalidateOnRefresh:true}});
+      scrollTrigger:{trigger:sec, start:"top top", end:"+=270%", scrub:.8, pin:true, invalidateOnRefresh:true}});
     gsap.set([b2, l1, l2], {autoAlpha:0});
     gsap.set(fresh, {clipPath:up});
+    gsap.set(w2, {opacity:PALE});                               // mission words wait pale, exactly like the turning words
 
-    tl.addLabel("read")
-      .fromTo(w1, {opacity:.15}, {opacity:1, stagger:.09, duration:.5}, "read");
+    tl.addLabel("read");
+    revealWords(tl, w1, "read");
     var empty = evaporate(tl, 1.5, up);                         // the week holds long enough to register, then goes
     tl.fromTo(ring, {opacity:0}, {opacity:1, duration:.4}, empty - .2)
       .fromTo(l1, {autoAlpha:0, y:12}, {autoAlpha:1, y:0, duration:.45, immediateRender:false}, empty)
       .addLabel("turn", empty + 1)                              // a held beat on the empty Monday
-      .to([b1, l1], {autoAlpha:0, y:-14, filter:"blur(4px)", duration:.45}, "turn")
-      .fromTo(b2, {autoAlpha:0, y:16}, {autoAlpha:1, y:0, duration:.5, immediateRender:false}, "turn+=.4")
-      .fromTo(w2, {opacity:.15}, {opacity:1, stagger:.09, duration:.5, immediateRender:false}, "turn+=.5");
-    var lived = fill(tl, tl.labels.turn + 2.1, up);             // the mission line is read first, then Monday fills
-    tl.fromTo(l2, {autoAlpha:0, y:12}, {autoAlpha:1, y:0, duration:.5, immediateRender:false}, lived)
-      .to({}, {duration:1.1});                                  // rest on the finished week before releasing the pin
+      .to([b1, l1], {autoAlpha:0, duration:.4}, "turn")         // plain fade out: the words themselves carry no other effect
+      .fromTo(b2, {autoAlpha:0}, {autoAlpha:1, duration:.3, immediateRender:false}, "turn+=.4");
+    var read2 = revealWords(tl, w2, "turn+=.7");                // read at the same pace as the turning sentence
+    var lived = fill(tl, read2 + .5, up);                       // only once the mission line is fully read does Monday fill
+    tl.fromTo(l2, {autoAlpha:0, y:12}, {autoAlpha:1, y:0, duration:.45, immediateRender:false}, lived)
+      .to({}, {duration:.8});                                   // rest on the finished week before releasing the pin
     return function(){ sec.classList.remove("is-scene"); };
   });
 
@@ -193,16 +201,18 @@ window.slotInit["turning"] = function(root, reduced){
   mm.add({mid:"(min-width: 600px) and (max-width: 899px)", phone:"(max-width: 599px)"}, function(ctx){
     if (!ctx.conditions.mid && !ctx.conditions.phone) return;
     var gone = ctx.conditions.phone ? "inset(0% 100% 0% 0%)" : "inset(0% 0% 100% 0%)";   // rows retract left, columns up
-    gsap.fromTo(w1, {opacity:.15}, {opacity:1, stagger:.09, ease:"none",
-      scrollTrigger:{trigger:b1, start:"top 85%", end:"bottom 50%", scrub:.6}});
+    [[w1, b1], [w2, b2]].forEach(function(p){                  // the same reveal, same range, for both sentences
+      gsap.fromTo(p[0], {opacity:PALE}, {opacity:1, stagger:STAG, duration:DUR, ease:"none",
+        scrollTrigger:{trigger:p[1], start:"top 85%", end:"bottom 50%", scrub:.6}});
+    });
     var a = gsap.timeline({defaults:{ease:"none"}, scrollTrigger:{trigger:cal, start:"top 75%", end:"bottom 50%", scrub:.6}});
     var empty = evaporate(a, 0, gone);
     a.fromTo(ring, {opacity:0}, {opacity:1, duration:.4}, empty - .2)
      .fromTo(l1, {opacity:0, y:10}, {opacity:1, y:0, duration:.4}, empty);
-    var b = gsap.timeline({defaults:{ease:"none"}, scrollTrigger:{trigger:b2, start:"top 62%", end:"top 20%", scrub:.6}});
-    var lived = fill(b, 0, gone);
-    b.fromTo(w2, {opacity:.15}, {opacity:1, stagger:.09, duration:.5}, .3)
-     .fromTo(l2, {opacity:0, y:10}, {opacity:1, y:0, duration:.4}, Math.max(lived, 1.4));
+    gsap.fromTo(l2, {opacity:0, y:10}, {opacity:1, y:0, ease:"none",
+      scrollTrigger:{trigger:l2, start:"top 92%", end:"top 72%", scrub:.6}});
+    var b = gsap.timeline({defaults:{ease:"none"}, scrollTrigger:{trigger:l2, start:"top 50%", end:"top 14%", scrub:.6}});
+    fill(b, 0, gone);                                           // Monday fills only once the mission line has been read
   });
 };
 </script>

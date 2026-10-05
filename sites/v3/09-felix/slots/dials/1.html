@@ -100,6 +100,11 @@
 .s-d8-word-low{color:var(--accent)}
 .s-d8-word-ok{color:var(--brand)}
 
+/* desktop hold: the section fills the window (content centred) so the pin leaves no bands above or below */
+@media(min-width:900px) and (min-height:600px){
+  .s-dials-8{min-height:100vh;display:flex;align-items:center}
+  .s-d8-in{width:100%}
+}
 @media(max-width:640px){
   .s-d8-bar{flex-direction:column;gap:.3rem}
   .s-d8-table thead{display:none}
@@ -127,21 +132,44 @@ window.slotInit["dials"] = function(root, reduced){
 
   if(reduced){ return; }
 
-  // One reading, two beats: the "without" column registers first, then a pause,
-  // then the "with" column fills in, so the relief arrives after the low readings sink in.
+  // One reading, two beats, driven by scroll (scrubbed), so it reverses on the way back up:
+  // the "without" column fills row by row, a beat, then the "with" column fills row by row.
+  // Fills are scaleX from a visible-by-default width, so with no JS the table simply reads in full.
   var offFills = root.querySelectorAll(".s-d8-fill-off"),
       onFills  = root.querySelectorAll(".s-d8-fill-on"),
+      offWords = root.querySelectorAll(".s-d8-word-low"),
       onWords  = root.querySelectorAll(".s-d8-word-ok"),
-      close    = root.querySelector(".s-d-close");
-  var tl = gsap.timeline({
-    defaults: { ease:"power2.out" },
-    scrollTrigger: { trigger: root.querySelector("#s-d8-card"), start: "top 75%", toggleActions: "play none none none" }
-  });
-  tl.addLabel("without")
-    .fromTo(offFills, {scaleX:0, transformOrigin:"left center"}, {scaleX:1, duration:.7, stagger:.07}, "without")
-    .addLabel("with", "+=.45")
-    .fromTo(onFills, {scaleX:0, transformOrigin:"left center"}, {scaleX:1, duration:.9, ease:"power3.out", stagger:.08}, "with")
-    .fromTo(onWords, {opacity:0}, {opacity:1, duration:.4, stagger:.08}, "with+=.25")
-    .fromTo(close, {opacity:0, y:8}, {opacity:1, y:0, duration:.6}, "-=.2");
+      close    = root.querySelector(".s-d-close"),
+      card     = root.querySelector("#s-d8-card");
+
+  // Static breakpoint check (same pattern as the other pinned slots; not gsap.matchMedia, not once:true).
+  // The pin's end function collapses the hold to 1px if the window is later resized narrow or short.
+  var DESK = "(min-width:900px) and (min-height:600px)";
+  // pin only when the whole section fits the window (otherwise it would clip); else it scrubs across the card unpinned
+  var desk = matchMedia(DESK).matches && root.offsetHeight <= innerHeight + 2;
+
+  var st = {
+    trigger: desk ? root : card,
+    scrub: .6,
+    invalidateOnRefresh: true
+  };
+  if (desk) {
+    st.start = "top top";
+    st.end = function(){ return "+=" + (matchMedia(DESK).matches ? Math.round(innerHeight * .8) : 1); };
+    st.pin = true;
+    st.anticipatePin = 1;
+  } else {
+    // phones: no pin, the same scrub plays across the card as it crosses the screen
+    st.start = "top 85%";
+    st.end = "bottom 55%";
+  }
+
+  var tl = gsap.timeline({ defaults:{ ease:"none" }, scrollTrigger: st });
+  tl.fromTo(offFills, {scaleX:0, transformOrigin:"left center"}, {scaleX:1, duration:.2, stagger:.14}, 0)
+    .fromTo(offWords, {opacity:0}, {opacity:1, duration:.12, stagger:.14}, .1)
+    // a beat for the low readings to sink in, then the relief
+    .fromTo(onFills, {scaleX:0, transformOrigin:"left center"}, {scaleX:1, duration:.22, stagger:.15}, 1.15)
+    .fromTo(onWords, {opacity:0}, {opacity:1, duration:.12, stagger:.15}, 1.28)
+    .fromTo(close, {opacity:0, y:8}, {opacity:1, y:0, duration:.3}, 2.1);
 };
 </script>
