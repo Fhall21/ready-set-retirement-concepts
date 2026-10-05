@@ -125,12 +125,17 @@ input,textarea,button,select{caret-color:var(--brand)}
 .cx-done[hidden]{display:none}
 .cx-cal .cx-done{border:0;background:none;padding:0}
 .cx-done:focus{outline:none}
-.cx-done h3,.cx-done .cx-done-h{font:800 clamp(1.4rem,1rem + 1.4vw,1.9rem)/1.2 var(--sans);letter-spacing:-.01em;margin:0}
+.cx-done h3,.cx-done .cx-done-h{font:600 clamp(1.4rem,1rem + 1.4vw,1.9rem)/1.2 var(--sans);letter-spacing:-.005em;margin:0}
 .cx-done h3:focus,.cx-done .cx-done-h:focus{outline:none}
 .cx-done p{margin-top:.8rem;max-width:52ch}
 .cx-done .cx-tick{width:44px;height:44px;border-radius:50%;background:var(--brand);display:grid;place-items:center;margin-bottom:1rem}
 .cx-done .cx-tick svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .cx-done .cx-quiet{margin-top:1rem}
+
+/* Calmer, human type (Dr San, Oct 2026: against avant-garde type that pulls focus).
+   Same family and sizes; headings read like a person talking, matching home landing. */
+main [data-slot] :is(.s-chero-5__h1,.s-book-1__h,.s-form-3__h,.cx-done h3,.cx-done .cx-done-h){font-weight:600;letter-spacing:-.005em;line-height:1.15}
+main [data-slot] .s-chero-5__name{font-weight:600;letter-spacing:-.005em}
 </style>
 </head>
 <body>

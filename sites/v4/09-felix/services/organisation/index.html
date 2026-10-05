@@ -18,7 +18,12 @@ new MutationObserver(function(){if(h.getAttribute("data-pal")!=="a")h.setAttribu
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../shared/site.css">
 <style>
-/* Page-specific overrides go here. See ../../PAGE-CONTRACT.md. */
+/* Calmer, human type (Dr San, Oct 2026: against avant-garde type that pulls focus).
+   Same family and sizes; headings read like a person talking, matching home landing. */
+main [data-slot] :is(.s-ohero-2__h1,.s-oprob-5-h,.s-oprog-7-h,.s-ofmt-5-h,.s-octa-4-h){font-weight:600;letter-spacing:-.005em;line-height:1.15}
+main [data-slot] :is(.s-oprog-7-q,.s-oprog-7-ans h3,.s-ofmt-5-notes h3){font-weight:600;letter-spacing:-.005em}
+main [data-slot] .s-oproof-4-fig p{font-weight:500;letter-spacing:-.005em}
+main [data-slot] .s-oproof-4-fig p span{font-weight:700}
 </style>
 </head>
 <body>
