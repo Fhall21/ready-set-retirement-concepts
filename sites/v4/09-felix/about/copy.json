@@ -1,0 +1,140 @@
+{
+  "_directions": {
+    "a": "Default, written into each fragment. Warm first person, one idea per block.",
+    "b": "Plain and few: shortest lines, supporting lines cut where the heading carries it.",
+    "c": "Her own words: lines lifted from Dr San's site and her notes on the concept pages.",
+    "d": "Third person: about Dr San rather than from her, for readers (and HR buyers) who prefer a profile."
+  },
+  "opening": {
+    "b": {
+      "h": "I’m Dr San. Here’s how I got here.",
+      "sub": ""
+    },
+    "c": {
+      "h": "I teach the other half of the plan.",
+      "sub": "Human-centred retirement planning™, for your psychological and social wellbeing."
+    },
+    "d": {
+      "name": "About Dr San",
+      "h": "Meet Dr San.",
+      "sub": "She helps people plan the human side of retirement, from Far North Queensland."
+    }
+  },
+  "backstory": {
+    "b": {
+      "h": "My story, briefly",
+      "c1h": "I was an English teacher first.",
+      "c1p": "With an honours year in linguistics.",
+      "c2h": "Then I led people for decades.",
+      "c2p": "In schools, community organisations and business.",
+      "c3h": "I studied people at work.",
+      "c3p": "An MBA in HR, then a PhD in Business.",
+      "c4h": "Now I help people retire well.",
+      "c4p": "Plain, practical planning for the part money can’t cover."
+    },
+    "c": {
+      "h": "A people person, a businessperson and a nerd",
+      "c1h": "I began my working life as an English teacher.",
+      "c1p": "I still remember my first linguistics honours year.",
+      "c2h": "Decades of people, strategic and operational leadership.",
+      "c2p": "Across educational, social and commercial sectors.",
+      "c3h": "Education is power.",
+      "c3p": "A PhD in Business, an MBA specialising in HR, and qualifications in teaching and coaching.",
+      "c4h": "The other half of the plan had almost nobody.",
+      "c4p": "One half of the problem has an entire industry attached to it. The other half has almost nobody. So I made it my work."
+    },
+    "d": {
+      "h": "How Dr San came to this work",
+      "c1h": "She started out as an English teacher.",
+      "c1p": "With an honours year in linguistics along the way.",
+      "c2h": "Then came decades leading people.",
+      "c2p": "Across education, community and commercial organisations.",
+      "c3h": "Then the research.",
+      "c3p": "An MBA specialising in HR, and a PhD in Business.",
+      "c4h": "Then the question nobody was asking.",
+      "c4p": "Why do people who plan their money so carefully plan so little of the rest?"
+    }
+  },
+  "turning": {
+    "b": {
+      "lead": "",
+      "big": "Everything was sorted, except <span>Monday.</span>",
+      "close": "It happens to careful people too."
+    },
+    "c": {
+      "lead": "What I kept seeing",
+      "big": "It arrives on schedule for the people who did <span>everything else right.</span>",
+      "close": "It is not a weakness. It is an unplanned transition."
+    },
+    "d": {
+      "lead": "What she kept seeing",
+      "big": "The money got decades of planning. The rest got a <span>good-luck card.</span>",
+      "close": "That gap is where her work begins."
+    }
+  },
+  "values": {
+    "b": {
+      "h": "How I work",
+      "v1h": "Plainly.",
+      "v1p": "No jargon.",
+      "v2h": "Together.",
+      "v2p": "It’s a chat, not a test.",
+      "v3h": "Alongside your adviser.",
+      "v3p": "I don’t give money advice.",
+      "v4h": "At your pace.",
+      "v4p": "We start where you are."
+    },
+    "c": {
+      "h": "Education is power.",
+      "v1h": "Educated retirement decisions.",
+      "v1p": "Knowing the recognised risks before you’re inside them.",
+      "v2h": "A conversation, not a clinical assessment.",
+      "v2p": "You describe the date and what you’ve planned for it.",
+      "v3h": "Not a financial adviser.",
+      "v3p": "I teach the other half of the plan.",
+      "v4h": "Stress free.",
+      "v4p": "People often arrive stressed. It should be simple to follow."
+    },
+    "d": {
+      "h": "What working with Dr San is like",
+      "v1h": "Plain talk.",
+      "v1p": "She’ll tell you plainly what your plans cover, and what they don’t.",
+      "v2h": "A conversation, not an assessment.",
+      "v2p": "You talk, she listens, and you work it out together.",
+      "v3h": "Alongside your adviser.",
+      "v3p": "She isn’t a financial adviser. Her work sits next to theirs.",
+      "v4h": "No rush.",
+      "v4p": "Ten years out or three, she starts from where you are."
+    }
+  },
+  "drsan": {
+    "b": {
+      "p1": "PhD in Business, MBA in HR, and qualifications in teaching and coaching.",
+      "p2": ""
+    },
+    "c": {
+      "p1": "Education is power. I blend academic research, insight and trusted practical wisdom, from a lifetime’s experience across different sectors.",
+      "p2": "I’m not a financial adviser and have no interest in becoming one. I teach the other half of the plan."
+    },
+    "d": {
+      "p1": "People say Dr San is a people person, a businessperson and a nerd. She brings a blend of expertise and humanity to retirement education.",
+      "p2": "She works with people three to ten years from retirement, and with the organisations that support them."
+    }
+  },
+  "cta": {
+    "b": {
+      "lede": "",
+      "btn": "Book a 30-minute chat"
+    },
+    "c": {
+      "h": "Ready to chat?",
+      "lede": "It’s a conversation, not a clinical assessment. Thirty minutes, at no cost.",
+      "btn": "Find a time"
+    },
+    "d": {
+      "h": "Talk with Dr San",
+      "lede": "A free, friendly 30-minute chat about what your weeks might look like.",
+      "btn": "Book a time"
+    }
+  }
+}

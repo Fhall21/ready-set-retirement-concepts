@@ -1,0 +1,61 @@
+<section class="s-audience-4">
+  <div class="wrap">
+    <h2 class="s-audience-4-h" data-copy="audience.h">Planning your own retirement, or your team’s?</h2>
+    <div class="s-audience-4-doors">
+      <a class="s-audience-4-door" href="contact/#book">
+        <span data-copy="audience.tag1" class="s-audience-4-tag">For you</span>
+        <strong data-copy="audience.title1">3–10 years out</strong>
+        <p data-copy="audience.p1">You still have time, colleagues and energy. It’s easier to start now than later.</p>
+        <span data-copy="audience.cta1" class="s-audience-4-cta">Book a consult →</span>
+      </a>
+      <a class="s-audience-4-door" href="services/organisation/">
+        <span data-copy="audience.tag2" class="s-audience-4-tag">For HR and workforce planners</span>
+        <strong data-copy="audience.title2">Staff close to retirement</strong>
+        <p data-copy="audience.p2">Workshops and training for people approaching retirement, run in your workplace.</p>
+        <span data-copy="audience.cta2" class="s-audience-4-cta">See workshops for organisations →</span>
+      </a>
+    </div>
+  </div>
+</section>
+<style>
+/* A section of its own: roughly a full viewport, content centred with generous room above and below. */
+.s-audience-4{min-height:100svh;display:flex;align-items:center;background:var(--ground-2);
+  border-block:1px solid var(--rule);padding-block:clamp(5rem,14vh,10rem)}
+.s-audience-4 .wrap{width:100%}
+.s-audience-4-h{font:800 clamp(2rem,1rem + 3.6vw,3.8rem)/1.12 var(--sans);max-width:20ch;text-wrap:balance}
+.s-audience-4-doors{margin-top:clamp(2.5rem,8vh,5rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.2rem,3vw,2.5rem)}
+.s-audience-4-door{display:flex;flex-direction:column;gap:.7rem;min-height:clamp(16rem,38vh,25rem);
+  padding:clamp(1.8rem,3.4vw,3.2rem);border-radius:1.25rem;
+  background:var(--ground);text-decoration:none;color:var(--ink);border:1px solid var(--rule-strong);
+  transition:background .25s var(--ease-out),border-color .25s var(--ease-out)}
+.s-audience-4-door:hover,.s-audience-4-door:focus-visible{background:var(--ground-3);border-color:var(--brand)}
+.s-audience-4-tag{font-size:1rem;font-weight:700;color:var(--brand-deep)}
+.s-audience-4-door strong{font:700 clamp(1.5rem,1rem + 1.2vw,2.1rem)/1.2 var(--sans);margin-top:.2rem}
+.s-audience-4-door p{color:var(--ink-soft);max-width:38ch;font-size:clamp(1.0625rem,1rem + .25vw,1.25rem)}
+.s-audience-4-cta{margin-top:auto;padding-top:1.2rem;font-weight:700;font-size:1.1rem;color:var(--brand)}
+@media (max-width:760px){
+  .s-audience-4{padding-block:clamp(4rem,10vh,6rem)}
+  .s-audience-4-doors{grid-template-columns:1fr}
+  .s-audience-4-door{min-height:0}
+}
+</style>
+<script>
+window.slotInit["audience"] = function(root, reduced){
+  if (reduced) return;
+  var doors = root.querySelectorAll(".s-audience-4-door"), h = root.querySelector(".s-audience-4-h");
+  var DESK = "(min-width:900px) and (min-height:600px)";
+  var desk = matchMedia(DESK).matches;
+  // heading and doors ease in as the section nears the top, so they land as the hold begins
+  gsap.from(h, {y:16, opacity:0, duration:.8, ease:"power3.out",
+    scrollTrigger:{trigger: desk ? root : h, start: desk ? "top 55%" : "top 85%", once:true}});
+  gsap.from(doors, {
+    y: 24, opacity: 0, duration: 0.8, ease: "expo.out", stagger: 0.12,
+    scrollTrigger: { trigger: desk ? root : root.querySelector(".s-audience-4-doors"), start: desk ? "top 40%" : "top 82%", once:true }
+  });
+  // pause: a short pin hold (~35vh) so the two doors can be taken in. Static desktop check; the end function
+  // collapses the hold if the window is later resized narrow.
+  if (!desk || root.offsetHeight > innerHeight + 2) return;
+  ScrollTrigger.create({trigger:root, pin:true, anticipatePin:1, invalidateOnRefresh:true, start:"top top",
+    end:function(){ return "+=" + (matchMedia(DESK).matches ? Math.round(innerHeight*.35) : 1); }});
+};
+</script>

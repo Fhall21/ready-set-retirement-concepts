@@ -1,0 +1,43 @@
+<!-- Hero 2: text first, portrait as a framed plate on the right. Calmer, more "brochure from a practice" than full-bleed. -->
+<section class="s-ohero-2">
+  <div class="wrap s-ohero-2__grid">
+    <div class="s-ohero-2__text">
+      <p data-copy="hero.name" class="s-ohero-2__name">Dr San · Psychosocial Retirement Educator</p>
+      <h1 data-copy="hero.h1" class="s-ohero-2__h1">Help your people get ready for life after work.</h1>
+      <p data-copy="hero.lede" class="s-ohero-2__lede">Workshops and talks, run in your workplace.</p>
+      <a data-copy="hero.btn" class="btn s-ohero-2__btn" href="../../contact/#book">Book a chat about your team</a>
+      <p class="s-ohero-2__alt"><a data-copy="hero.alt" href="../individual/">See sessions for individuals</a></p>
+    </div>
+    <figure class="s-ohero-2__plate">
+      <img src="../../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling, looking toward the camera">
+    </figure>
+  </div>
+</section>
+
+<style>
+.s-ohero-2{background:var(--ground-2);padding-block:clamp(1.5rem,4vw,4.5rem) clamp(2.5rem,6vw,5.5rem)}
+.s-ohero-2__grid{display:grid;gap:2rem}
+.s-ohero-2__plate{margin:0;order:-1;border-radius:1.25rem;overflow:clip;background:var(--ground-3);aspect-ratio:4/3}
+.s-ohero-2__plate img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.s-ohero-2__name{margin:0 0 1.1rem;font:500 .95rem/1.4 var(--sans);color:var(--ink-soft)}
+.s-ohero-2__h1{font:800 clamp(2rem,2.4vw + 1.3rem,3.7rem)/1.06 var(--sans);letter-spacing:-.02em;text-wrap:balance;max-width:17ch}
+.s-ohero-2__lede{margin-top:1.2rem;font-size:clamp(1.1rem,.5vw + 1rem,1.3rem);color:var(--ink-soft);max-width:34ch}
+.s-ohero-2__btn{margin-top:2rem;min-height:48px}
+.s-ohero-2__alt{margin-top:1.4rem;font-size:1rem}
+.s-ohero-2__alt a{color:var(--ink);text-decoration-thickness:1px}
+.s-ohero-2__alt a:hover{color:var(--brand)}
+@media (min-width:860px){
+  .s-ohero-2__grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:center;gap:clamp(2.5rem,6vw,6rem);min-height:min(78svh,760px)}
+  .s-ohero-2__plate{order:0;aspect-ratio:4/5}
+  .s-ohero-2__name{margin-bottom:1.6rem}
+}
+</style>
+
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  gsap.fromTo(root.querySelector(".s-ohero-2__plate"),
+    {clipPath:"inset(0% 0% 100% 0% round 1.25rem)"},
+    {clipPath:"inset(0% 0% 0% 0% round 1.25rem)", duration:1.3, ease:"expo.out", delay:.1, immediateRender:true});
+};
+</script>

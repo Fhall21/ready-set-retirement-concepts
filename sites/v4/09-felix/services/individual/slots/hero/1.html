@@ -1,0 +1,42 @@
+<!-- Hero 5 — the Organisation page's hero 2 idea, for individuals: words on the left, Dr San as a framed portrait plate on the right. Calm, "a person's practice", not a product. -->
+<section class="s-ih5">
+  <div class="wrap s-ih5__grid">
+    <div class="s-ih5__text">
+      <p data-copy="hero.name" class="s-ih5__name">Dr San · Psychosocial Retirement Educator</p>
+      <h1 data-copy="hero.h1" class="s-ih5__h1">The date is set. What about the Monday after?</h1>
+      <p data-copy="hero.lede" class="s-ih5__lede">We’ll plan it together, alongside the financial plan you already have.</p>
+      <a data-copy="hero.btn" class="btn s-ih5__btn" href="../../contact/#book">Book your free 30-minute chat</a>
+      <p class="s-ih5__org"><a data-copy="hero.org" href="../organisation/">See workshops for organisations</a></p>
+    </div>
+    <figure class="s-ih5__plate">
+      <img src="../../assets/drsan.jpg" width="980" height="1470" alt="Dr San, smiling, looking toward the camera">
+    </figure>
+  </div>
+</section>
+<style>
+.s-ih5{background:var(--ground);padding-block:clamp(1.5rem,4vw,4rem) clamp(3rem,7vw,6rem)}
+.s-ih5__grid{display:grid;gap:2rem}
+.s-ih5__plate{margin:0;order:-1;border-radius:1.25rem;overflow:clip;background:var(--ground-3);aspect-ratio:4/3}
+.s-ih5__plate img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.s-ih5__name{margin:0 0 1.1rem;font:500 .95rem/1.4 var(--sans);color:var(--ink-soft)}
+.s-ih5__h1{font:700 clamp(2.1rem,2.6vw + 1.3rem,4rem)/1.06 var(--sans);letter-spacing:-.02em;text-wrap:balance;max-width:16ch}
+.s-ih5__lede{margin-top:1.3rem;font-size:clamp(1.1rem,.5vw + 1rem,1.3rem);color:var(--ink-soft);max-width:34ch;text-wrap:pretty}
+.s-ih5__btn{margin-top:2.2rem;min-height:48px}
+.s-ih5__org{margin-top:1.4rem;font-size:1rem}
+.s-ih5__org a{color:var(--ink);text-decoration-thickness:1px}
+.s-ih5__org a:hover{color:var(--brand)}
+@media (min-width:860px){
+  .s-ih5__grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:center;gap:clamp(2.5rem,7vw,7rem);min-height:min(84svh,800px)}
+  .s-ih5__plate{order:0;aspect-ratio:4/5;max-height:76svh;justify-self:end;width:100%}
+  .s-ih5__name{margin-bottom:1.6rem}
+}
+</style>
+<script>
+window.slotInit["hero"] = function(root, reduced){
+  if (reduced) return;
+  var plate = root.querySelector(".s-ih5__plate");
+  gsap.fromTo(plate, {clipPath:"inset(0% 0% 100% 0% round 1.25rem)"},
+    {clipPath:"inset(0% 0% 0% 0% round 1.25rem)", duration:1.4, ease:"expo.out", delay:.15, immediateRender:true});
+  gsap.fromTo(plate.querySelector("img"), {scale:1.08}, {scale:1, duration:2, ease:"power3.out", delay:.15, immediateRender:true});
+};
+</script>

@@ -1,0 +1,91 @@
+<section class="s-monday-2">
+  <div class="wrap s-m2-in">
+    <h2 data-copy="monday.h" class="s-m2-h">The first Monday is the one nobody plans.</h2>
+    <p data-copy="monday.sub" class="s-m2-sub" hidden="">The calendar with nothing in it.</p>
+
+    <div class="s-m2-grid" id="s-m2-grid">
+      <div class="s-m2-col" data-day="Mon">
+        <div class="s-m2-dlabel">Mon</div>
+        <div class="s-m2-ev s-m2-ev-a" style="top:14%;height:16%">Team standup</div>
+        <div class="s-m2-ev s-m2-ev-b" style="top:38%;height:22%">Client review</div>
+      </div>
+      <div class="s-m2-col" data-day="Tue">
+        <div class="s-m2-dlabel">Tue</div>
+        <div class="s-m2-ev s-m2-ev-a" style="top:10%;height:14%">1:1s</div>
+        <div class="s-m2-ev s-m2-ev-c" style="top:30%;height:18%">Board prep</div>
+        <div class="s-m2-ev s-m2-ev-b" style="top:58%;height:14%">Site visit</div>
+      </div>
+      <div class="s-m2-col" data-day="Wed">
+        <div class="s-m2-dlabel">Wed</div>
+        <div class="s-m2-ev s-m2-ev-b" style="top:20%;height:20%">Planning</div>
+        <div class="s-m2-ev s-m2-ev-a" style="top:52%;height:16%">Coffee, Marg</div>
+      </div>
+      <div class="s-m2-col" data-day="Thu">
+        <div class="s-m2-dlabel">Thu</div>
+        <div class="s-m2-ev s-m2-ev-c" style="top:16%;height:18%">Ops meeting</div>
+        <div class="s-m2-ev s-m2-ev-a" style="top:44%;height:14%">Handover</div>
+      </div>
+      <div class="s-m2-col" data-day="Fri">
+        <div class="s-m2-dlabel">Fri</div>
+        <div class="s-m2-ev s-m2-ev-b" style="top:12%;height:16%">Wrap-up</div>
+        <div class="s-m2-ev s-m2-ev-a" style="top:40%;height:20%">Farewell drinks</div>
+      </div>
+      <div class="s-m2-col s-m2-mon" data-day="Mon">
+        <div class="s-m2-dlabel">Mon</div>
+      </div>
+    </div>
+    <p data-copy="monday.line" class="s-m2-line">Only Monday is left. Nothing in it.</p>
+  </div>
+</section>
+<style>
+.s-monday-2{padding-block:clamp(3rem,8vw,5.5rem);background:var(--ground)}
+.s-m2-in{max-width:1200px}
+.s-m2-h{font:800 clamp(1.9rem,4.6vw,3.2rem)/1.1 var(--sans);letter-spacing:-.01em;max-width:22ch}
+.s-m2-sub{margin-top:.6rem;color:var(--ink-soft);font-size:1.1rem}
+.s-m2-grid{margin-top:clamp(2rem,5vw,3rem);display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);height:clamp(280px,42vw,420px)}
+.s-m2-col{position:relative;background:var(--ground-2)}
+.s-m2-dlabel{position:absolute;top:0;left:0;right:0;text-align:center;padding:.5rem 0;font:700 .78rem/1 var(--num);color:var(--ink-soft);border-bottom:1px solid var(--rule);background:var(--ground)}
+.s-m2-mon{background:var(--ground-3)}
+.s-m2-mon .s-m2-dlabel{color:var(--accent)}
+.s-m2-ev{position:absolute;left:6%;right:6%;border-radius:.4rem;padding:.4rem .5rem;font:600 .74rem/1.25 var(--sans);color:#fff;overflow:hidden}
+.s-m2-ev-a{background:var(--brand)}
+.s-m2-ev-b{background:var(--brand-bright)}
+.s-m2-ev-c{background:var(--gold);color:var(--ink)}
+.s-m2-line{margin-top:clamp(1.4rem,3vw,2rem);font:700 1.2rem/1.3 var(--sans);color:var(--accent)}
+@media (max-width:700px){
+  .s-m2-grid{display:flex;overflow-x:auto;height:auto;scroll-snap-type:x mandatory}
+  .s-m2-col{min-width:70%;height:220px;flex:0 0 auto;scroll-snap-align:start}
+}
+.s-monday-2{overflow-x:clip} /* calendar runs wider than a phone by design; clip, never page-scroll */
+</style>
+<script>
+window.slotInit["monday"] = function(root, reduced){
+  var evs = root.querySelectorAll(".s-m2-ev");
+  var line = root.querySelector(".s-m2-line");
+
+  gsap.set(line, {opacity:0, y:14});
+
+  if(reduced){
+    gsap.set(evs, {clipPath:"inset(0 0 100% 0)"});
+    gsap.set(line, {opacity:1, y:0});
+    return;
+  }
+
+  gsap.matchMedia().add("(min-width: 701px)", function(){
+    gsap.set(evs, {clipPath:"inset(0% 0 0% 0)"});
+    var tl = gsap.timeline({
+      scrollTrigger: { trigger: root, start: "top top", end: "+=110%", scrub: .7, pin: true, invalidateOnRefresh:true }
+    });
+    tl.to(evs, {clipPath:"inset(0 0 100% 0)", stagger:.09, ease:"none"}, 0.05);
+    tl.to(line, {opacity:1, y:0, ease:"none"}, .75);
+  });
+
+  gsap.matchMedia().add("(max-width: 700px)", function(){
+    var tl2 = gsap.timeline({
+      scrollTrigger: { trigger: root, start: "top 70%", end: "bottom 40%", scrub: .8 }
+    });
+    tl2.to(evs, {clipPath:"inset(0 0 100% 0)", stagger:.09, ease:"none"}, 0);
+    tl2.to(line, {opacity:1, y:0, ease:"none"}, .7);
+  });
+};
+</script>

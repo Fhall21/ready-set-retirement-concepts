@@ -1,0 +1,63 @@
+<!-- Follows home's practitioner pattern (photo + first-person bio + short list + details + the one real testimonial).
+     Credentials verbatim (Entsch quote band removed per Felix: "this is an about page") from readysetretirement.au. -->
+<section class="ab-ds1">
+  <div class="wrap ab-ds1-grid">
+    <figure class="ab-ds1-plate">
+      <img src="../assets/drsan.jpg" width="980" height="1470" loading="lazy" decoding="async" alt="Dr Sandra Walden-Pearson, smiling, in a pale gold jacket">
+    </figure>
+    <div class="ab-ds1-bio">
+      <h2 data-copy="drsan.h">Dr Sandra Walden-Pearson</h2>
+      <p data-copy="drsan.role" class="ab-ds1-role">Psychosocial Retirement Educator · Far North Queensland</p>
+      <p data-copy="drsan.p1" class="ab-ds1-lede">People say I’m a people person, a businessperson and a nerd. I bring all three to retirement education.</p>
+      <p data-copy="drsan.p2" class="ab-ds1-lede ab-ds1-soft">I work with people three to ten years from retirement, and with the organisations that support them.</p>
+      <ul class="ab-ds1-cred">
+        <li>PhD (Business)</li>
+        <li>MBA (HR)</li>
+        <li>BA Dip Ed</li>
+        <li>Certified Professional Retirement Coach</li>
+      </ul>
+      <details class="ab-ds1-more">
+        <summary>Full credentials</summary>
+        <ul>
+          <li>Certified Associate Meta Coach</li>
+          <li>Certified Resilience Coach</li>
+          <li>High Adversity Resilience (HART) Coach</li>
+          <li>Resilience First Aid Responder</li>
+          <li>Accredited Mental Health First Aider</li>
+          <li>Accredited Mental Health First Aider (Workplace)</li>
+          <li>Accredited Cinergy Conflict Coach</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</section>
+<style>
+.ab-ds1{background:var(--ground);padding-block:clamp(3.5rem,9vw,7rem)}
+.ab-ds1-grid{display:grid;gap:clamp(2rem,5vw,4rem);align-items:start}
+@media (min-width:900px){.ab-ds1-grid{grid-template-columns:minmax(280px,40%) 1fr}}
+.ab-ds1-plate{margin:0;border-radius:1.25rem;overflow:hidden;background:var(--ground-2)}
+.ab-ds1-plate img{width:100%;height:auto;aspect-ratio:980/1470;object-fit:cover;object-position:50% 15%}
+@media (max-width:899px){.ab-ds1-plate img{aspect-ratio:4/3.4}}
+.ab-ds1-bio h2{font:800 clamp(1.8rem,3.4vw,2.6rem)/1.1 var(--sans);letter-spacing:-.01em}
+.ab-ds1-role{margin-top:.5rem;color:var(--ink-soft);font-weight:600}
+.ab-ds1-lede{margin-top:1.4rem;max-width:52ch}
+.ab-ds1-soft{color:var(--ink-soft)}
+.ab-ds1-cred{list-style:none;margin:1.8rem 0 0;padding:0}
+.ab-ds1-cred li{padding-block:.7rem;border-top:1px solid var(--rule);font-weight:600}
+.ab-ds1-cred li:first-child{border-top:0}
+.ab-ds1-more{margin-top:1rem}
+.ab-ds1-more summary{cursor:pointer;font-weight:600;color:var(--brand);list-style:none;padding-block:.5rem;display:inline-block}
+.ab-ds1-more summary::-webkit-details-marker{display:none}
+.ab-ds1-more summary::after{content:" +"}
+.ab-ds1-more[open] summary::after{content:" \2212"}
+.ab-ds1-more ul{list-style:none;margin:.6rem 0 0;padding:0;display:grid;gap:.5rem;color:var(--ink-soft)}
+.ab-ds1-rule{flex:none;width:clamp(32px,5vw,56px);height:2px;background:var(--brand)}
+</style>
+<script>
+window.slotInit["drsan"] = function(root, reduced){
+  if (reduced) return;
+  var plate = root.querySelector(".ab-ds1-plate");
+  gsap.fromTo(plate, {clipPath:"inset(100% 0% 0% 0% round 1.25rem)"}, {clipPath:"inset(0% 0% 0% 0% round 1.25rem)", duration:1.1, ease:"expo.out", immediateRender:true,
+    scrollTrigger:{trigger:plate, start:"top 85%"}});
+};
+</script>

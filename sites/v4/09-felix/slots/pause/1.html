@@ -1,0 +1,91 @@
+<section class="s-pause-2">
+  <div class="s-pa2-stage">
+    <div class="wrap s-pa2-in">
+      <!-- Five things work quietly gives you (Dr San's five factors, same order as the dials table below).
+           Each sits on a point of a pentagon around "Work"; data-a is its angle, used for the drift-away direction. -->
+      <div class="s-pa2-rig">
+        <span class="s-pa2-pos" style="--x:50%;--y:12%" data-a="-90"><span class="s-pa2-tag">Structure</span></span>
+        <span class="s-pa2-pos" style="--x:86%;--y:38%" data-a="-18"><span class="s-pa2-tag">Identity</span></span>
+        <span class="s-pa2-pos" style="--x:72%;--y:81%" data-a="54"><span class="s-pa2-tag">Purpose</span></span>
+        <span class="s-pa2-pos" style="--x:28%;--y:81%" data-a="126"><span class="s-pa2-tag">Sense of direction</span></span>
+        <span class="s-pa2-pos" style="--x:14%;--y:38%" data-a="198"><span class="s-pa2-tag">Connection</span></span>
+        <span class="s-pa2-work">Work</span>
+      </div>
+      <p data-copy="pause.line" class="s-pa2-line">Structure, identity, purpose, a&nbsp;sense&nbsp;of&nbsp;direction and connection all come with your work. They leave with it too.</p>
+    </div>
+  </div>
+</section>
+<style>
+.s-pause-2{background:var(--ground)}
+.s-pa2-stage{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-block:clamp(2.5rem,6vw,4rem)}
+.s-pa2-in{width:100%;display:flex;flex-direction:column;align-items:center;gap:clamp(2.5rem,7vw,4.5rem)}
+.s-pa2-rig{position:relative;width:min(80vw,460px);aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.s-pa2-work{font:600 clamp(1.6rem,5vw,2.5rem)/1 var(--sans);letter-spacing:-.005em;position:relative;z-index:2}
+/* outer span holds the position (CSS transform); the inner pill is the only thing GSAP moves */
+.s-pa2-pos{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%)}
+.s-pa2-tag{display:block;font:600 clamp(.85rem,2vw,1rem)/1 var(--sans);color:var(--ink-soft);
+  background:var(--ground-2);border:1px solid var(--rule);border-radius:999px;padding:.55em 1.05em;white-space:nowrap}
+.s-pa2-line{font:600 clamp(1.3rem,3.4vw,1.85rem)/1.4 var(--sans);max-width:30ch;text-align:center;text-wrap:balance}
+@media (max-width:640px){
+  .s-pause-2{background:linear-gradient(var(--ground) 60%,var(--ground-2))}
+  .s-pause-2 .s-pa2-stage{min-height:auto;padding-block:3.5rem 2rem}
+  .s-pa2-rig{width:min(82vw,330px)}
+}
+</style>
+<script>
+window.slotInit["pause"] = function(root, reduced){
+  var pos  = Array.prototype.slice.call(root.querySelectorAll(".s-pa2-pos"));
+  var tags = pos.map(function(p){ return p.querySelector(".s-pa2-tag"); });
+  // unit vector pointing away from "Work" for each tag, from its pentagon angle
+  var dir  = pos.map(function(p){ var a = (+p.dataset.a) * Math.PI / 180; return [Math.cos(a), Math.sin(a)]; });
+  var line = root.querySelector(".s-pa2-line");
+
+  if(reduced){
+    // final, fully-explained state: the five have gone, the line says what they were
+    gsap.set(tags, {opacity:0});
+    return;
+  }
+
+  // the line is visible in CSS (so a failed script still reads); hide it only once motion is certain
+  gsap.set(line, {opacity:0});
+
+  var mm = gsap.matchMedia();
+  var sec = root.querySelector(".s-pause-2"), work = root.querySelector(".s-pa2-work"),
+      rig = root.querySelector(".s-pa2-rig"),
+      toGround = getComputedStyle(document.documentElement).getPropertyValue("--ground-2").trim();
+
+  mm.add("(min-width: 641px)", function(){
+    var tl = gsap.timeline({
+      defaults: { ease:"none" },
+      scrollTrigger: { trigger: root, start:"top top", end:"+=100%", scrub:.7, pin:true, invalidateOnRefresh:true }
+    });
+    // held, attached, until one synchronised moment: all five drift outward and evaporate together
+    tl.addLabel("leave", .45)
+      .to(tags, {
+        x: function(i){ return dir[i][0] * 150; },
+        y: function(i){ return dir[i][1] * 150; },
+        opacity: 0, filter: "blur(6px)", duration: .25
+      }, "leave")
+      .fromTo(line, {opacity:0}, {opacity:1, duration:.2, immediateRender:false}, .68)
+      // hand-off: the empty centre dims, the room takes on the report's ground, and the
+      // line lifts toward the results that follow, so pause and dials read as one scene
+      .to(work, {opacity:.18, scale:.92, duration:.2}, .6)
+      .to(sec, {backgroundColor:toGround, duration:.2}, .72)
+      .to([line, rig], {y:"-12vh", duration:.2}, .8)
+      .to(rig, {opacity:.5, duration:.2}, .8);
+  });
+
+  mm.add("(max-width: 640px)", function(){
+    var tl = gsap.timeline({
+      defaults: { ease:"none" },
+      scrollTrigger: { trigger: root, start:"top 70%", end:"bottom 40%", scrub:.6 }
+    });
+    tl.to(tags, {
+        x: function(i){ return dir[i][0] * 40; },
+        y: function(i){ return dir[i][1] * 40; },
+        opacity: 0, scale: .7, filter: "blur(4px)", duration: .25
+      }, .45)
+      .fromTo(line, {opacity:0}, {opacity:1, duration:.2, immediateRender:false}, .68);
+  });
+};
+</script>

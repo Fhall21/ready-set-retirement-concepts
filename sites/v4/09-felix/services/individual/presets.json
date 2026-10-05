@@ -1,0 +1,23 @@
+{
+  "counts": {
+    "hero": 1,
+    "why": 1,
+    "method": 1,
+    "get": 1,
+    "faq": 1,
+    "cta": 1
+  },
+  "presets": {
+    "default": {
+      "name": "Recommended: the diary week, then a zig-zag",
+      "slots": {
+        "hero": 1,
+        "why": 1,
+        "method": 1,
+        "get": 1,
+        "faq": 1,
+        "cta": 1
+      }
+    }
+  }
+}

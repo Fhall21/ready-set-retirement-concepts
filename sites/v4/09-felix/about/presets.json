@@ -1,0 +1,23 @@
+{
+  "counts": {
+    "opening": 1,
+    "backstory": 1,
+    "turning": 1,
+    "values": 1,
+    "drsan": 1,
+    "cta": 1
+  },
+  "presets": {
+    "default": {
+      "name": "Her story, one continuous read",
+      "slots": {
+        "opening": 1,
+        "backstory": 1,
+        "turning": 1,
+        "values": 1,
+        "drsan": 1,
+        "cta": 1
+      }
+    }
+  }
+}

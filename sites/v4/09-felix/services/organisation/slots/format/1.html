@@ -1,0 +1,105 @@
+<!-- Format 5 (Format 2, polished: more air, calendar a touch larger, notes arrive after the day is drawn): the workshop as it would sit in a work calendar (a day view), which is how most staff will first meet it.
+     Block heights are to scale. TODO(Felix): times and session names are placeholders. Replace with Dr San's outline. -->
+<section class="s-ofmt-5">
+  <div class="wrap">
+    <h2 data-copy="format.h" class="s-ofmt-5-h">What a morning with Dr San looks like</h2>
+    <p data-copy="format.lede" class="s-ofmt-5-lede">The half-day workshop, as it usually runs. Times move to suit your roster.</p>
+
+    <div class="s-ofmt-5-grid">
+      <div class="s-ofmt-5-cal" role="list" aria-label="Workshop timetable, 9:00 am to 12:30 pm">
+        <div class="s-ofmt-5-calhead"><span>Thursday</span><span class="d">Preparing for retirement</span></div>
+        <div class="s-ofmt-5-day">
+          <span class="s-ofmt-5-hr" style="--s:0">9 am</span>
+          <span class="s-ofmt-5-hr" style="--s:60">10 am</span>
+          <span class="s-ofmt-5-hr" style="--s:120">11 am</span>
+          <span class="s-ofmt-5-hr" style="--s:180">12 pm</span>
+          <div class="s-ofmt-5-ev" role="listitem" style="--s:0;--d:20"><b>9:00</b> Welcome</div>
+          <div class="s-ofmt-5-ev" role="listitem" style="--s:20;--d:40"><b>9:20</b> The first Monday<span>What changes when work stops</span></div>
+          <div class="s-ofmt-5-ev" role="listitem" style="--s:60;--d:45"><b>10:00</b> What leaves with the job<span>Direction, identity, purpose, connection</span></div>
+          <div class="s-ofmt-5-ev brk" role="listitem" style="--s:105;--d:20"><b>10:45</b> Morning tea</div>
+          <div class="s-ofmt-5-ev" role="listitem" style="--s:125;--d:45"><b>11:05</b> An ordinary week<span>Each person sketches a week they’d want</span></div>
+          <div class="s-ofmt-5-ev" role="listitem" style="--s:170;--d:25"><b>11:50</b> Talking about it at home</div>
+          <div class="s-ofmt-5-ev" role="listitem" style="--s:195;--d:15"><b>12:15</b> First steps, and close</div>
+        </div>
+      </div>
+
+      <div class="s-ofmt-5-notes">
+        <h3>Before the day</h3>
+        <p>A short call with you about your people, your sector and anything to be careful of.</p>
+        <h3>On the day</h3>
+        <p>A room with tables for up to 20, a screen, and morning tea. Dr San brings the workbooks.</p>
+        <h3>Afterwards</h3>
+        <p data-copy="format.note">Everyone keeps their workbook. Anyone who wants to go further can book a private session.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-ofmt-5{padding-block:clamp(4.5rem,11vw,9rem);background:var(--ground)}
+.s-ofmt-5-h{font:800 clamp(1.8rem,1rem + 3vw,3.1rem)/1.12 var(--sans);letter-spacing:-.015em;max-width:20ch;text-wrap:balance}
+.s-ofmt-5-lede{margin:1rem 0 clamp(2rem,5vw,3rem);color:var(--ink-soft);max-width:44ch}
+.s-ofmt-5-grid{display:grid;gap:clamp(2.8rem,6vw,5.5rem)}
+.s-ofmt-5-cal{--pm:2.3px;border:1px solid var(--rule-strong);border-radius:.7rem;background:var(--ground);overflow:hidden;max-width:620px;width:100%}
+.s-ofmt-5-calhead{display:flex;flex-direction:column;gap:.1rem;padding:.9rem 1.1rem;background:var(--ground-3);border-bottom:1px solid var(--rule-strong)}
+.s-ofmt-5-calhead span{font-size:.85rem;color:var(--ink-soft);font-weight:600}
+.s-ofmt-5-calhead .d{font:700 1.05rem/1.3 var(--sans);color:var(--ink)}
+.s-ofmt-5-day{position:relative;height:calc(210 * var(--pm) + 1.6rem);margin:.8rem 1rem .8rem 0}
+.s-ofmt-5-hr{position:absolute;left:0;right:0;top:calc(var(--s) * var(--pm));display:block;padding-left:.8rem;font:500 .75rem/1 var(--num);color:var(--ink-soft);border-top:1px solid var(--rule);padding-top:.25rem}
+.s-ofmt-5-hr{border-top:0}
+.s-ofmt-5-hr::after{content:"";position:absolute;left:3.8rem;right:0;top:0;border-top:1px solid var(--rule)}
+.s-ofmt-5-ev{position:absolute;left:4.2rem;right:0;top:calc(var(--s) * var(--pm) + 1px);height:calc(var(--d) * var(--pm) - 3px);
+  background:var(--ground-3);border-radius:.3rem;padding:.3rem .7rem;overflow:hidden;
+  font:600 .92rem/1.25 var(--sans);color:var(--ink);border:1px solid var(--rule-strong)}
+.s-ofmt-5-ev b{font:500 .78rem/1 var(--num);color:var(--ink-soft);margin-right:.35rem}
+.s-ofmt-5-ev span{display:block;font-weight:400;font-size:.85rem;color:var(--ink-soft);margin-top:.15rem}
+.s-ofmt-5-ev.brk{background:var(--ground);color:var(--ink-soft);border-style:dashed}
+.s-ofmt-5-notes h3{font:700 1.15rem/1.3 var(--sans);padding-top:1.1rem;border-top:1px solid var(--rule-strong)}
+.s-ofmt-5-notes h3:not(:first-child){margin-top:2.2rem}
+.s-ofmt-5-notes p{margin-top:.55rem;font-size:1.05rem;color:var(--ink-soft);max-width:42ch}
+@media (min-width:900px){
+  .s-ofmt-5-cal{--pm:3.3px}
+  .s-ofmt-5-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:start}
+}
+</style>
+<script>
+window.slotInit["format"] = function(root, reduced){
+  if (reduced) return;
+  // Scroll-based: the day view fills in as the reader scrolls (blocks in time order, then the notes), and
+  // reverses on the way back up. The reader sets the pace.
+  var cal = root.querySelector(".s-ofmt-5-cal");
+  var ev = root.querySelectorAll(".s-ofmt-5-ev");
+  var notes = root.querySelectorAll(".s-ofmt-5-notes > *");
+  // fresh vars objects per tween (GSAP may write to the vars it is given)
+  var evFrom = function(){ return {clipPath:"inset(0 0 100% 0 round .4rem)"}; };
+  var evTo = function(x){ return Object.assign({clipPath:"inset(0 0 0% 0 round .4rem)"}, x); };
+  var noteFrom = function(){ return {opacity:0, y:12}; };
+  var noteTo = function(x){ return Object.assign({opacity:1, y:0}, x); };
+  // Static desktop check (same pattern as the other organisation slots). Pin only when the whole calendar fits on screen.
+  var DESK = "(min-width:900px) and (min-height:600px)";
+  var pinIt = matchMedia(DESK).matches && cal.offsetHeight + 48 <= innerHeight;
+  if (!pinIt) {
+    // phone / short window: no pin. Each block and note fills as it rises through the lower part of the screen.
+    ev.forEach(function(e){
+      gsap.fromTo(e, evFrom(), evTo({ease:"none", immediateRender:true,
+        scrollTrigger:{trigger:e, start:"top 88%", end:"bottom 62%", scrub:.6}}));
+    });
+    notes.forEach(function(n){
+      gsap.fromTo(n, noteFrom(), noteTo({ease:"none", immediateRender:true,
+        scrollTrigger:{trigger:n, start:"top 90%", end:"top 68%", scrub:.6}}));
+    });
+    return;
+  }
+  // desktop: one scrubbed timeline. It starts as the calendar rises into view, and ends after a short pin
+  // (~70vh) that holds the calendar centred while the last blocks and the notes arrive.
+  var hold = function(){ return matchMedia(DESK).matches ? Math.round(innerHeight * .7) : 1; }; // collapses if resized narrow
+  var approach = function(){ return Math.round(innerHeight * .3 + cal.offsetHeight / 2); };     // cal "top 80%" -> cal centred
+  gsap.set(ev, evFrom()); gsap.set(notes, noteFrom()); // staggered children don't render their start state until reached
+  var tl = gsap.timeline({defaults:{ease:"none"}, scrollTrigger:{trigger:cal, start:"top 80%", scrub:.6, invalidateOnRefresh:true,
+    end:function(){ return "+=" + (approach() + hold()); }}});
+  tl.fromTo(ev, evFrom(), evTo({duration:.8, stagger:.55}))
+    .fromTo(notes, noteFrom(), noteTo({duration:.6, stagger:.3}), ">-.1")
+    .to({}, {duration:.5}); // a beat with the full day on screen before the pin lets go
+  ScrollTrigger.create({trigger:cal, pin:root, anticipatePin:1, invalidateOnRefresh:true, start:"center center",
+    end:function(){ return "+=" + hold(); }});
+};
+</script>

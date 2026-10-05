@@ -1,0 +1,42 @@
+<!-- Get 2 — Dr San's photo beside a plain list. The photo opens (clip) as the section arrives; the list just sits there to be read. -->
+<!-- TODO(Felix): confirm with Dr San — number and length of sessions, phone/video/in person, whether a written plan and follow-up check-ins are part of the package, and fees. -->
+<section class="s-ig2">
+  <div class="wrap s-ig2__grid">
+    <figure class="s-ig2__photo"><img src="../../assets/drsan.jpg" width="980" height="1470" alt="Dr San" loading="lazy"></figure>
+    <div>
+      <h2 data-copy="get.h" class="s-ig2__h">Here’s what’s included.</h2>
+      <p data-copy="get.lede" class="s-ig2__lede">Nothing to prepare. Bring the date, and whatever’s on your mind.</p>
+      <dl class="s-ig2__list">
+        <div><dt data-copy="get.i1t">A friendly first chat</dt><dd data-copy="get.i1p">Thirty minutes, free, by phone or video. We work out together whether this is right for you.</dd></div>
+        <div><dt data-copy="get.i2t">One-to-one sessions</dt><dd data-copy="get.i2p">Time with Dr San, on your own or with your partner, working through the four stages at your pace.</dd></div>
+        <div><dt data-copy="get.i3t">Your plan, written down</dt><dd data-copy="get.i3p">A plain-words plan for your weeks, your people and the things you’ll be glad to get up for.</dd></div>
+        <div><dt data-copy="get.i4t">Check-ins as the date gets closer</dt><dd data-copy="get.i4p">Short follow-ups, so the plan keeps up with you and with any changes at home or at work.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+<style>
+.s-ig2{background:var(--ground);padding-block:clamp(3.5rem,9vw,7rem)}
+.s-ig2__grid{display:grid;gap:2rem}
+.s-ig2__photo{margin:0;aspect-ratio:4/3;overflow:hidden;border-radius:.7rem;background:var(--ground-2)}
+.s-ig2__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.s-ig2__h{font:800 clamp(1.9rem,1rem + 3.2vw,3.2rem)/1.08 var(--sans);letter-spacing:-.015em}
+.s-ig2__lede{margin-top:.8rem;color:var(--ink-soft)}
+.s-ig2__list{margin:clamp(1.6rem,4vw,2.4rem) 0 0}
+.s-ig2__list div{padding:1.05rem 0;border-top:1px solid var(--rule)}
+.s-ig2__list div:last-child{border-bottom:1px solid var(--rule)}
+.s-ig2__list dt{font-weight:700;font-size:1.1rem}
+.s-ig2__list dd{margin:.25rem 0 0;color:var(--ink-soft);max-width:52ch}
+@media (min-width:900px){
+  .s-ig2__grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2.5rem,6vw,6rem);align-items:center}
+  .s-ig2__photo{aspect-ratio:3/4}
+}
+</style>
+<script>
+window.slotInit["get"] = function(root, reduced){
+  if (reduced) return;
+  var ph = root.querySelector(".s-ig2__photo");
+  gsap.fromTo(ph, {clipPath:"inset(100% 0 0 0 round .7rem)"}, {clipPath:"inset(0% 0 0 0 round .7rem)", duration:1.3, ease:"expo.out", immediateRender:true,
+    scrollTrigger:{trigger:ph, start:"top 80%", once:true}});
+};
+</script>

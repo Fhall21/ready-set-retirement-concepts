@@ -1,6 +1,19 @@
 {
   "note": "Versions of the multi-page site. Each root is served from sites/; switching keeps the current page (about/, contact/ ...).",
   "versions": [
-    { "id": "s1", "label": "Site 1", "subtitle": "First multi-page site", "date": "September 2026", "root": "/v3/09-felix/" }
+    {
+      "id": "s1",
+      "label": "Site 1",
+      "subtitle": "First multi-page site",
+      "date": "September 2026",
+      "root": "/v3/09-felix/"
+    },
+    {
+      "id": "s2",
+      "label": "Site 2",
+      "subtitle": "Locked defaults, mixer hidden",
+      "date": "October 2026",
+      "root": "/v4/09-felix/"
+    }
   ]
 }

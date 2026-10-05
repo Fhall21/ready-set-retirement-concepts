@@ -1,0 +1,113 @@
+<section class="s-book-1">
+  <div class="wrap">
+    <h2 data-copy="booking.h" class="s-book-1__h">Find a time that suits you</h2>
+    <p data-copy="booking.lede" class="s-book-1__lede">Pick a day, then a time. Bring whatever’s on your mind.</p>
+
+    <!-- TODO(Felix): this is a static mock of a Cal.com / Calendly booking widget. Swap it for the real
+         embed once Dr San's booking link is confirmed. Availability here is generated, not real. -->
+    <div class="cx-cal s-book-1__card" data-booking>
+      <div class="cx-cal-head">
+        <span data-copy="booking.title" class="cx-cal-title">A friendly chat with Dr San</span>
+        <span class="cx-cal-meta">Queensland time (AEST)</span>
+      </div>
+
+      <div data-step="pick" class="s-book-1__body">
+        <div class="s-book-1__info">
+          <figure class="s-book-1__face"><img src="../assets/drsan.jpg" width="980" height="1470" alt="" loading="lazy"></figure>
+          <ul class="s-book-1__facts">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>30 minutes</li>
+            <!-- TODO(Felix): confirm Dr San offers both video and phone for the first chat. -->
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg>Video call or phone</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Wherever you are</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7 9.5 17.5 4 12"/></svg>Free</li>
+          </ul>
+          <p class="s-book-1__about">A chance to talk through what’s coming up, and whether working together would help.</p>
+        </div>
+
+        <div class="s-book-1__month">
+          <div class="cx-month">
+            <span data-cal-title aria-live="polite"></span>
+            <span class="cx-nav">
+              <button type="button" data-cal-prev aria-label="Previous month"><svg viewBox="0 0 16 16"><path d="M10 3 5 8l5 5"/></svg></button>
+              <button type="button" data-cal-next aria-label="Next month"><svg viewBox="0 0 16 16"><path d="m6 3 5 5-5 5"/></svg></button>
+            </span>
+          </div>
+          <div class="cx-grid" data-cal-grid role="group" aria-label="Days with free times"></div>
+          <p class="cx-tz">Times are in Queensland time (AEST).</p>
+        </div>
+
+        <div class="s-book-1__times">
+          <p class="cx-slots-label" data-slots-label aria-live="polite"></p>
+          <div class="cx-slots" data-slots role="group" aria-label="Free times"></div>
+          <button type="button" class="cx-btn s-book-1__go" data-continue disabled>Continue</button>
+        </div>
+      </div>
+
+      <div data-step="details" class="s-book-1__step" hidden>
+        <div class="cx-picked"><span>Your chat:</span> <strong data-summary></strong> <button type="button" class="cx-quiet" data-back>Change</button></div>
+        <form novalidate class="cx-fields s-book-1__form">
+          <div class="cx-pair">
+            <div class="cx-field"><label for="bk1-name">Your name</label><input id="bk1-name" name="name" autocomplete="name" required data-focus></div>
+            <div class="cx-field"><label for="bk1-email">Email</label><input id="bk1-email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+          </div>
+          <div class="cx-field">
+            <label for="bk1-phone">Phone <span class="cx-opt">(optional)</span></label>
+            <p class="cx-hint" id="bk1-phone-hint">Add this if you’d rather Dr San rang you.</p>
+            <input id="bk1-phone" name="phone" type="tel" autocomplete="tel" aria-describedby="bk1-phone-hint">
+          </div>
+          <div><button class="cx-btn" type="submit">Book my chat</button></div>
+        </form>
+      </div>
+
+      <div data-step="done" class="s-book-1__step" hidden>
+        <!-- TODO(Felix): placeholder confirmation. Nothing is sent or booked until the real booking tool is wired in. -->
+        <div class="cx-done">
+          <div class="cx-tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7 9.5 17.5 4 12"/></svg></div>
+          <h3 tabindex="-1" data-focus data-copy="booking.done">You’re booked in, <span data-first-name></span>.</h3>
+          <p><strong data-summary></strong></p>
+          <p>A confirmation is on its way to <span data-email></span>, with how to join and a link to change the time if you need to.</p>
+          <button type="button" class="cx-quiet" data-restart>Choose a different time</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.s-book-1{padding-block:clamp(2.5rem,6vw,5rem);background:var(--ground)}
+.s-book-1__h{font:800 clamp(1.8rem,1rem + 2.6vw,3rem)/1.1 var(--sans);letter-spacing:-.015em;text-wrap:balance}
+.s-book-1__lede{margin-top:.8rem;color:var(--ink-soft);max-width:48ch}
+.s-book-1__card{margin-top:clamp(1.5rem,3vw,2.2rem)}
+.s-book-1__body{display:grid}
+.s-book-1__body>div{padding:clamp(1.1rem,2.4vw,1.6rem) clamp(1rem,2.4vw,1.5rem)}
+.s-book-1__body>div+div{border-top:1px solid var(--rule)}
+.s-book-1__info{display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.1rem;align-content:start}
+.s-book-1__face{margin:0;width:72px;height:88px;border-radius:.5rem;overflow:hidden;background:var(--ground-2);grid-row:span 2}
+.s-book-1__face img{width:100%;height:100%;object-fit:cover;object-position:50% 14%}
+.s-book-1__facts{list-style:none;margin:0;padding:0;display:grid;gap:.45rem;font-weight:600;font-size:.98rem}
+.s-book-1__facts li{display:flex;align-items:center;gap:.6rem}
+.s-book-1__facts svg{width:20px;height:20px;flex:none;fill:none;stroke:var(--brand);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.s-book-1__about{grid-column:1/-1;margin-top:.6rem;color:var(--ink-soft);font-size:.98rem;max-width:36ch}
+.s-book-1__times{display:flex;flex-direction:column}
+.s-book-1__go{margin-top:1.2rem;align-self:flex-start}
+.s-book-1__step{padding:clamp(1.2rem,3vw,2rem) clamp(1rem,2.4vw,1.8rem)}
+.s-book-1__form{max-width:44rem}
+@media(min-width:700px){
+  .s-book-1__body{grid-template-columns:1.3fr 1fr}
+  .s-book-1__info{grid-column:1/-1}
+  .s-book-1__body>.s-book-1__times{border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
+  .s-book-1__about{grid-column:auto}
+}
+@media(min-width:1080px){
+  .s-book-1__body{grid-template-columns:minmax(0,.9fr) minmax(0,1.35fr) minmax(0,.9fr)}
+  .s-book-1__info{grid-column:auto;grid-template-columns:1fr}
+  .s-book-1__face{width:88px;height:108px;grid-row:auto}
+  .s-book-1__about{grid-column:auto}
+  .s-book-1__body>div+div{border-top:0;border-left:1px solid var(--rule)}
+  .s-book-1__times .cx-slots{grid-template-columns:1fr}
+}
+</style>
+<script>
+window.slotInit["booking"] = function(root, reduced){
+  RSRContact.booking(root);
+};
+</script>

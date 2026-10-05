@@ -1,0 +1,29 @@
+{
+  "counts": {
+    "hero": 1,
+    "monday": 1,
+    "pause": 1,
+    "dials": 1,
+    "speech": 1,
+    "cover": 1,
+    "audience": 1,
+    "practitioner": 1,
+    "consult": 1
+  },
+  "presets": {
+    "default": {
+      "name": "Felix's picks",
+      "slots": {
+        "hero": 1,
+        "monday": 1,
+        "pause": 1,
+        "dials": 1,
+        "speech": 1,
+        "cover": 1,
+        "audience": 1,
+        "practitioner": 1,
+        "consult": 1
+      }
+    }
+  }
+}

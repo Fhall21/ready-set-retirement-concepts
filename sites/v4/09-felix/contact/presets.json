@@ -1,0 +1,17 @@
+{
+  "counts": {
+    "hero": 1,
+    "booking": 1,
+    "form": 1
+  },
+  "presets": {
+    "default": {
+      "name": "Ready to chat (recommended)",
+      "slots": {
+        "hero": 1,
+        "booking": 1,
+        "form": 1
+      }
+    }
+  }
+}
