@@ -78,11 +78,14 @@ window.slotInit["consult"] = function(root, reduced){
       return;
     }
 
-    // the chat and the invitation play in as the section settles at the top: the pause is for taking it in
+    // the chat is scroll-based: each message arrives in turn as the section rises, reversing on the way back up,
+    // and the last one lands as the hold begins (the pause is for taking it in). The invitation copy is a plain entrance.
+    var pinIt = matchMedia(DESK).matches && root.offsetHeight <= innerHeight + 2;
+    var pinStart = root.offsetHeight < innerHeight - 2 ? "center center" : "top top";
     gsap.set(msgs, {opacity:0, y:10, scale:.97});
     gsap.to(msgs, {
-      opacity:1, y:0, scale:1, duration:.5, stagger:.3, ease:"power3.out",
-      scrollTrigger:{trigger:root, start:"top 40%", once:true}
+      opacity:1, y:0, scale:1, duration:.5, stagger:.6, ease:"none",
+      scrollTrigger:{trigger:root, start:"top 75%", end: pinIt ? pinStart : "top 25%", scrub:.6}
     });
     gsap.from(copyEls, {
       y:20, opacity:0, duration:.7, stagger:.1, ease:"power3.out",
@@ -90,9 +93,9 @@ window.slotInit["consult"] = function(root, reduced){
     });
 
     // pause: a short pin hold (~45vh). A section shorter than the window pins when it is centred.
-    if (matchMedia(DESK).matches && root.offsetHeight <= innerHeight + 2) {
+    if (pinIt) {
       ScrollTrigger.create({trigger:root, pin:true, anticipatePin:1, invalidateOnRefresh:true,
-        start: root.offsetHeight < innerHeight - 2 ? "center center" : "top top",
+        start: pinStart,
         end: function(){ return "+=" + (matchMedia(DESK).matches ? Math.round(innerHeight*.45) : 1); }});
     }
     return;

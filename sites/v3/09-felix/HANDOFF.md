@@ -28,3 +28,9 @@
 - Contact `next` not pinned: it is not a full-viewport close. Phones get no pins, only the existing reveals.
 - Home audience (`slots/audience/1.html`) is now a section of its own: full viewport, tinted ground, larger heading, taller doors with white fill. Content unchanged.
 - Home dials (`slots/dials/1.html`): pinned hold (~80vh, `pin:true, anticipatePin:1`) with one scrubbed timeline (scrub .6). The "without a plan" bars fill row by row, a beat, then the "With Dr San" column fills row by row, then the close line. It reverses on scroll back. The section fills the window on desktop so the pin leaves no bands; it pins only when the section fits the window height, otherwise (and on phones) the same scrub runs across the card unpinned. Reduced motion shows the final state.
+
+**Scroll-based audit (Oct 2026).** Every slot in each page's default preset was checked for time-based tweens. Where the motion carries meaning (a calendar filling, a table read row by row, a chat unfolding, a progress line), it is now scrubbed to scroll (reversible, scrub ~0.6). Small entrances (headings, portrait wipes, quote settles, the "San" signature, FAQ open/close, consult phone ring) stay time-based.
+- Home cover/1: the report rows reveal in order as the table rises (no pin).
+- Home consult/1 (desktop): the chat bubbles arrive one by one from "top 75%" to the start of the existing ~45vh hold. No new pin. Invitation copy is still a plain entrance; the phone version is unchanged.
+- Organisation format/5 and format/2, and contact next/1: see those pages' HANDOFF.
+- Not changed: organisation problem/5 on phones still fades rows in by time (desktop is the scrubbed pin). Programmes/7 rows are menu entrances, so they stay time-based.

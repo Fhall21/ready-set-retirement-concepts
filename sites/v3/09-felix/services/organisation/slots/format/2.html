@@ -64,8 +64,10 @@
 <script>
 window.slotInit["format"] = function(root, reduced){
   if (reduced) return;
-  var ev = root.querySelectorAll(".s-ofmt-2-ev");
-  gsap.fromTo(ev, {clipPath:"inset(0 0 100% 0 round .4rem)"}, {clipPath:"inset(0 0 0% 0 round .4rem)", duration:.7, stagger:.12, ease:"expo.out",
-    scrollTrigger:{trigger:root.querySelector(".s-ofmt-2-cal"), start:"top 75%", toggleActions:"play none none none"}});
+  // scroll-based, no pin: each block fills (in time order, top to bottom) as it rises through the lower screen; reverses on the way up
+  root.querySelectorAll(".s-ofmt-2-ev").forEach(function(e){
+    gsap.fromTo(e, {clipPath:"inset(0 0 100% 0 round .4rem)"}, {clipPath:"inset(0 0 0% 0 round .4rem)", ease:"none", immediateRender:true,
+      scrollTrigger:{trigger:e, start:"top 88%", end:"bottom 62%", scrub:.6}});
+  });
 };
 </script>

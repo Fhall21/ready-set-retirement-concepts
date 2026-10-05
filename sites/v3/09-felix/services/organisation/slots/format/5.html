@@ -64,10 +64,42 @@
 <script>
 window.slotInit["format"] = function(root, reduced){
   if (reduced) return;
+  // Scroll-based: the day view fills in as the reader scrolls (blocks in time order, then the notes), and
+  // reverses on the way back up. The reader sets the pace.
+  var cal = root.querySelector(".s-ofmt-5-cal");
   var ev = root.querySelectorAll(".s-ofmt-5-ev");
-  gsap.fromTo(ev, {clipPath:"inset(0 0 100% 0 round .4rem)"}, {clipPath:"inset(0 0 0% 0 round .4rem)", duration:.7, stagger:.12, ease:"expo.out",
-    scrollTrigger:{trigger:root.querySelector(".s-ofmt-5-cal"), start:"top 75%", toggleActions:"play none none none"}});
-  gsap.fromTo(root.querySelectorAll(".s-ofmt-5-notes > *"), {opacity:0, y:12}, {opacity:1, y:0, duration:.7, stagger:.35, delay:.6, ease:"power2.out",
-    scrollTrigger:{trigger:root.querySelector(".s-ofmt-5-cal"), start:"top 75%", toggleActions:"play none none none"}});
+  var notes = root.querySelectorAll(".s-ofmt-5-notes > *");
+  // fresh vars objects per tween (GSAP may write to the vars it is given)
+  var evFrom = function(){ return {clipPath:"inset(0 0 100% 0 round .4rem)"}; };
+  var evTo = function(x){ return Object.assign({clipPath:"inset(0 0 0% 0 round .4rem)"}, x); };
+  var noteFrom = function(){ return {opacity:0, y:12}; };
+  var noteTo = function(x){ return Object.assign({opacity:1, y:0}, x); };
+  // Static desktop check (same pattern as the other organisation slots). Pin only when the whole calendar fits on screen.
+  var DESK = "(min-width:900px) and (min-height:600px)";
+  var pinIt = matchMedia(DESK).matches && cal.offsetHeight + 48 <= innerHeight;
+  if (!pinIt) {
+    // phone / short window: no pin. Each block and note fills as it rises through the lower part of the screen.
+    ev.forEach(function(e){
+      gsap.fromTo(e, evFrom(), evTo({ease:"none", immediateRender:true,
+        scrollTrigger:{trigger:e, start:"top 88%", end:"bottom 62%", scrub:.6}}));
+    });
+    notes.forEach(function(n){
+      gsap.fromTo(n, noteFrom(), noteTo({ease:"none", immediateRender:true,
+        scrollTrigger:{trigger:n, start:"top 90%", end:"top 68%", scrub:.6}}));
+    });
+    return;
+  }
+  // desktop: one scrubbed timeline. It starts as the calendar rises into view, and ends after a short pin
+  // (~70vh) that holds the calendar centred while the last blocks and the notes arrive.
+  var hold = function(){ return matchMedia(DESK).matches ? Math.round(innerHeight * .7) : 1; }; // collapses if resized narrow
+  var approach = function(){ return Math.round(innerHeight * .3 + cal.offsetHeight / 2); };     // cal "top 80%" -> cal centred
+  gsap.set(ev, evFrom()); gsap.set(notes, noteFrom()); // staggered children don't render their start state until reached
+  var tl = gsap.timeline({defaults:{ease:"none"}, scrollTrigger:{trigger:cal, start:"top 80%", scrub:.6, invalidateOnRefresh:true,
+    end:function(){ return "+=" + (approach() + hold()); }}});
+  tl.fromTo(ev, evFrom(), evTo({duration:.8, stagger:.55}))
+    .fromTo(notes, noteFrom(), noteTo({duration:.6, stagger:.3}), ">-.1")
+    .to({}, {duration:.5}); // a beat with the full day on screen before the pin lets go
+  ScrollTrigger.create({trigger:cal, pin:root, anticipatePin:1, invalidateOnRefresh:true, start:"center center",
+    end:function(){ return "+=" + hold(); }});
 };
 </script>

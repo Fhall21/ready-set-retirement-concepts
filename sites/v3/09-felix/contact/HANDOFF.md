@@ -36,3 +36,5 @@
 - Confirm that the first chat can be by video call **or phone**.
 - Confirm partners are welcome in the chat. This is used in FAQ answers and in booking copy d.
 - Every confirmation message is a placeholder. Nothing is sent.
+
+**next/1 is scroll-based (Oct 2026).** The line from step 1 to step 3 fills with the scroll, and each number arrives as the line reaches it (scrub .6, `clamp()` start/end so it completes near the foot of the page). It reverses on scroll up. No pin.

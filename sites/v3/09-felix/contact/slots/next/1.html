@@ -45,10 +45,13 @@
 <script>
 window.slotInit["next"] = function(root, reduced){
   if (reduced) return;
-  var list = root.querySelector(".s-next-1__steps");
-  gsap.fromTo(list, {"--s-next-1-line":0}, {"--s-next-1-line":1, duration:1.4, ease:"power2.out",
-    scrollTrigger:{trigger:list, start:"top 80%", once:true}});
-  gsap.fromTo(root.querySelectorAll(".s-next-1__n"), {scale:.6, opacity:0}, {scale:1, opacity:1, duration:.5, ease:"power3.out", stagger:.2,
-    scrollTrigger:{trigger:list, start:"top 80%", once:true}});
+  // scroll-based: the line runs from step 1 to step 3 as the reader scrolls, each number arriving as the line reaches it.
+  // clamp() keeps the range reachable near the foot of the page. Reverses on the way back up.
+  var list = root.querySelector(".s-next-1__steps"), ns = root.querySelectorAll(".s-next-1__n");
+  gsap.set(ns, {scale:.6, opacity:0});
+  var tl = gsap.timeline({defaults:{ease:"none"},
+    scrollTrigger:{trigger:list, start:"clamp(top 85%)", end:"clamp(bottom 55%)", scrub:.6}});
+  tl.fromTo(list, {"--s-next-1-line":0}, {"--s-next-1-line":1, duration:1}, 0);
+  ns.forEach(function(n, i){ tl.to(n, {scale:1, opacity:1, duration:.18}, i * .41); });
 };
 </script>

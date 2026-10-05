@@ -101,14 +101,16 @@
 window.slotInit["cover"] = function(root, reduced){
   var rows = root.querySelectorAll(".s-cover-7-row");
   if (reduced) { gsap.set(rows, {opacity:1}); return; }
+  // scroll-based: the report reads row by row as the table rises (no pin), and reverses on the way back up
   gsap.set(rows, {opacity:0, y:8});
   gsap.to(rows, {
     opacity:1, y:0,
-    duration:0.5, ease:"power2.out", stagger:0.07,
+    duration:0.5, ease:"none", stagger:0.35,
     scrollTrigger:{
       trigger: root.querySelector(".s-cover-7-table"),
-      start: "top 82%",
-      toggleActions: "play none none none"
+      start: "top 80%",
+      end: "bottom 68%",
+      scrub: 0.6
     }
   });
 };
