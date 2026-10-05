@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-AU" data-pal="b">
+<html lang="en-AU" data-pal="a">
 <head>
 <meta charset="utf-8">
 <link rel="icon" href="data:,">
@@ -8,13 +8,11 @@
 <meta name="description" content="Psychosocial retirement workshops and seminars for employers, from Dr San.">
 <script>window.RSR_ROOT = "../../";</script>
 <script>
-(function(){try{
-  var q=new URL(location.href).searchParams.get("pal");
-  var p=(q||"b") /* this page defaults to palette B (its default preset); ?pal= or a preset overrides */.toLowerCase();
-  if(p!=="b")p="a";
-  document.documentElement.setAttribute("data-pal",p);
-}catch(e){}})();
+/* Palette A is locked for this page (Felix, Oct 2026). No B option: pin it and ignore ?pal= / mixer buttons. */
+(function(){var h=document.documentElement;h.setAttribute("data-pal","a");
+new MutationObserver(function(){if(h.getAttribute("data-pal")!=="a")h.setAttribute("data-pal","a");}).observe(h,{attributes:true,attributeFilter:["data-pal"]});})();
 </script>
+<style>.mx-foot [data-pal]{display:none}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -42,28 +40,5 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
 <script src="../../shared/engine.js"></script>
-<script>
-/* Presets on this page may carry a palette ("pal": "a"|"b" in presets.json). Choosing one from the mixer,
-   or opening ?preset=<name>, switches the palette and writes ?pal= into the URL so "Copy link" keeps it.
-   An explicit ?pal= in the URL always wins on load. */
-(function(){
-  function setPal(p){
-    if (p !== "a" && p !== "b") return;
-    document.documentElement.setAttribute("data-pal", p);
-    try { var u = new URL(location.href); u.searchParams.set("pal", p); history.replaceState(null, "", u); } catch(e){}
-  }
-  function presetPal(name){
-    var m = window.Vitals && Vitals.manifest;
-    return m && m.presets && m.presets[name] && m.presets[name].pal;
-  }
-  document.addEventListener("change", function(e){
-    if (e.target.matches && e.target.matches(".mx select")) setPal(presetPal(e.target.value));
-  });
-  var q = new URL(location.href).searchParams, name = q.get("preset");
-  if (name && !q.get("pal")) document.addEventListener("vitals:change", function once(){
-    document.removeEventListener("vitals:change", once); setPal(presetPal(name));
-  });
-})();
-</script>
 </body>
 </html>

@@ -9,8 +9,7 @@
   },
   "presets": {
     "default": {
-      "name": "Recommended: plain and few (palette B)",
-      "pal": "b",
+      "name": "Recommended: plain and few",
       "slots": {
         "hero": 2,
         "problem": 5,
@@ -24,8 +23,7 @@
       }
     },
     "felt": {
-      "name": "Story: a felt Monday, fewest words (palette A)",
-      "pal": "a",
+      "name": "Story: a felt Monday, fewest words",
       "slots": {
         "hero": 3,
         "problem": 3,
@@ -43,8 +41,7 @@
       }
     },
     "her": {
-      "name": "Story: in Dr San’s words (palette A)",
-      "pal": "a",
+      "name": "Story: in Dr San’s words",
       "slots": {
         "hero": 2,
         "problem": 5,
@@ -63,8 +60,7 @@
       }
     },
     "hr": {
-      "name": "Story: the HR brief (palette B)",
-      "pal": "b",
+      "name": "Story: the HR brief",
       "slots": {
         "hero": 2,
         "problem": 2,
